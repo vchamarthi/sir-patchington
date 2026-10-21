@@ -1,0 +1,337 @@
+{
+  "as_of": "2026-10-21",
+  "timezone": "America/Chicago",
+  "method": "Live official GitHub documentation plus read-only gh API for public default-branch workflow source",
+  "docs": [
+    {
+      "id": "events",
+      "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows",
+      "observed_claim": "Activity types, event-specific revisions, feedback routing, workflow_run, merge_group",
+      "evidence_level": "documented; not executed"
+    },
+    {
+      "id": "token",
+      "url": "https://docs.github.com/en/actions/concepts/security/github_token",
+      "observed_claim": "Current PR approval-required exception and suppressed ordinary token push events",
+      "evidence_level": "documented; not executed"
+    },
+    {
+      "id": "trigger",
+      "url": "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow",
+      "observed_claim": "App/PAT alternatives and explicit event configuration",
+      "evidence_level": "documented; not executed"
+    },
+    {
+      "id": "queue",
+      "url": "https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/control-workflow-concurrency",
+      "observed_claim": "queue:max, cancellation incompatibility, waiting-order semantics",
+      "evidence_level": "documented; not executed"
+    },
+    {
+      "id": "concurrency",
+      "url": "https://docs.github.com/en/actions/concepts/workflows-and-actions/concurrency",
+      "observed_claim": "Default pending replacement and concurrency concepts",
+      "evidence_level": "documented; not executed"
+    },
+    {
+      "id": "fork-approval",
+      "url": "https://docs.github.com/en/actions/how-tos/manage-workflow-runs/approve-runs-from-forks",
+      "observed_claim": "Maintainer approval permits workflow execution",
+      "evidence_level": "documented; not executed"
+    },
+    {
+      "id": "dependabot",
+      "url": "https://docs.github.com/en/code-security/reference/supply-chain-security/dependabot-on-actions",
+      "observed_claim": "Actor/event-based restrictions and Dependabot versus Actions secrets",
+      "evidence_level": "documented; not executed"
+    },
+    {
+      "id": "protected-branches",
+      "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches",
+      "observed_claim": "Distinct review requirements, unique check names, expected source and bypass settings",
+      "evidence_level": "documented; not executed"
+    },
+    {
+      "id": "required-checks",
+      "url": "https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/troubleshooting-required-status-checks",
+      "observed_claim": "Event eligibility, manual dispatch limitation, skipped workflow versus job",
+      "evidence_level": "documented; not executed"
+    },
+    {
+      "id": "check-conclusions",
+      "url": "https://docs.github.com/en/pull-requests/reference/status-checks",
+      "observed_claim": "Documented check outcomes; execution evidence remains separate",
+      "evidence_level": "documented; not executed"
+    },
+    {
+      "id": "merge-queue",
+      "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+      "observed_claim": "Combined revision and merge_group CI event",
+      "evidence_level": "documented; not executed"
+    },
+    {
+      "id": "environments",
+      "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+      "observed_claim": "Job approval and protected secret access, plan-dependent availability",
+      "evidence_level": "documented; not executed"
+    },
+    {
+      "id": "target-security",
+      "url": "https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target",
+      "observed_claim": "Privileged base workflow versus execution of attacker checkout",
+      "evidence_level": "documented; not executed"
+    },
+    {
+      "id": "secure-use",
+      "url": "https://docs.github.com/en/actions/reference/security/secure-use",
+      "observed_claim": "Input and untrusted-code security boundaries",
+      "evidence_level": "documented; not executed"
+    },
+    {
+      "id": "comments",
+      "url": "https://docs.github.com/en/rest/pulls/comments",
+      "observed_claim": "Commit, path, diff side and original location metadata",
+      "evidence_level": "documented; not executed"
+    },
+    {
+      "id": "thread-schema",
+      "url": "https://docs.github.com/en/graphql/reference/pulls",
+      "observed_claim": "Separate thread outdated and resolved fields",
+      "evidence_level": "documented; not executed"
+    },
+    {
+      "id": "pagination",
+      "url": "https://docs.github.com/en/graphql/guides/using-pagination-in-the-graphql-api",
+      "observed_claim": "Traverse endCursor/hasNextPage, including nested connections",
+      "evidence_level": "documented; not executed"
+    },
+    {
+      "id": "webhooks",
+      "url": "https://docs.github.com/en/webhooks/using-webhooks/best-practices-for-using-webhooks",
+      "observed_claim": "Verify type/action and delivery identity, redelivery retains delivery ID",
+      "evidence_level": "documented; not executed"
+    },
+    {
+      "id": "actions-settings",
+      "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository",
+      "observed_claim": "Settings navigation and fork policy options; actual repo settings unknown",
+      "evidence_level": "documented; not executed"
+    }
+  ],
+  "repositories": [
+    {
+      "repo": "IntelPython/mkl_fft",
+      "default_branch": "master",
+      "sha": "1c64f4ed77aed89687f43b66b4ed84035f69919d",
+      "files": [
+        {
+          "name": "build-with-clang.yml",
+          "path": ".github/workflows/build-with-clang.yml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--mkl_fft--build-with-clang.yml",
+          "url": "https://github.com/IntelPython/mkl_fft/blob/1c64f4ed77aed89687f43b66b4ed84035f69919d/.github/workflows/build-with-clang.yml",
+          "file_sha256": "73244a60ee5c047ee172ed39a75ebe80075bd23ba3a1257662300eca1e190824"
+        },
+        {
+          "name": "build-with-standard-clang.yml",
+          "path": ".github/workflows/build-with-standard-clang.yml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--mkl_fft--build-with-standard-clang.yml",
+          "url": "https://github.com/IntelPython/mkl_fft/blob/1c64f4ed77aed89687f43b66b4ed84035f69919d/.github/workflows/build-with-standard-clang.yml",
+          "file_sha256": "50c934456650a5ba184a074674c7402cf012a3b057191f9af7ee324063cd7df6"
+        },
+        {
+          "name": "build_pip.yml",
+          "path": ".github/workflows/build_pip.yml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--mkl_fft--build_pip.yml",
+          "url": "https://github.com/IntelPython/mkl_fft/blob/1c64f4ed77aed89687f43b66b4ed84035f69919d/.github/workflows/build_pip.yml",
+          "file_sha256": "5f562371eb24cbba2cd3ebcd2494692573271e085b4542e73debb80fbaec5d01"
+        },
+        {
+          "name": "conda-package-cf.yml",
+          "path": ".github/workflows/conda-package-cf.yml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--mkl_fft--conda-package-cf.yml",
+          "url": "https://github.com/IntelPython/mkl_fft/blob/1c64f4ed77aed89687f43b66b4ed84035f69919d/.github/workflows/conda-package-cf.yml",
+          "file_sha256": "ff94c9b9c9b61f32b3d5d4ce3e4cd676a10a7834174808597a5d796c16510b85"
+        },
+        {
+          "name": "conda-package.yml",
+          "path": ".github/workflows/conda-package.yml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--mkl_fft--conda-package.yml",
+          "url": "https://github.com/IntelPython/mkl_fft/blob/1c64f4ed77aed89687f43b66b4ed84035f69919d/.github/workflows/conda-package.yml",
+          "file_sha256": "f0682921601f4603e2db71ce689e5039d4916cca2360d258990115f58fbaaf86"
+        },
+        {
+          "name": "coverity.yml",
+          "path": ".github/workflows/coverity.yml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--mkl_fft--coverity.yml",
+          "url": "https://github.com/IntelPython/mkl_fft/blob/1c64f4ed77aed89687f43b66b4ed84035f69919d/.github/workflows/coverity.yml",
+          "file_sha256": "6c33f1211bf856cb56a3666354cef7cbb5cada8f7c016b14d75e40f6eb22cfcd"
+        },
+        {
+          "name": "openssf-scorecard.yml",
+          "path": ".github/workflows/openssf-scorecard.yml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--mkl_fft--openssf-scorecard.yml",
+          "url": "https://github.com/IntelPython/mkl_fft/blob/1c64f4ed77aed89687f43b66b4ed84035f69919d/.github/workflows/openssf-scorecard.yml",
+          "file_sha256": "9bfee3a402d8cb94d4b5e61fab2b0eaee77eab6a07e89b12800a04aedafc68d0"
+        },
+        {
+          "name": "pre-commit.yml",
+          "path": ".github/workflows/pre-commit.yml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--mkl_fft--pre-commit.yml",
+          "url": "https://github.com/IntelPython/mkl_fft/blob/1c64f4ed77aed89687f43b66b4ed84035f69919d/.github/workflows/pre-commit.yml",
+          "file_sha256": "69b44434d3bca1d8750e271f5e9cafce887775eabf2c8b963793bb8ba16df978"
+        },
+        {
+          "name": "zizmor.yml",
+          "path": ".github/workflows/zizmor.yml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--mkl_fft--zizmor.yml",
+          "url": "https://github.com/IntelPython/mkl_fft/blob/1c64f4ed77aed89687f43b66b4ed84035f69919d/.github/workflows/zizmor.yml",
+          "file_sha256": "4e71a3125bbf83f9eaffadbd9bbbdaf184f38e2ece28201f74b7e139e9abe466"
+        }
+      ],
+      "protection_settings": "not inspected; unknown",
+      "inspection": "Public repository metadata and workflow source only; no settings/protection endpoints invoked; no runtime or check success claim"
+    },
+    {
+      "repo": "IntelPython/dpnp",
+      "default_branch": "master",
+      "sha": "d28ce7fc3cc90ef7cb194b8900a173e3fac877ef",
+      "files": [
+        {
+          "name": "Windows-IntelLLVM_3.26.cmake",
+          "path": ".github/workflows/Windows-IntelLLVM_3.26.cmake",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--dpnp--Windows-IntelLLVM_3.26.cmake",
+          "url": "https://github.com/IntelPython/dpnp/blob/d28ce7fc3cc90ef7cb194b8900a173e3fac877ef/.github/workflows/Windows-IntelLLVM_3.26.cmake",
+          "file_sha256": "9ca27a7501fa06375409b6906f2297a778cb9da380ae32ff818f72da7f302ccb"
+        },
+        {
+          "name": "array-api-skips.txt",
+          "path": ".github/workflows/array-api-skips.txt",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--dpnp--array-api-skips.txt",
+          "url": "https://github.com/IntelPython/dpnp/blob/d28ce7fc3cc90ef7cb194b8900a173e3fac877ef/.github/workflows/array-api-skips.txt",
+          "file_sha256": "d844eeddbcf971cebee9aba1e9663044db2b264668562cc60138c8cda8e9da2c"
+        },
+        {
+          "name": "build-sphinx.yml",
+          "path": ".github/workflows/build-sphinx.yml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--dpnp--build-sphinx.yml",
+          "url": "https://github.com/IntelPython/dpnp/blob/d28ce7fc3cc90ef7cb194b8900a173e3fac877ef/.github/workflows/build-sphinx.yml",
+          "file_sha256": "832e895541b934845580dccd35b9ca6043d89bbaae3b9a4256b136d38e83faf2"
+        },
+        {
+          "name": "bump-sycl-deps.yml",
+          "path": ".github/workflows/bump-sycl-deps.yml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--dpnp--bump-sycl-deps.yml",
+          "url": "https://github.com/IntelPython/dpnp/blob/d28ce7fc3cc90ef7cb194b8900a173e3fac877ef/.github/workflows/bump-sycl-deps.yml",
+          "file_sha256": "7df3337869a33f62041ac3854a0f70e32919fd9c915071fa255958d0cb7848c4"
+        },
+        {
+          "name": "check-onemath.yaml",
+          "path": ".github/workflows/check-onemath.yaml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--dpnp--check-onemath.yaml",
+          "url": "https://github.com/IntelPython/dpnp/blob/d28ce7fc3cc90ef7cb194b8900a173e3fac877ef/.github/workflows/check-onemath.yaml",
+          "file_sha256": "9a5961797f227a4262a918c8f4e806bdfd768454383ba0a96689db6c69e637ae"
+        },
+        {
+          "name": "conda-build-test.yml",
+          "path": ".github/workflows/conda-build-test.yml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--dpnp--conda-build-test.yml",
+          "url": "https://github.com/IntelPython/dpnp/blob/d28ce7fc3cc90ef7cb194b8900a173e3fac877ef/.github/workflows/conda-build-test.yml",
+          "file_sha256": "c7ea93cb9b28f4112af37a7d204c95d0a648ab69e9423a2a3aeba23dc6f4c621"
+        },
+        {
+          "name": "conda-package-cf.yml",
+          "path": ".github/workflows/conda-package-cf.yml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--dpnp--conda-package-cf.yml",
+          "url": "https://github.com/IntelPython/dpnp/blob/d28ce7fc3cc90ef7cb194b8900a173e3fac877ef/.github/workflows/conda-package-cf.yml",
+          "file_sha256": "5a3890498b06e0249b5da6ea72113fca9a1af59713485cc5a9036887634b7c1b"
+        },
+        {
+          "name": "conda-package.yml",
+          "path": ".github/workflows/conda-package.yml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--dpnp--conda-package.yml",
+          "url": "https://github.com/IntelPython/dpnp/blob/d28ce7fc3cc90ef7cb194b8900a173e3fac877ef/.github/workflows/conda-package.yml",
+          "file_sha256": "dca07f3f16b068f28cc3cb21c3e77c8551be946f42cb5f7efd289375007741b3"
+        },
+        {
+          "name": "cron-run-tests.yaml",
+          "path": ".github/workflows/cron-run-tests.yaml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--dpnp--cron-run-tests.yaml",
+          "url": "https://github.com/IntelPython/dpnp/blob/d28ce7fc3cc90ef7cb194b8900a173e3fac877ef/.github/workflows/cron-run-tests.yaml",
+          "file_sha256": "dfc7507991a798c63e4cec0bacb9afbc862e54a64fe4d8dca839338baf02e299"
+        },
+        {
+          "name": "generate_coverage.yaml",
+          "path": ".github/workflows/generate_coverage.yaml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--dpnp--generate_coverage.yaml",
+          "url": "https://github.com/IntelPython/dpnp/blob/d28ce7fc3cc90ef7cb194b8900a173e3fac877ef/.github/workflows/generate_coverage.yaml",
+          "file_sha256": "931e1eb1b75361bd90033e29e80ea09f3023ddb47db0c9396ce25fc98fcbd39c"
+        },
+        {
+          "name": "openssf-scorecard.yml",
+          "path": ".github/workflows/openssf-scorecard.yml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--dpnp--openssf-scorecard.yml",
+          "url": "https://github.com/IntelPython/dpnp/blob/d28ce7fc3cc90ef7cb194b8900a173e3fac877ef/.github/workflows/openssf-scorecard.yml",
+          "file_sha256": "db910a074e1602f70cba0e91bd4c822a3b9c50a2acb31ba28db2279250ec792a"
+        },
+        {
+          "name": "os-llvm-sycl-build.yml",
+          "path": ".github/workflows/os-llvm-sycl-build.yml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--dpnp--os-llvm-sycl-build.yml",
+          "url": "https://github.com/IntelPython/dpnp/blob/d28ce7fc3cc90ef7cb194b8900a173e3fac877ef/.github/workflows/os-llvm-sycl-build.yml",
+          "file_sha256": "f9d5b6c886b711066588f75e61ea7f6b6f6f97f27618b650c88d48e5c9634e24"
+        },
+        {
+          "name": "pre-commit.yml",
+          "path": ".github/workflows/pre-commit.yml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--dpnp--pre-commit.yml",
+          "url": "https://github.com/IntelPython/dpnp/blob/d28ce7fc3cc90ef7cb194b8900a173e3fac877ef/.github/workflows/pre-commit.yml",
+          "file_sha256": "de404a1174480ad9d4a7abc370edc107adaf22f24002997461c13629d5fec431"
+        },
+        {
+          "name": "zizmor.yml",
+          "path": ".github/workflows/zizmor.yml",
+          "local_path": "/tmp/github-scenarios-20261021/IntelPython--dpnp--zizmor.yml",
+          "url": "https://github.com/IntelPython/dpnp/blob/d28ce7fc3cc90ef7cb194b8900a173e3fac877ef/.github/workflows/zizmor.yml",
+          "file_sha256": "1fcf277392ee00fcbcc4ec1714be168252f0256b23f0082a61c3f1d7e9c3bbb9"
+        }
+      ],
+      "protection_settings": "not inspected; unknown",
+      "inspection": "Public repository metadata and workflow source only; no settings/protection endpoints invoked; no runtime or check success claim"
+    }
+  ],
+  "scenario_count": 20,
+  "illustrative_yaml_count": 3,
+  "explicit_unknowns": [
+    "Branch protections",
+    "Rulesets and expected check source",
+    "Enabled Actions approval policies",
+    "Environment reviewers",
+    "Runner hardware inventory",
+    "Current workflow outcomes",
+    "Actual model or repair integration"
+  ],
+  "proposed_controls": [
+    "Authenticate repair requester",
+    "Immutable task/evidence identity",
+    "Approval invalidation",
+    "Expected old head compare-and-set",
+    "Publisher serialization and reconciliation",
+    "No automatic merge"
+  ],
+  "not_performed": [
+    "No installs",
+    "No model calls",
+    "No workflows executed",
+    "No repository writes",
+    "No protected settings read",
+    "No PR code review"
+  ],
+  "validation": {
+    "illustrative_yaml_documents": 3,
+    "parser": "Ruby standard-library Psych YAML.safe_load",
+    "result": "Parsed successfully; this is syntax evidence only, not GitHub validation or workflow execution",
+    "pinned_repository_links_checked": 6,
+    "line_range_errors": 0,
+    "scenario_rows": 20
+  }
+}

@@ -1,0 +1,504 @@
+{
+  "as_of": "2026-10-21",
+  "method": "read-only GitHub API and shallow public source clones; no installation or model calls",
+  "deep_inspection_count": 8,
+  "sources": [
+    {
+      "repo": "OpenHands/software-agent-sdk",
+      "sha": "0996c33916c2a977ea9fe38deee660ff0e1389f2",
+      "license": "MIT",
+      "archived": false,
+      "pushed_at": "2026-10-20T16:51:04Z",
+      "path": "/tmp/code-review-repair-research-20261021/OpenHands--software-agent-sdk",
+      "default_branch": "main",
+      "url": "https://github.com/OpenHands/software-agent-sdk",
+      "inspection": "targeted source inspection, not runtime execution",
+      "evidence": [
+        {
+          "path": "openhands-sdk/openhands/sdk/security/confirmation_policy.py",
+          "lines": [
+            27,
+            59
+          ],
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/0996c33916c2a977ea9fe38deee660ff0e1389f2/openhands-sdk/openhands/sdk/security/confirmation_policy.py#L27-L59",
+          "claim": "Action confirmation policies",
+          "file_sha256": "6ecac839fa3740e5cdc8aae6515cd0cf4ef4177c5b27bb99a7d593af844c765f"
+        },
+        {
+          "path": "openhands-sdk/openhands/sdk/conversation/state.py",
+          "lines": [
+            123,
+            123
+          ],
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/0996c33916c2a977ea9fe38deee660ff0e1389f2/openhands-sdk/openhands/sdk/conversation/state.py#L123-L123",
+          "claim": "NeverConfirm default",
+          "file_sha256": "7e488ee6cb483f35b852bcb0900f5f49e0490a2b5bf28d6387d869d207727360"
+        },
+        {
+          "path": "openhands-sdk/openhands/sdk/utils/command.py",
+          "lines": [
+            16,
+            76
+          ],
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/0996c33916c2a977ea9fe38deee660ff0e1389f2/openhands-sdk/openhands/sdk/utils/command.py#L16-L76",
+          "claim": "Environment filtering",
+          "file_sha256": "6bdf9896d04b12a43bb6aaf1a648d80b273b910fdef5393c5277f0ab931b6e78"
+        },
+        {
+          "path": "openhands-sdk/openhands/sdk/conversation/stuck_detector.py",
+          "lines": [
+            23,
+            160
+          ],
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/0996c33916c2a977ea9fe38deee660ff0e1389f2/openhands-sdk/openhands/sdk/conversation/stuck_detector.py#L23-L160",
+          "claim": "Loop detection",
+          "file_sha256": "3bf25f2d722404398e4744ae188f575f628463732b3606a8da6049fb8ff0039e"
+        },
+        {
+          "path": "openhands-sdk/openhands/sdk/conversation/impl/local_conversation.py",
+          "lines": [
+            1949,
+            1952
+          ],
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/0996c33916c2a977ea9fe38deee660ff0e1389f2/openhands-sdk/openhands/sdk/conversation/impl/local_conversation.py#L1949-L1952",
+          "claim": "Implicit second-run confirmation",
+          "file_sha256": "14cb73e5c9426c17e66ccb01ad3469eecc0bb2ffb7c8c32ae6dc1bb810a35c1b"
+        },
+        {
+          "path": "openhands-sdk/openhands/sdk/conversation/impl/local_conversation.py",
+          "lines": [
+            3169,
+            3180
+          ],
+          "url": "https://github.com/OpenHands/software-agent-sdk/blob/0996c33916c2a977ea9fe38deee660ff0e1389f2/openhands-sdk/openhands/sdk/conversation/impl/local_conversation.py#L3169-L3180",
+          "claim": "Direct tool execution bypasses confirmation and security analyzers",
+          "file_sha256": "14cb73e5c9426c17e66ccb01ad3469eecc0bb2ffb7c8c32ae6dc1bb810a35c1b"
+        }
+      ]
+    },
+    {
+      "repo": "SWE-agent/SWE-agent",
+      "sha": "3ea751c087f32b16e039a2233dd6eefecef325d5",
+      "license": "MIT",
+      "archived": false,
+      "pushed_at": "2026-10-19T22:57:44Z",
+      "path": "/tmp/code-review-repair-research-20261021/SWE-agent--SWE-agent",
+      "default_branch": "main",
+      "url": "https://github.com/SWE-agent/SWE-agent",
+      "inspection": "targeted source inspection, not runtime execution",
+      "evidence": [
+        {
+          "path": "README.md",
+          "lines": [
+            18,
+            24
+          ],
+          "url": "https://github.com/SWE-agent/SWE-agent/blob/3ea751c087f32b16e039a2233dd6eefecef325d5/README.md#L18-L24",
+          "claim": "Upstream recommends mini-SWE-agent",
+          "file_sha256": "dcd880557720efbab0f5c0e68f2bc742309efecfce83244c9e670ec1f1adf76f"
+        },
+        {
+          "path": "sweagent/run/hooks/open_pr.py",
+          "lines": [
+            24,
+            116
+          ],
+          "url": "https://github.com/SWE-agent/SWE-agent/blob/3ea751c087f32b16e039a2233dd6eefecef325d5/sweagent/run/hooks/open_pr.py#L24-L116",
+          "claim": "Direct commit push draft PR hook",
+          "file_sha256": "5c7a41bca9b5f097cedcffbf36a36332b98be0507507a74f72f76d486b18e93c"
+        },
+        {
+          "path": "sweagent/run/hooks/open_pr.py",
+          "lines": [
+            120,
+            186
+          ],
+          "url": "https://github.com/SWE-agent/SWE-agent/blob/3ea751c087f32b16e039a2233dd6eefecef325d5/sweagent/run/hooks/open_pr.py#L120-L186",
+          "claim": "Submission and issue-state gate",
+          "file_sha256": "5c7a41bca9b5f097cedcffbf36a36332b98be0507507a74f72f76d486b18e93c"
+        }
+      ]
+    },
+    {
+      "repo": "Aider-AI/aider",
+      "sha": "5dc9490bb35f9729ef2c95d00a19ccd30c26339c",
+      "license": "Apache-2.0",
+      "archived": false,
+      "pushed_at": "2026-05-22T14:02:20Z",
+      "path": "/tmp/code-review-repair-research-20261021/Aider-AI--aider",
+      "default_branch": "main",
+      "url": "https://github.com/Aider-AI/aider",
+      "inspection": "targeted source inspection, not runtime execution",
+      "evidence": [
+        {
+          "path": "aider/coders/base_coder.py",
+          "lines": [
+            105,
+            106
+          ],
+          "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/coders/base_coder.py#L105-L106",
+          "claim": "Lint/test defaults",
+          "file_sha256": "04a7b38c4f1d2b1684ac958f40bcd81a28b00139eae88afed59d2c970bef1ee1"
+        },
+        {
+          "path": "aider/coders/base_coder.py",
+          "lines": [
+            1585,
+            1623
+          ],
+          "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/coders/base_coder.py#L1585-L1623",
+          "claim": "Commit lint test loop ordering",
+          "file_sha256": "04a7b38c4f1d2b1684ac958f40bcd81a28b00139eae88afed59d2c970bef1ee1"
+        },
+        {
+          "path": "aider/coders/base_coder.py",
+          "lines": [
+            2296,
+            2336
+          ],
+          "url": "https://github.com/Aider-AI/aider/blob/5dc9490bb35f9729ef2c95d00a19ccd30c26339c/aider/coders/base_coder.py#L2296-L2336",
+          "claim": "Edit application and reflection",
+          "file_sha256": "04a7b38c4f1d2b1684ac958f40bcd81a28b00139eae88afed59d2c970bef1ee1"
+        }
+      ]
+    },
+    {
+      "repo": "cline/cline",
+      "sha": "e9dafbb764d0cb9acb4ef93a956ae72c350b3952",
+      "license": "Apache-2.0",
+      "archived": false,
+      "pushed_at": "2026-10-21T05:17:27Z",
+      "path": "/tmp/code-review-repair-research-20261021/cline--cline",
+      "default_branch": "main",
+      "url": "https://github.com/cline/cline",
+      "inspection": "targeted source inspection, not runtime execution",
+      "evidence": [
+        {
+          "path": "apps/cli/src/runtime/interactive/approvals.ts",
+          "lines": [
+            20,
+            65
+          ],
+          "url": "https://github.com/cline/cline/blob/e9dafbb764d0cb9acb4ef93a956ae72c350b3952/apps/cli/src/runtime/interactive/approvals.ts#L20-L65",
+          "claim": "Interactive auto approval and UI gate",
+          "file_sha256": "ffd4082c3b5bf090dc1c5f18c91d95133ceeaddf79ba8c925933c0b0b26c6c9a"
+        },
+        {
+          "path": "apps/cli/src/utils/approval.ts",
+          "lines": [
+            69,
+            114
+          ],
+          "url": "https://github.com/cline/cline/blob/e9dafbb764d0cb9acb4ef93a956ae72c350b3952/apps/cli/src/utils/approval.ts#L69-L114",
+          "claim": "TTY approval fallback",
+          "file_sha256": "d5789b2630df3aa3938063290bedae5a216021cc74ca93c54a1e60fc9e0b66fc"
+        }
+      ]
+    },
+    {
+      "repo": "github/gh-aw",
+      "sha": "b76697cedc6f0c2f212f7ba7690df9baa7768205",
+      "license": "MIT",
+      "archived": false,
+      "pushed_at": "2026-10-21T06:47:45Z",
+      "path": "/tmp/code-review-repair-research-20261021/github--gh-aw",
+      "default_branch": "main",
+      "url": "https://github.com/github/gh-aw",
+      "inspection": "targeted source inspection, not runtime execution",
+      "evidence": [
+        {
+          "path": "specs/security-architecture-spec.md",
+          "lines": [
+            1396,
+            1421
+          ],
+          "url": "https://github.com/github/gh-aw/blob/b76697cedc6f0c2f212f7ba7690df9baa7768205/specs/security-architecture-spec.md#L1396-L1421",
+          "claim": "Read agent and write job separation",
+          "file_sha256": "716ac8fd7e2b34f3eba471c81cdf558d49f0a8d59d08edf5d7bd0f99e79da123"
+        },
+        {
+          "path": "actions/setup/js/push_to_pull_request_branch.cjs",
+          "lines": [
+            883,
+            920
+          ],
+          "url": "https://github.com/github/gh-aw/blob/b76697cedc6f0c2f212f7ba7690df9baa7768205/actions/setup/js/push_to_pull_request_branch.cjs#L883-L920",
+          "claim": "Head repository validation",
+          "file_sha256": "df47d112e4e0307e820513481ab421c98fab6f94c0e39ed6706b27eb8d8081f0"
+        },
+        {
+          "path": "actions/setup/js/push_signed_commits.cjs",
+          "lines": [
+            809,
+            908
+          ],
+          "url": "https://github.com/github/gh-aw/blob/b76697cedc6f0c2f212f7ba7690df9baa7768205/actions/setup/js/push_signed_commits.cjs#L809-L908",
+          "claim": "Signed API commit and expectedHeadOid",
+          "file_sha256": "1dcd0672b3ddf5fd9079e93bd6fd138df2a0081ebeced2bf5293d57b9c7925a7"
+        }
+      ]
+    },
+    {
+      "repo": "dbos-inc/dbos-transact-py",
+      "sha": "e63ee714e031287c9b3447a173be835d6eaf1f95",
+      "license": "MIT",
+      "archived": false,
+      "pushed_at": "2026-10-21T00:38:03Z",
+      "path": "/tmp/code-review-repair-research-20261021/dbos-inc--dbos-transact-py",
+      "default_branch": "main",
+      "url": "https://github.com/dbos-inc/dbos-transact-py",
+      "inspection": "targeted source inspection, not runtime execution",
+      "evidence": [
+        {
+          "path": "dbos/_core.py",
+          "lines": [
+            2265,
+            2353
+          ],
+          "url": "https://github.com/dbos-inc/dbos-transact-py/blob/e63ee714e031287c9b3447a173be835d6eaf1f95/dbos/_core.py#L2265-L2353",
+          "claim": "Effect before recording and cached replay",
+          "file_sha256": "d8eef606a61220ff2f6d7916ad1f8c93ee620277f9033644356d716aafb9574d"
+        },
+        {
+          "path": "dbos/_recovery.py",
+          "lines": [
+            14,
+            27
+          ],
+          "url": "https://github.com/dbos-inc/dbos-transact-py/blob/e63ee714e031287c9b3447a173be835d6eaf1f95/dbos/_recovery.py#L14-L27",
+          "claim": "Atomic requeue recovery",
+          "file_sha256": "85bbae10c0f3bee2709735586fe6efbf1392ed1d7c8c4b7b702c6dfdefed6500"
+        }
+      ]
+    },
+    {
+      "repo": "langchain-ai/open-swe",
+      "sha": "e8a31359226b192b1bb8af50265d2ff694d15f32",
+      "license": "MIT",
+      "archived": false,
+      "pushed_at": "2026-10-21T04:18:19Z",
+      "path": "/tmp/code-review-repair-research-20261021/langchain-ai--open-swe",
+      "default_branch": "main",
+      "url": "https://github.com/langchain-ai/open-swe",
+      "inspection": "targeted source inspection, not runtime execution",
+      "evidence": [
+        {
+          "path": "openswe/reviewer.py",
+          "lines": [
+            648,
+            684
+          ],
+          "url": "https://github.com/langchain-ai/open-swe/blob/e8a31359226b192b1bb8af50265d2ff694d15f32/openswe/reviewer.py#L648-L684",
+          "claim": "Review preparation and trusted base skills",
+          "file_sha256": "82a8d2a1d6c815ae60104c6a8602c59b8995fdcac21514ba2ecf278c4c812ec0"
+        },
+        {
+          "path": "openswe/review/findings.py",
+          "lines": [
+            126,
+            168
+          ],
+          "url": "https://github.com/langchain-ai/open-swe/blob/e8a31359226b192b1bb8af50265d2ff694d15f32/openswe/review/findings.py#L126-L168",
+          "claim": "Finding lifecycle schema",
+          "file_sha256": "0c965e3c892b7f2c016f7a97350ed0b612aaf68fa1e7ebd6a46660f54e9593f0"
+        },
+        {
+          "path": "openswe/tools/publish_review.py",
+          "lines": [
+            287,
+            323
+          ],
+          "url": "https://github.com/langchain-ai/open-swe/blob/e8a31359226b192b1bb8af50265d2ff694d15f32/openswe/tools/publish_review.py#L287-L323",
+          "claim": "Head and assessment binding",
+          "file_sha256": "87ad4204d02c5578b7140fe02623c3a8af177dcbb61099b4ffbe6eed4f07a22c"
+        },
+        {
+          "path": "openswe/review/publish.py",
+          "lines": [
+            603,
+            627
+          ],
+          "url": "https://github.com/langchain-ai/open-swe/blob/e8a31359226b192b1bb8af50265d2ff694d15f32/openswe/review/publish.py#L603-L627",
+          "claim": "GitHub commit_id payload",
+          "file_sha256": "30091da76d0314f47c9831f935b2dd211d4c2a81987c445d0d469375f521326a"
+        },
+        {
+          "path": "openswe/middleware/workflow_push_guard.py",
+          "lines": [
+            51,
+            96
+          ],
+          "url": "https://github.com/langchain-ai/open-swe/blob/e8a31359226b192b1bb8af50265d2ff694d15f32/openswe/middleware/workflow_push_guard.py#L51-L96",
+          "claim": "Frozen workflow push candidate",
+          "file_sha256": "db456e639081b11142b1c0becdcb2724e8f972ab2daf4da4712b3d30ab51128b"
+        },
+        {
+          "path": "docs/reference/human-review.md",
+          "lines": [
+            1,
+            116
+          ],
+          "url": "https://github.com/langchain-ai/open-swe/blob/e8a31359226b192b1bb8af50265d2ff694d15f32/docs/reference/human-review.md#L1-L116",
+          "claim": "Human review workflow including merge automation",
+          "file_sha256": "d8df3c6dacdba65d3686d557af828d8a3b894f6a849c258d5d67edf44d87ec7b"
+        }
+      ]
+    },
+    {
+      "repo": "SWE-bench/SWE-bench",
+      "sha": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+      "license": "MIT",
+      "archived": false,
+      "pushed_at": "2026-09-18T05:08:56Z",
+      "path": "/tmp/code-review-repair-research-20261021/SWE-bench--SWE-bench",
+      "default_branch": "main",
+      "url": "https://github.com/SWE-bench/SWE-bench",
+      "inspection": "targeted source inspection, not runtime execution",
+      "evidence": [
+        {
+          "path": "swebench/harness/run_evaluation.py",
+          "lines": [
+            234,
+            390
+          ],
+          "url": "https://github.com/SWE-bench/SWE-bench/blob/02e7a74ffd0b707aab73d203fe87bdc7c76afc8e/swebench/harness/run_evaluation.py#L234-L390",
+          "claim": "Candidate container execution and timeout",
+          "file_sha256": "04b5dab584fbe62ae9d1ff025edf52d714e584102d587c7e647805d1efb37d84"
+        },
+        {
+          "path": "swebench/harness/grading.py",
+          "lines": [
+            234,
+            260
+          ],
+          "url": "https://github.com/SWE-bench/SWE-bench/blob/02e7a74ffd0b707aab73d203fe87bdc7c76afc8e/swebench/harness/grading.py#L234-L260",
+          "claim": "Target and regression test separation",
+          "file_sha256": "a095273010175001a6779e365b3b77abb8657c7ac2e4f80b4bc360faa6f09483"
+        },
+        {
+          "path": "swebench/harness/grading.py",
+          "lines": [
+            365,
+            393
+          ],
+          "url": "https://github.com/SWE-bench/SWE-bench/blob/02e7a74ffd0b707aab73d203fe87bdc7c76afc8e/swebench/harness/grading.py#L365-L393",
+          "claim": "Missing output and resolution classification",
+          "file_sha256": "a095273010175001a6779e365b3b77abb8657c7ac2e4f80b4bc360faa6f09483"
+        }
+      ]
+    },
+    {
+      "repo": "review-bench/ReviewBench",
+      "sha": "4f04392d6bf4941ab6f8a3ea0c15b449f4458864",
+      "license": "MIT",
+      "archived": false,
+      "pushed_at": "2026-10-20T18:37:15Z",
+      "url": "https://github.com/review-bench/ReviewBench",
+      "description": "ReviewBench is an open, reproducible benchmark for evaluating AI code review systems on real-world pull requests.",
+      "inspection": "targeted source or documentation read via GitHub contents API",
+      "evidence": [
+        {
+          "path": "README.md",
+          "url": "https://github.com/review-bench/ReviewBench/blob/4f04392d6bf4941ab6f8a3ea0c15b449f4458864/README.md",
+          "file_sha256": "5c1d3612bff6583694d7e5ad9e9c88dfadbfdafdd98872e4d977adbc6006af81"
+        },
+        {
+          "path": "AGENT_CONTRACT.md",
+          "url": "https://github.com/review-bench/ReviewBench/blob/4f04392d6bf4941ab6f8a3ea0c15b449f4458864/AGENT_CONTRACT.md",
+          "file_sha256": "e4badd7f08505747317e5ee6a3d21703ea54fa24b4fd7e754744898c9a97d66c"
+        }
+      ]
+    },
+    {
+      "repo": "sweepai/sweep",
+      "sha": "a8b8b67bda4f89faac9314d34e7c7d5a64f76046",
+      "license": "Sweep Enterprise Edition restrictive custom license; production/commercial subscription required",
+      "archived": false,
+      "pushed_at": "2025-09-18T06:10:59Z",
+      "url": "https://github.com/sweepai/sweep",
+      "description": "Sweep: AI coding assistant for JetBrains",
+      "inspection": "targeted source or documentation read via GitHub contents API",
+      "evidence": [
+        {
+          "path": "LICENSE",
+          "url": "https://github.com/sweepai/sweep/blob/a8b8b67bda4f89faac9314d34e7c7d5a64f76046/LICENSE",
+          "file_sha256": "779f7e64dd404002ae858e5ce63807cc6f6ed901c3d161024186c82313989a7a"
+        }
+      ]
+    },
+    {
+      "repo": "RooCodeInc/Roo-Code",
+      "sha": "b867ec9145750d0ae1ff7f02d35406e9bf2a0b16",
+      "license": "Apache-2.0",
+      "archived": true,
+      "pushed_at": "2026-05-15T18:08:47Z",
+      "url": "https://github.com/RooCodeInc/Roo-Code",
+      "description": "Roo Code gives you a whole dev team of AI agents in your code editor.",
+      "inspection": "targeted source or documentation read via GitHub contents API",
+      "evidence": [
+        {
+          "path": "README.md",
+          "url": "https://github.com/RooCodeInc/Roo-Code/blob/b867ec9145750d0ae1ff7f02d35406e9bf2a0b16/README.md",
+          "file_sha256": "bcabc1221142dc7d7161d089dcd945bb50ff8d7498d7c6b8774b10a8cd5c164f"
+        }
+      ]
+    },
+    {
+      "repo": "microsoft/autogen",
+      "sha": "004749e6b7102c8fd317b9b1499ce5807223c278",
+      "license": "MIT code; CC-BY-4.0 documentation",
+      "archived": false,
+      "pushed_at": "2026-10-16T16:14:37Z",
+      "url": "https://github.com/microsoft/autogen",
+      "description": "A programming framework for agentic AI",
+      "inspection": "targeted source or documentation read via GitHub contents API",
+      "evidence": [
+        {
+          "path": "LICENSE-CODE",
+          "url": "https://github.com/microsoft/autogen/blob/004749e6b7102c8fd317b9b1499ce5807223c278/LICENSE-CODE",
+          "file_sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383"
+        }
+      ]
+    },
+    {
+      "repo": "getsentry/sentry",
+      "sha": "d4ac7c872436deb5d01d1e8673bae061758e3e0b",
+      "license": "NOASSERTION",
+      "archived": false,
+      "pushed_at": "2026-10-21T06:55:19Z",
+      "url": "https://github.com/getsentry/sentry",
+      "description": "Developer-first error tracking and performance monitoring",
+      "inspection": "targeted source or documentation read via GitHub contents API",
+      "evidence": [
+        {
+          "path": "src/sentry/seer/autofix/pr_iteration/pr_state.py",
+          "url": "https://github.com/getsentry/sentry/blob/d4ac7c872436deb5d01d1e8673bae061758e3e0b/src/sentry/seer/autofix/pr_iteration/pr_state.py",
+          "file_sha256": "fd068a89e2fac8b61b150026d4a9a006fc43b05f7bbc8b8d80ed835f3e0b509a"
+        }
+      ]
+    }
+  ],
+  "benchmark_primary_sources": [
+    {
+      "name": "SWE-PRBench",
+      "url": "https://arxiv.org/abs/2603.26130"
+    },
+    {
+      "name": "ReviewBench",
+      "repo": "review-bench/ReviewBench",
+      "sha": "4f04392d6bf4941ab6f8a3ea0c15b449f4458864"
+    },
+    {
+      "name": "CodeReviewBench",
+      "url": "https://www.codereviewbench.com/"
+    },
+    {
+      "name": "CRBugBench",
+      "url": "https://arxiv.org/abs/2610.13668"
+    },
+    {
+      "name": "SWE-Bench Pro task-quality audit",
+      "url": "https://openai.com/index/separating-signal-from-noise-coding-evaluations/"
+    }
+  ]
+}

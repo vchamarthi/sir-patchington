@@ -1,0 +1,791 @@
+{
+  "observed_date": "2026-10-21",
+  "source_pins": [
+    {
+      "repository": "The-PR-Agent/pr-agent",
+      "sha": "729415c68b8ef55df8bcce919a419af7f5cebffb",
+      "url": "https://github.com/The-PR-Agent/pr-agent/tree/729415c68b8ef55df8bcce919a419af7f5cebffb",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-20T12:31:35Z",
+      "evidence_state": "static_implementation_inspected"
+    },
+    {
+      "repository": "kodustech/kodus-ai",
+      "sha": "bd2cb7a227d41f956bd932661fbfabc47e5f5570",
+      "url": "https://github.com/kodustech/kodus-ai/tree/bd2cb7a227d41f956bd932661fbfabc47e5f5570",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-21T02:05:31Z",
+      "evidence_state": "static_implementation_inspected"
+    },
+    {
+      "repository": "mattzcarey/shippie",
+      "sha": "23e91d0c3ed12950c5de591e9e11d9b0c6dbf3f8",
+      "url": "https://github.com/mattzcarey/shippie/tree/23e91d0c3ed12950c5de591e9e11d9b0c6dbf3f8",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-21T03:38:26Z",
+      "evidence_state": "static_implementation_inspected"
+    },
+    {
+      "repository": "reviewdog/reviewdog",
+      "sha": "02af7678852249d082a9b9842688fe1b4945f308",
+      "url": "https://github.com/reviewdog/reviewdog/tree/02af7678852249d082a9b9842688fe1b4945f308",
+      "default_branch": "master",
+      "archived": false,
+      "pushed_at": "2026-10-21T03:45:38Z",
+      "evidence_state": "static_implementation_inspected"
+    },
+    {
+      "repository": "danger/danger-js",
+      "sha": "37a360502df74a18cda7bf6a350789d5dd066dfd",
+      "url": "https://github.com/danger/danger-js/tree/37a360502df74a18cda7bf6a350789d5dd066dfd",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-01T19:08:50Z",
+      "evidence_state": "static_implementation_inspected"
+    },
+    {
+      "repository": "semgrep/semgrep",
+      "sha": "fe209763a4a2ccfcdf6434e6c332edc24a2f586e",
+      "url": "https://github.com/semgrep/semgrep/tree/fe209763a4a2ccfcdf6434e6c332edc24a2f586e",
+      "default_branch": "develop",
+      "archived": false,
+      "pushed_at": "2026-10-21T00:02:16Z",
+      "evidence_state": "metadata_only_screened"
+    },
+    {
+      "repository": "github/codeql",
+      "sha": "9ae8dbe71474b5bf149cd516c0c1547676cef16b",
+      "url": "https://github.com/github/codeql/tree/9ae8dbe71474b5bf149cd516c0c1547676cef16b",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-20T21:53:15Z",
+      "evidence_state": "readme_and_metadata_screened"
+    },
+    {
+      "repository": "SonarSource/sonarqube",
+      "sha": "6319fb9488a9682c6da0e11cd6351c8afa4bafe5",
+      "url": "https://github.com/SonarSource/sonarqube/tree/6319fb9488a9682c6da0e11cd6351c8afa4bafe5",
+      "default_branch": "master",
+      "archived": false,
+      "pushed_at": "2026-10-20T20:09:41Z",
+      "evidence_state": "readme_and_metadata_screened"
+    },
+    {
+      "repository": "anc95/ChatGPT-CodeReview",
+      "sha": "8bd66227f057f21e847a8c27c9b356c25271d292",
+      "url": "https://github.com/anc95/ChatGPT-CodeReview/tree/8bd66227f057f21e847a8c27c9b356c25271d292",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-08-10T02:55:09Z",
+      "evidence_state": "static_implementation_inspected"
+    },
+    {
+      "repository": "presubmit/ai-reviewer",
+      "sha": "aa176b708fa8386ff7d35389d5197e9555277929",
+      "url": "https://github.com/presubmit/ai-reviewer/tree/aa176b708fa8386ff7d35389d5197e9555277929",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-09-14T12:10:45Z",
+      "evidence_state": "static_implementation_inspected"
+    },
+    {
+      "repository": "sweepai/sweep",
+      "sha": "a8b8b67bda4f89faac9314d34e7c7d5a64f76046",
+      "url": "https://github.com/sweepai/sweep/tree/a8b8b67bda4f89faac9314d34e7c7d5a64f76046",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2025-09-18T06:10:59Z",
+      "evidence_state": "metadata_only_screened"
+    },
+    {
+      "repository": "continuedev/continue",
+      "sha": "5522c6f44ca0ac3528b37244818fbfa39b5af470",
+      "url": "https://github.com/continuedev/continue/tree/5522c6f44ca0ac3528b37244818fbfa39b5af470",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-20T14:30:21Z",
+      "evidence_state": "readme_and_metadata_screened"
+    },
+    {
+      "repository": "gitbito/bitoai",
+      "sha": "b7a09e312a2a6d52dd6f982c91d029cef42eba48",
+      "url": "https://github.com/gitbito/bitoai/tree/b7a09e312a2a6d52dd6f982c91d029cef42eba48",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2025-08-22T22:01:21Z",
+      "evidence_state": "readme_and_metadata_screened"
+    },
+    {
+      "repository": "gitlabhq/gitlabhq",
+      "sha": "4659873d9b0917fbd38f609f54cca0e0c1d256bd",
+      "url": "https://github.com/gitlabhq/gitlabhq/tree/4659873d9b0917fbd38f609f54cca0e0c1d256bd",
+      "default_branch": "master",
+      "archived": false,
+      "pushed_at": "2026-10-21T06:08:44Z",
+      "evidence_state": "metadata_only_screened"
+    },
+    {
+      "repository": "coderabbitai/skills",
+      "sha": "a8777050c0d9034d5de6beff3dfac9b43acb9854",
+      "url": "https://github.com/coderabbitai/skills/tree/a8777050c0d9034d5de6beff3dfac9b43acb9854",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-21T06:25:01Z",
+      "evidence_state": "metadata_only_screened"
+    },
+    {
+      "repository": "qodo-ai/qodo-cover",
+      "sha": "adcf55baba40e8fbf8a84e68b70d08bef1e2b9c9",
+      "url": "https://github.com/qodo-ai/qodo-cover/tree/adcf55baba40e8fbf8a84e68b70d08bef1e2b9c9",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-04-05T12:27:16Z",
+      "evidence_state": "metadata_only_screened"
+    },
+    {
+      "repository": "BerriAI/litellm",
+      "sha": "230f653523fa55aa446e1a5b6469f0871cf7278d",
+      "url": "https://github.com/BerriAI/litellm/tree/230f653523fa55aa446e1a5b6469f0871cf7278d",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-21T06:50:19Z",
+      "evidence_state": "metadata_only_screened"
+    },
+    {
+      "repository": "DataDog/code-review-action",
+      "sha": "fa0c1e83648c82ae0ac78dc1c261af462d9ffcb5",
+      "url": "https://github.com/DataDog/code-review-action/tree/fa0c1e83648c82ae0ac78dc1c261af462d9ffcb5",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-21T05:16:54Z",
+      "evidence_state": "static_implementation_inspected"
+    },
+    {
+      "repository": "openqodex/openqodex",
+      "sha": "736fd1484a05ead753375f52232bcf9e70f84246",
+      "url": "https://github.com/openqodex/openqodex/tree/736fd1484a05ead753375f52232bcf9e70f84246",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-15T15:04:59Z",
+      "evidence_state": "static_implementation_inspected"
+    },
+    {
+      "repository": "Agent-Field/pr-af",
+      "sha": "421fbd23bf1c5a2c3916d7046c97b5273958e1f4",
+      "url": "https://github.com/Agent-Field/pr-af/tree/421fbd23bf1c5a2c3916d7046c97b5273958e1f4",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-09-21T20:05:15Z",
+      "evidence_state": "static_implementation_inspected"
+    },
+    {
+      "repository": "xiaofuqing13/ai-code-reviewer",
+      "sha": "bab381a55f332a1b9fb3c6a5a962fb1e47feaeb2",
+      "url": "https://github.com/xiaofuqing13/ai-code-reviewer/tree/bab381a55f332a1b9fb3c6a5a962fb1e47feaeb2",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-07-09T13:32:57Z",
+      "evidence_state": "metadata_only_screened"
+    },
+    {
+      "repository": "manki-review/manki",
+      "sha": "883bc592836db29fab14379666d653d8ca5025bc",
+      "url": "https://github.com/manki-review/manki/tree/883bc592836db29fab14379666d653d8ca5025bc",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-05-25T03:34:17Z",
+      "evidence_state": "readme_and_metadata_screened"
+    },
+    {
+      "repository": "somus/pipr",
+      "sha": "eb44c6245978ef3cab8d182cfa1b487f73d1eb55",
+      "url": "https://github.com/somus/pipr/tree/eb44c6245978ef3cab8d182cfa1b487f73d1eb55",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-19T18:48:48Z",
+      "evidence_state": "readme_and_metadata_screened"
+    },
+    {
+      "repository": "quantfive/codepress-review",
+      "sha": "537f1618e49761ab03ca086fac327376ba96d5a8",
+      "url": "https://github.com/quantfive/codepress-review/tree/537f1618e49761ab03ca086fac327376ba96d5a8",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-02-08T19:30:52Z",
+      "evidence_state": "metadata_only_screened"
+    },
+    {
+      "repository": "shubhesh07/claude-code-reviewer",
+      "sha": "7c493b7f6dbfb811f8622c57d352026975e519ef",
+      "url": "https://github.com/shubhesh07/claude-code-reviewer/tree/7c493b7f6dbfb811f8622c57d352026975e519ef",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-05-09T18:09:59Z",
+      "evidence_state": "readme_and_metadata_screened"
+    },
+    {
+      "repository": "villesau/ai-codereviewer",
+      "sha": "a9a064dfa1db8c83f40ef63f6e247fa09c935ed6",
+      "url": "https://github.com/villesau/ai-codereviewer/tree/a9a064dfa1db8c83f40ef63f6e247fa09c935ed6",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2024-08-19T14:25:31Z",
+      "evidence_state": "metadata_only_screened"
+    },
+    {
+      "repository": "lintsinghua/DeepAudit",
+      "sha": "9aa46568f20b2ab2dbc1878a4479392012c1230a",
+      "url": "https://github.com/lintsinghua/DeepAudit/tree/9aa46568f20b2ab2dbc1878a4479392012c1230a",
+      "default_branch": "v3.0.0",
+      "archived": false,
+      "pushed_at": "2026-10-16T08:05:58Z",
+      "evidence_state": "readme_and_metadata_screened"
+    },
+    {
+      "repository": "HexmosTech/git-lrc",
+      "sha": "1112c13df101abe2c0619ade06a652f1441a58f0",
+      "url": "https://github.com/HexmosTech/git-lrc/tree/1112c13df101abe2c0619ade06a652f1441a58f0",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-11T10:32:14Z",
+      "evidence_state": "readme_and_metadata_screened"
+    },
+    {
+      "repository": "Nikita-Filonov/ai-review",
+      "sha": "199446c8a08954d1f33eeb754af4040e5f22d81f",
+      "url": "https://github.com/Nikita-Filonov/ai-review/tree/199446c8a08954d1f33eeb754af4040e5f22d81f",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-03T15:52:26Z",
+      "evidence_state": "readme_and_metadata_screened"
+    },
+    {
+      "repository": "imbue-ai/vet",
+      "sha": "59757aec70b385151427f7381a01436f8d67b504",
+      "url": "https://github.com/imbue-ai/vet/tree/59757aec70b385151427f7381a01436f8d67b504",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-09-14T16:04:44Z",
+      "evidence_state": "readme_and_metadata_screened"
+    },
+    {
+      "repository": "Addepar/RedFlag",
+      "sha": "325a5972a7f4c0398a78ba4ca7e82d421766d078",
+      "url": "https://github.com/Addepar/RedFlag/tree/325a5972a7f4c0398a78ba4ca7e82d421766d078",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-05-22T12:43:35Z",
+      "evidence_state": "readme_and_metadata_screened"
+    },
+    {
+      "repository": "octopusreview/octopus",
+      "sha": "634c32d71f06576e5e71ee2895d694668fd15a7a",
+      "url": "https://github.com/octopusreview/octopus/tree/634c32d71f06576e5e71ee2895d694668fd15a7a",
+      "default_branch": "master",
+      "archived": false,
+      "pushed_at": "2026-10-21T01:49:38Z",
+      "evidence_state": "readme_and_metadata_screened"
+    },
+    {
+      "repository": "devagrawal09/jev-review",
+      "sha": "31f89602797fb7bea007f8a480bf368bf564954e",
+      "url": "https://github.com/devagrawal09/jev-review/tree/31f89602797fb7bea007f8a480bf368bf564954e",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-09-17T00:29:25Z",
+      "evidence_state": "readme_and_metadata_screened"
+    },
+    {
+      "repository": "review-bench/ReviewBench",
+      "sha": "4f04392d6bf4941ab6f8a3ea0c15b449f4458864",
+      "url": "https://github.com/review-bench/ReviewBench/tree/4f04392d6bf4941ab6f8a3ea0c15b449f4458864",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-20T18:37:15Z",
+      "evidence_state": "readme_and_metadata_screened"
+    },
+    {
+      "repository": "reviewdog/action-suggester",
+      "sha": "e5888339403dc040b2c9a93549ec2d380bc28ca4",
+      "url": "https://github.com/reviewdog/action-suggester/tree/e5888339403dc040b2c9a93549ec2d380bc28ca4",
+      "default_branch": "master",
+      "archived": false,
+      "pushed_at": "2026-10-19T12:11:56Z",
+      "evidence_state": "readme_and_metadata_screened"
+    }
+  ],
+  "claim_evidence": {
+    "The-PR-Agent/pr-agent": [
+      {
+        "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/README.md#L24-L32",
+        "file": "README.md",
+        "lines": "L24-L32",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/LICENSE#L1-L13",
+        "file": "LICENSE",
+        "lines": "L1-L13",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/tools/pr_code_suggestions.py#L366-L457",
+        "file": "pr_agent/tools/pr_code_suggestions.py",
+        "lines": "L366-L457",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/tools/pr_code_suggestions.py#L1524-L1564",
+        "file": "pr_agent/tools/pr_code_suggestions.py",
+        "lines": "L1524-L1564",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/tools/pr_code_suggestions.py#L2089-L2205",
+        "file": "pr_agent/tools/pr_code_suggestions.py",
+        "lines": "L2089-L2205",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/algo/repo_context.py#L101-L182",
+        "file": "pr_agent/algo/repo_context.py",
+        "lines": "L101-L182",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/tools/pr_code_suggestions.py#L1576-L1677",
+        "file": "pr_agent/tools/pr_code_suggestions.py",
+        "lines": "L1576-L1677",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/algo/inline_comment_dedup.py#L1-L21",
+        "file": "pr_agent/algo/inline_comment_dedup.py",
+        "lines": "L1-L21",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/algo/inline_comment_dedup.py#L96-L139",
+        "file": "pr_agent/algo/inline_comment_dedup.py",
+        "lines": "L96-L139",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/settings/configuration.toml#L1-L12",
+        "file": "pr_agent/settings/configuration.toml",
+        "lines": "L1-L12",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/settings/configuration.toml#L269-L276",
+        "file": "pr_agent/settings/configuration.toml",
+        "lines": "L269-L276",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/tools/pr_code_suggestions.py#L94-L135",
+        "file": "pr_agent/tools/pr_code_suggestions.py",
+        "lines": "L94-L135",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/.github/workflows/pr-agent-review.yaml#L19-L22",
+        "file": ".github/workflows/pr-agent-review.yaml",
+        "lines": "L19-L22",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/algo/ai_handlers/litellm_ai_handler.py#L1-L20",
+        "file": "pr_agent/algo/ai_handlers/litellm_ai_handler.py",
+        "lines": "L1-L20",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/algo/ai_handlers/litellm_ai_handler.py#L176-L195",
+        "file": "pr_agent/algo/ai_handlers/litellm_ai_handler.py",
+        "lines": "L176-L195",
+        "state": "static_source_inspected"
+      }
+    ],
+    "mattzcarey/shippie": [
+      {
+        "url": "https://github.com/mattzcarey/shippie/blob/23e91d0c3ed12950c5de591e9e11d9b0c6dbf3f8/README.md#L1-L35",
+        "file": "README.md",
+        "lines": "L1-L35",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/mattzcarey/shippie/blob/23e91d0c3ed12950c5de591e9e11d9b0c6dbf3f8/src/workflows/review.ts#L36-L74",
+        "file": "src/workflows/review.ts",
+        "lines": "L36-L74",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/mattzcarey/shippie/blob/23e91d0c3ed12950c5de591e9e11d9b0c6dbf3f8/src/agents/reviewer.ts#L9-L34",
+        "file": "src/agents/reviewer.ts",
+        "lines": "L9-L34",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/mattzcarey/shippie/blob/23e91d0c3ed12950c5de591e9e11d9b0c6dbf3f8/src/tools/suggest-change.ts#L10-L48",
+        "file": "src/tools/suggest-change.ts",
+        "lines": "L10-L48",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/mattzcarey/shippie/blob/23e91d0c3ed12950c5de591e9e11d9b0c6dbf3f8/src/github/reporter.ts#L34-L91",
+        "file": "src/github/reporter.ts",
+        "lines": "L34-L91",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/mattzcarey/shippie/blob/23e91d0c3ed12950c5de591e9e11d9b0c6dbf3f8/README.md#L25-L58",
+        "file": "README.md",
+        "lines": "L25-L58",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/mattzcarey/shippie/blob/23e91d0c3ed12950c5de591e9e11d9b0c6dbf3f8/src/github/reporter.ts#L102-L124",
+        "file": "src/github/reporter.ts",
+        "lines": "L102-L124",
+        "state": "static_source_inspected"
+      }
+    ],
+    "kodustech/kodus-ai": [
+      {
+        "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/license.md#L3-L10",
+        "file": "license.md",
+        "lines": "L3-L10",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/license_ee.md#L5-L19",
+        "file": "license_ee.md",
+        "lines": "L5-L19",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/libs/code-review/pipeline/strategy/code-review-pipeline.strategy.ts#L33-L110",
+        "file": "libs/code-review/pipeline/strategy/code-review-pipeline.strategy.ts",
+        "lines": "L33-L110",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/libs/code-review/infrastructure/agents/review-orchestrator.service.ts#L153-L259",
+        "file": "libs/code-review/infrastructure/agents/review-orchestrator.service.ts",
+        "lines": "L153-L259",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/libs/code-review/infrastructure/agents/review-orchestrator.service.ts#L399-L438",
+        "file": "libs/code-review/infrastructure/agents/review-orchestrator.service.ts",
+        "lines": "L399-L438",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/libs/code-review/infrastructure/agents/review-orchestrator.service.ts#L576-L590",
+        "file": "libs/code-review/infrastructure/agents/review-orchestrator.service.ts",
+        "lines": "L576-L590",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/libs/code-review/pipeline/stages/validate-suggestions.stage.ts#L160-L225",
+        "file": "libs/code-review/pipeline/stages/validate-suggestions.stage.ts",
+        "lines": "L160-L225",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/libs/code-review/pipeline/stages/validate-suggestions.stage.ts#L389-L435",
+        "file": "libs/code-review/pipeline/stages/validate-suggestions.stage.ts",
+        "lines": "L389-L435",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/libs/code-review/pipeline/stages/agent-review.stage.ts#L1219-L1293",
+        "file": "libs/code-review/pipeline/stages/agent-review.stage.ts",
+        "lines": "L1219-L1293",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/libs/code-review/pipeline/stages/create-file-comments.stage.ts#L90-L111",
+        "file": "libs/code-review/pipeline/stages/create-file-comments.stage.ts",
+        "lines": "L90-L111",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/libs/code-review/pipeline/stages/create-file-comments.stage.ts#L1-L38",
+        "file": "libs/code-review/pipeline/stages/create-file-comments.stage.ts",
+        "lines": "L1-L38",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/README.md#L45-L61",
+        "file": "README.md",
+        "lines": "L45-L61",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/license_ee.md#L9-L19",
+        "file": "license_ee.md",
+        "lines": "L9-L19",
+        "state": "static_source_inspected"
+      }
+    ],
+    "Agent-Field/pr-af": [
+      {
+        "url": "https://github.com/Agent-Field/pr-af/blob/421fbd23bf1c5a2c3916d7046c97b5273958e1f4/pyproject.toml#L1-L14",
+        "file": "pyproject.toml",
+        "lines": "L1-L14",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/Agent-Field/pr-af/blob/421fbd23bf1c5a2c3916d7046c97b5273958e1f4/src/pr_af/orchestrator.py#L183-L279",
+        "file": "src/pr_af/orchestrator.py",
+        "lines": "L183-L279",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/Agent-Field/pr-af/blob/421fbd23bf1c5a2c3916d7046c97b5273958e1f4/src/pr_af/orchestrator.py#L284-L370",
+        "file": "src/pr_af/orchestrator.py",
+        "lines": "L284-L370",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/Agent-Field/pr-af/blob/421fbd23bf1c5a2c3916d7046c97b5273958e1f4/src/pr_af/config.py#L21-L55",
+        "file": "src/pr_af/config.py",
+        "lines": "L21-L55",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/Agent-Field/pr-af/blob/421fbd23bf1c5a2c3916d7046c97b5273958e1f4/src/pr_af/scoring.py#L70-L100",
+        "file": "src/pr_af/scoring.py",
+        "lines": "L70-L100",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/Agent-Field/pr-af/blob/421fbd23bf1c5a2c3916d7046c97b5273958e1f4/src/pr_af/scoring.py#L147-L182",
+        "file": "src/pr_af/scoring.py",
+        "lines": "L147-L182",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/Agent-Field/pr-af/blob/421fbd23bf1c5a2c3916d7046c97b5273958e1f4/src/pr_af/config.py#L315-L355",
+        "file": "src/pr_af/config.py",
+        "lines": "L315-L355",
+        "state": "static_source_inspected"
+      }
+    ],
+    "HexmosTech/git-lrc": [
+      {
+        "url": "https://github.com/HexmosTech/git-lrc/blob/1112c13df101abe2c0619ade06a652f1441a58f0/README.md#L793-L807",
+        "file": "README.md",
+        "lines": "L793-L807",
+        "state": "readme_inspected"
+      }
+    ],
+    "octopusreview/octopus": [
+      {
+        "url": "https://github.com/octopusreview/octopus/blob/634c32d71f06576e5e71ee2895d694668fd15a7a/README.md#L81-L83",
+        "file": "README.md",
+        "lines": "L81-L83",
+        "state": "readme_inspected"
+      }
+    ],
+    "openqodex/openqodex": [
+      {
+        "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/README.md#L23-L36",
+        "file": "README.md",
+        "lines": "L23-L36",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/README.md#L67-L86",
+        "file": "README.md",
+        "lines": "L67-L86",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/packages/review/src/pipeline.ts#L53-L98",
+        "file": "packages/review/src/pipeline.ts",
+        "lines": "L53-L98",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/packages/review/src/pipeline.ts#L114-L151",
+        "file": "packages/review/src/pipeline.ts",
+        "lines": "L114-L151",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/packages/review/src/agents/claude.ts#L19-L82",
+        "file": "packages/review/src/agents/claude.ts",
+        "lines": "L19-L82",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/packages/review/src/agents/claude.ts#L147-L185",
+        "file": "packages/review/src/agents/claude.ts",
+        "lines": "L147-L185",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/packages/review/src/agents/claude.ts#L203-L218",
+        "file": "packages/review/src/agents/claude.ts",
+        "lines": "L203-L218",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/packages/review/src/agents/claude.ts#L19-L82",
+        "file": "packages/review/src/agents/claude.ts",
+        "lines": "L19-L82",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/packages/review/src/agents/claude.ts#L97-L120",
+        "file": "packages/review/src/agents/claude.ts",
+        "lines": "L97-L120",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/packages/review/src/agents/claude.ts#L203-L218",
+        "file": "packages/review/src/agents/claude.ts",
+        "lines": "L203-L218",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/packages/cli/src/reviewers/settings.ts#L1-L38",
+        "file": "packages/cli/src/reviewers/settings.ts",
+        "lines": "L1-L38",
+        "state": "static_source_inspected"
+      }
+    ],
+    "DataDog/code-review-action": [
+      {
+        "url": "https://github.com/DataDog/code-review-action/blob/fa0c1e83648c82ae0ac78dc1c261af462d9ffcb5/.github/workflows/code-review.yml#L13-L70",
+        "file": ".github/workflows/code-review.yml",
+        "lines": "L13-L70",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/DataDog/code-review-action/blob/fa0c1e83648c82ae0ac78dc1c261af462d9ffcb5/.github/workflows/code-review.yml#L266-L306",
+        "file": ".github/workflows/code-review.yml",
+        "lines": "L266-L306",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/DataDog/code-review-action/blob/fa0c1e83648c82ae0ac78dc1c261af462d9ffcb5/.github/workflows/code-review.yml#L676-L708",
+        "file": ".github/workflows/code-review.yml",
+        "lines": "L676-L708",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/DataDog/code-review-action/blob/fa0c1e83648c82ae0ac78dc1c261af462d9ffcb5/.github/workflows/code-review.yml#L1282-L1416",
+        "file": ".github/workflows/code-review.yml",
+        "lines": "L1282-L1416",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/DataDog/code-review-action/blob/fa0c1e83648c82ae0ac78dc1c261af462d9ffcb5/src/scan.js#L70-L97",
+        "file": "src/scan.js",
+        "lines": "L70-L97",
+        "state": "static_source_inspected"
+      }
+    ],
+    "reviewdog/reviewdog": [
+      {
+        "url": "https://github.com/reviewdog/reviewdog/blob/02af7678852249d082a9b9842688fe1b4945f308/README.md#L224-L273",
+        "file": "README.md",
+        "lines": "L224-L273",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/reviewdog/reviewdog/blob/02af7678852249d082a9b9842688fe1b4945f308/filter/filter.go#L35-L89",
+        "file": "filter/filter.go",
+        "lines": "L35-L89",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/reviewdog/reviewdog/blob/02af7678852249d082a9b9842688fe1b4945f308/service/github/github.go#L118-L205",
+        "file": "service/github/github.go",
+        "lines": "L118-L205",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/reviewdog/reviewdog/blob/02af7678852249d082a9b9842688fe1b4945f308/service/github/github.go#L478-L507",
+        "file": "service/github/github.go",
+        "lines": "L478-L507",
+        "state": "static_source_inspected"
+      }
+    ],
+    "danger/danger-js": [
+      {
+        "url": "https://github.com/danger/danger-js/blob/37a360502df74a18cda7bf6a350789d5dd066dfd/source/runner/Executor.ts#L91-L108",
+        "file": "source/runner/Executor.ts",
+        "lines": "L91-L108",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/danger/danger-js/blob/37a360502df74a18cda7bf6a350789d5dd066dfd/source/platforms/github/comms/issueCommenter.ts#L14-L41",
+        "file": "source/platforms/github/comms/issueCommenter.ts",
+        "lines": "L14-L41",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/danger/danger-js/blob/37a360502df74a18cda7bf6a350789d5dd066dfd/source/platforms/github/comms/issueCommenter.ts#L123-L167",
+        "file": "source/platforms/github/comms/issueCommenter.ts",
+        "lines": "L123-L167",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/danger/danger-js/blob/37a360502df74a18cda7bf6a350789d5dd066dfd/source/runner/runners/inline.ts#L57-L82",
+        "file": "source/runner/runners/inline.ts",
+        "lines": "L57-L82",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/danger/danger-js/blob/37a360502df74a18cda7bf6a350789d5dd066dfd/source/runner/runners/inline.ts#L108-L119",
+        "file": "source/runner/runners/inline.ts",
+        "lines": "L108-L119",
+        "state": "static_source_inspected"
+      }
+    ],
+    "anc95/ChatGPT-CodeReview": [
+      {
+        "url": "https://github.com/anc95/ChatGPT-CodeReview/blob/8bd66227f057f21e847a8c27c9b356c25271d292/src/bot.ts#L18-L103",
+        "file": "src/bot.ts",
+        "lines": "L18-L103",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/anc95/ChatGPT-CodeReview/blob/8bd66227f057f21e847a8c27c9b356c25271d292/src/bot.ts#L117-L208",
+        "file": "src/bot.ts",
+        "lines": "L117-L208",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/anc95/ChatGPT-CodeReview/blob/8bd66227f057f21e847a8c27c9b356c25271d292/src/chat.ts#L18-L44",
+        "file": "src/chat.ts",
+        "lines": "L18-L44",
+        "state": "static_source_inspected"
+      },
+      {
+        "url": "https://github.com/anc95/ChatGPT-CodeReview/blob/8bd66227f057f21e847a8c27c9b356c25271d292/src/chat.ts#L65-L118",
+        "file": "src/chat.ts",
+        "lines": "L65-L118",
+        "state": "static_source_inspected"
+      }
+    ],
+    "presubmit/ai-reviewer": [
+      {
+        "url": "https://github.com/presubmit/ai-reviewer/blob/aa176b708fa8386ff7d35389d5197e9555277929/src/pull_request_comment.ts#L20-L96",
+        "file": "src/pull_request_comment.ts",
+        "lines": "L20-L96",
+        "state": "static_source_inspected"
+      }
+    ]
+  },
+  "execution": "No third-party code executed"
+}

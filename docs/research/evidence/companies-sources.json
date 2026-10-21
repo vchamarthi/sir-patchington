@@ -1,0 +1,999 @@
+{
+  "title": "Company systems and AI Engineer talks source register",
+  "verification_date": "2026-10-21",
+  "timezone": "America/Chicago",
+  "chapter_path": "/Users/denniscvsg/git-agents/research/automated-code-review-2026-10-21/agents/companies-talks.md",
+  "methodology": {
+    "primary_sources_only": true,
+    "products_executed": false,
+    "private_source_accessed": false,
+    "public_source_read_not_executed": true,
+    "video_evidence": "Official timestamped automated transcripts; native watch caption English extraction rate limited, Arabic auto track excluded. No video upload, ASR model install or paid API.",
+    "evidence_boundary": "Company-reported architecture/metrics distinguished from public code inspection, product docs and published research. No independent replication claimed.",
+    "agent_reach_update_check": "v1.5.0 current"
+  },
+  "sources": [
+    {
+      "id": "uber-ureview",
+      "title": "uReview: Scalable, Trustworthy GenAI for Code Review at Uber",
+      "url": "https://www.uber.com/us/en/blog/ureview/",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2025-08-12",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Private production architecture and self-reported usefulness/address-rate metrics; article primarily evaluates Commenter, not Fixer.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/uber-ureview.txt",
+      "sha256": "f91a5c32d778110b740c621087d7cec4c5d2b947e0f24a30ebab3da6c3b2a703"
+    },
+    {
+      "id": "uber-autocover",
+      "title": "Automated Software Test Generation at Industry Scale Using a Multi-Agent Architecture and Workflow Integration",
+      "url": "https://homes.cs.washington.edu/~rjust/publ/auto_cover_icse_2026.pdf",
+      "source_type": "published_industrial_research",
+      "publication_date": "2026",
+      "date_precision": "year",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "ICSE-SEIP 2026 paper; results primarily as of September 2025; selected benchmarks and 29-response survey, not independent replication.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/auto-cover.txt",
+      "sha256": "446a02f73a7f7d4998c325d8ccf4641fc52605bfc88604f0a02c35eecf0ef842"
+    },
+    {
+      "id": "uber-factory",
+      "title": "Running a Software Factory Efficiently at Uber Scale",
+      "url": "https://www.uber.com/us/en/blog/efficient-software-factory/",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2026-08-27",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Private factory infrastructure; real-work benchmarks, cost decomposition and routing; self-reported unit cost changes.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/uber-factory.txt",
+      "sha256": "663713870e69cbf02e6ec8b896b0eb22388822c5fffe46bb91e3ba9c32669612"
+    },
+    {
+      "id": "google-review",
+      "title": "Resolving Code Review Comments with Machine Learning",
+      "url": "https://research.google/pubs/resolving-code-review-comments-with-machine-learning/",
+      "source_type": "published_industrial_research",
+      "publication_date": "2024",
+      "date_precision": "year",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Google review-comment resolution, not a universal autonomous reviewer; 7.5 percent applied suggestions is adoption.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/google-review.txt",
+      "sha256": "6c5e499e71592b1f85bac943a43bf4d4b19d1bcce1e77deb56f0308ae3041169"
+    },
+    {
+      "id": "google-migration",
+      "title": "Accelerating code migrations with AI",
+      "url": "https://research.google/blog/accelerating-code-migrations-with-ai/",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2024-07-18",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Private target/generate/compile-test/repair/review-rollout workflow; savings author-estimated.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/google-migration.txt",
+      "sha256": "4bec6ac22e7cb656c66a650644c959f1c0850c56ce525593a4c86625f0e8d393"
+    },
+    {
+      "id": "google-codemender-research",
+      "title": "Introducing CodeMender: an AI agent for code security",
+      "url": "https://deepmind.google/blog/introducing-codemender-an-ai-agent-for-code-security/",
+      "source_type": "first_party_research_report",
+      "publication_date": "2025-10-06",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "72 upstream fixes over six months reported; debugger, root cause, critique, regression checks; not general recall.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/codemender.txt",
+      "sha256": "8ba9a31cb168a41446a68f9258a75dbb78826ab9d3a4f014c96a1920611d2f88"
+    },
+    {
+      "id": "google-codemender-preview",
+      "title": "CodeMender overview",
+      "url": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/agents/codemender",
+      "source_type": "official_product_documentation",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Live docs say Preview, limited evaluation/testing only and no commercial/production use. This materially limits recommendations.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/google-codemender-preview-verified.txt",
+      "sha256": "7c2f5bf7e5b2726d0e0de33fc7ea3161ca0e73b8f8e16e45668cd46ec33e9d0f"
+    },
+    {
+      "id": "meta-sapfix",
+      "title": "Finding and fixing software bugs automatically with SapFix and Sapienz",
+      "url": "https://engineering.fb.com/2018/09/13/developer-tools/finding-and-fixing-software-bugs-automatically-with-sapfix-and-sapienz/",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2018-09-13",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Historical hybrid repair, compilation/crash/new-crash tests, human approval; not modern generic LLM code review.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/meta-sapfix.txt",
+      "sha256": "6279c2e72d312bc623284116229ac3ef85a5dbf5792a35518400794574a8315c"
+    },
+    {
+      "id": "meta-getafix",
+      "title": "Getafix: How Facebook tools learn to fix bugs automatically",
+      "url": "https://engineering.fb.com/2018/11/06/developer-tools/getafix-how-facebook-tools-learn-to-fix-bugs-automatically/",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2018-11-06",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Hierarchical edit-pattern mining, unchanged context, ranking, null-warning experiments; analyzer warning elimination not semantic proof.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/meta-getafix.txt",
+      "sha256": "60bbb4f29ceb50a77c36e64733b8345eb85b2d82162d63a4ee7043639df18a82"
+    },
+    {
+      "id": "meta-fixit",
+      "title": "Fixit 2: Meta’s next-generation auto-fixing linter",
+      "url": "https://engineering.fb.com/2023/08/07/developer-tools/fixit-2-linter-meta/",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2023-08-07",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Deterministic LibCST transformations and local rules; public tool, not generative review.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/meta-fixit-verified.txt",
+      "sha256": "62a29764467a4e49ff91fa4e711abed8fdba6547b585f91eadbe1ae4558330a8"
+    },
+    {
+      "id": "meta-fixit-source",
+      "title": "Instagram/Fixit",
+      "url": "https://github.com/Instagram/Fixit",
+      "source_type": "public_source_repository",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Public deterministic Python linter; repository not executed.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested"
+    },
+    {
+      "id": "meta-codecompose",
+      "title": "AI-assisted Code Authoring at Scale: Fine-tuning, deploying, and mixed methods evaluation",
+      "url": "https://arxiv.org/abs/2305.12050",
+      "source_type": "primary_research_paper",
+      "publication_date": "2023-05-20",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "CodeCompose is authoring/completion; do not conflate with merge verification.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/meta-codecompose-verified.txt",
+      "sha256": "c2d5d6974e4f546dc91ab09520938416f2be34ca8b3f493ff8905933d8b3336f"
+    },
+    {
+      "id": "meta-jit",
+      "title": "The Death of Traditional Testing: Agentic Development Broke a 50-Year-Old Field, JiTTesting Can Revive It",
+      "url": "https://engineering.fb.com/2026/02/11/developer-tools/the-death-of-traditional-testing-agentic-development-jit-testing-revival/",
+      "source_type": "first_party_research_report",
+      "publication_date": "2026-02-11",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Change-specific transient tests and fault generation; private deployment, underlying paper linked.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/meta-jit.txt",
+      "sha256": "987f9c4bc033da001529fcabd132d7bbfd84a309b7ccda6a84c0cb72fe9c36fd"
+    },
+    {
+      "id": "meta-performance",
+      "title": "Capacity Efficiency at Meta: How Unified AI Agents Optimize Performance at Hyperscale",
+      "url": "https://engineering.fb.com/2026/04/16/developer-tools/capacity-efficiency-at-meta-how-unified-ai-agents-optimize-performance-at-hyperscale/",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2026-04-16",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "FBDetect plus AI Regression Solver: symptoms/root-cause PR/domain skill/fix-forward PR to author. Aggregate capacity benefit not generic review effect.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/meta-performance.txt",
+      "sha256": "704fa93cde5c051cfc531f45f2cdc9aff99215aa5f0a3b21bc64a9ed7beeebe3"
+    },
+    {
+      "id": "openai-verification",
+      "title": "A Practical Approach to Verifying Code at Scale",
+      "url": "https://alignment.openai.com/scaling-code-verification/",
+      "source_type": "first_party_research_report",
+      "publication_date": "2025-12-01",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Repo-aware trained reviewer; precision-first, action rates, known-bug-budget study; selection/distribution limits explicit.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/openai-verify.txt",
+      "sha256": "421205f7b4e6458e76d5978dd5fab65e67547084480207edf8f837f1ae09d06f"
+    },
+    {
+      "id": "openai-rules",
+      "title": "Custom Code Review rules for Codex",
+      "url": "https://developers.openai.com/blog/custom-code-review-rules-for-codex",
+      "source_type": "official_product_documentation",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Repo/team steering; not full hosted reviewer source.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/openai-rules.txt",
+      "sha256": "7ed84fa84bf4a8c1e1544338fd5f1d4d1098f8f50d863bf381d62ac328c32584"
+    },
+    {
+      "id": "anthropic-hosted",
+      "title": "Bringing Code Review to Claude Code",
+      "url": "https://claude.com/blog/code-review",
+      "source_type": "first_party_product_announcement",
+      "publication_date": "2026-03-09",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Hosted product scope; parent agent owns current official product documentation analysis.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/anthropic-review.txt",
+      "sha256": "39344d9c3a9e6335791d5e3a8d07e9e8f083a88c1cc1b9050089640676df51bc"
+    },
+    {
+      "id": "anthropic-internal",
+      "title": "How the Claude Code team does code review",
+      "url": "https://claude.dev/blog/solving-code-review-at-anthropic/",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2026-10-15",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Distinct internal process. Parent agent owns synthesis and source-ownership verification; keep page-derived words across final material bounded.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/anthropic-team.txt",
+      "sha256": "acabaa8e2f069dfa226334675ade2ed43e9ecaab94856214a8abe970228204a0"
+    },
+    {
+      "id": "anthropic-plugin",
+      "title": "Code Review Plugin",
+      "url": "https://claude.com/plugins/code-review",
+      "source_type": "official_product_documentation",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Lighter local plugin, not full hosted source.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/anthropic-plugin-verified.txt",
+      "sha256": "5950acfb6a6b0dafc2bbd39149a448f2daaacadfc6763d2a2d227940f41e2fe7"
+    },
+    {
+      "id": "nvidia-tuning",
+      "title": "Fine-Tuning Small Language Models to Optimize Code Review Accuracy",
+      "url": "https://developer.nvidia.com/blog/fine-tuning-small-language-models-to-optimize-code-review-accuracy/",
+      "source_type": "first_party_technical_report",
+      "publication_date": "2024-12-17",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Severity prediction/explanations; teacher also judge; 18 percent baseline improvement not end-to-end defect recall.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/nvidia-tuning.txt",
+      "sha256": "dc3c462f3ca4ad37ab18440b6780733967e33e133e78c7118066e940e8104f5a"
+    },
+    {
+      "id": "nvidia-oar-docs",
+      "title": "Run reviews — OpenShell Agent Runner",
+      "url": "https://nvidia.github.io/OpenShell-Research/documentation/openshell-agent-runner/reviews/",
+      "source_type": "official_open_source_documentation",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Uploads copy of input, can execute only within available sandbox tools, schema validation/exit0 not correctness or pass.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/nvidia-openshell.txt",
+      "sha256": "81f14c1df556b4f17432a63cec1ce0f9d064b54aa615b8e33459eb76fdb1a852"
+    },
+    {
+      "id": "nvidia-aicr-skill",
+      "title": "AICR Cross-Review SKILL.md",
+      "url": "https://github.com/NVIDIA/aicr/blob/aae0b28875a603a7fb87bc50e8e2aa7d58a8b04a/.agents/skills/aicr-cross-review/SKILL.md",
+      "source_type": "public_source_snapshot",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Repository practice in AI Cluster Runtime, not NVIDIA-wide system. Pin head/base, stable diff, trusted instruction source, CI revision check.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/nvidia-cross-review-pinned.md",
+      "sha256": "7e540a1b04ac07a046125f21ddac85b6722bff9df2e5dc719e17295f28c2891e"
+    },
+    {
+      "id": "nvidia-aicr-runtime",
+      "title": "AICR cross-review workflow.mjs",
+      "url": "https://github.com/NVIDIA/aicr/blob/aae0b28875a603a7fb87bc50e8e2aa7d58a8b04a/.agents/skills/aicr-cross-review/scripts/workflow.mjs",
+      "source_type": "public_source_snapshot",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Read source only; incomplete required lanes, malformed-evidence rejection, consensus, late-findings handling, refutation. NO_EXECUTION is prompt instruction, not tool enforcement.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/nvidia-workflow.mjs",
+      "sha256": "8ffc0bbecc352c60e5398d9c782f9b59e2049ac24644d08a0ade171cf081b4e6"
+    },
+    {
+      "id": "nvidia-oar-policy",
+      "title": "OAR code-reviewer policy.yaml",
+      "url": "https://github.com/NVIDIA/OpenShell-Research/blob/6ea69fa660dc4376ec1a74f7692b34a4ba6e8ea4/projects/tools/openshell-agent-runner/src/openshell_agent_runner/profiles/code-reviewer/policy.yaml",
+      "source_type": "public_source_snapshot",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Configured filesystem policy, UID/GID1000, Landlock hard requirement; actual enforcement runtime not tested.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/nvidia-review-policy.yaml",
+      "sha256": "707a4bb71188f7215907733fc1d66ffab8e694f312cb52d52c0e9d20b928da5e"
+    },
+    {
+      "id": "nvidia-oar-schema",
+      "title": "OAR code-reviewer review.json",
+      "url": "https://github.com/NVIDIA/OpenShell-Research/blob/6ea69fa660dc4376ec1a74f7692b34a4ba6e8ea4/projects/tools/openshell-agent-runner/src/openshell_agent_runner/profiles/code-reviewer/schemas/review.json",
+      "source_type": "public_source_snapshot",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Verdicts include inconclusive; required limitation fields; syntactic/schema evidence, not semantic correctness.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/nvidia-review-schema.json",
+      "sha256": "81035ea743746cb269dcef71e8158eb27ecc2950671ec1e714419f2c67214d91"
+    },
+    {
+      "id": "github-agent",
+      "title": "What’s new with GitHub Copilot coding agent",
+      "url": "https://github.blog/ai-and-ml/github-copilot/whats-new-with-github-copilot-coding-agent/",
+      "source_type": "official_product_documentation",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Self-review/security scanning/custom agents; underlying hosted internals not public.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/github-agent.txt",
+      "sha256": "5961f35cf8c664f83085d7f1fc3d0d5a57e0b9206fe6713bb1e6bd72f11cb889"
+    },
+    {
+      "id": "github-security",
+      "title": "Copilot coding agent now automatically validates code security and quality",
+      "url": "https://github.blog/changelog/2025-10-28-copilot-coding-agent-now-automatically-validates-code-security-and-quality/",
+      "source_type": "official_product_documentation",
+      "publication_date": "2025-10-28",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Security/quality scanning layered with agent generation; not independent correctness proof.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/github-security-verified.txt",
+      "sha256": "471c9e538b36c69e4b0e6219ff9bca2b4161ab546c63680df959caf3a4ae5af4"
+    },
+    {
+      "id": "amazon-q",
+      "title": "Reviewing code with Amazon Q Developer",
+      "url": "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/code-reviews.html",
+      "source_type": "official_product_documentation",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Generative plus rule-based reasoning; IDE plugin end support2027-04-30; documented exclusions and quotas.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/amazon-q.txt",
+      "sha256": "985d0a04ad05b204deb09fa616eeba6cda529c8bb8f73dc05ea73268e0295bb9"
+    },
+    {
+      "id": "amazon-codeguru",
+      "title": "What is Amazon CodeGuru Reviewer?",
+      "url": "https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/welcome.html",
+      "source_type": "official_product_documentation",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "ML/program analysis for Java/Python; check lifecycle separate source.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/amazon-codeguru-verified.txt",
+      "sha256": "178c5f52e7456b1fee2e2039fe85382ab4f407cc3b5a51adcff1621243024159"
+    },
+    {
+      "id": "amazon-codeguru-lifecycle",
+      "title": "Amazon CodeGuru Reviewer and AWS CodeCommit",
+      "url": "https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-amazon-codeguru-reviewer.html",
+      "source_type": "official_product_documentation",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Maintenance mode; no new repository associations since2025-11-07; existing associations continue.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/amazon-codeguru-lifecycle-verified.txt",
+      "sha256": "eb56d718b43674bbc5c9f22a1f6b9b3069b1b44578a44d3b127544ac4e3bcb40"
+    },
+    {
+      "id": "stripe-minions1",
+      "title": "Minions: Stripe’s one-shot, end-to-end coding agents",
+      "url": "https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2026-02-09",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Private coding system; over1000 fully generated merged PR/week with human review, at most2CI rounds.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/stripe-minions.txt",
+      "sha256": "a79d6c27a8e61bad907a992386cc90a593fdc66347881d268a8e6091b1b21b61"
+    },
+    {
+      "id": "stripe-minions2",
+      "title": "Minions: Stripe’s one-shot, end-to-end coding agents — Part 2",
+      "url": "https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents-part-2",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2026-02-19",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Blueprint state machine, QA devboxes, limited tools/egress, scope rules, human terminal scrutiny; over1300merged/week reported.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/stripe-minions2.txt",
+      "sha256": "d0fc5af1247af331d63c6f832c3bde74d2f3bff4e56849ea05c299018e501863"
+    },
+    {
+      "id": "spotify-feedback",
+      "title": "Feedback Loops — Background Coding Agents, Part 3",
+      "url": "https://engineering.atspotify.com/2025/12/feedback-loops-background-coding-agents-part-3",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2025-12",
+      "date_precision": "month",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Required verifiers/stop hook, intent judge, isolated narrow author. Explicitly no judge eval investment then; veto/correction rates not precision.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/spotify-feedback.txt",
+      "sha256": "c66e14ad08c8862f40b538141f2db55107b8bc89d7081b1cf81cb3e61702195f"
+    },
+    {
+      "id": "spotify-honk",
+      "title": "Background Coding Agents: Supercharging Downstream Consumer Dataset Migrations (Honk, Part 4)",
+      "url": "https://engineering.atspotify.com/2026/4/background-coding-agents-dataset-migrations-honk-part-4",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2026-04",
+      "date_precision": "month",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Field mappings, ambiguity handoff, missing tests require manual testing. Honk private.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/spotify-honk.txt",
+      "sha256": "563879b479b06bd48b1b8b29f190b6e633d18f480b9c014a8306eedbd41147ce"
+    },
+    {
+      "id": "spotify-foundation",
+      "title": "Coding Is No Longer the Constraint: Scaling Developer Experience to Teams and Agents at Spotify",
+      "url": "https://engineering.atspotify.com/2026/6/code-with-claude-coding-is-no-longer-the-constraint",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2026-06",
+      "date_precision": "month",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Backstage/Fleetshift and Honk; historic automated maintenance PR total not all LLM-authored.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/spotify-foundation.txt",
+      "sha256": "47447525237270018774312464e7d81de568d6dd7d2124a642c779b4e6e555db"
+    },
+    {
+      "id": "cursor-bugbot",
+      "title": "Building a better Bugbot",
+      "url": "https://cursor.com/blog/building-bugbot",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2026-01-15",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Earlier8-pass pipeline transitioned to agentic tools; online resolution rates plus offline BugBench. Vendor self-report, evolving architecture.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/cursor-building.txt",
+      "sha256": "66be166504ea8a0d5faaf3ebe57cb13ecd38312f53b085c092a4c56d251bc02a"
+    },
+    {
+      "id": "graphite-chat",
+      "title": "Introducing Graphite Chat",
+      "url": "https://graphite.com/blog/introducing-graphite-chat",
+      "source_type": "first_party_product_announcement",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Graphite Agent context and interactive review; no independent outcome validation.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/graphite-chat-verified.txt",
+      "sha256": "c70024217c4b4b9542977cd5bc4c1fd5dadaf2ddf1b561044640532b994e2f89"
+    },
+    {
+      "id": "graphite-cursor",
+      "title": "Graphite is joining Cursor",
+      "url": "https://cursor.com/blog/graphite",
+      "source_type": "first_party_company_announcement",
+      "publication_date": "2025-12-19",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Announces definitive acquisition agreement, not closure. Do not present this source alone as completed acquisition.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/graphite-cursor-verified.txt",
+      "sha256": "1e3af19a930925f8719d67433269d1db017354acbbac2287167629c31dcff6b3"
+    },
+    {
+      "id": "spacex-cursor",
+      "title": "Cursor is now a part of SpaceX",
+      "url": "https://cursor.com/blog/joining-spacex",
+      "source_type": "first_party_company_announcement",
+      "publication_date": "2026-08-14",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Says acquisition closed. Establishes ownership, not flight/Starlink AI review architecture.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/spacex-cursor.txt",
+      "sha256": "8d42363faee6d4411990c266a1d240e475b691cc2eac9069b3cc98e4f0e2aa51"
+    },
+    {
+      "id": "coderabbit-context",
+      "title": "The art and science of context engineering",
+      "url": "https://www.coderabbit.ai/blog/the-art-and-science-of-context-engineering",
+      "source_type": "first_party_vendor_architecture",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Context pipeline and verification agents; proprietary service, no independent precision/recall here.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/coderabbit-context.txt",
+      "sha256": "b7846c3fa39d304a6a7bcb89dedc8aa02ca438864e123c8ce428a936b76e6419"
+    },
+    {
+      "id": "coderabbit-config",
+      "title": "Context Engineering: Level up your AI Code Reviews",
+      "url": "https://www.coderabbit.ai/blog/context-engineering-ai-code-reviews",
+      "source_type": "first_party_vendor_documentation",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Path scoping and reuse of coding-agent guidelines.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/coderabbit-config-verified.txt",
+      "sha256": "5187d9c40f368e0a36d5b49de1ab5574d98d90832bd5db700a422e5962aaa5d8"
+    },
+    {
+      "id": "greptile-v3",
+      "title": "Greptile v3, an agentic approach to code review",
+      "url": "https://www.greptile.com/blog/greptile-v3-agentic-code-review",
+      "source_type": "first_party_vendor_architecture",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Beyond-diff exploration; vendor metrics not independently reproduced.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/greptile-v3.txt",
+      "sha256": "c5e53715426e4ec126d6f9f2a4480c26398609aede5a3a04c2c76e57524c80d2"
+    },
+    {
+      "id": "greptile-build",
+      "title": "How to build a code review agent",
+      "url": "https://www.greptile.com/blog/how-to-build-a-code-review-agent",
+      "source_type": "first_party_vendor_architecture",
+      "publication_date": "2026-10-09",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Founder says adapted fromAIE NYC talk; blog only, video not verified. TREX execution/context/eval/model-routing evidence; claims vendor-reported.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/greptile-build.txt",
+      "sha256": "d8351620a9ee986cfacba9ef713c02363d87c848cc676366f935f157a20e6bc1"
+    },
+    {
+      "id": "aie-data",
+      "title": "AI Engineer data and MCP guide",
+      "url": "https://ai.engineer/data.md",
+      "source_type": "official_public_data_documentation",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Documented talk index and transcript API; automated transcripts accuracy/completeness not guaranteed.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/ai-data.md",
+      "sha256": "b709124904fc2b7f006a27f7b32586a4fcc19fd0920a3822b3054880e158839f"
+    }
+  ],
+  "talks": [
+    {
+      "id": "talk:pi-coding-agent",
+      "title": "Building pi in a World of Slop — Mario Zechner",
+      "speakers": [
+        {
+          "name": "Mario Zechner"
+        }
+      ],
+      "official_talk_url": "https://ai.engineer/talks/RjfbvDXpFls-pi-coding-agent",
+      "video_url": "https://www.youtube.com/watch?v=RjfbvDXpFls",
+      "video_id": "RjfbvDXpFls",
+      "duration_ms": 1105000,
+      "event": "AI Engineer Europe 2026",
+      "event_date_range": {
+        "start": "2026-04-08",
+        "end": "2026-04-10",
+        "url": "https://ai.engineer/europe/2026"
+      },
+      "recording_day": null,
+      "youtube_upload_date": null,
+      "upload_date_evidence": "not verified; do not substitute event date",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=pi-coding-agent&format=json",
+      "transcript_provenance": "official AI Engineer automated transcript corpus",
+      "transcript_segment_count": 18,
+      "evidence_read": "relevant timestamped transcript passages and surrounding context; no full-video visual examination",
+      "excerpt": {
+        "start_ms": 991230,
+        "quote": "Critical code, read every fucking line.",
+        "video_timestamp_url": "https://www.youtube.com/watch?v=RjfbvDXpFls&t=991s"
+      },
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-pi-coding-agent.json",
+      "transcript_sha256": "5ae9477cb967d12f5ba0bc66ba1f165dc804854f235698ff8ed48af460b1a922",
+      "retrieved_on": "2026-10-21"
+    },
+    {
+      "id": "talk:automating-large-scale-refactors-with-parallel-agents",
+      "title": "Automating Large-Scale Refactors with Parallel Agents",
+      "speakers": [
+        {
+          "slug": "robert-brennan",
+          "name": "Robert Brennan",
+          "organization": "AllHands"
+        }
+      ],
+      "official_talk_url": "https://ai.engineer/talks/rcsliSIy_YU-automating-large-scale-refactors-parallel-agents",
+      "video_url": "https://www.youtube.com/watch?v=rcsliSIy_YU",
+      "video_id": "rcsliSIy_YU",
+      "duration_ms": 4581000,
+      "event": "AI Engineer Code 2025",
+      "event_date_range": {
+        "start": "2025-11-19",
+        "end": "2025-11-22",
+        "url": "https://ai.engineer/code/2025"
+      },
+      "recording_day": null,
+      "youtube_upload_date": null,
+      "upload_date_evidence": "not verified; do not substitute event date",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=automating-large-scale-refactors-with-parallel-agents&format=json",
+      "transcript_provenance": "official AI Engineer automated transcript corpus",
+      "transcript_segment_count": 363,
+      "evidence_read": "relevant timestamped transcript passages and surrounding context; no full-video visual examination",
+      "excerpt": {
+        "start_ms": 958226,
+        "quote": "review not just the final output",
+        "video_timestamp_url": "https://www.youtube.com/watch?v=rcsliSIy_YU&t=958s"
+      },
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-automating-large-scale-refactors-with-parallel-agents.json",
+      "transcript_sha256": "2af3b4ce82697a22f08173f5f6c0395e5058abc135837fff58580090bb5f65f6",
+      "retrieved_on": "2026-10-21"
+    },
+    {
+      "id": "talk:building-deterministic-infrastructure-for-non-deterministic-ai-agents",
+      "title": "Building Deterministic Infrastructure for Non-Deterministic AI Agents",
+      "speakers": [
+        {
+          "slug": "nishant-gupta",
+          "name": "Nishant Gupta",
+          "organization": "Meta"
+        }
+      ],
+      "official_talk_url": "https://ai.engineer/talks/APh1Vx0oLmQ-building-deterministic-infrastructure-non",
+      "video_url": "https://www.youtube.com/watch?v=APh1Vx0oLmQ",
+      "video_id": "APh1Vx0oLmQ",
+      "duration_ms": 434000,
+      "event": "AI Engineer World's Fair 2026",
+      "event_date_range": {
+        "start": "2026-06-29",
+        "end": "2026-07-02",
+        "url": "https://ai.engineer/worldsfair/2026"
+      },
+      "recording_day": null,
+      "youtube_upload_date": null,
+      "upload_date_evidence": "not verified; do not substitute event date",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=building-deterministic-infrastructure-for-non-deterministic-ai-agents&format=json",
+      "transcript_provenance": "official AI Engineer automated transcript corpus",
+      "transcript_segment_count": 36,
+      "evidence_read": "relevant timestamped transcript passages and surrounding context; no full-video visual examination",
+      "excerpt": {
+        "start_ms": 188340,
+        "quote": "The model should generate proposals",
+        "video_timestamp_url": "https://www.youtube.com/watch?v=APh1Vx0oLmQ&t=188s"
+      },
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-building-deterministic-infrastructure-for-non-deterministic-ai-agents.json",
+      "transcript_sha256": "cd01e0c2b8105dd06d2ea005917353e19b22eedca64152dac6ae41a24141fcb6",
+      "retrieved_on": "2026-10-21"
+    },
+    {
+      "id": "talk:how-to-kill-the-code-review",
+      "title": "How to Kill the Code Review",
+      "speakers": [
+        {
+          "slug": "ankit-jain",
+          "name": "Ankit Jain",
+          "organization": "Aviator"
+        }
+      ],
+      "official_talk_url": "https://ai.engineer/talks/YgEv7IQzGdM-kill-code-review",
+      "video_url": "https://www.youtube.com/watch?v=YgEv7IQzGdM",
+      "video_id": "YgEv7IQzGdM",
+      "duration_ms": 986000,
+      "event": "AI Engineer World's Fair 2026",
+      "event_date_range": {
+        "start": "2026-06-29",
+        "end": "2026-07-02",
+        "url": "https://ai.engineer/worldsfair/2026"
+      },
+      "recording_day": null,
+      "youtube_upload_date": null,
+      "upload_date_evidence": "not verified; do not substitute event date",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=how-to-kill-the-code-review&format=json",
+      "transcript_provenance": "official AI Engineer automated transcript corpus",
+      "transcript_segment_count": 73,
+      "evidence_read": "relevant timestamped transcript passages and surrounding context; no full-video visual examination",
+      "excerpt": {
+        "start_ms": 499400,
+        "quote": "finally creates a test plan",
+        "video_timestamp_url": "https://www.youtube.com/watch?v=YgEv7IQzGdM&t=499s"
+      },
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-how-to-kill-the-code-review.json",
+      "transcript_sha256": "4dbca76b168a6903bf280bcf134db9e685b3ad38dc0f4ed548b0f353503473be",
+      "retrieved_on": "2026-10-21"
+    },
+    {
+      "id": "talk:multiplayer-agentic-engineering-enabling-your-whole-team-and-your-best-agents-to-work-together",
+      "title": "Multiplayer agentic engineering: enabling your whole team and your best agents to work together",
+      "speakers": [
+        {
+          "slug": "arjun-singh",
+          "name": "Arjun Singh",
+          "organization": "Superconductor"
+        }
+      ],
+      "official_talk_url": "https://ai.engineer/talks/OL7kfezynJM-multiplayer-agentic-engineering-enabling",
+      "video_url": "https://www.youtube.com/watch?v=OL7kfezynJM",
+      "video_id": "OL7kfezynJM",
+      "duration_ms": 1124000,
+      "event": "AI Engineer World's Fair 2026",
+      "event_date_range": {
+        "start": "2026-06-29",
+        "end": "2026-07-02",
+        "url": "https://ai.engineer/worldsfair/2026"
+      },
+      "recording_day": null,
+      "youtube_upload_date": null,
+      "upload_date_evidence": "not verified; do not substitute event date",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=multiplayer-agentic-engineering-enabling-your-whole-team-and-your-best-agents-to-work-together&format=json",
+      "transcript_provenance": "official AI Engineer automated transcript corpus",
+      "transcript_segment_count": 110,
+      "evidence_read": "relevant timestamped transcript passages and surrounding context; no full-video visual examination",
+      "excerpt": {
+        "start_ms": 805340,
+        "quote": "benchmark agents on your code base",
+        "video_timestamp_url": "https://www.youtube.com/watch?v=OL7kfezynJM&t=805s"
+      },
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-multiplayer-agentic-engineering-enabling-your-whole-team-and-your-best-agents-to-work-together.json",
+      "transcript_sha256": "569fc9f3c2248a594c6e27a30f9837c475b94a0c06cfc1ee7bf0d1ba21dcf311",
+      "retrieved_on": "2026-10-21"
+    },
+    {
+      "id": "talk:scaling-agents-on-kubernetes-with-acpx-and-acp",
+      "title": "Scaling Agents on Kubernetes with acpx and ACP",
+      "speakers": [
+        {
+          "slug": "onur-solmaz",
+          "name": "Onur Solmaz",
+          "organization": "OpenClaw; TextCortex at the time of recording"
+        }
+      ],
+      "official_talk_url": "https://ai.engineer/talks/VaS2h-dY1-4-scaling-agents-on-kubernetes-acpx-acp",
+      "video_url": "https://www.youtube.com/watch?v=VaS2h-dY1-4",
+      "video_id": "VaS2h-dY1-4",
+      "duration_ms": 1140000,
+      "event": "AI Engineer Europe 2026",
+      "event_date_range": {
+        "start": "2026-04-08",
+        "end": "2026-04-10",
+        "url": "https://ai.engineer/europe/2026"
+      },
+      "recording_day": null,
+      "youtube_upload_date": null,
+      "upload_date_evidence": "not verified; do not substitute event date",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=scaling-agents-on-kubernetes-with-acpx-and-acp&format=json",
+      "transcript_provenance": "official AI Engineer automated transcript corpus",
+      "transcript_segment_count": 88,
+      "evidence_read": "relevant timestamped transcript passages and surrounding context; no full-video visual examination",
+      "excerpt": {
+        "start_ms": 630380,
+        "quote": "shallow bugs that can be easily fixed",
+        "video_timestamp_url": "https://www.youtube.com/watch?v=VaS2h-dY1-4&t=630s"
+      },
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-scaling-agents-on-kubernetes-with-acpx-and-acp.json",
+      "transcript_sha256": "2da67b6d3c4aca1858930e32d0298bf66cd59eb0aea8422fc5988db0838d0299",
+      "retrieved_on": "2026-10-21"
+    },
+    {
+      "id": "talk:the-last-human-code-review-building-trust-in-ai-generated-code",
+      "title": "The Last Human Code Review: Building Trust in AI-Generated Code",
+      "speakers": [
+        {
+          "slug": "itamar-friedman",
+          "name": "Itamar Friedman",
+          "organization": "Qodo"
+        }
+      ],
+      "official_talk_url": "https://ai.engineer/talks/s-aixZYJG4c-last-human-code-review-building-trust",
+      "video_url": "https://www.youtube.com/watch?v=s-aixZYJG4c",
+      "video_id": "s-aixZYJG4c",
+      "duration_ms": 1134000,
+      "event": "AI Engineer World's Fair 2026",
+      "event_date_range": {
+        "start": "2026-06-29",
+        "end": "2026-07-02",
+        "url": "https://ai.engineer/worldsfair/2026"
+      },
+      "recording_day": null,
+      "youtube_upload_date": null,
+      "upload_date_evidence": "not verified; do not substitute event date",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=the-last-human-code-review-building-trust-in-ai-generated-code&format=json",
+      "transcript_provenance": "official AI Engineer automated transcript corpus",
+      "transcript_segment_count": 74,
+      "evidence_read": "relevant timestamped transcript passages and surrounding context; no full-video visual examination",
+      "excerpt": {
+        "start_ms": 883948,
+        "quote": "humans can trust and audit and control",
+        "video_timestamp_url": "https://www.youtube.com/watch?v=s-aixZYJG4c&t=883s"
+      },
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-the-last-human-code-review-building-trust-in-ai-generated-code.json",
+      "transcript_sha256": "15a8dc3f5fa2b3b6c53b249f37dd346d370265c53974b3dd86af38dfc0fdd381",
+      "retrieved_on": "2026-10-21"
+    },
+    {
+      "id": "talk:why-more-context-makes-your-agent-dumber-and-what-to-do-about-it",
+      "title": "Why More Context Makes Your Agent Dumber and What to Do About It",
+      "speakers": [
+        {
+          "slug": "nupur-sharma",
+          "name": "Nupur Sharma",
+          "organization": "Qodo"
+        }
+      ],
+      "official_talk_url": "https://ai.engineer/talks/EcqMYoIV57A-why-more-context-makes-your-agent-dumber",
+      "video_url": "https://www.youtube.com/watch?v=EcqMYoIV57A",
+      "video_id": "EcqMYoIV57A",
+      "duration_ms": 1587000,
+      "event": "AI Engineer Europe 2026",
+      "event_date_range": {
+        "start": "2026-04-08",
+        "end": "2026-04-10",
+        "url": "https://ai.engineer/europe/2026"
+      },
+      "recording_day": null,
+      "youtube_upload_date": null,
+      "upload_date_evidence": "not verified; do not substitute event date",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=why-more-context-makes-your-agent-dumber-and-what-to-do-about-it&format=json",
+      "transcript_provenance": "official AI Engineer automated transcript corpus",
+      "transcript_segment_count": 154,
+      "evidence_read": "relevant timestamped transcript passages and surrounding context; no full-video visual examination",
+      "excerpt": {
+        "start_ms": 574360,
+        "quote": "80/20 hybrid approach",
+        "video_timestamp_url": "https://www.youtube.com/watch?v=EcqMYoIV57A&t=574s"
+      },
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-why-more-context-makes-your-agent-dumber-and-what-to-do-about-it.json",
+      "transcript_sha256": "5d11470b15b7bb991be5bcc51fcc799b1f1703bf0212283aec78b08c7558d5a1",
+      "retrieved_on": "2026-10-21"
+    },
+    {
+      "id": "talk:youtube-6b5fc2bd09d9cd27bedf",
+      "title": "Building uReview, Uber’s Multi-Agent Code Review Engine — Will Bond & Ameya Ketkar, Uber",
+      "speakers": [
+        {
+          "slug": "will-bond",
+          "name": "Will Bond",
+          "organization": "Uber"
+        },
+        {
+          "slug": "ameya-ketkar",
+          "name": "Ameya Ketkar",
+          "organization": "Uber"
+        }
+      ],
+      "official_talk_url": "https://ai.engineer/talks/EL123UNokkI-building-ureview-ubers-multi-agent-code-review",
+      "video_url": "https://www.youtube.com/watch?v=EL123UNokkI",
+      "video_id": "EL123UNokkI",
+      "duration_ms": 907000,
+      "event": "AI Engineer World's Fair 2026",
+      "event_date_range": {
+        "start": "2026-06-29",
+        "end": "2026-07-02",
+        "url": "https://ai.engineer/worldsfair/2026"
+      },
+      "recording_day": null,
+      "youtube_upload_date": "2026-08-28",
+      "upload_date_evidence": "native yt-dlp video.info.json",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=youtube-6b5fc2bd09d9cd27bedf&format=json",
+      "transcript_provenance": "official AI Engineer automated transcript corpus",
+      "transcript_segment_count": 393,
+      "evidence_read": "relevant timestamped transcript passages and surrounding context; no full-video visual examination",
+      "excerpt": {
+        "start_ms": 700000,
+        "quote": "still have uh humans approving the code",
+        "video_timestamp_url": "https://www.youtube.com/watch?v=EL123UNokkI&t=700s"
+      },
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-youtube-6b5fc2bd09d9cd27bedf.json",
+      "transcript_sha256": "82a1b26cebf7fc4bf1258410f2e77e182d0a19aa9fee306e89b127609ee49dcc",
+      "retrieved_on": "2026-10-21"
+    },
+    {
+      "id": "talk:agentic-sdlc-at-uber-building-blocks-for-uber-s-software-factory",
+      "title": "Agentic SDLC at Uber - Building Blocks for Uber’s Software Factory",
+      "speakers": [
+        {
+          "slug": "uday-kiran-medisetty",
+          "name": "Uday Kiran Medisetty",
+          "organization": "Uber"
+        },
+        {
+          "slug": "adam-huda",
+          "name": "Adam Huda",
+          "organization": "Uber"
+        }
+      ],
+      "official_talk_url": "https://ai.engineer/talks/17-YSUHo6Lk-agentic-sdlc-at-uber-building-blocks-ubers",
+      "video_url": "https://www.youtube.com/watch?v=17-YSUHo6Lk",
+      "video_id": "17-YSUHo6Lk",
+      "duration_ms": 1106000,
+      "event": "AI Engineer World's Fair 2026",
+      "event_date_range": {
+        "start": "2026-06-29",
+        "end": "2026-07-02",
+        "url": "https://ai.engineer/worldsfair/2026"
+      },
+      "recording_day": null,
+      "youtube_upload_date": null,
+      "upload_date_evidence": "not verified; do not substitute event date",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=agentic-sdlc-at-uber-building-blocks-for-uber-s-software-factory&format=json",
+      "transcript_provenance": "official AI Engineer automated transcript corpus",
+      "transcript_segment_count": 92,
+      "evidence_read": "relevant timestamped transcript passages and surrounding context; no full-video visual examination",
+      "excerpt": {
+        "start_ms": 826856,
+        "quote": "it's not gonna push it to CI yet",
+        "video_timestamp_url": "https://www.youtube.com/watch?v=17-YSUHo6Lk&t=826s"
+      },
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-agentic-sdlc-at-uber-building-blocks-for-uber-s-software-factory.json",
+      "transcript_sha256": "e855e65c22e62b9cfbb8b7b76979d7ea952e9ca2a14d07ddd40b3d000b258583",
+      "retrieved_on": "2026-10-21"
+    }
+  ],
+  "critical_constraints": [
+    {
+      "topic": "SpaceX",
+      "status": "internal_AI_PR_review_unknown",
+      "known": "Cursor first-party closure announcement2026-08-14",
+      "not_inferred": "flight/Starlink review architecture or automation policies"
+    },
+    {
+      "topic": "Uber Shepherd",
+      "status": "primary_implementation_details_not_established",
+      "not_inferred": "portable architecture, source availability, generic trustworthy-fix efficacy"
+    },
+    {
+      "topic": "CodeMender Cloud",
+      "status": "preview_limited_testing_evaluation_only",
+      "restriction": "current docs prohibit commercial/production use"
+    },
+    {
+      "topic": "Amazon lifecycle",
+      "status": "Q_IDE_support_ends2027-04-30;CodeGuru_no_new_repo_associations_since2025-11-07"
+    },
+    {
+      "topic": "NVIDIA_aicr",
+      "status": "source_inspected_prompt_no_execution_not_enforced_boundary",
+      "snapshot": "aae0b28875a603a7fb87bc50e8e2aa7d58a8b04a"
+    }
+  ],
+  "quality_checks": {
+    "system_families": 18,
+    "talks_with_nonempty_parseable_official_transcripts": 10,
+    "registered_primary_sources": 44,
+    "all_chapter_source_links_registered": true,
+    "pinned_NVIDIA_source_commits": true,
+    "no_runtime_execution_claimed": true,
+    "source_word_limits": "Main chapter uses concise per-source paraphrases; parent should avoid duplicating long profiles or exceeding approximately200derived words per URL across delivered artifacts.",
+    "metadata_corrections": [
+      "uReview upload_date from native metadata2026-08-28 supersedes search snippet2026-09-21",
+      "Graphite primary announcement is agreement, not confirmed closure",
+      "NVIDIA no-execution source is prompt instruction, not enforced boundary",
+      "Q IDE and CodeGuru lifecycle constraints retained"
+    ]
+  }
+}

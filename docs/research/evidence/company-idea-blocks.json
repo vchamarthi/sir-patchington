@@ -1,0 +1,950 @@
+{
+  "title": "Idea-first company mechanism catalog",
+  "version": 1,
+  "checked_on": "2026-10-21",
+  "timezone": "America/Chicago",
+  "supersedes": "architecture-adoption framing from companies-talks.md; source inventory remains useful",
+  "scope": "Full intended target including runtime evidence, governance, ongoing maintenance and future autonomous-delivery policy options. Selected authority remains human-approved pushes of the exact tested change and no auto-merge; both personal and organization environments.",
+  "research_rule": "Private ideas are valid design inputs. Absent implementation can be built. Do not equate observed company outcomes with our expected performance.",
+  "blocks": [
+    {
+      "id": "B01",
+      "name": "Intent and decision record",
+      "heading": "Preserve intent before implementation rewrites it",
+      "documented_mechanism": "Google's [review-comment resolution](https://research.google/pubs/resolving-code-review-comments-with-machine-learning/) turns a human's natural-language feedback into a proposed edit. Aviator's [talk at 13:08](https://www.youtube.com/watch?v=YgEv7IQzGdM&t=788s) goes further: retain decisions from the development session and derive the verification plan from those decisions. At [13:22](https://www.youtube.com/watch?v=YgEv7IQzGdM&t=802s), Jain warns against deriving the entire test plan from the same generated implementation. Solmaz's [9:39 workflow](https://www.youtube.com/watch?v=VaS2h-dY1-4&t=579s) first reconstructs what a contributed PR intends to solve.",
+      "why_adopt": "Preserve independently expressed requirements before implementation becomes its own specification.",
+      "what_we_build": "Store the requested behavior, rejected alternatives, non-goals, acceptance examples and unresolved questions in a versioned change contract. Link each test or reviewer finding to a requirement or invariant. Example: “retry a failed charge without charging twice” requires checking side effects and idempotency, not just seeing a successful HTTP response. A human comment can update this contract; an agent must not silently reinterpret it to make its patch pass.",
+      "tradeoff_and_environment_notes": "Intent can be incomplete or contradictory. Preserve that uncertainty and route the decision; do not manufacture a complete specification. Personally, a structured local file is sufficient storage. An organization needs issue/design integrations, owners and conflict resolution. Both should support revising the contract with an explicit decision trail.",
+      "personal_implementation": "Local versioned change-contract file, transcript-derived decisions, explicit unresolved questions.",
+      "organization_implementation": "Issue/design integrations, change owners, conflict and decision history.",
+      "implementation_status": "proposed architecture; no runtime implementation performed",
+      "idea_admission_criterion": "documented mechanism addresses target failure; source availability does not gate adoption",
+      "sources": [
+        {
+          "source_id": "google-review",
+          "url": "https://research.google/pubs/resolving-code-review-comments-with-machine-learning/",
+          "evidence_type": "published_industrial_research",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        }
+      ],
+      "talk_passages": [
+        {
+          "talk_id": "talk:how-to-kill-the-code-review",
+          "title": "How to Kill the Code Review",
+          "speaker_names": [
+            "Ankit Jain"
+          ],
+          "video_url": "https://www.youtube.com/watch?v=YgEv7IQzGdM&t=788s",
+          "timestamp_seconds": 788,
+          "provenance": "official AI Engineer automated transcript, relevant passages reread; no full-video visual claim",
+          "raw_transcript_path": "/tmp/code-review-companies/transcript-how-to-kill-the-code-review.json"
+        },
+        {
+          "talk_id": "talk:how-to-kill-the-code-review",
+          "title": "How to Kill the Code Review",
+          "speaker_names": [
+            "Ankit Jain"
+          ],
+          "video_url": "https://www.youtube.com/watch?v=YgEv7IQzGdM&t=802s",
+          "timestamp_seconds": 802,
+          "provenance": "official AI Engineer automated transcript, relevant passages reread; no full-video visual claim",
+          "raw_transcript_path": "/tmp/code-review-companies/transcript-how-to-kill-the-code-review.json"
+        },
+        {
+          "talk_id": "talk:scaling-agents-on-kubernetes-with-acpx-and-acp",
+          "title": "Scaling Agents on Kubernetes with acpx and ACP",
+          "speaker_names": [
+            "Onur Solmaz"
+          ],
+          "video_url": "https://www.youtube.com/watch?v=VaS2h-dY1-4&t=579s",
+          "timestamp_seconds": 579,
+          "provenance": "official AI Engineer automated transcript, relevant passages reread; no full-video visual claim",
+          "raw_transcript_path": "/tmp/code-review-companies/transcript-scaling-agents-on-kubernetes-with-acpx-and-acp.json"
+        }
+      ]
+    },
+    {
+      "id": "B02",
+      "name": "Revision-bound evidence",
+      "heading": "Bind every claim to a change identity",
+      "documented_mechanism": "The [NVIDIA cross-review instructions](https://github.com/NVIDIA/aicr/blob/aae0b28875a603a7fb87bc50e8e2aa7d58a8b04a/.agents/skills/aicr-cross-review/SKILL.md#L93) pin the head, save a diff and use commit-addressed reads. They separately check whether the current PR head still matches the reviewed revision before reporting CI. Anthropic's [internal account](https://claude.dev/blog/solving-code-review-at-anthropic/) likewise makes approvals specific to a commit.",
+      "why_adopt": "Prevent stale reviews, tests and approvals from certifying different code.",
+      "what_we_build": "Define an evidence identity containing repository, base/head commits, dependency lockfiles, environment image and relevant configuration versions. Attach findings, reproductions, test outputs, screenshots, approvals and exceptions to it. If code changes, mark affected evidence stale and recompute the impacted checks. A screenshot from yesterday's branch cannot certify today's payment form. Preserve provenance when rebasing or combining independently passing branches.",
+      "tradeoff_and_environment_notes": "Re-running everything is expensive, but reusing evidence requires an explicit dependency model. Start the design with conservative invalidation rules and optimize them using measured change impact. The personal version uses worktrees and a local artifact manifest; the organization version uses an artifact store and merge-queue verification. This block is required even if one agent performs every role and even if all work stays local.",
+      "personal_implementation": "Commit-pinned worktree and local evidence manifest.",
+      "organization_implementation": "Revision-addressed artifact store, invalidation and merge queue.",
+      "implementation_status": "proposed architecture; no runtime implementation performed",
+      "idea_admission_criterion": "documented mechanism addresses target failure; source availability does not gate adoption",
+      "sources": [
+        {
+          "source_id": "nvidia-aicr-skill",
+          "url": "https://github.com/NVIDIA/aicr/blob/aae0b28875a603a7fb87bc50e8e2aa7d58a8b04a/.agents/skills/aicr-cross-review/SKILL.md#L93",
+          "evidence_type": "public_source_snapshot",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        },
+        {
+          "source_id": "anthropic-internal",
+          "url": "https://claude.dev/blog/solving-code-review-at-anthropic/",
+          "evidence_type": "first_party_engineering_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        }
+      ],
+      "talk_passages": []
+    },
+    {
+      "id": "B03",
+      "name": "Governed context and contracts",
+      "heading": "Make context a governed system, not a larger prompt",
+      "documented_mechanism": "Qodo's [context collector, specialists and judge at 14:41](https://www.youtube.com/watch?v=EcqMYoIV57A&t=881s) select information for distinct responsibilities. Friedman's [16:33 discussion](https://www.youtube.com/watch?v=s-aixZYJG4c&t=993s) adds relationships and contracts across concurrent PRs. OpenAI's [harness account](https://openai.com/index/harness-engineering/) uses a short map into versioned repository knowledge. Sharma's [25:03 exchange](https://www.youtube.com/watch?v=EcqMYoIV57A&t=1503s) exposes the danger of learning insecure practice from accepted historical code.",
+      "why_adopt": "Supply local meaning while separating mandatory rules from historical habits.",
+      "what_we_build": "A context service should return evidence bundles with source, revision, owner, relevance and authority. Separate mandatory policy, documented design decisions, observed conventions and uncertain historical precedent. Retrieve changed-code dependencies and downstream consumers, not merely nearby text. Add contracts such as “service B expects this field to remain optional” and check simultaneous PRs touching that edge. Rules need versioning and owners who can correct stale assumptions.",
+      "tradeoff_and_environment_notes": "A graph or index can become confidently stale. Maintain freshness checks and let the reviewer inspect the underlying source. Personally, begin with repository maps plus targeted retrieval and grow the representation as needed; the full organization version adds cross-repository indexing, access control and ownership. This is a storage/scaling difference, not a reduced trust objective.",
+      "personal_implementation": "Repository map, targeted retrieval and versioned rule/contract files.",
+      "organization_implementation": "Cross-repository retrieval, ownership, authority, freshness and access controls.",
+      "implementation_status": "proposed architecture; no runtime implementation performed",
+      "idea_admission_criterion": "documented mechanism addresses target failure; source availability does not gate adoption",
+      "sources": [
+        {
+          "source_id": "openai-harness",
+          "url": "https://openai.com/index/harness-engineering/",
+          "evidence_type": "first_party_engineering_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        }
+      ],
+      "talk_passages": [
+        {
+          "talk_id": "talk:why-more-context-makes-your-agent-dumber-and-what-to-do-about-it",
+          "title": "Why More Context Makes Your Agent Dumber and What to Do About It",
+          "speaker_names": [
+            "Nupur Sharma"
+          ],
+          "video_url": "https://www.youtube.com/watch?v=EcqMYoIV57A&t=881s",
+          "timestamp_seconds": 881,
+          "provenance": "official AI Engineer automated transcript, relevant passages reread; no full-video visual claim",
+          "raw_transcript_path": "/tmp/code-review-companies/transcript-why-more-context-makes-your-agent-dumber-and-what-to-do-about-it.json"
+        },
+        {
+          "talk_id": "talk:the-last-human-code-review-building-trust-in-ai-generated-code",
+          "title": "The Last Human Code Review: Building Trust in AI-Generated Code",
+          "speaker_names": [
+            "Itamar Friedman"
+          ],
+          "video_url": "https://www.youtube.com/watch?v=s-aixZYJG4c&t=993s",
+          "timestamp_seconds": 993,
+          "provenance": "official AI Engineer automated transcript, relevant passages reread; no full-video visual claim",
+          "raw_transcript_path": "/tmp/code-review-companies/transcript-the-last-human-code-review-building-trust-in-ai-generated-code.json"
+        },
+        {
+          "talk_id": "talk:why-more-context-makes-your-agent-dumber-and-what-to-do-about-it",
+          "title": "Why More Context Makes Your Agent Dumber and What to Do About It",
+          "speaker_names": [
+            "Nupur Sharma"
+          ],
+          "video_url": "https://www.youtube.com/watch?v=EcqMYoIV57A&t=1503s",
+          "timestamp_seconds": 1503,
+          "provenance": "official AI Engineer automated transcript, relevant passages reread; no full-video visual claim",
+          "raw_transcript_path": "/tmp/code-review-companies/transcript-why-more-context-makes-your-agent-dumber-and-what-to-do-about-it.json"
+        }
+      ]
+    },
+    {
+      "id": "B04",
+      "name": "Specialist findings and independent scrutiny",
+      "heading": "Generate broadly, investigate selectively, report precisely",
+      "documented_mechanism": "[Uber uReview](https://www.uber.com/us/en/blog/ureview/) separates specialized generation, filtering, validation and deduplication. [OpenAI's verification research](https://alignment.openai.com/scaling-code-verification/) makes the reviewer repo-aware and optimizes human-facing signal rather than treating every plausible warning as useful. Qodo's [judge explanation at 14:12](https://www.youtube.com/watch?v=EcqMYoIV57A&t=852s) addresses conflicting specialist outputs.",
+      "why_adopt": "Separate creative candidate generation from precise claims humans or fixers should act on.",
+      "what_we_build": "Use specialist passes for correctness, security, contract compatibility, intent and test adequacy. Convert outputs into candidate claims, each with a location, execution path, impact and supporting evidence. A separate investigation step should try to disprove the claim, check callers and rule out pre-existing behavior before it becomes actionable. Deduplicate the same defect without merging distinct affected consumers. Distinguish confirmed, rejected, contested and unavailable conclusions.",
+      "tradeoff_and_environment_notes": "More reviewers can repeat the same assumption and increase noise. Fresh context, different investigative tasks and executable counterexamples matter more than counting agent votes. Model diversity is an option to evaluate, not a guarantee or mandatory spending decision. The personal version runs lanes sequentially or within subscription capacity; an organization routes by risk and domain. Both retain disputed findings rather than converting consensus into proof.",
+      "personal_implementation": "Sequential or subscription-capacity specialist passes and fresh-context investigation.",
+      "organization_implementation": "Risk/domain routing, parallel queues, common finding protocol and dispute handling.",
+      "implementation_status": "proposed architecture; no runtime implementation performed",
+      "idea_admission_criterion": "documented mechanism addresses target failure; source availability does not gate adoption",
+      "sources": [
+        {
+          "source_id": "uber-ureview",
+          "url": "https://www.uber.com/us/en/blog/ureview/",
+          "evidence_type": "first_party_engineering_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        },
+        {
+          "source_id": "openai-verification",
+          "url": "https://alignment.openai.com/scaling-code-verification/",
+          "evidence_type": "first_party_research_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        }
+      ],
+      "talk_passages": [
+        {
+          "talk_id": "talk:why-more-context-makes-your-agent-dumber-and-what-to-do-about-it",
+          "title": "Why More Context Makes Your Agent Dumber and What to Do About It",
+          "speaker_names": [
+            "Nupur Sharma"
+          ],
+          "video_url": "https://www.youtube.com/watch?v=EcqMYoIV57A&t=852s",
+          "timestamp_seconds": 852,
+          "provenance": "official AI Engineer automated transcript, relevant passages reread; no full-video visual claim",
+          "raw_transcript_path": "/tmp/code-review-companies/transcript-why-more-context-makes-your-agent-dumber-and-what-to-do-about-it.json"
+        }
+      ]
+    },
+    {
+      "id": "B05",
+      "name": "Reproductions and behavioral challenges",
+      "heading": "Challenge the changed behavior with an independent oracle",
+      "documented_mechanism": "[CodeMender research](https://deepmind.google/blog/introducing-codemender-an-ai-agent-for-code-security/) uses debugging and validation around root-cause patches. [Meta's catching JiTTests](https://engineering.fb.com/2026/02/11/developer-tools/the-death-of-traditional-testing-agentic-development-jit-testing-revival/) generate change-specific tests and fault variants. [Uber AutoCover](https://homes.cs.washington.edu/~rjust/publ/auto_cover_icse_2026.pdf) includes scenario/mutation evidence, test-quality rejection and rollback. SapFix's [historical pipeline](https://engineering.fb.com/2018/09/13/developer-tools/finding-and-fixing-software-bugs-automatically-with-sapfix-and-sapienz/) checks the original crash and new crashes after repair.",
+      "why_adopt": "Test whether the changed system satisfies intent and would reject realistic wrong behavior.",
+      "what_we_build": "For a bug fix, capture the failing reproduction before modifying code, demonstrate the intended post-fix behavior, and challenge neighboring failure paths. For a feature, derive checks from B01, contracts and known incidents. Use mutation or fault injection to test whether a proposed test would detect a realistic wrong implementation. Example: remove the idempotency check deliberately in an isolated copy and ensure the double-charge test fails.",
+      "tradeoff_and_environment_notes": "A generated oracle can share the author's misconception; a passing reproduction is bounded evidence. Cross-check assumptions and keep a regression suite. Personally, this can run in a container; organizations add device farms, staging and specialized fuzz/performance workers. CodeMender's current preview product restrictions limit using that product in production, not adopting and implementing this verification idea ourselves.",
+      "personal_implementation": "Isolated reproductions, behavioral tests, mutation/fault checks where useful.",
+      "organization_implementation": "Fuzz, staging, device, performance and specialized oracle services.",
+      "implementation_status": "proposed architecture; no runtime implementation performed",
+      "idea_admission_criterion": "documented mechanism addresses target failure; source availability does not gate adoption",
+      "sources": [
+        {
+          "source_id": "google-codemender-research",
+          "url": "https://deepmind.google/blog/introducing-codemender-an-ai-agent-for-code-security/",
+          "evidence_type": "first_party_research_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        },
+        {
+          "source_id": "meta-jit",
+          "url": "https://engineering.fb.com/2026/02/11/developer-tools/the-death-of-traditional-testing-agentic-development-jit-testing-revival/",
+          "evidence_type": "first_party_research_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        },
+        {
+          "source_id": "uber-autocover",
+          "url": "https://homes.cs.washington.edu/~rjust/publ/auto_cover_icse_2026.pdf",
+          "evidence_type": "published_industrial_research",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        },
+        {
+          "source_id": "meta-sapfix",
+          "url": "https://engineering.fb.com/2018/09/13/developer-tools/finding-and-fixing-software-bugs-automatically-with-sapfix-and-sapienz/",
+          "evidence_type": "first_party_engineering_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        }
+      ],
+      "talk_passages": []
+    },
+    {
+      "id": "B06",
+      "name": "Runnable application and observable environment",
+      "heading": "Give agents a runnable, observable system",
+      "documented_mechanism": "OpenAI's [harness engineering](https://openai.com/index/harness-engineering/) boots an application per worktree and exposes browser actions, screenshots, logs, metrics and traces. Uber's [13:17–15:40 demonstration](https://www.youtube.com/watch?v=17-YSUHo6Lk&t=797s) combines prepared DevPods, Minion, simulator/design comparison, staging integration and an evidence table before human review.",
+      "why_adopt": "Make app behavior and side effects inspectable instead of relying on source plausibility.",
+      "what_we_build": "Create an environment factory that can launch the actual changed application with seeded test data and collect behavioral evidence. Expose bounded browser/API/database/observability tools. Record what command ran, against which revision, with what result and limitations. A payment test should inspect the UI, database state and external-call stub, not only a screenshot. The author and verifier can use the same environment definition while retaining distinct sessions and evidence responsibilities.",
+      "tradeoff_and_environment_notes": "Environment startup, data realism and flaky dependencies become engineering work. That is core work: agents cannot verify inaccessible behavior. The personal target uses disposable local environments and mocks chosen explicitly; the organization target offers prewarmed workers, reproducible services, devices and shared fixtures. Track where mocks replace reality. We can build this around our stack without possessing Uber's DevPod or OpenAI's private environment code.",
+      "personal_implementation": "Disposable local app, seeded fixtures and bounded browser/API/database tools.",
+      "organization_implementation": "Prewarmed environments, services/device farms and retained runtime evidence.",
+      "implementation_status": "proposed architecture; no runtime implementation performed",
+      "idea_admission_criterion": "documented mechanism addresses target failure; source availability does not gate adoption",
+      "sources": [
+        {
+          "source_id": "openai-harness",
+          "url": "https://openai.com/index/harness-engineering/",
+          "evidence_type": "first_party_engineering_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        }
+      ],
+      "talk_passages": [
+        {
+          "talk_id": "talk:agentic-sdlc-at-uber-building-blocks-for-uber-s-software-factory",
+          "title": "Agentic SDLC at Uber - Building Blocks for Uber’s Software Factory",
+          "speaker_names": [
+            "Uday Kiran Medisetty",
+            "Adam Huda"
+          ],
+          "video_url": "https://www.youtube.com/watch?v=17-YSUHo6Lk&t=797s",
+          "timestamp_seconds": 797,
+          "provenance": "official AI Engineer automated transcript, relevant passages reread; no full-video visual claim",
+          "raw_transcript_path": "/tmp/code-review-companies/transcript-agentic-sdlc-at-uber-building-blocks-for-uber-s-software-factory.json"
+        }
+      ]
+    },
+    {
+      "id": "B07",
+      "name": "Deterministic workflow with bounded repair",
+      "heading": "Put agents inside an explicit workflow",
+      "documented_mechanism": "Stripe's [blueprints](https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents-part-2) interleave ordinary code with agent nodes. Google's [migration workflow](https://research.google/blog/accelerating-code-migrations-with-ai/) validates candidate edits and supplies concrete failures to repair. Spotify's [independent verifiers](https://engineering.atspotify.com/2025/12/feedback-loops-background-coding-agents-part-3) run automatically before PR opening rather than relying solely on agent tool selection. Brennan's [30:48 example](https://www.youtube.com/watch?v=rcsliSIy_YU&t=1848s) uses temporary compatibility scaffolding so parallel component migrations can be verified before final assembly.",
+      "why_adopt": "Ensure required steps run and failures route predictably even if a model omits them.",
+      "what_we_build": "Implement a typed state machine: prepare → plan → generate → inspect → reproduce/test → repair or escalate → assemble evidence → authorize delivery. Deterministic nodes own required commands, artifact persistence, revision checks and transitions. Agent nodes interpret failures and propose changes within the current task contract. Store checkpoints so interruption resumes the same run rather than duplicating PRs or losing diagnostics.",
+      "tradeoff_and_environment_notes": "An overly rigid workflow wastes effort on trivial changes; an unconstrained loop can skip essentials. Use task-specific recipes under shared invariants. Stripe's two-CI-round policy is one operational choice, not a universal constant. Personally, the runner can be one process with durable local state. An organization adds queues, leases, idempotent dispatch and capacity control; the logical transition contract remains the same.",
+      "personal_implementation": "Durable local state machine with required verifier transitions.",
+      "organization_implementation": "Queued/checkpointed workflows with leases, idempotent dispatch and capacity control.",
+      "implementation_status": "proposed architecture; no runtime implementation performed",
+      "idea_admission_criterion": "documented mechanism addresses target failure; source availability does not gate adoption",
+      "sources": [
+        {
+          "source_id": "stripe-minions2",
+          "url": "https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents-part-2",
+          "evidence_type": "first_party_engineering_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        },
+        {
+          "source_id": "google-migration",
+          "url": "https://research.google/blog/accelerating-code-migrations-with-ai/",
+          "evidence_type": "first_party_engineering_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        },
+        {
+          "source_id": "spotify-feedback",
+          "url": "https://engineering.atspotify.com/2025/12/feedback-loops-background-coding-agents-part-3",
+          "evidence_type": "first_party_engineering_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        }
+      ],
+      "talk_passages": [
+        {
+          "talk_id": "talk:automating-large-scale-refactors-with-parallel-agents",
+          "title": "Automating Large-Scale Refactors with Parallel Agents",
+          "speaker_names": [
+            "Robert Brennan"
+          ],
+          "video_url": "https://www.youtube.com/watch?v=rcsliSIy_YU&t=1848s",
+          "timestamp_seconds": 1848,
+          "provenance": "official AI Engineer automated transcript, relevant passages reread; no full-video visual claim",
+          "raw_transcript_path": "/tmp/code-review-companies/transcript-automating-large-scale-refactors-with-parallel-agents.json"
+        }
+      ]
+    },
+    {
+      "id": "B08",
+      "name": "Convergence and finding lifecycle",
+      "heading": "Make review and repair converge",
+      "documented_mechanism": "Anthropic's [internal convergence changes](https://claude.dev/blog/solving-code-review-at-anthropic/) include round caps, later diff-only review, class-wide fixes and avoiding repeated findings. [NVIDIA's coordination code](https://github.com/NVIDIA/aicr/blob/aae0b28875a603a7fb87bc50e8e2aa7d58a8b04a/.agents/skills/aicr-cross-review/scripts/workflow.mjs#L1112) preserves contested outcomes and limits cross-review rounds. Uber's [12:16 discussion](https://www.youtube.com/watch?v=EL123UNokkI&t=736s) explains why false findings are especially costly when the recipient is an agent. Solmaz's [10:46 workflow](https://www.youtube.com/watch?v=VaS2h-dY1-4&t=646s) escalates fundamental redesign.",
+      "why_adopt": "Prevent recurring old findings, repair oscillation and endless review work.",
+      "what_we_build": "Give each defect a persistent identity and explicit lifecycle. Re-review the repair and impacted code; do not rediscover already adjudicated claims or gradually reveal unrelated old defects. Ask for all instances of a confirmed bug class at once. Detect oscillation, repeated patches and declining progress. End in success, disputed finding, missing evidence or escalation when round/time/spend policies are met.",
+      "tradeoff_and_environment_notes": "Early stopping can leave genuine defects unresolved; unlimited iteration can manufacture new ones. The terminal artifact must preserve residual risk and work completed. Personal and organization versions need the same lifecycle; the latter aggregates convergence by team, rule, model and repository. Neither should label a timeout or exhausted allowance as a clean review.",
+      "personal_implementation": "Persistent finding ledger, delta review, round/time/spend limits.",
+      "organization_implementation": "Common lifecycle protocol and convergence analytics by team/model/rule.",
+      "implementation_status": "proposed architecture; no runtime implementation performed",
+      "idea_admission_criterion": "documented mechanism addresses target failure; source availability does not gate adoption",
+      "sources": [
+        {
+          "source_id": "anthropic-internal",
+          "url": "https://claude.dev/blog/solving-code-review-at-anthropic/",
+          "evidence_type": "first_party_engineering_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        },
+        {
+          "source_id": "nvidia-aicr-runtime",
+          "url": "https://github.com/NVIDIA/aicr/blob/aae0b28875a603a7fb87bc50e8e2aa7d58a8b04a/.agents/skills/aicr-cross-review/scripts/workflow.mjs#L1112",
+          "evidence_type": "public_source_snapshot",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        }
+      ],
+      "talk_passages": [
+        {
+          "talk_id": "talk:youtube-6b5fc2bd09d9cd27bedf",
+          "title": "Building uReview, Uber’s Multi-Agent Code Review Engine — Will Bond & Ameya Ketkar, Uber",
+          "speaker_names": [
+            "Will Bond",
+            "Ameya Ketkar"
+          ],
+          "video_url": "https://www.youtube.com/watch?v=EL123UNokkI&t=736s",
+          "timestamp_seconds": 736,
+          "provenance": "official AI Engineer automated transcript, relevant passages reread; no full-video visual claim",
+          "raw_transcript_path": "/tmp/code-review-companies/transcript-youtube-6b5fc2bd09d9cd27bedf.json"
+        },
+        {
+          "talk_id": "talk:scaling-agents-on-kubernetes-with-acpx-and-acp",
+          "title": "Scaling Agents on Kubernetes with acpx and ACP",
+          "speaker_names": [
+            "Onur Solmaz"
+          ],
+          "video_url": "https://www.youtube.com/watch?v=VaS2h-dY1-4&t=646s",
+          "timestamp_seconds": 646,
+          "provenance": "official AI Engineer automated transcript, relevant passages reread; no full-video visual claim",
+          "raw_transcript_path": "/tmp/code-review-companies/transcript-scaling-agents-on-kubernetes-with-acpx-and-acp.json"
+        }
+      ]
+    },
+    {
+      "id": "B09",
+      "name": "Enforced authority and isolation",
+      "heading": "Separate proposals from authority",
+      "documented_mechanism": "Nishant Gupta's [3:08 principle](https://www.youtube.com/watch?v=APh1Vx0oLmQ&t=188s) separates model proposals, validation, policy and execution. His [4:23 discussion](https://www.youtube.com/watch?v=APh1Vx0oLmQ&t=263s) also identifies stale shared state and conflicting updates. NVIDIA's [OpenShell profile](https://github.com/NVIDIA/OpenShell-Research/blob/6ea69fa660dc4376ec1a74f7692b34a4ba6e8ea4/projects/tools/openshell-agent-runner/src/openshell_agent_runner/profiles/code-reviewer/policy.yaml#L1) makes filesystem/process policy concrete. Its [aicr source](https://github.com/NVIDIA/aicr/blob/aae0b28875a603a7fb87bc50e8e2aa7d58a8b04a/.agents/skills/aicr-cross-review/scripts/workflow.mjs#L179) shows why a prompt prohibition alone is insufficient.",
+      "why_adopt": "Bound an agent action independently of whether it follows instructions.",
+      "what_we_build": "Use separate identities for read-only review, untrusted code execution, patch publication and merge/release. Enforce scoped credentials, filesystem/network boundaries and allowed operations outside model reasoning. Repository text remains evidence, not authority to change those permissions. Shared mutable knowledge needs versioned updates and conflict handling. Tests from an external PR must not execute with the merge bot's credentials.",
+      "tradeoff_and_environment_notes": "Restricted workers may lack tools needed to verify a claim. Return unavailable evidence and request a narrowly authorized capability, instead of bypassing policy. Personally, separate local identities/containers and a user-authorized publisher can suffice. Organizations need short-lived credentials, policy gateways and audit records. The architectural idea is implementable even when a vendor's runtime is unsuitable.",
+      "personal_implementation": "Separate review/execution/publisher identities and local containment.",
+      "organization_implementation": "Short-lived credentials, policy gateway, isolated workers and audit records.",
+      "implementation_status": "proposed architecture; no runtime implementation performed",
+      "idea_admission_criterion": "documented mechanism addresses target failure; source availability does not gate adoption",
+      "sources": [
+        {
+          "source_id": "nvidia-oar-policy",
+          "url": "https://github.com/NVIDIA/OpenShell-Research/blob/6ea69fa660dc4376ec1a74f7692b34a4ba6e8ea4/projects/tools/openshell-agent-runner/src/openshell_agent_runner/profiles/code-reviewer/policy.yaml#L1",
+          "evidence_type": "public_source_snapshot",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        },
+        {
+          "source_id": "nvidia-aicr-runtime",
+          "url": "https://github.com/NVIDIA/aicr/blob/aae0b28875a603a7fb87bc50e8e2aa7d58a8b04a/.agents/skills/aicr-cross-review/scripts/workflow.mjs#L179",
+          "evidence_type": "public_source_snapshot",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        }
+      ],
+      "talk_passages": [
+        {
+          "talk_id": "talk:building-deterministic-infrastructure-for-non-deterministic-ai-agents",
+          "title": "Building Deterministic Infrastructure for Non-Deterministic AI Agents",
+          "speaker_names": [
+            "Nishant Gupta"
+          ],
+          "video_url": "https://www.youtube.com/watch?v=APh1Vx0oLmQ&t=188s",
+          "timestamp_seconds": 188,
+          "provenance": "official AI Engineer automated transcript, relevant passages reread; no full-video visual claim",
+          "raw_transcript_path": "/tmp/code-review-companies/transcript-building-deterministic-infrastructure-for-non-deterministic-ai-agents.json"
+        },
+        {
+          "talk_id": "talk:building-deterministic-infrastructure-for-non-deterministic-ai-agents",
+          "title": "Building Deterministic Infrastructure for Non-Deterministic AI Agents",
+          "speaker_names": [
+            "Nishant Gupta"
+          ],
+          "video_url": "https://www.youtube.com/watch?v=APh1Vx0oLmQ&t=263s",
+          "timestamp_seconds": 263,
+          "provenance": "official AI Engineer automated transcript, relevant passages reread; no full-video visual claim",
+          "raw_transcript_path": "/tmp/code-review-companies/transcript-building-deterministic-infrastructure-for-non-deterministic-ai-agents.json"
+        }
+      ]
+    },
+    {
+      "id": "B10",
+      "name": "Rules that prevent recurrence",
+      "heading": "Turn repeated learning into executable prevention",
+      "documented_mechanism": "[Meta Fixit 2](https://engineering.fb.com/2023/08/07/developer-tools/fixit-2-linter-meta/) combines local rules with syntax-preserving autofixes. OpenAI's [harness account](https://openai.com/index/harness-engineering/) mechanically checks architecture dependencies and promotes recurring guidance into tooling. [Amazon Q](https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/code-reviews.html) combines generative review with established rule-based analysis rather than choosing only one method.",
+      "why_adopt": "Promote recurring confirmed issues into cheaper enforced invariants.",
+      "what_we_build": "Add a rule lifecycle: detect repetition → identify the invariant → choose lint, structural test, schema, policy, regression or domain reviewer → validate on positive and negative cases → version and enable it. Example: a confirmed dependency-direction violation should become a structural check; a nuanced product contract may remain a targeted reasoning task. Include useful remediation instructions in deterministic diagnostics.",
+      "tradeoff_and_environment_notes": "Codifying a weak assumption spreads it everywhere. Rules need owners, exceptions, expiry/review triggers and rollback. A rejected model suggestion must not automatically become policy. Personal repositories use local checks; organizations share rule packages with scoped overrides. Amazon's product lifecycle constrains adopting its service, but the hybrid-analyzer idea remains valuable. The objective is progressively cheaper prevention. Zechner’s [15:24 criticism](https://www.youtube.com/watch?v=RjfbvDXpFls&t=924s) reinforces the need to protect global structure from locally plausible patches.",
+      "personal_implementation": "Local lint, structural and regression checks with scoped exceptions.",
+      "organization_implementation": "Versioned rule packages, ownership, validation and staged policy rollout.",
+      "implementation_status": "proposed architecture; no runtime implementation performed",
+      "idea_admission_criterion": "documented mechanism addresses target failure; source availability does not gate adoption",
+      "sources": [
+        {
+          "source_id": "meta-fixit",
+          "url": "https://engineering.fb.com/2023/08/07/developer-tools/fixit-2-linter-meta/",
+          "evidence_type": "first_party_engineering_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        },
+        {
+          "source_id": "openai-harness",
+          "url": "https://openai.com/index/harness-engineering/",
+          "evidence_type": "first_party_engineering_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        },
+        {
+          "source_id": "amazon-q",
+          "url": "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/code-reviews.html",
+          "evidence_type": "official_product_documentation",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        }
+      ],
+      "talk_passages": [
+        {
+          "talk_id": "talk:pi-coding-agent",
+          "title": "Building pi in a World of Slop — Mario Zechner",
+          "speaker_names": [
+            "Mario Zechner"
+          ],
+          "video_url": "https://www.youtube.com/watch?v=RjfbvDXpFls&t=924s",
+          "timestamp_seconds": 924,
+          "provenance": "official AI Engineer automated transcript, relevant passages reread; no full-video visual claim",
+          "raw_transcript_path": "/tmp/code-review-companies/transcript-pi-coding-agent.json"
+        }
+      ]
+    },
+    {
+      "id": "B11",
+      "name": "Evaluations and learning governance",
+      "heading": "Evaluate the entire system and govern what it learns",
+      "documented_mechanism": "[OpenAI](https://alignment.openai.com/scaling-code-verification/) separates reviewer usability from training-time verification and acknowledges known-bug selection limits. [Uber's factory](https://www.uber.com/us/en/blog/efficient-software-factory/) benchmarks real work across quality, latency, reliability and cost. Anthropic's [incident replay](https://claude.dev/blog/solving-code-review-at-anthropic/) includes confirmed historical bugs and clean PRs. Arjun Singh's [13:25 comparison](https://www.youtube.com/watch?v=OL7kfezynJM&t=805s) evaluates agents on the team's own repository.",
+      "why_adopt": "Measure missed defects, harmful suggestions and complete outcomes before promoting changes.",
+      "what_we_build": "Maintain task, incident, clean-change and harmful-suggestion cases. Evaluate finding correctness, missed defects, repair behavior, harmful edits, convergence, completed outcomes, time and cost. Replay before changing prompts, models, context or rules. Capture whether findings were fixed, wrong, intentional or irrelevant rather than using thumbs-up as the sole truth. Validate learning before promoting it into B03 or B10.",
+      "tradeoff_and_environment_notes": "Retrospective cases can overfit and miss new failure types. Keep held-out and newly collected cases, live operational signals and targeted human audits. Personally, a growing repository-specific corpus is the complete mechanism at small scale; organizations add sampling, dashboards, A/B analysis and per-domain qualification. Extra reviewers or newer models earn adoption through demonstrated outcomes, not prestige.",
+      "personal_implementation": "Growing repository-specific clean/bug/incident/repair corpus.",
+      "organization_implementation": "Evaluation platform, held-out cases, sampling, qualification and operational dashboards.",
+      "implementation_status": "proposed architecture; no runtime implementation performed",
+      "idea_admission_criterion": "documented mechanism addresses target failure; source availability does not gate adoption",
+      "sources": [
+        {
+          "source_id": "openai-verification",
+          "url": "https://alignment.openai.com/scaling-code-verification/",
+          "evidence_type": "first_party_research_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        },
+        {
+          "source_id": "uber-factory",
+          "url": "https://www.uber.com/us/en/blog/efficient-software-factory/",
+          "evidence_type": "first_party_engineering_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        },
+        {
+          "source_id": "anthropic-internal",
+          "url": "https://claude.dev/blog/solving-code-review-at-anthropic/",
+          "evidence_type": "first_party_engineering_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        }
+      ],
+      "talk_passages": [
+        {
+          "talk_id": "talk:multiplayer-agentic-engineering-enabling-your-whole-team-and-your-best-agents-to-work-together",
+          "title": "Multiplayer agentic engineering: enabling your whole team and your best agents to work together",
+          "speaker_names": [
+            "Arjun Singh"
+          ],
+          "video_url": "https://www.youtube.com/watch?v=OL7kfezynJM&t=805s",
+          "timestamp_seconds": 805,
+          "provenance": "official AI Engineer automated transcript, relevant passages reread; no full-video visual claim",
+          "raw_transcript_path": "/tmp/code-review-companies/transcript-multiplayer-agentic-engineering-enabling-your-whole-team-and-your-best-agents-to-work-together.json"
+        }
+      ]
+    },
+    {
+      "id": "B12",
+      "name": "Risk-based delivery and managed maintenance",
+      "heading": "Carry evidence through delivery and back into maintenance",
+      "documented_mechanism": "Anthropic's [delivery account](https://claude.dev/blog/solving-code-review-at-anthropic/) varies human approval by risk and combines merge checks, rollout and rollback. Uber's [16:24–17:00 maintenance discussion](https://www.youtube.com/watch?v=17-YSUHo6Lk&t=984s) budgets scheduled loops against CI capacity and human review load, then learns from accepted/rejected changes and incidents. [Meta's Regression Solver](https://engineering.fb.com/2026/04/16/developer-tools/capacity-efficiency-at-meta-how-unified-ai-agents-optimize-performance-at-hyperscale/) links production symptoms to fix-forward PRs. [Spotify's migration case](https://engineering.atspotify.com/2026/4/background-coding-agents-dataset-migrations-honk-part-4) preserves human testing where automated evidence is missing.",
+      "why_adopt": "Keep verification connected to merge, release behavior, rollback and future upkeep.",
+      "what_we_build": "Produce a decision packet: intent, exact change, findings, reproductions, checks, limitations and rollback. The selected policy requires human approval of exact tested pushes and prohibits automatic merge. The architecture can also express a future, separately authorized autonomous-merge policy, author approval, specialist review or multiple approvals. Recheck combined changes before merging. Observe staged release behavior; failed signals trigger rollback or repair. Schedule maintenance only within execution and reviewer capacity, then feed incident lessons back into evaluations and rules.",
+      "tradeoff_and_environment_notes": "Automation can shift cost from review into outages. Measure end-to-end outcomes and tighten authority when reliability deteriorates. Personal projects need usable rollback and ownership; organizations need release rings, on-call routing and portfolio-level scheduling. Autonomous low-risk delivery remains a future policy choice; researching it does not change present authority.",
+      "personal_implementation": "Risk policy, evidence packets, rollback and bounded background maintenance.",
+      "organization_implementation": "Merge/release policy, rollout rings, on-call integration and execution/reviewer capacity scheduler.",
+      "implementation_status": "proposed architecture; no runtime implementation performed",
+      "idea_admission_criterion": "documented mechanism addresses target failure; source availability does not gate adoption",
+      "sources": [
+        {
+          "source_id": "anthropic-internal",
+          "url": "https://claude.dev/blog/solving-code-review-at-anthropic/",
+          "evidence_type": "first_party_engineering_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        },
+        {
+          "source_id": "meta-performance",
+          "url": "https://engineering.fb.com/2026/04/16/developer-tools/capacity-efficiency-at-meta-how-unified-ai-agents-optimize-performance-at-hyperscale/",
+          "evidence_type": "first_party_engineering_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        },
+        {
+          "source_id": "spotify-honk",
+          "url": "https://engineering.atspotify.com/2026/4/background-coding-agents-dataset-migrations-honk-part-4",
+          "evidence_type": "first_party_engineering_report",
+          "adoption_relation": "documented_idea_to_reimplement_or_adapt",
+          "code_copy_claim": false
+        }
+      ],
+      "talk_passages": [
+        {
+          "talk_id": "talk:agentic-sdlc-at-uber-building-blocks-for-uber-s-software-factory",
+          "title": "Agentic SDLC at Uber - Building Blocks for Uber’s Software Factory",
+          "speaker_names": [
+            "Uday Kiran Medisetty",
+            "Adam Huda"
+          ],
+          "video_url": "https://www.youtube.com/watch?v=17-YSUHo6Lk&t=984s",
+          "timestamp_seconds": 984,
+          "provenance": "official AI Engineer automated transcript, relevant passages reread; no full-video visual claim",
+          "raw_transcript_path": "/tmp/code-review-companies/transcript-agentic-sdlc-at-uber-building-blocks-for-uber-s-software-factory.json"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "google-review",
+      "title": "Resolving Code Review Comments with Machine Learning",
+      "url": "https://research.google/pubs/resolving-code-review-comments-with-machine-learning/",
+      "source_type": "published_industrial_research",
+      "publication_date": "2024",
+      "date_precision": "year",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Google review-comment resolution, not a universal autonomous reviewer; 7.5 percent applied suggestions is adoption.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/google-review.txt",
+      "sha256": "6c5e499e71592b1f85bac943a43bf4d4b19d1bcce1e77deb56f0308ae3041169"
+    },
+    {
+      "id": "nvidia-aicr-skill",
+      "title": "AICR Cross-Review SKILL.md",
+      "url": "https://github.com/NVIDIA/aicr/blob/aae0b28875a603a7fb87bc50e8e2aa7d58a8b04a/.agents/skills/aicr-cross-review/SKILL.md",
+      "source_type": "public_source_snapshot",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Repository practice in AI Cluster Runtime, not NVIDIA-wide system. Pin head/base, stable diff, trusted instruction source, CI revision check.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/nvidia-cross-review-pinned.md",
+      "sha256": "7e540a1b04ac07a046125f21ddac85b6722bff9df2e5dc719e17295f28c2891e"
+    },
+    {
+      "id": "anthropic-internal",
+      "title": "How the Claude Code team does code review",
+      "url": "https://claude.dev/blog/solving-code-review-at-anthropic/",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2026-10-15",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Distinct internal process. Parent agent owns synthesis and source-ownership verification; keep page-derived words across final material bounded.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/anthropic-team.txt",
+      "sha256": "acabaa8e2f069dfa226334675ade2ed43e9ecaab94856214a8abe970228204a0"
+    },
+    {
+      "id": "openai-harness",
+      "title": "Harness engineering: leveraging Codex in an agent-first world",
+      "url": "https://openai.com/index/harness-engineering/",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2026-02-11",
+      "local_evidence_path": "/tmp/code-review-companies/openai-harness.txt",
+      "evidence_note": "Private product operating account. Agent-legible worktree environments, browser/observability tools and mechanically enforced structure; not transferable efficacy."
+    },
+    {
+      "id": "uber-ureview",
+      "title": "uReview: Scalable, Trustworthy GenAI for Code Review at Uber",
+      "url": "https://www.uber.com/us/en/blog/ureview/",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2025-08-12",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Private production architecture and self-reported usefulness/address-rate metrics; article primarily evaluates Commenter, not Fixer.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/uber-ureview.txt",
+      "sha256": "f91a5c32d778110b740c621087d7cec4c5d2b947e0f24a30ebab3da6c3b2a703"
+    },
+    {
+      "id": "openai-verification",
+      "title": "A Practical Approach to Verifying Code at Scale",
+      "url": "https://alignment.openai.com/scaling-code-verification/",
+      "source_type": "first_party_research_report",
+      "publication_date": "2025-12-01",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Repo-aware trained reviewer; precision-first, action rates, known-bug-budget study; selection/distribution limits explicit.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/openai-verify.txt",
+      "sha256": "421205f7b4e6458e76d5978dd5fab65e67547084480207edf8f837f1ae09d06f"
+    },
+    {
+      "id": "google-codemender-research",
+      "title": "Introducing CodeMender: an AI agent for code security",
+      "url": "https://deepmind.google/blog/introducing-codemender-an-ai-agent-for-code-security/",
+      "source_type": "first_party_research_report",
+      "publication_date": "2025-10-06",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "72 upstream fixes over six months reported; debugger, root cause, critique, regression checks; not general recall.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/codemender.txt",
+      "sha256": "8ba9a31cb168a41446a68f9258a75dbb78826ab9d3a4f014c96a1920611d2f88"
+    },
+    {
+      "id": "meta-jit",
+      "title": "The Death of Traditional Testing: Agentic Development Broke a 50-Year-Old Field, JiTTesting Can Revive It",
+      "url": "https://engineering.fb.com/2026/02/11/developer-tools/the-death-of-traditional-testing-agentic-development-jit-testing-revival/",
+      "source_type": "first_party_research_report",
+      "publication_date": "2026-02-11",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Change-specific transient tests and fault generation; private deployment, underlying paper linked.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/meta-jit.txt",
+      "sha256": "987f9c4bc033da001529fcabd132d7bbfd84a309b7ccda6a84c0cb72fe9c36fd"
+    },
+    {
+      "id": "uber-autocover",
+      "title": "Automated Software Test Generation at Industry Scale Using a Multi-Agent Architecture and Workflow Integration",
+      "url": "https://homes.cs.washington.edu/~rjust/publ/auto_cover_icse_2026.pdf",
+      "source_type": "published_industrial_research",
+      "publication_date": "2026",
+      "date_precision": "year",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "ICSE-SEIP 2026 paper; results primarily as of September 2025; selected benchmarks and 29-response survey, not independent replication.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/auto-cover.txt",
+      "sha256": "446a02f73a7f7d4998c325d8ccf4641fc52605bfc88604f0a02c35eecf0ef842"
+    },
+    {
+      "id": "meta-sapfix",
+      "title": "Finding and fixing software bugs automatically with SapFix and Sapienz",
+      "url": "https://engineering.fb.com/2018/09/13/developer-tools/finding-and-fixing-software-bugs-automatically-with-sapfix-and-sapienz/",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2018-09-13",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Historical hybrid repair, compilation/crash/new-crash tests, human approval; not modern generic LLM code review.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/meta-sapfix.txt",
+      "sha256": "6279c2e72d312bc623284116229ac3ef85a5dbf5792a35518400794574a8315c"
+    },
+    {
+      "id": "stripe-minions2",
+      "title": "Minions: Stripe’s one-shot, end-to-end coding agents — Part 2",
+      "url": "https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents-part-2",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2026-02-19",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Blueprint state machine, QA devboxes, limited tools/egress, scope rules, human terminal scrutiny; over1300merged/week reported.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/stripe-minions2.txt",
+      "sha256": "d0fc5af1247af331d63c6f832c3bde74d2f3bff4e56849ea05c299018e501863"
+    },
+    {
+      "id": "google-migration",
+      "title": "Accelerating code migrations with AI",
+      "url": "https://research.google/blog/accelerating-code-migrations-with-ai/",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2024-07-18",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Private target/generate/compile-test/repair/review-rollout workflow; savings author-estimated.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/google-migration.txt",
+      "sha256": "4bec6ac22e7cb656c66a650644c959f1c0850c56ce525593a4c86625f0e8d393"
+    },
+    {
+      "id": "spotify-feedback",
+      "title": "Feedback Loops — Background Coding Agents, Part 3",
+      "url": "https://engineering.atspotify.com/2025/12/feedback-loops-background-coding-agents-part-3",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2025-12",
+      "date_precision": "month",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Required verifiers/stop hook, intent judge, isolated narrow author. Explicitly no judge eval investment then; veto/correction rates not precision.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/spotify-feedback.txt",
+      "sha256": "c66e14ad08c8862f40b538141f2db55107b8bc89d7081b1cf81cb3e61702195f"
+    },
+    {
+      "id": "nvidia-aicr-runtime",
+      "title": "AICR cross-review workflow.mjs",
+      "url": "https://github.com/NVIDIA/aicr/blob/aae0b28875a603a7fb87bc50e8e2aa7d58a8b04a/.agents/skills/aicr-cross-review/scripts/workflow.mjs",
+      "source_type": "public_source_snapshot",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Read source only; incomplete required lanes, malformed-evidence rejection, consensus, late-findings handling, refutation. NO_EXECUTION is prompt instruction, not tool enforcement.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/nvidia-workflow.mjs",
+      "sha256": "8ffc0bbecc352c60e5398d9c782f9b59e2049ac24644d08a0ade171cf081b4e6"
+    },
+    {
+      "id": "nvidia-oar-policy",
+      "title": "OAR code-reviewer policy.yaml",
+      "url": "https://github.com/NVIDIA/OpenShell-Research/blob/6ea69fa660dc4376ec1a74f7692b34a4ba6e8ea4/projects/tools/openshell-agent-runner/src/openshell_agent_runner/profiles/code-reviewer/policy.yaml",
+      "source_type": "public_source_snapshot",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Configured filesystem policy, UID/GID1000, Landlock hard requirement; actual enforcement runtime not tested.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/nvidia-review-policy.yaml",
+      "sha256": "707a4bb71188f7215907733fc1d66ffab8e694f312cb52d52c0e9d20b928da5e"
+    },
+    {
+      "id": "meta-fixit",
+      "title": "Fixit 2: Meta’s next-generation auto-fixing linter",
+      "url": "https://engineering.fb.com/2023/08/07/developer-tools/fixit-2-linter-meta/",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2023-08-07",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Deterministic LibCST transformations and local rules; public tool, not generative review.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/meta-fixit-verified.txt",
+      "sha256": "62a29764467a4e49ff91fa4e711abed8fdba6547b585f91eadbe1ae4558330a8"
+    },
+    {
+      "id": "amazon-q",
+      "title": "Reviewing code with Amazon Q Developer",
+      "url": "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/code-reviews.html",
+      "source_type": "official_product_documentation",
+      "publication_date": null,
+      "date_precision": "unknown",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Generative plus rule-based reasoning; IDE plugin end support2027-04-30; documented exclusions and quotas.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/amazon-q.txt",
+      "sha256": "985d0a04ad05b204deb09fa616eeba6cda529c8bb8f73dc05ea73268e0295bb9"
+    },
+    {
+      "id": "uber-factory",
+      "title": "Running a Software Factory Efficiently at Uber Scale",
+      "url": "https://www.uber.com/us/en/blog/efficient-software-factory/",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2026-08-27",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Private factory infrastructure; real-work benchmarks, cost decomposition and routing; self-reported unit cost changes.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/uber-factory.txt",
+      "sha256": "663713870e69cbf02e6ec8b896b0eb22388822c5fffe46bb91e3ba9c32669612"
+    },
+    {
+      "id": "meta-performance",
+      "title": "Capacity Efficiency at Meta: How Unified AI Agents Optimize Performance at Hyperscale",
+      "url": "https://engineering.fb.com/2026/04/16/developer-tools/capacity-efficiency-at-meta-how-unified-ai-agents-optimize-performance-at-hyperscale/",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2026-04-16",
+      "date_precision": "day",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "FBDetect plus AI Regression Solver: symptoms/root-cause PR/domain skill/fix-forward PR to author. Aggregate capacity benefit not generic review effect.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/meta-performance.txt",
+      "sha256": "704fa93cde5c051cfc531f45f2cdc9aff99215aa5f0a3b21bc64a9ed7beeebe3"
+    },
+    {
+      "id": "spotify-honk",
+      "title": "Background Coding Agents: Supercharging Downstream Consumer Dataset Migrations (Honk, Part 4)",
+      "url": "https://engineering.atspotify.com/2026/4/background-coding-agents-dataset-migrations-honk-part-4",
+      "source_type": "first_party_engineering_report",
+      "publication_date": "2026-04",
+      "date_precision": "month",
+      "retrieved_on": "2026-10-21",
+      "evidence_note": "Field mappings, ambiguity handoff, missing tests require manual testing. Honk private.",
+      "validation": "source_read_or_relevant_primary_passages_read; no product runtime tested",
+      "local_evidence_path": "/tmp/code-review-companies/spotify-honk.txt",
+      "sha256": "563879b479b06bd48b1b8b29f190b6e633d18f480b9c014a8306eedbd41147ce"
+    }
+  ],
+  "talks_revisited": [
+    {
+      "id": "talk:how-to-kill-the-code-review",
+      "title": "How to Kill the Code Review",
+      "official_talk_url": "https://ai.engineer/talks/YgEv7IQzGdM-kill-code-review",
+      "video_url": "https://www.youtube.com/watch?v=YgEv7IQzGdM",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=how-to-kill-the-code-review&format=json",
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-how-to-kill-the-code-review.json"
+    },
+    {
+      "id": "talk:scaling-agents-on-kubernetes-with-acpx-and-acp",
+      "title": "Scaling Agents on Kubernetes with acpx and ACP",
+      "official_talk_url": "https://ai.engineer/talks/VaS2h-dY1-4-scaling-agents-on-kubernetes-acpx-acp",
+      "video_url": "https://www.youtube.com/watch?v=VaS2h-dY1-4",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=scaling-agents-on-kubernetes-with-acpx-and-acp&format=json",
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-scaling-agents-on-kubernetes-with-acpx-and-acp.json"
+    },
+    {
+      "id": "talk:why-more-context-makes-your-agent-dumber-and-what-to-do-about-it",
+      "title": "Why More Context Makes Your Agent Dumber and What to Do About It",
+      "official_talk_url": "https://ai.engineer/talks/EcqMYoIV57A-why-more-context-makes-your-agent-dumber",
+      "video_url": "https://www.youtube.com/watch?v=EcqMYoIV57A",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=why-more-context-makes-your-agent-dumber-and-what-to-do-about-it&format=json",
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-why-more-context-makes-your-agent-dumber-and-what-to-do-about-it.json"
+    },
+    {
+      "id": "talk:the-last-human-code-review-building-trust-in-ai-generated-code",
+      "title": "The Last Human Code Review: Building Trust in AI-Generated Code",
+      "official_talk_url": "https://ai.engineer/talks/s-aixZYJG4c-last-human-code-review-building-trust",
+      "video_url": "https://www.youtube.com/watch?v=s-aixZYJG4c",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=the-last-human-code-review-building-trust-in-ai-generated-code&format=json",
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-the-last-human-code-review-building-trust-in-ai-generated-code.json"
+    },
+    {
+      "id": "talk:agentic-sdlc-at-uber-building-blocks-for-uber-s-software-factory",
+      "title": "Agentic SDLC at Uber - Building Blocks for Uber’s Software Factory",
+      "official_talk_url": "https://ai.engineer/talks/17-YSUHo6Lk-agentic-sdlc-at-uber-building-blocks-ubers",
+      "video_url": "https://www.youtube.com/watch?v=17-YSUHo6Lk",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=agentic-sdlc-at-uber-building-blocks-for-uber-s-software-factory&format=json",
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-agentic-sdlc-at-uber-building-blocks-for-uber-s-software-factory.json"
+    },
+    {
+      "id": "talk:automating-large-scale-refactors-with-parallel-agents",
+      "title": "Automating Large-Scale Refactors with Parallel Agents",
+      "official_talk_url": "https://ai.engineer/talks/rcsliSIy_YU-automating-large-scale-refactors-parallel-agents",
+      "video_url": "https://www.youtube.com/watch?v=rcsliSIy_YU",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=automating-large-scale-refactors-with-parallel-agents&format=json",
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-automating-large-scale-refactors-with-parallel-agents.json"
+    },
+    {
+      "id": "talk:youtube-6b5fc2bd09d9cd27bedf",
+      "title": "Building uReview, Uber’s Multi-Agent Code Review Engine — Will Bond & Ameya Ketkar, Uber",
+      "official_talk_url": "https://ai.engineer/talks/EL123UNokkI-building-ureview-ubers-multi-agent-code-review",
+      "video_url": "https://www.youtube.com/watch?v=EL123UNokkI",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=youtube-6b5fc2bd09d9cd27bedf&format=json",
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-youtube-6b5fc2bd09d9cd27bedf.json"
+    },
+    {
+      "id": "talk:building-deterministic-infrastructure-for-non-deterministic-ai-agents",
+      "title": "Building Deterministic Infrastructure for Non-Deterministic AI Agents",
+      "official_talk_url": "https://ai.engineer/talks/APh1Vx0oLmQ-building-deterministic-infrastructure-non",
+      "video_url": "https://www.youtube.com/watch?v=APh1Vx0oLmQ",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=building-deterministic-infrastructure-for-non-deterministic-ai-agents&format=json",
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-building-deterministic-infrastructure-for-non-deterministic-ai-agents.json"
+    },
+    {
+      "id": "talk:pi-coding-agent",
+      "title": "Building pi in a World of Slop — Mario Zechner",
+      "official_talk_url": "https://ai.engineer/talks/RjfbvDXpFls-pi-coding-agent",
+      "video_url": "https://www.youtube.com/watch?v=RjfbvDXpFls",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=pi-coding-agent&format=json",
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-pi-coding-agent.json"
+    },
+    {
+      "id": "talk:multiplayer-agentic-engineering-enabling-your-whole-team-and-your-best-agents-to-work-together",
+      "title": "Multiplayer agentic engineering: enabling your whole team and your best agents to work together",
+      "official_talk_url": "https://ai.engineer/talks/OL7kfezynJM-multiplayer-agentic-engineering-enabling",
+      "video_url": "https://www.youtube.com/watch?v=OL7kfezynJM",
+      "transcript_api_url": "https://ai.engineer/api/data/transcript?slug=multiplayer-agentic-engineering-enabling-your-whole-team-and-your-best-agents-to-work-together&format=json",
+      "raw_transcript_path": "/tmp/code-review-companies/transcript-multiplayer-agentic-engineering-enabling-your-whole-team-and-your-best-agents-to-work-together.json"
+    }
+  ],
+  "mapping_categories": {
+    "documented_pattern": "Company or speaker describes a mechanism, private or public; we can implement the idea.",
+    "public_implementation_option": "Public code may supply reusable machinery after license, safety and fit review; not an admission criterion.",
+    "our_new_control": "Specific policy, interface, evidence schema, or integration proposed for our target; not falsely attributed as a company implementation."
+  },
+  "critical_caveats": [
+    "Agreement among models is evidence of agreement, not correctness.",
+    "Prompt restrictions are not enforced permissions.",
+    "A passing test is bounded by its oracle and environment.",
+    "Product preview/lifecycle restrictions limit buying/using those products, not learning their architecture ideas.",
+    "SpaceX internal AI review pipeline was not established and is not invented.",
+    "Personal and organization profiles share trust contracts and differ in scale/infrastructure, not in the fundamental verification objective."
+  ],
+  "quality_checks": {
+    "block_count": 12,
+    "unique_document_sources": 20,
+    "talks_directly_mapped": 10,
+    "all_primary_document_links_registered": true,
+    "no_copied_code_or_implemented_system_claim": true,
+    "chapter_words": 2917,
+    "source_availability_used_as_exclusion_filter": false,
+    "selected_authority_preserved": true,
+    "openai_harness_publication_date_live_verified": "2026-02-11"
+  },
+  "selected_authority": {
+    "personal": "Human approves pushes of the exact tested change; no automatic merge.",
+    "organization": "Human approves pushes of the exact tested change; no automatic merge.",
+    "future_option": "Policy-controlled low-risk automatic delivery is researched as a future capability only; separate authorization required."
+  }
+}

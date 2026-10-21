@@ -1,0 +1,13 @@
+title = "Sir Patchington secret scan"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "sourcegraph-access-token"
+[[rules.allowlists]]
+description = "Published 40-hex Git object IDs in the dated source-inspection report"
+condition = "AND"
+paths = ['''^docs/research/Automated-Code-Review-Research\.md$''']
+regexTarget = "match"
+regexes = ['''^[0-9a-f]{40}`?$''']

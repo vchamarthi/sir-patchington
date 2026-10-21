@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1220" height="970" viewBox="0 0 1220 970">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#64748b"/></marker></defs>
+<rect width="1220" height="970" fill="#f8fafc"/>
+<g font-family="Arial, sans-serif">
+<text x="48" y="50" font-size="32" font-weight="700" fill="#0f172a">Sir Patchington: ideas → working modules</text>
+<text x="48" y="84" font-size="17" fill="#475569">Clean-room implementation. Source names identify inspiration, not copied code or equivalent quality.</text>
+<path d="M390 227L440 227" stroke="#64748b" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+<path d="M782 227L832 227" stroke="#64748b" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+<path d="M1003 325L1003 390" stroke="#64748b" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+<path d="M832 487L782 487" stroke="#64748b" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+<path d="M440 487L390 487" stroke="#64748b" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+<path d="M219 585L219 650" stroke="#64748b" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+<path d="M390 747L440 747" stroke="#64748b" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+<path d="M782 747L832 747" stroke="#64748b" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+<rect x="48" y="130" width="342" height="195" rx="14" fill="white" stroke="#cbd5e1"/><rect x="48" y="130" width="7" height="195" rx="3" fill="#2563eb"/>
+<text x="70" y="165" font-size="22" font-weight="700" fill="#0f172a">1  Signed intake</text>
+<text x="70" y="195" font-size="15" font-weight="400" fill="#475569">api.py · contracts.py</text>
+<text x="70" y="227" font-size="15" font-weight="700" fill="#2563eb">GitHub webhook practices</text>
+<text x="70" y="263" font-size="16" font-weight="400" fill="#334155">Verify HMAC + enrolled identity</text>
+<text x="70" y="292" font-size="16" font-weight="400" fill="#334155">Keep only routing metadata</text>
+<rect x="440" y="130" width="342" height="195" rx="14" fill="white" stroke="#cbd5e1"/><rect x="440" y="130" width="7" height="195" rx="3" fill="#2563eb"/>
+<text x="462" y="165" font-size="22" font-weight="700" fill="#0f172a">2  Durable control plane</text>
+<text x="462" y="195" font-size="15" font-weight="400" fill="#475569">store.py · cli.py</text>
+<text x="462" y="227" font-size="15" font-weight="700" fill="#2563eb">Temporal idempotency ideas</text>
+<text x="462" y="263" font-size="16" font-weight="400" fill="#334155">PostgreSQL leases + fences</text>
+<text x="462" y="292" font-size="16" font-weight="400" fill="#334155">Tenant quotas · one active PR</text>
+<rect x="832" y="130" width="342" height="195" rx="14" fill="white" stroke="#cbd5e1"/><rect x="832" y="130" width="7" height="195" rx="3" fill="#2563eb"/>
+<text x="854" y="165" font-size="22" font-weight="700" fill="#0f172a">3  Scoped context</text>
+<text x="854" y="195" font-size="15" font-weight="400" fill="#475569">context.py · gitwork.py</text>
+<text x="854" y="227" font-size="15" font-weight="700" fill="#2563eb">Augment / Sourcegraph ideas</text>
+<text x="854" y="263" font-size="16" font-weight="400" fill="#334155">Revision + tenant + team scope</text>
+<text x="854" y="292" font-size="16" font-weight="400" fill="#334155">Omissions and secret filtering</text>
+<rect x="832" y="390" width="342" height="195" rx="14" fill="white" stroke="#cbd5e1"/><rect x="832" y="390" width="7" height="195" rx="3" fill="#7c3aed"/>
+<text x="854" y="425" font-size="22" font-weight="700" fill="#0f172a">4  Investigate + repair</text>
+<text x="854" y="455" font-size="15" font-weight="400" fill="#475569">pipeline.py · models.py</text>
+<text x="854" y="487" font-size="15" font-weight="700" fill="#7c3aed">Uber / Qodo / Stripe ideas</text>
+<text x="854" y="523" font-size="16" font-weight="400" fill="#334155">Review → fresh refutation</text>
+<text x="854" y="552" font-size="16" font-weight="400" fill="#334155">Bounded minimal patch attempts</text>
+<rect x="440" y="390" width="342" height="195" rx="14" fill="white" stroke="#cbd5e1"/><rect x="440" y="390" width="7" height="195" rx="3" fill="#0f766e"/>
+<text x="462" y="425" font-size="22" font-weight="700" fill="#0f172a">5  Independent proof</text>
+<text x="462" y="455" font-size="15" font-weight="400" fill="#475569">execution.py · probes.py</text>
+<text x="462" y="487" font-size="15" font-weight="700" fill="#0f766e">Spotify / Meta testing ideas</text>
+<text x="462" y="523" font-size="16" font-weight="400" fill="#334155">Original fails · candidate passes</text>
+<text x="462" y="552" font-size="16" font-weight="400" fill="#334155">External assertions · Docker limits</text>
+<rect x="48" y="390" width="342" height="195" rx="14" fill="white" stroke="#cbd5e1"/><rect x="48" y="390" width="7" height="195" rx="3" fill="#0f766e"/>
+<text x="70" y="425" font-size="22" font-weight="700" fill="#0f172a">6  Frozen evidence</text>
+<text x="70" y="455" font-size="15" font-weight="400" fill="#475569">artifacts.py · records.py</text>
+<text x="70" y="487" font-size="15" font-weight="700" fill="#0f766e">Provenance / SLSA ideas</text>
+<text x="70" y="523" font-size="16" font-weight="400" fill="#334155">Patch + parent + tree + commit</text>
+<text x="70" y="552" font-size="16" font-weight="400" fill="#334155">Immutable proof and log digests</text>
+<rect x="48" y="650" width="342" height="195" rx="14" fill="white" stroke="#cbd5e1"/><rect x="48" y="650" width="7" height="195" rx="3" fill="#b45309"/>
+<text x="70" y="685" font-size="22" font-weight="700" fill="#0f172a">7  Exact approval</text>
+<text x="70" y="715" font-size="15" font-weight="400" fill="#475569">api.py · publisher.py</text>
+<text x="70" y="747" font-size="15" font-weight="700" fill="#b45309">GitHub authority boundaries</text>
+<text x="70" y="783" font-size="16" font-weight="400" fill="#334155">Authenticated scoped approver</text>
+<text x="70" y="812" font-size="16" font-weight="400" fill="#334155">Exact proof · expiry · revocation</text>
+<rect x="440" y="650" width="342" height="195" rx="14" fill="white" stroke="#cbd5e1"/><rect x="440" y="650" width="7" height="195" rx="3" fill="#b45309"/>
+<text x="462" y="685" font-size="22" font-weight="700" fill="#0f172a">8  Restricted publisher</text>
+<text x="462" y="715" font-size="15" font-weight="400" fill="#475569">publisher.py · github.py</text>
+<text x="462" y="747" font-size="15" font-weight="700" fill="#b45309">gh-aw restricted-writer idea</text>
+<text x="462" y="783" font-size="16" font-weight="400" fill="#334155">Fresh fetch + reconstruction</text>
+<text x="462" y="812" font-size="16" font-weight="400" fill="#334155">Expected-head CAS + readback</text>
+<rect x="832" y="650" width="342" height="195" rx="14" fill="white" stroke="#cbd5e1"/><rect x="832" y="650" width="7" height="195" rx="3" fill="#2563eb"/>
+<text x="854" y="685" font-size="22" font-weight="700" fill="#0f172a">9  Observe + rereview</text>
+<text x="854" y="715" font-size="15" font-weight="400" fill="#475569">pipeline.py · cli.py</text>
+<text x="854" y="747" font-size="15" font-weight="700" fill="#2563eb">GitHub checks / lifecycle</text>
+<text x="854" y="783" font-size="16" font-weight="400" fill="#334155">Pinned CI App + candidate SHA</text>
+<text x="854" y="812" font-size="16" font-weight="400" fill="#334155">Base drift reverify · no merge</text>
+<text x="48" y="901" font-size="18" font-weight="700" fill="#0f172a">Safe defaults: no comments or pushes · exact approval to publish · never auto-merge</text>
+<text x="48" y="933" font-size="16" fill="#475569">Locally exercised control boundaries. Live model quality, organization throughput and deployment reliability remain unqualified.</text>
+</g></svg>

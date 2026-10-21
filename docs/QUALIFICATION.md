@@ -1,0 +1,60 @@
+# Qualification record — 2026-10-21
+
+The repository is an implemented control plane with local integration evidence.
+It is not a certified production service or a measured replacement for a
+commercial reviewer. In particular, no real model generation or real-model API
+test was performed, and no existing repository was enrolled or changed.
+
+## Evidence collected
+
+- Strict policy, context, transport, model-schema, candidate, approval and
+  publication tests exercise both allowed paths and adversarial denial paths.
+- Real disposable PostgreSQL schemas exercise eight-replica claim/receipt
+  contention, tenant capacity, per-PR exclusion, lease fencing, recovery,
+  immutable records and concurrent schema initialization. SQLite tests are
+  separate development behavior evidence.
+- Real temporary Git repositories exercise canonical reconstruction, protected
+  paths, binary-asset preservation, source admission above 5,000 files, branch
+  races and exact parent/tree/commit remote readback.
+- Real Docker checks exercise original-failing/candidate-passing regression
+  evidence, early-exit tampering, source mutation, blocked network, absent
+  credentials/socket, nonroot execution, read-only roots and cleanup.
+- The offline demo executes signed ASGI intake, durable queue work, Docker
+  verification, authenticated approval, clean reconstruction and local bare-Git
+  compare-and-swap. It explicitly simulates model responses, GitHub metadata
+  and CI. Its JSON receipt is the machine-readable boundary.
+- Container-image startup and API/PostgreSQL readiness checks use isolated
+  synthetic enrollment without App credentials or model authentication.
+
+The [machine-readable receipt](qualification-receipt.json) records 263 passing
+main-suite tests and two image-dependent skips subsequently passed in the
+55-test frozen-image/PostgreSQL/deployment run: 265 distinct tests validated,
+89.04% statement coverage. Ruff, lock/build, Compose, dependency audit (36
+packages; zero known vulnerabilities), staged secret scan and the offline CLI
+demonstration passed. One locked Starlette TestClient deprecation warning remains. A green suite supports these bounded
+control-flow claims; it does not measure finding precision, bug recall, repair
+generalization, production throughput or uptime.
+
+## Required before real organization operation
+
+1. Provision and protect PostgreSQL, shared artifact storage, backups and a
+   dedicated execution daemon. Demonstrate restore and process-kill recovery in
+   the actual deployment. Verify TLS, egress controls and storage permissions.
+2. Install separate scoped GitHub Apps only on authorized repositories; verify
+   their real installation IDs, webhook delivery, rate limits, branch rules and
+   ambiguous-write reconciliation on a disposable private repository.
+3. Provision project-specific trusted images and independent acceptance checks.
+   Validate native/hardware/security lanes that the repository actually needs.
+4. Separately qualify the pinned subscription CLI's supported flags, auth,
+   model identity and quota. Keep API-provider fallback disabled. Requalify after
+   client updates. No current live-auth or billing qualification is asserted here.
+5. Evaluate real historical/labeled PRs by team and defect class. Measure useful
+   findings, false positives, missed bugs, harmful fixes, abstentions and cost.
+   Fixture success is not model-quality evidence.
+6. Retain exact candidate approval and server merge/release controls. Enable
+   comments and publication only in explicit repository policies after the
+   surrounding deployment has been qualified.
+
+These are operational prerequisites for the user-controlled environment; the
+code repository does not silently create credentials, start model work, deploy
+infrastructure, or bypass them.

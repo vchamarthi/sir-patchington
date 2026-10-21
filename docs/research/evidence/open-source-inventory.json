@@ -1,0 +1,1742 @@
+{
+  "observed_date": "2026-10-21",
+  "timezone": "America/Chicago",
+  "method": "Read-only authenticated gh API, temporary static clones and official docs; no installs or third-party execution/model calls",
+  "evidence_states": [
+    "static_implementation_inspected",
+    "readme_and_metadata_screened",
+    "metadata_only_screened",
+    "authenticated_github_api_not_found"
+  ],
+  "aliases": {
+    "qodo-ai/pr-agent": "The-PR-Agent/pr-agent",
+    "mattzcarey/code-review-gpt": "mattzcarey/shippie",
+    "freeedcom/ai-codereviewer": "villesau/ai-codereviewer"
+  },
+  "repositories": [
+    {
+      "full_name": "The-PR-Agent/pr-agent",
+      "html_url": "https://github.com/The-PR-Agent/pr-agent",
+      "description": "\ud83d\ude80 PR Agent: The Original Open-Source PR Reviewer. This project is not the Qodo free tier.",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-20T12:31:35Z",
+      "updated_at": "2026-10-21T06:15:20Z",
+      "stargazers_count": 13516,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "size": 138030,
+      "homepage": "https://www.pr-agent.ai",
+      "sha": "729415c68b8ef55df8bcce919a419af7f5cebffb",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/The-PR-Agent/pr-agent",
+      "source_url": "https://github.com/The-PR-Agent/pr-agent/tree/729415c68b8ef55df8bcce919a419af7f5cebffb",
+      "execution_state": "not_executed",
+      "evidence": [
+        {
+          "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/README.md#L24-L32",
+          "file": "README.md",
+          "lines": "L24-L32",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/LICENSE#L1-L13",
+          "file": "LICENSE",
+          "lines": "L1-L13",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/tools/pr_code_suggestions.py#L366-L457",
+          "file": "pr_agent/tools/pr_code_suggestions.py",
+          "lines": "L366-L457",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/tools/pr_code_suggestions.py#L1524-L1564",
+          "file": "pr_agent/tools/pr_code_suggestions.py",
+          "lines": "L1524-L1564",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/tools/pr_code_suggestions.py#L2089-L2205",
+          "file": "pr_agent/tools/pr_code_suggestions.py",
+          "lines": "L2089-L2205",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/algo/repo_context.py#L101-L182",
+          "file": "pr_agent/algo/repo_context.py",
+          "lines": "L101-L182",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/tools/pr_code_suggestions.py#L1576-L1677",
+          "file": "pr_agent/tools/pr_code_suggestions.py",
+          "lines": "L1576-L1677",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/algo/inline_comment_dedup.py#L1-L21",
+          "file": "pr_agent/algo/inline_comment_dedup.py",
+          "lines": "L1-L21",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/algo/inline_comment_dedup.py#L96-L139",
+          "file": "pr_agent/algo/inline_comment_dedup.py",
+          "lines": "L96-L139",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/settings/configuration.toml#L1-L12",
+          "file": "pr_agent/settings/configuration.toml",
+          "lines": "L1-L12",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/settings/configuration.toml#L269-L276",
+          "file": "pr_agent/settings/configuration.toml",
+          "lines": "L269-L276",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/tools/pr_code_suggestions.py#L94-L135",
+          "file": "pr_agent/tools/pr_code_suggestions.py",
+          "lines": "L94-L135",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/.github/workflows/pr-agent-review.yaml#L19-L22",
+          "file": ".github/workflows/pr-agent-review.yaml",
+          "lines": "L19-L22",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/algo/ai_handlers/litellm_ai_handler.py#L1-L20",
+          "file": "pr_agent/algo/ai_handlers/litellm_ai_handler.py",
+          "lines": "L1-L20",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/The-PR-Agent/pr-agent/blob/729415c68b8ef55df8bcce919a419af7f5cebffb/pr_agent/algo/ai_handlers/litellm_ai_handler.py#L176-L195",
+          "file": "pr_agent/algo/ai_handlers/litellm_ai_handler.py",
+          "lines": "L176-L195",
+          "state": "static_source_inspected"
+        }
+      ],
+      "evidence_state": "static_implementation_inspected",
+      "license_assessment": {
+        "expression": "MIT",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "review/suggestions/questions/summaries",
+      "fix_capability": "committable suggestions; no general feedback-to-tested-commit loop credited",
+      "subscription_compatibility": "API adapters; direct logged-in subscription CLI not found in inspected handlers",
+      "notes": ""
+    },
+    {
+      "full_name": "kodustech/kodus-ai",
+      "html_url": "https://github.com/kodustech/kodus-ai",
+      "description": "Open source, self-hosted AI code review. Bring your own LLM.",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-21T02:05:31Z",
+      "updated_at": "2026-10-21T06:06:24Z",
+      "stargazers_count": 1510,
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "size": 239888,
+      "homepage": "https://kodus.io",
+      "sha": "bd2cb7a227d41f956bd932661fbfabc47e5f5570",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/kodustech/kodus-ai",
+      "source_url": "https://github.com/kodustech/kodus-ai/tree/bd2cb7a227d41f956bd932661fbfabc47e5f5570",
+      "execution_state": "not_executed",
+      "evidence": [
+        {
+          "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/license.md#L3-L10",
+          "file": "license.md",
+          "lines": "L3-L10",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/license_ee.md#L5-L19",
+          "file": "license_ee.md",
+          "lines": "L5-L19",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/libs/code-review/pipeline/strategy/code-review-pipeline.strategy.ts#L33-L110",
+          "file": "libs/code-review/pipeline/strategy/code-review-pipeline.strategy.ts",
+          "lines": "L33-L110",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/libs/code-review/infrastructure/agents/review-orchestrator.service.ts#L153-L259",
+          "file": "libs/code-review/infrastructure/agents/review-orchestrator.service.ts",
+          "lines": "L153-L259",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/libs/code-review/infrastructure/agents/review-orchestrator.service.ts#L399-L438",
+          "file": "libs/code-review/infrastructure/agents/review-orchestrator.service.ts",
+          "lines": "L399-L438",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/libs/code-review/infrastructure/agents/review-orchestrator.service.ts#L576-L590",
+          "file": "libs/code-review/infrastructure/agents/review-orchestrator.service.ts",
+          "lines": "L576-L590",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/libs/code-review/pipeline/stages/validate-suggestions.stage.ts#L160-L225",
+          "file": "libs/code-review/pipeline/stages/validate-suggestions.stage.ts",
+          "lines": "L160-L225",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/libs/code-review/pipeline/stages/validate-suggestions.stage.ts#L389-L435",
+          "file": "libs/code-review/pipeline/stages/validate-suggestions.stage.ts",
+          "lines": "L389-L435",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/libs/code-review/pipeline/stages/agent-review.stage.ts#L1219-L1293",
+          "file": "libs/code-review/pipeline/stages/agent-review.stage.ts",
+          "lines": "L1219-L1293",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/libs/code-review/pipeline/stages/create-file-comments.stage.ts#L90-L111",
+          "file": "libs/code-review/pipeline/stages/create-file-comments.stage.ts",
+          "lines": "L90-L111",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/libs/code-review/pipeline/stages/create-file-comments.stage.ts#L1-L38",
+          "file": "libs/code-review/pipeline/stages/create-file-comments.stage.ts",
+          "lines": "L1-L38",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/README.md#L45-L61",
+          "file": "README.md",
+          "lines": "L45-L61",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/kodustech/kodus-ai/blob/bd2cb7a227d41f956bd932661fbfabc47e5f5570/license_ee.md#L9-L19",
+          "file": "license_ee.md",
+          "lines": "L9-L19",
+          "state": "static_source_inspected"
+        }
+      ],
+      "evidence_state": "static_implementation_inspected",
+      "license_assessment": {
+        "expression": "AGPL-3.0 core; commercial EE",
+        "caveat": "Files containing .ee. or under ee/ excluded from AGPL; internal production EE use requires license"
+      },
+      "review_capability": "agentic multi-forge review with rules/external context/CI evidence",
+      "fix_capability": "syntax+LLM validation and suggestion-state tracking; arbitrary human-feedback branch fixing not credited",
+      "subscription_compatibility": "API BYOK; subscription CLI unverified",
+      "notes": ""
+    },
+    {
+      "full_name": "mattzcarey/shippie",
+      "html_url": "https://github.com/mattzcarey/shippie",
+      "description": "extendable code review and QA agent \ud83d\udea2",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-21T03:38:26Z",
+      "updated_at": "2026-10-19T01:22:21Z",
+      "stargazers_count": 2512,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "size": 6624,
+      "homepage": "https://shippie.dev",
+      "sha": "23e91d0c3ed12950c5de591e9e11d9b0c6dbf3f8",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/mattzcarey/shippie",
+      "source_url": "https://github.com/mattzcarey/shippie/tree/23e91d0c3ed12950c5de591e9e11d9b0c6dbf3f8",
+      "execution_state": "not_executed",
+      "evidence": [
+        {
+          "url": "https://github.com/mattzcarey/shippie/blob/23e91d0c3ed12950c5de591e9e11d9b0c6dbf3f8/README.md#L1-L35",
+          "file": "README.md",
+          "lines": "L1-L35",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/mattzcarey/shippie/blob/23e91d0c3ed12950c5de591e9e11d9b0c6dbf3f8/src/workflows/review.ts#L36-L74",
+          "file": "src/workflows/review.ts",
+          "lines": "L36-L74",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/mattzcarey/shippie/blob/23e91d0c3ed12950c5de591e9e11d9b0c6dbf3f8/src/agents/reviewer.ts#L9-L34",
+          "file": "src/agents/reviewer.ts",
+          "lines": "L9-L34",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/mattzcarey/shippie/blob/23e91d0c3ed12950c5de591e9e11d9b0c6dbf3f8/src/tools/suggest-change.ts#L10-L48",
+          "file": "src/tools/suggest-change.ts",
+          "lines": "L10-L48",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/mattzcarey/shippie/blob/23e91d0c3ed12950c5de591e9e11d9b0c6dbf3f8/src/github/reporter.ts#L34-L91",
+          "file": "src/github/reporter.ts",
+          "lines": "L34-L91",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/mattzcarey/shippie/blob/23e91d0c3ed12950c5de591e9e11d9b0c6dbf3f8/README.md#L25-L58",
+          "file": "README.md",
+          "lines": "L25-L58",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/mattzcarey/shippie/blob/23e91d0c3ed12950c5de591e9e11d9b0c6dbf3f8/src/github/reporter.ts#L102-L124",
+          "file": "src/github/reporter.ts",
+          "lines": "L102-L124",
+          "state": "static_source_inspected"
+        }
+      ],
+      "evidence_state": "static_implementation_inspected",
+      "license_assessment": {
+        "expression": "MIT",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "tool-using local/CI reviewer with MCP",
+      "fix_capability": "comment suggestions; QA/healer exists but was not end-to-end traced",
+      "subscription_compatibility": "API providers in inspected setup; subscription CLI unverified",
+      "notes": ""
+    },
+    {
+      "full_name": "reviewdog/reviewdog",
+      "html_url": "https://github.com/reviewdog/reviewdog",
+      "description": "\ud83d\udc36 Automated code review tool integrated with any code analysis tools regardless of programming language",
+      "default_branch": "master",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-21T03:45:38Z",
+      "updated_at": "2026-10-21T03:45:42Z",
+      "stargazers_count": 9682,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "size": 7443,
+      "homepage": "https://medium.com/@haya14busa/reviewdog-a-code-review-dog-who-keeps-your-codebase-healthy-d957c471938b#.8xctbaw5u",
+      "sha": "02af7678852249d082a9b9842688fe1b4945f308",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/reviewdog/reviewdog",
+      "source_url": "https://github.com/reviewdog/reviewdog/tree/02af7678852249d082a9b9842688fe1b4945f308",
+      "execution_state": "not_executed",
+      "evidence": [
+        {
+          "url": "https://github.com/reviewdog/reviewdog/blob/02af7678852249d082a9b9842688fe1b4945f308/README.md#L224-L273",
+          "file": "README.md",
+          "lines": "L224-L273",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/reviewdog/reviewdog/blob/02af7678852249d082a9b9842688fe1b4945f308/filter/filter.go#L35-L89",
+          "file": "filter/filter.go",
+          "lines": "L35-L89",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/reviewdog/reviewdog/blob/02af7678852249d082a9b9842688fe1b4945f308/service/github/github.go#L118-L205",
+          "file": "service/github/github.go",
+          "lines": "L118-L205",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/reviewdog/reviewdog/blob/02af7678852249d082a9b9842688fe1b4945f308/service/github/github.go#L478-L507",
+          "file": "service/github/github.go",
+          "lines": "L478-L507",
+          "state": "static_source_inspected"
+        }
+      ],
+      "evidence_state": "static_implementation_inspected",
+      "license_assessment": {
+        "expression": "MIT",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "diagnostic filtering/publication/dedup, not an LLM reviewer",
+      "fix_capability": "formats externally produced fixer diffs as suggestions",
+      "subscription_compatibility": "no model adapter needed",
+      "notes": ""
+    },
+    {
+      "full_name": "danger/danger-js",
+      "html_url": "https://github.com/danger/danger-js",
+      "description": "\u26a0\ufe0f Stop saying \"you forgot to \u2026\" in code review",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-01T19:08:50Z",
+      "updated_at": "2026-10-19T21:18:31Z",
+      "stargazers_count": 5515,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "size": 9677,
+      "homepage": "http://danger.systems/js/",
+      "sha": "37a360502df74a18cda7bf6a350789d5dd066dfd",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/danger/danger-js",
+      "source_url": "https://github.com/danger/danger-js/tree/37a360502df74a18cda7bf6a350789d5dd066dfd",
+      "execution_state": "not_executed",
+      "evidence": [
+        {
+          "url": "https://github.com/danger/danger-js/blob/37a360502df74a18cda7bf6a350789d5dd066dfd/source/runner/Executor.ts#L91-L108",
+          "file": "source/runner/Executor.ts",
+          "lines": "L91-L108",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/danger/danger-js/blob/37a360502df74a18cda7bf6a350789d5dd066dfd/source/platforms/github/comms/issueCommenter.ts#L14-L41",
+          "file": "source/platforms/github/comms/issueCommenter.ts",
+          "lines": "L14-L41",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/danger/danger-js/blob/37a360502df74a18cda7bf6a350789d5dd066dfd/source/platforms/github/comms/issueCommenter.ts#L123-L167",
+          "file": "source/platforms/github/comms/issueCommenter.ts",
+          "lines": "L123-L167",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/danger/danger-js/blob/37a360502df74a18cda7bf6a350789d5dd066dfd/source/runner/runners/inline.ts#L57-L82",
+          "file": "source/runner/runners/inline.ts",
+          "lines": "L57-L82",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/danger/danger-js/blob/37a360502df74a18cda7bf6a350789d5dd066dfd/source/runner/runners/inline.ts#L108-L119",
+          "file": "source/runner/runners/inline.ts",
+          "lines": "L108-L119",
+          "state": "static_source_inspected"
+        }
+      ],
+      "evidence_state": "static_implementation_inspected",
+      "license_assessment": {
+        "expression": "MIT",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "executable deterministic PR policy and comments",
+      "fix_capability": "no autonomous feedback repair",
+      "subscription_compatibility": "no model adapter needed",
+      "notes": ""
+    },
+    {
+      "full_name": "semgrep/semgrep",
+      "html_url": "https://github.com/semgrep/semgrep",
+      "description": "Lightweight static analysis for many languages. Find bug variants with patterns that look like source code.",
+      "default_branch": "develop",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-21T00:02:16Z",
+      "updated_at": "2026-10-21T06:43:21Z",
+      "stargazers_count": 17158,
+      "license": {
+        "key": "lgpl-2.1",
+        "name": "GNU Lesser General Public License v2.1",
+        "spdx_id": "LGPL-2.1",
+        "url": "https://api.github.com/licenses/lgpl-2.1",
+        "node_id": "MDc6TGljZW5zZTEx"
+      },
+      "size": 140586,
+      "homepage": "https://semgrep.dev",
+      "sha": "fe209763a4a2ccfcdf6434e6c332edc24a2f586e",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/semgrep/semgrep",
+      "source_url": "https://github.com/semgrep/semgrep/tree/fe209763a4a2ccfcdf6434e6c332edc24a2f586e",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "metadata_only_screened",
+      "license_assessment": {
+        "expression": "LGPL-2.1",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": ""
+    },
+    {
+      "full_name": "github/codeql",
+      "html_url": "https://github.com/github/codeql",
+      "description": "CodeQL: the libraries and queries that power security researchers around the world, as well as code scanning in GitHub Advanced Security",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-20T21:53:15Z",
+      "updated_at": "2026-10-21T02:49:04Z",
+      "stargazers_count": 10222,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "size": 534357,
+      "homepage": "https://codeql.github.com",
+      "sha": "9ae8dbe71474b5bf149cd516c0c1547676cef16b",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/github/codeql",
+      "source_url": "https://github.com/github/codeql/tree/9ae8dbe71474b5bf149cd516c0c1547676cef16b",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "readme_and_metadata_screened",
+      "license_assessment": {
+        "expression": "MIT queries/libraries",
+        "caveat": "CLI/engine use separate GitHub license; private-code licensing differs"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": ""
+    },
+    {
+      "full_name": "SonarSource/sonarqube",
+      "html_url": "https://github.com/SonarSource/sonarqube",
+      "description": "Continuous Inspection",
+      "default_branch": "master",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-20T20:09:41Z",
+      "updated_at": "2026-10-20T22:42:18Z",
+      "stargazers_count": 11093,
+      "license": {
+        "key": "lgpl-3.0",
+        "name": "GNU Lesser General Public License v3.0",
+        "spdx_id": "LGPL-3.0",
+        "url": "https://api.github.com/licenses/lgpl-3.0",
+        "node_id": "MDc6TGljZW5zZTEy"
+      },
+      "size": 971073,
+      "homepage": "http://www.sonarqube.org",
+      "sha": "6319fb9488a9682c6da0e11cd6351c8afa4bafe5",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/SonarSource/sonarqube",
+      "source_url": "https://github.com/SonarSource/sonarqube/tree/6319fb9488a9682c6da0e11cd6351c8afa4bafe5",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "readme_and_metadata_screened",
+      "license_assessment": {
+        "expression": "LGPL-3.0 Community source",
+        "caveat": "Commercial PR/remediation features not established by Community source"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": ""
+    },
+    {
+      "full_name": "anc95/ChatGPT-CodeReview",
+      "html_url": "https://github.com/anc95/ChatGPT-CodeReview",
+      "description": "\ud83d\udc25 A code review bot powered by ChatGPT",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-08-10T02:55:09Z",
+      "updated_at": "2026-10-20T17:23:52Z",
+      "stargazers_count": 4471,
+      "license": {
+        "key": "isc",
+        "name": "ISC License",
+        "spdx_id": "ISC",
+        "url": "https://api.github.com/licenses/isc",
+        "node_id": "MDc6TGljZW5zZTEw"
+      },
+      "size": 7219,
+      "homepage": "https://github.com/apps/cr-gpt",
+      "sha": "8bd66227f057f21e847a8c27c9b356c25271d292",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/anc95/ChatGPT-CodeReview",
+      "source_url": "https://github.com/anc95/ChatGPT-CodeReview/tree/8bd66227f057f21e847a8c27c9b356c25271d292",
+      "execution_state": "not_executed",
+      "evidence": [
+        {
+          "url": "https://github.com/anc95/ChatGPT-CodeReview/blob/8bd66227f057f21e847a8c27c9b356c25271d292/src/bot.ts#L18-L103",
+          "file": "src/bot.ts",
+          "lines": "L18-L103",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/anc95/ChatGPT-CodeReview/blob/8bd66227f057f21e847a8c27c9b356c25271d292/src/bot.ts#L117-L208",
+          "file": "src/bot.ts",
+          "lines": "L117-L208",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/anc95/ChatGPT-CodeReview/blob/8bd66227f057f21e847a8c27c9b356c25271d292/src/chat.ts#L18-L44",
+          "file": "src/chat.ts",
+          "lines": "L18-L44",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/anc95/ChatGPT-CodeReview/blob/8bd66227f057f21e847a8c27c9b356c25271d292/src/chat.ts#L65-L118",
+          "file": "src/chat.ts",
+          "lines": "L65-L118",
+          "state": "static_source_inspected"
+        }
+      ],
+      "evidence_state": "static_implementation_inspected",
+      "license_assessment": {
+        "expression": "ISC",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "patch/hunk API reviewer with incremental comparison",
+      "fix_capability": "review comments, no branch repair credited",
+      "subscription_compatibility": "OpenAI/Azure/GitHub Models API",
+      "notes": ""
+    },
+    {
+      "full_name": "presubmit/ai-reviewer",
+      "html_url": "https://github.com/presubmit/ai-reviewer",
+      "description": "Context-aware AI reviewer for Pull Requests. Instant summary, line-by-line comments, title generation and more",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-09-14T12:10:45Z",
+      "updated_at": "2026-10-13T01:55:53Z",
+      "stargazers_count": 188,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "size": 13641,
+      "homepage": "http://presubmit.ai",
+      "sha": "aa176b708fa8386ff7d35389d5197e9555277929",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/presubmit/ai-reviewer",
+      "source_url": "https://github.com/presubmit/ai-reviewer/tree/aa176b708fa8386ff7d35389d5197e9555277929",
+      "execution_state": "not_executed",
+      "evidence": [
+        {
+          "url": "https://github.com/presubmit/ai-reviewer/blob/aa176b708fa8386ff7d35389d5197e9555277929/src/pull_request_comment.ts#L20-L96",
+          "file": "src/pull_request_comment.ts",
+          "lines": "L20-L96",
+          "state": "static_source_inspected"
+        }
+      ],
+      "evidence_state": "static_implementation_inspected",
+      "license_assessment": {
+        "expression": "MIT",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "PR API review and conversational review-comment replies",
+      "fix_capability": "reply handler ends at createReviewComment; no branch repair",
+      "subscription_compatibility": "API adapters",
+      "notes": ""
+    },
+    {
+      "full_name": "sweepai/sweep",
+      "html_url": "https://github.com/sweepai/sweep",
+      "description": "Sweep: AI coding assistant for JetBrains",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2025-09-18T06:10:59Z",
+      "updated_at": "2026-10-20T18:24:47Z",
+      "stargazers_count": 7708,
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "size": 232686,
+      "homepage": "https://sweep.dev",
+      "sha": "a8b8b67bda4f89faac9314d34e7c7d5a64f76046",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/sweepai/sweep",
+      "source_url": "https://github.com/sweepai/sweep/tree/a8b8b67bda4f89faac9314d34e7c7d5a64f76046",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "metadata_only_screened",
+      "license_assessment": {
+        "expression": "API Other; not audited",
+        "caveat": "Do not assume permissive reuse; current product differs from historical PR bot"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": "Historical reviewer/issue-bot claims may be obsolete; repo now describes JetBrains assistant"
+    },
+    {
+      "full_name": "continuedev/continue",
+      "html_url": "https://github.com/continuedev/continue",
+      "description": "open-source coding agent",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-20T14:30:21Z",
+      "updated_at": "2026-10-21T06:46:31Z",
+      "stargazers_count": 36277,
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "size": 872633,
+      "homepage": "https://continue.dev",
+      "sha": "5522c6f44ca0ac3528b37244818fbfa39b5af470",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/continuedev/continue",
+      "source_url": "https://github.com/continuedev/continue/tree/5522c6f44ca0ac3528b37244818fbfa39b5af470",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "readme_and_metadata_screened",
+      "license_assessment": {
+        "expression": "Apache-2.0",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": "Coding-agent repository metadata and README only; complete PR-review path not traced"
+    },
+    {
+      "full_name": "gitbito/bitoai",
+      "html_url": "https://github.com/gitbito/bitoai",
+      "description": "Get codebase-aware feedback in your GitHub, GitLab, Bitbucket pull requests or directly in your IDE.",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2025-08-22T22:01:21Z",
+      "updated_at": "2026-09-16T23:33:23Z",
+      "stargazers_count": 300,
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "size": 21,
+      "homepage": "https://bito.ai",
+      "sha": "b7a09e312a2a6d52dd6f982c91d029cef42eba48",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/gitbito/bitoai",
+      "source_url": "https://github.com/gitbito/bitoai/tree/b7a09e312a2a6d52dd6f982c91d029cef42eba48",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "readme_and_metadata_screened",
+      "license_assessment": {
+        "expression": "Bito terms / API Other",
+        "caveat": "Visible repository is documentation/marketing, not review implementation"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": "README-only/tiny documentation source; not full reviewer implementation"
+    },
+    {
+      "full_name": "gitlabhq/gitlabhq",
+      "html_url": "https://github.com/gitlabhq/gitlabhq",
+      "description": "GitLab CE Mirror | Please open new issues in our issue tracker on GitLab.com",
+      "default_branch": "master",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-21T06:08:44Z",
+      "updated_at": "2026-10-21T06:09:06Z",
+      "stargazers_count": 24536,
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "size": 2970423,
+      "homepage": "https://about.gitlab.com/getting-help/",
+      "sha": "4659873d9b0917fbd38f609f54cca0e0c1d256bd",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/gitlabhq/gitlabhq",
+      "source_url": "https://github.com/gitlabhq/gitlabhq/tree/4659873d9b0917fbd38f609f54cca0e0c1d256bd",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "metadata_only_screened",
+      "license_assessment": {
+        "expression": "CE mirror API Other; not audited",
+        "caveat": "Duo EE/gateway/entitlement is separate; CE mirror not complete Duo source"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": ""
+    },
+    {
+      "full_name": "coderabbitai/skills",
+      "html_url": "https://github.com/coderabbitai/skills",
+      "description": null,
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-21T06:25:01Z",
+      "updated_at": "2026-10-19T08:34:58Z",
+      "stargazers_count": 193,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "size": 795,
+      "homepage": "https://skills.sh/coderabbitai/skills",
+      "sha": "a8777050c0d9034d5de6beff3dfac9b43acb9854",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/coderabbitai/skills",
+      "source_url": "https://github.com/coderabbitai/skills/tree/a8777050c0d9034d5de6beff3dfac9b43acb9854",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "metadata_only_screened",
+      "license_assessment": {
+        "expression": "MIT",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": "Integration skills are public MIT; hosted reviewer engine openness not established"
+    },
+    {
+      "full_name": "qodo-ai/qodo-cover",
+      "html_url": "https://github.com/qodo-ai/qodo-cover",
+      "description": "Qodo-Cover: An AI-Powered Tool for Automated Test Generation and Code Coverage Enhancement! \ud83d\udcbb\ud83e\udd16\ud83e\uddea\ud83d\udc1e",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-04-05T12:27:16Z",
+      "updated_at": "2026-10-20T09:44:44Z",
+      "stargazers_count": 5667,
+      "license": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "size": 2491,
+      "homepage": "https://qodo.ai/",
+      "sha": "adcf55baba40e8fbf8a84e68b70d08bef1e2b9c9",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/qodo-ai/qodo-cover",
+      "source_url": "https://github.com/qodo-ai/qodo-cover/tree/adcf55baba40e8fbf8a84e68b70d08bef1e2b9c9",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "metadata_only_screened",
+      "license_assessment": {
+        "expression": "AGPL-3.0",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": "Test generation/coverage adjunct, not reviewer"
+    },
+    {
+      "full_name": "BerriAI/litellm",
+      "html_url": "https://github.com/BerriAI/litellm",
+      "description": "The fastest, litest AI Gateway. Rust core with Python SDK. Call 100+ LLM APIs in OpenAI (or native) format with cost tracking, guardrails, load balancing, and logging [Bedrock, Azure, OpenAI, Anthropic, OpenAI, VertexAI, vLLM, Nvidia NIM]",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-21T06:50:19Z",
+      "updated_at": "2026-10-21T06:50:50Z",
+      "stargazers_count": 61695,
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "size": 2606049,
+      "homepage": "https://docs.litellm.ai/docs/",
+      "sha": "230f653523fa55aa446e1a5b6469f0871cf7278d",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/BerriAI/litellm",
+      "source_url": "https://github.com/BerriAI/litellm/tree/230f653523fa55aa446e1a5b6469f0871cf7278d",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "metadata_only_screened",
+      "license_assessment": {
+        "expression": "API Other; not audited",
+        "caveat": "Adapter library, not reviewer; enterprise terms may differ"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": ""
+    },
+    {
+      "full_name": "DataDog/code-review-action",
+      "html_url": "https://github.com/DataDog/code-review-action",
+      "description": "Reusable action doing additional code-review on repositories, with security hardening",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-21T05:16:54Z",
+      "updated_at": "2026-10-21T05:15:18Z",
+      "stargazers_count": 2,
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "size": 554,
+      "homepage": null,
+      "sha": "fa0c1e83648c82ae0ac78dc1c261af462d9ffcb5",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/DataDog/code-review-action",
+      "source_url": "https://github.com/DataDog/code-review-action/tree/fa0c1e83648c82ae0ac78dc1c261af462d9ffcb5",
+      "execution_state": "not_executed",
+      "evidence": [
+        {
+          "url": "https://github.com/DataDog/code-review-action/blob/fa0c1e83648c82ae0ac78dc1c261af462d9ffcb5/.github/workflows/code-review.yml#L13-L70",
+          "file": ".github/workflows/code-review.yml",
+          "lines": "L13-L70",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/DataDog/code-review-action/blob/fa0c1e83648c82ae0ac78dc1c261af462d9ffcb5/.github/workflows/code-review.yml#L266-L306",
+          "file": ".github/workflows/code-review.yml",
+          "lines": "L266-L306",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/DataDog/code-review-action/blob/fa0c1e83648c82ae0ac78dc1c261af462d9ffcb5/.github/workflows/code-review.yml#L676-L708",
+          "file": ".github/workflows/code-review.yml",
+          "lines": "L676-L708",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/DataDog/code-review-action/blob/fa0c1e83648c82ae0ac78dc1c261af462d9ffcb5/.github/workflows/code-review.yml#L1282-L1416",
+          "file": ".github/workflows/code-review.yml",
+          "lines": "L1282-L1416",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/DataDog/code-review-action/blob/fa0c1e83648c82ae0ac78dc1c261af462d9ffcb5/src/scan.js#L70-L97",
+          "file": "src/scan.js",
+          "lines": "L70-L97",
+          "state": "static_source_inspected"
+        }
+      ],
+      "evidence_state": "static_implementation_inspected",
+      "license_assessment": {
+        "expression": "Apache-2.0",
+        "caveat": "License text inspected; API classifies Other"
+      },
+      "review_capability": "read-only multi-provider CI reviewer; separate posting job",
+      "fix_capability": "review only by design",
+      "subscription_compatibility": "provider API secrets in inspected workflow; subscription transport not credited",
+      "notes": ""
+    },
+    {
+      "full_name": "openqodex/openqodex",
+      "html_url": "https://github.com/openqodex/openqodex",
+      "description": "Open source code review that runs in your coding agent before you push. Scanners plus a separate AI reviewer, on your own login, no key.",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-15T15:04:59Z",
+      "updated_at": "2026-10-20T23:53:26Z",
+      "stargazers_count": 777,
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "size": 11102,
+      "homepage": "https://qodex.ai/openqodex",
+      "sha": "736fd1484a05ead753375f52232bcf9e70f84246",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/openqodex/openqodex",
+      "source_url": "https://github.com/openqodex/openqodex/tree/736fd1484a05ead753375f52232bcf9e70f84246",
+      "execution_state": "not_executed",
+      "evidence": [
+        {
+          "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/README.md#L23-L36",
+          "file": "README.md",
+          "lines": "L23-L36",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/README.md#L67-L86",
+          "file": "README.md",
+          "lines": "L67-L86",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/packages/review/src/pipeline.ts#L53-L98",
+          "file": "packages/review/src/pipeline.ts",
+          "lines": "L53-L98",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/packages/review/src/pipeline.ts#L114-L151",
+          "file": "packages/review/src/pipeline.ts",
+          "lines": "L114-L151",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/packages/review/src/agents/claude.ts#L19-L82",
+          "file": "packages/review/src/agents/claude.ts",
+          "lines": "L19-L82",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/packages/review/src/agents/claude.ts#L147-L185",
+          "file": "packages/review/src/agents/claude.ts",
+          "lines": "L147-L185",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/packages/review/src/agents/claude.ts#L203-L218",
+          "file": "packages/review/src/agents/claude.ts",
+          "lines": "L203-L218",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/packages/review/src/agents/claude.ts#L97-L120",
+          "file": "packages/review/src/agents/claude.ts",
+          "lines": "L97-L120",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/openqodex/openqodex/blob/736fd1484a05ead753375f52232bcf9e70f84246/packages/cli/src/reviewers/settings.ts#L1-L38",
+          "file": "packages/cli/src/reviewers/settings.ts",
+          "lines": "L1-L38",
+          "state": "static_source_inspected"
+        }
+      ],
+      "evidence_state": "static_implementation_inspected",
+      "license_assessment": {
+        "expression": "Apache-2.0",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "local scanners+code graph+independent logged-in CLI reviewer",
+      "fix_capability": "review reports and push gates; generalized branch fixer not credited",
+      "subscription_compatibility": "Claude Code/Codex login supported in source; user-specific Sonnet/subscription-only failsafe requires changes and live qualification",
+      "notes": ""
+    },
+    {
+      "full_name": "Agent-Field/pr-af",
+      "html_url": "https://github.com/Agent-Field/pr-af",
+      "description": "#1 open-source code reviewer on Code-Review-Bench",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-09-21T20:05:15Z",
+      "updated_at": "2026-10-19T21:12:44Z",
+      "stargazers_count": 656,
+      "license": null,
+      "size": 34233,
+      "homepage": "https://www.agentfield.ai",
+      "sha": "421fbd23bf1c5a2c3916d7046c97b5273958e1f4",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/Agent-Field/pr-af",
+      "source_url": "https://github.com/Agent-Field/pr-af/tree/421fbd23bf1c5a2c3916d7046c97b5273958e1f4",
+      "execution_state": "not_executed",
+      "evidence": [
+        {
+          "url": "https://github.com/Agent-Field/pr-af/blob/421fbd23bf1c5a2c3916d7046c97b5273958e1f4/pyproject.toml#L1-L14",
+          "file": "pyproject.toml",
+          "lines": "L1-L14",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/Agent-Field/pr-af/blob/421fbd23bf1c5a2c3916d7046c97b5273958e1f4/src/pr_af/orchestrator.py#L183-L279",
+          "file": "src/pr_af/orchestrator.py",
+          "lines": "L183-L279",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/Agent-Field/pr-af/blob/421fbd23bf1c5a2c3916d7046c97b5273958e1f4/src/pr_af/orchestrator.py#L284-L370",
+          "file": "src/pr_af/orchestrator.py",
+          "lines": "L284-L370",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/Agent-Field/pr-af/blob/421fbd23bf1c5a2c3916d7046c97b5273958e1f4/src/pr_af/config.py#L21-L55",
+          "file": "src/pr_af/config.py",
+          "lines": "L21-L55",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/Agent-Field/pr-af/blob/421fbd23bf1c5a2c3916d7046c97b5273958e1f4/src/pr_af/scoring.py#L70-L100",
+          "file": "src/pr_af/scoring.py",
+          "lines": "L70-L100",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/Agent-Field/pr-af/blob/421fbd23bf1c5a2c3916d7046c97b5273958e1f4/src/pr_af/scoring.py#L147-L182",
+          "file": "src/pr_af/scoring.py",
+          "lines": "L147-L182",
+          "state": "static_source_inspected"
+        },
+        {
+          "url": "https://github.com/Agent-Field/pr-af/blob/421fbd23bf1c5a2c3916d7046c97b5273958e1f4/src/pr_af/config.py#L315-L355",
+          "file": "src/pr_af/config.py",
+          "lines": "L315-L355",
+          "state": "static_source_inspected"
+        }
+      ],
+      "evidence_state": "static_implementation_inspected",
+      "license_assessment": {
+        "expression": "Apache-2.0 declared",
+        "caveat": "pyproject declaration and badge; linked root LICENSE missing in snapshot; API license=null"
+      },
+      "review_capability": "dynamic review plan, reviewers, adversary/evidence/coverage, HITL",
+      "fix_capability": "suggestions; no branch remediation loop credited",
+      "subscription_compatibility": "configurable aforge/opencode harness; direct Claude subscription compatibility unverified",
+      "notes": ""
+    },
+    {
+      "full_name": "xiaofuqing13/ai-code-reviewer",
+      "html_url": "https://github.com/xiaofuqing13/ai-code-reviewer",
+      "description": "Self-hosted AI code review on every pull request. Bring your own model: Claude, OpenAI, Ollama, or any OpenAI-compatible endpoint. Open-source alternative to CodeRabbit.",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-07-09T13:32:57Z",
+      "updated_at": "2026-10-03T15:57:26Z",
+      "stargazers_count": 0,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "size": 441,
+      "homepage": null,
+      "sha": "bab381a55f332a1b9fb3c6a5a962fb1e47feaeb2",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/xiaofuqing13/ai-code-reviewer",
+      "source_url": "https://github.com/xiaofuqing13/ai-code-reviewer/tree/bab381a55f332a1b9fb3c6a5a962fb1e47feaeb2",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "metadata_only_screened",
+      "license_assessment": {
+        "expression": "MIT",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": "Cloned, README screened; not deeply traced; zero stars in observed metadata"
+    },
+    {
+      "full_name": "manki-review/manki",
+      "html_url": "https://github.com/manki-review/manki",
+      "description": "Multi-stage, multi-agent AI code review for GitHub \u2014 self-hosted, provider-neutral. A planner picks the team, agents review in parallel, a judge filters the noise.",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-05-25T03:34:17Z",
+      "updated_at": "2026-05-25T03:27:37Z",
+      "stargazers_count": 5,
+      "license": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "size": 12270,
+      "homepage": "http://manki.dustinface.me/",
+      "sha": "883bc592836db29fab14379666d653d8ca5025bc",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/manki-review/manki",
+      "source_url": "https://github.com/manki-review/manki/tree/883bc592836db29fab14379666d653d8ca5025bc",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "readme_and_metadata_screened",
+      "license_assessment": {
+        "expression": "AGPL-3.0",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": ""
+    },
+    {
+      "full_name": "somus/pipr",
+      "html_url": "https://github.com/somus/pipr",
+      "description": "Code-owned AI review for pull requests",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-19T18:48:48Z",
+      "updated_at": "2026-10-11T12:46:27Z",
+      "stargazers_count": 4,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "size": 14667,
+      "homepage": null,
+      "sha": "eb44c6245978ef3cab8d182cfa1b487f73d1eb55",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/somus/pipr",
+      "source_url": "https://github.com/somus/pipr/tree/eb44c6245978ef3cab8d182cfa1b487f73d1eb55",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "readme_and_metadata_screened",
+      "license_assessment": {
+        "expression": "MIT",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": ""
+    },
+    {
+      "full_name": "quantfive/codepress-review",
+      "html_url": "https://github.com/quantfive/codepress-review",
+      "description": "CodePress Review: Open Source automated code review via LLM's + Github Actions",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-02-08T19:30:52Z",
+      "updated_at": "2026-09-17T02:43:22Z",
+      "stargazers_count": 19,
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "size": 10059,
+      "homepage": "",
+      "sha": "537f1618e49761ab03ca086fac327376ba96d5a8",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/quantfive/codepress-review",
+      "source_url": "https://github.com/quantfive/codepress-review/tree/537f1618e49761ab03ca086fac327376ba96d5a8",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "metadata_only_screened",
+      "license_assessment": {
+        "expression": "Apache-2.0",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": ""
+    },
+    {
+      "full_name": "shubhesh07/claude-code-reviewer",
+      "html_url": "https://github.com/shubhesh07/claude-code-reviewer",
+      "description": "Automatic PR/MR code reviews powered by Claude Code CLI. Zero config \u2014 clone, setup, review. Works with GitHub & GitLab.",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-05-09T18:09:59Z",
+      "updated_at": "2026-10-06T19:35:11Z",
+      "stargazers_count": 4,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "size": 204,
+      "homepage": null,
+      "sha": "7c493b7f6dbfb811f8622c57d352026975e519ef",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/shubhesh07/claude-code-reviewer",
+      "source_url": "https://github.com/shubhesh07/claude-code-reviewer/tree/7c493b7f6dbfb811f8622c57d352026975e519ef",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "readme_and_metadata_screened",
+      "license_assessment": {
+        "expression": "MIT",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": "CLI wrapper README inspected; no verified model pin or fail-closed checks"
+    },
+    {
+      "full_name": "villesau/ai-codereviewer",
+      "html_url": "https://github.com/villesau/ai-codereviewer",
+      "description": "AI Code Reviewer: Enhance your GitHub workflow with AI-powered code review! Get intelligent feedback and suggestions on pull requests using OpenAI's GPT-4 API, improving code quality and saving developers time.",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2024-08-19T14:25:31Z",
+      "updated_at": "2026-10-20T23:59:02Z",
+      "stargazers_count": 1044,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "size": 210,
+      "homepage": "",
+      "sha": "a9a064dfa1db8c83f40ef63f6e247fa09c935ed6",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/villesau/ai-codereviewer",
+      "source_url": "https://github.com/villesau/ai-codereviewer/tree/a9a064dfa1db8c83f40ef63f6e247fa09c935ed6",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "metadata_only_screened",
+      "license_assessment": {
+        "expression": "MIT",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": "Redirect target of freeedcom/ai-codereviewer; last push 2024-08-19 despite nonarchived flag"
+    },
+    {
+      "full_name": "lintsinghua/DeepAudit",
+      "html_url": "https://github.com/lintsinghua/DeepAudit",
+      "description": "DeepAudit\uff1a\u4eba\u4eba\u62e5\u6709\u7684 AI \u9ed1\u5ba2\u6218\u961f\uff0c\u8ba9\u6f0f\u6d1e\u6316\u6398\u89e6\u624b\u53ef\u53ca\u3002\u5c0f\u767d\u4e00\u952e\u90e8\u7f72\u8fd0\u884c\uff0c\u81ea\u4e3b\u534f\u4f5c\u5ba1\u8ba1 + \u81ea\u52a8\u5316\u6c99\u7bb1 PoC \u9a8c\u8bc1\u3002\u652f\u6301 Ollama \u79c1\u6709\u90e8\u7f72 \uff0c\u4e00\u952e\u751f\u6210\u62a5\u544a\u3002\u652f\u6301\u4e2d\u8f6c\u7ad9\u3002\u200b\u8ba9\u5b89\u5168\u4e0d\u518d\u6602\u8d35\uff0c\u8ba9\u5ba1\u8ba1\u4e0d\u518d\u590d\u6742\u3002",
+      "default_branch": "v3.0.0",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-16T08:05:58Z",
+      "updated_at": "2026-10-21T06:33:51Z",
+      "stargazers_count": 7183,
+      "license": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "size": 73434,
+      "homepage": "",
+      "sha": "9aa46568f20b2ab2dbc1878a4479392012c1230a",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/lintsinghua/DeepAudit",
+      "source_url": "https://github.com/lintsinghua/DeepAudit/tree/9aa46568f20b2ab2dbc1878a4479392012c1230a",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "readme_and_metadata_screened",
+      "license_assessment": {
+        "expression": "AGPL-3.0",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": "Security-audit/PoC platform; execution surface broader than basic PR review"
+    },
+    {
+      "full_name": "HexmosTech/git-lrc",
+      "html_url": "https://github.com/HexmosTech/git-lrc",
+      "description": "Free, Micro AI Code Reviews That Run on Git Commit",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-11T10:32:14Z",
+      "updated_at": "2026-10-20T13:56:48Z",
+      "stargazers_count": 1470,
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "size": 60525,
+      "homepage": "https://hexmos.com/livereview/git-lrc/",
+      "sha": "1112c13df101abe2c0619ade06a652f1441a58f0",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/HexmosTech/git-lrc",
+      "source_url": "https://github.com/HexmosTech/git-lrc/tree/1112c13df101abe2c0619ade06a652f1441a58f0",
+      "execution_state": "not_executed",
+      "evidence": [
+        {
+          "url": "https://github.com/HexmosTech/git-lrc/blob/1112c13df101abe2c0619ade06a652f1441a58f0/README.md#L793-L807",
+          "file": "README.md",
+          "lines": "L793-L807",
+          "state": "readme_inspected"
+        }
+      ],
+      "evidence_state": "readme_and_metadata_screened",
+      "license_assessment": {
+        "expression": "modified Sustainable Use License",
+        "caveat": "README calls source available, not standard permissive OSS"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": "Source-available licensing; commit-time review"
+    },
+    {
+      "full_name": "Nikita-Filonov/ai-review",
+      "html_url": "https://github.com/Nikita-Filonov/ai-review",
+      "description": "\ud83d\ude80 AI-powered code review tool for GitHub, GitLab, Bitbucket Cloud, Bitbucket Server, Azure DevOps and Gitea \u2014 built with LLMs like OpenAI, Claude, Gemini, Ollama, Bedrock, OpenRouter and Azure OpenAI",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-03T15:52:26Z",
+      "updated_at": "2026-10-19T23:22:03Z",
+      "stargazers_count": 599,
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "size": 1475,
+      "homepage": "https://boosty.to/ai_review",
+      "sha": "199446c8a08954d1f33eeb754af4040e5f22d81f",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/Nikita-Filonov/ai-review",
+      "source_url": "https://github.com/Nikita-Filonov/ai-review/tree/199446c8a08954d1f33eeb754af4040e5f22d81f",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "readme_and_metadata_screened",
+      "license_assessment": {
+        "expression": "Apache-2.0",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": ""
+    },
+    {
+      "full_name": "imbue-ai/vet",
+      "html_url": "https://github.com/imbue-ai/vet",
+      "description": "Find issues worth your attention.",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-09-14T16:04:44Z",
+      "updated_at": "2026-10-20T07:18:27Z",
+      "stargazers_count": 522,
+      "license": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "size": 4658,
+      "homepage": "",
+      "sha": "59757aec70b385151427f7381a01436f8d67b504",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/imbue-ai/vet",
+      "source_url": "https://github.com/imbue-ai/vet/tree/59757aec70b385151427f7381a01436f8d67b504",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "readme_and_metadata_screened",
+      "license_assessment": {
+        "expression": "AGPL-3.0",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": ""
+    },
+    {
+      "full_name": "Addepar/RedFlag",
+      "html_url": "https://github.com/Addepar/RedFlag",
+      "description": "RedFlag uses AI to identify high-risk code changes. Run it in batch mode for release candidate testing or in CI pipelines to flag PRs and add reviewers. RedFlag's flexible configuration makes it valuable for any team.",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-05-22T12:43:35Z",
+      "updated_at": "2026-08-12T23:19:54Z",
+      "stargazers_count": 163,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "size": 6800,
+      "homepage": "",
+      "sha": "325a5972a7f4c0398a78ba4ca7e82d421766d078",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/Addepar/RedFlag",
+      "source_url": "https://github.com/Addepar/RedFlag/tree/325a5972a7f4c0398a78ba4ca7e82d421766d078",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "readme_and_metadata_screened",
+      "license_assessment": {
+        "expression": "MIT",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": "Risk triage and reviewer assignment; differs from correctness review"
+    },
+    {
+      "full_name": "octopusreview/octopus",
+      "html_url": "https://github.com/octopusreview/octopus",
+      "description": "AI-powered PR review tool \u2014 multi-armed code analysis, no bug escapes \ud83d\udc19",
+      "default_branch": "master",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-21T01:49:38Z",
+      "updated_at": "2026-10-21T01:36:11Z",
+      "stargazers_count": 111,
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "size": 11979,
+      "homepage": "https://octopus-review.ai",
+      "sha": "634c32d71f06576e5e71ee2895d694668fd15a7a",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/octopusreview/octopus",
+      "source_url": "https://github.com/octopusreview/octopus/tree/634c32d71f06576e5e71ee2895d694668fd15a7a",
+      "execution_state": "not_executed",
+      "evidence": [
+        {
+          "url": "https://github.com/octopusreview/octopus/blob/634c32d71f06576e5e71ee2895d694668fd15a7a/README.md#L81-L83",
+          "file": "README.md",
+          "lines": "L81-L83",
+          "state": "readme_inspected"
+        }
+      ],
+      "evidence_state": "readme_and_metadata_screened",
+      "license_assessment": {
+        "expression": "Modified MIT",
+        "caveat": "README calls source available with commercial attribution condition; not plain MIT"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": "Source-available Modified MIT; terms require inspection before reuse"
+    },
+    {
+      "full_name": "devagrawal09/jev-review",
+      "html_url": "https://github.com/devagrawal09/jev-review",
+      "description": "A staged code-review workflow and local dashboard built with TypeSafe Jev.",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-09-17T00:29:25Z",
+      "updated_at": "2026-10-20T19:51:41Z",
+      "stargazers_count": 686,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "size": 161,
+      "homepage": null,
+      "sha": "31f89602797fb7bea007f8a480bf368bf564954e",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/devagrawal09/jev-review",
+      "source_url": "https://github.com/devagrawal09/jev-review/tree/31f89602797fb7bea007f8a480bf368bf564954e",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "readme_and_metadata_screened",
+      "license_assessment": {
+        "expression": "MIT",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": ""
+    },
+    {
+      "full_name": "review-bench/ReviewBench",
+      "html_url": "https://github.com/review-bench/ReviewBench",
+      "description": "ReviewBench is an open, reproducible benchmark for evaluating AI code review systems on real-world pull requests.",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-20T18:37:15Z",
+      "updated_at": "2026-10-20T22:47:51Z",
+      "stargazers_count": 68,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "size": 2570,
+      "homepage": "https://review-bench.ai",
+      "sha": "4f04392d6bf4941ab6f8a3ea0c15b449f4458864",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/review-bench/ReviewBench",
+      "source_url": "https://github.com/review-bench/ReviewBench/tree/4f04392d6bf4941ab6f8a3ea0c15b449f4458864",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "readme_and_metadata_screened",
+      "license_assessment": {
+        "expression": "MIT",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": "Evaluation harness, not reviewer"
+    },
+    {
+      "full_name": "reviewdog/action-suggester",
+      "html_url": "https://github.com/reviewdog/action-suggester",
+      "description": ":dog: Suggests any code changes based on diff through GitHub Multi-line code suggestions by using reviewdog",
+      "default_branch": "master",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-10-19T12:11:56Z",
+      "updated_at": "2026-10-19T12:10:46Z",
+      "stargazers_count": 137,
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "size": 261,
+      "homepage": "",
+      "sha": "e5888339403dc040b2c9a93549ec2d380bc28ca4",
+      "observed_date": "2026-10-21",
+      "metadata_source": "https://api.github.com/repos/reviewdog/action-suggester",
+      "source_url": "https://github.com/reviewdog/action-suggester/tree/e5888339403dc040b2c9a93549ec2d380bc28ca4",
+      "execution_state": "not_executed",
+      "evidence": [],
+      "evidence_state": "readme_and_metadata_screened",
+      "license_assessment": {
+        "expression": "MIT",
+        "caveat": "GitHub API detected; full dependency/license audit not performed"
+      },
+      "review_capability": "screened only; see description",
+      "fix_capability": "not established in this pass",
+      "subscription_compatibility": "not established in this pass",
+      "notes": ""
+    }
+  ],
+  "not_found_observations": [
+    {
+      "requested": "kodustech/kodus-cli",
+      "error": "gh: Not Found (HTTP 404)",
+      "evidence_state": "authenticated_github_api_not_found",
+      "interpretation": "Not found at guessed URL in this pass; not proof no public implementation exists elsewhere"
+    },
+    {
+      "requested": "coderabbitai/ai-pr-reviewer",
+      "error": "gh: Not Found (HTTP 404)",
+      "evidence_state": "authenticated_github_api_not_found",
+      "interpretation": "Not found at guessed URL in this pass; not proof no public implementation exists elsewhere"
+    },
+    {
+      "requested": "angristan/ai-codereview",
+      "error": "gh: Not Found (HTTP 404)",
+      "evidence_state": "authenticated_github_api_not_found",
+      "interpretation": "Not found at guessed URL in this pass; not proof no public implementation exists elsewhere"
+    },
+    {
+      "requested": "greptileai/greptile",
+      "error": "gh: Not Found (HTTP 404)",
+      "evidence_state": "authenticated_github_api_not_found",
+      "interpretation": "Not found at guessed URL in this pass; not proof no public implementation exists elsewhere"
+    },
+    {
+      "requested": "ellipsis-dev/ellipsis",
+      "error": "gh: Not Found (HTTP 404)",
+      "evidence_state": "authenticated_github_api_not_found",
+      "interpretation": "Not found at guessed URL in this pass; not proof no public implementation exists elsewhere"
+    },
+    {
+      "requested": "qodo-ai/skills",
+      "error": "gh: Not Found (HTTP 404)",
+      "evidence_state": "authenticated_github_api_not_found",
+      "interpretation": "Not found at guessed URL in this pass; not proof no public implementation exists elsewhere"
+    },
+    {
+      "requested": "Korazza/CodeRabbit-CLI",
+      "error": "gh: Not Found (HTTP 404)",
+      "evidence_state": "authenticated_github_api_not_found",
+      "interpretation": "Not found at guessed URL in this pass; not proof no public implementation exists elsewhere"
+    }
+  ],
+  "commercial_products_not_established_open_source": [
+    {
+      "name": "CodeRabbit",
+      "source": "https://github.com/coderabbitai/skills",
+      "finding": "MIT skill wrapper source exists; reviewer service source openness not established; old ai-pr-reviewer URL returned 404"
+    },
+    {
+      "name": "Bito",
+      "source": "https://github.com/gitbito/bitoai",
+      "finding": "Visible repo documents proprietary prompt framework; full review engine source not found here"
+    },
+    {
+      "name": "Greptile",
+      "source": "https://www.greptile.com/",
+      "finding": "Self-hosted product and free OSS program are documented; engine source license not established"
+    }
+  ]
+}

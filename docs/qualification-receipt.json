@@ -1,0 +1,287 @@
+{
+  "as_of": "2026-10-21",
+  "status": "local_control_boundaries_validated",
+  "main_suite": {
+    "passed": 263,
+    "skipped": 2,
+    "failed": 0,
+    "seconds": 71.34,
+    "skips": "Two image-dependent tests; subsequently executed successfully in frozen-image suite"
+  },
+  "frozen_image_store_postgres_deployment_suite": {
+    "passed": 55,
+    "skipped": 0,
+    "failed": 0,
+    "seconds": 40.39,
+    "overlaps_main_suite": true
+  },
+  "distinct_tests_validated": 265,
+  "statement_coverage_percent": 89.04,
+  "service_image_local_id": "sha256:8b1cba6257e4786d30252f7ca27c53bba607b812b1f5ed31722e406225d8e54d",
+  "image_platform": "linux/amd64; built/tested on Apple Silicon Colima with emulation",
+  "not_a_published_registry_digest": true,
+  "python_dependency_audit": {
+    "packages": 36,
+    "known_vulnerabilities": 0,
+    "source": "pip-audit installed environment; editable local project skipped"
+  },
+  "secrets_scan": {
+    "tool": "gitleaks",
+    "result": "no leaks found",
+    "scope": "staged Git diff, redacted output, archive depth2",
+    "narrow_exceptions": "Synthetic detector fixtures; published 40-hex Git IDs in source-inspection report only"
+  },
+  "other_checks": [
+    "Ruff src/tests/deploy/scripts",
+    "uv lock --check",
+    "uv build sdist/wheel",
+    "docker compose config --quiet",
+    "git diff --cached --check",
+    "independent final read-only code audit; confirmed recovery finding fixed"
+  ],
+  "offline_demo": {
+    "status": "completed",
+    "actual": [
+      "signed ASGI intake",
+      "authenticated exact approval",
+      "durable SQLite development queue",
+      "Docker original/candidate external probes",
+      "clean publisher reconstruction",
+      "local bare-Git CAS",
+      "Git tree/parent/commit readback"
+    ],
+    "simulated": [
+      "model generation",
+      "GitHub metadata/comments",
+      "GitHub CI"
+    ]
+  },
+  "real_model_generation_tests": false,
+  "existing_repositories_modified": false,
+  "production_qualified": false,
+  "remaining_qualification": [
+    "real App/webhook/branch-rule integration",
+    "subscription authentication/quota/model quality",
+    "project-specific check images and native/hardware lanes",
+    "deployment backups/restore/isolation/throughput"
+  ],
+  "known_warning": "Locked Starlette TestClient emits one httpx deprecation warning; tests succeed.",
+  "input_sha256": [
+    {
+      "path": ".dockerignore",
+      "sha256": "ae4448f1da07eac45060a47489da9066414433d22c47d9c3172d054c07718851"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "dc38b29d3dc9bdac15f96c6f454a6f6c7e9b7b7886ece3fb84cf8551a7ab4c54"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "11fa1314258ed2c5d507e3c48c462e5d6ca1ec94c739c23f4682c683bcf097bb"
+    },
+    {
+      "path": ".gitleaks.toml",
+      "sha256": "1e657da7273db2de5e8f9bf07344bd9b1584f9e24486f6f73a5416e85a422cc9"
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "4ae7c24e767c2c09c6b9d2e4c65544336331504fa764bfab9d82a598a9ee0e52"
+    },
+    {
+      "path": "compose.yaml",
+      "sha256": "31e43cc9088424db872b8d666faf5e7c4e2ea404dddd2e95bc47e57faf6ada4d"
+    },
+    {
+      "path": "deploy/claude/package-lock.json",
+      "sha256": "71086f0b81228edda92815c2d6c69df79fa3083a19c69cd72569c537c0b579b4"
+    },
+    {
+      "path": "deploy/claude/package.json",
+      "sha256": "52a8549ee3d32986f85d6bad5a731450030baf385fe04e76015be36eb666fe42"
+    },
+    {
+      "path": "deploy/config.production.toml",
+      "sha256": "cbee2ff6b7686a8f44cac1b33d446108c4c129a659f7e1f7a7bcec06b2a37bce"
+    },
+    {
+      "path": "deploy/entrypoint.py",
+      "sha256": "c5c25c6b46961325101c2cac785094a63a1a0b27bb27322d26c2486a8e9c8af3"
+    },
+    {
+      "path": "deploy/render.py",
+      "sha256": "42cb8ef6bb57e93969728ef6ca36439549cbdd3890f3df8b9b3b44934a6d3ab1"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "6ca552fbb35cd2d5f07da7f091e77387813d93896acaf26f5f8ea4df1d80a28c"
+    },
+    {
+      "path": "scripts/render_architecture.py",
+      "sha256": "373b45b9762a28ba22540e8b32dc9cb20df0aed883203e572f478278dd85c5eb"
+    },
+    {
+      "path": "src/patchington/__init__.py",
+      "sha256": "292b755fffae487673eabb9b2a5ede7ad100675a9db2384c861838164c910bdf"
+    },
+    {
+      "path": "src/patchington/api.py",
+      "sha256": "a6b584db041c40407355eca1c22e3dae2e3f6645ed567a386fcb2bdfad04bbed"
+    },
+    {
+      "path": "src/patchington/artifacts.py",
+      "sha256": "de73d9fef73a9b660aa41fd86d0d2144328444d6f1d1933a6f18c8cdc656d536"
+    },
+    {
+      "path": "src/patchington/cli.py",
+      "sha256": "1b78269f702239c6b9806f8ee497c2eb431e4f481ee4e203550f2096938ee314"
+    },
+    {
+      "path": "src/patchington/config.py",
+      "sha256": "a55f43350308e764f6a97d28b5f0a25b78931ace3fa00c20fad4625835f1decf"
+    },
+    {
+      "path": "src/patchington/context.py",
+      "sha256": "1f6a43b01c277656df62adca0f3237973726c2e71a02c7c42be0074cc700c6f6"
+    },
+    {
+      "path": "src/patchington/contracts.py",
+      "sha256": "bb74ba2ce5b8ca01bccb80f6737458a7b22009d169902b7f02a06fe3b07064e3"
+    },
+    {
+      "path": "src/patchington/demo.py",
+      "sha256": "c822fa812821400875e4cd558fcd870c503e1fcff84ad569f7f8bc7244e7f1a0"
+    },
+    {
+      "path": "src/patchington/execution.py",
+      "sha256": "c31d5542770e37fc225ef477c7b52f633857bd1cad5df96c375be77b516b5059"
+    },
+    {
+      "path": "src/patchington/github.py",
+      "sha256": "50a0e377dac9250d32bb34e67438a6c4759548f865d25aaaced6857eee847d20"
+    },
+    {
+      "path": "src/patchington/gitwork.py",
+      "sha256": "ebed64d6afc37a594f9109fa8bb44456e4aafd77abc5356595ced23fac64222c"
+    },
+    {
+      "path": "src/patchington/models.py",
+      "sha256": "8de4deb2c68117bbb8166c12c5bff3b3a632a39dbacd91e41fac6d38385023f8"
+    },
+    {
+      "path": "src/patchington/pipeline.py",
+      "sha256": "b752b24a77a6c5a77e641ef35121ab61f66aae0ef29a3403d5e12930d17ac673"
+    },
+    {
+      "path": "src/patchington/probes.py",
+      "sha256": "d988dd008e0fcf48d28378b60ceaecdbe9f755e50578134007e54beb07c5d788"
+    },
+    {
+      "path": "src/patchington/publisher.py",
+      "sha256": "7022d37a09617296cc5b3b4c155b751e6db5e5cd5b2f84687785731d720c3b5b"
+    },
+    {
+      "path": "src/patchington/records.py",
+      "sha256": "1b766277560dd1d88409d2a7c7280aae4bc1c2b887863468ff82d0e3fced86e8"
+    },
+    {
+      "path": "src/patchington/store.py",
+      "sha256": "71f3a4b3a65fac75713a18c1837e5d607b9c1a10d900104799c682087ae42e65"
+    },
+    {
+      "path": "tests/test_api.py",
+      "sha256": "89d0546b2f9f2af868269c4574590a8bb9604c47a47c9f42d68724e8aa6f714b"
+    },
+    {
+      "path": "tests/test_api_approvals.py",
+      "sha256": "8ad9af2e923c99a7ec5087b9ba9763b6c059ff3b8068f68b3179334fff86f484"
+    },
+    {
+      "path": "tests/test_artifacts.py",
+      "sha256": "f60e34a41048f76eeeb5707a8d00f41e642029fe8c2bd664ab39327479bd188b"
+    },
+    {
+      "path": "tests/test_cli.py",
+      "sha256": "289cb3fcf4986a21a899ca1380e9fd806264402e6b713e426fc10df19b0f1b7c"
+    },
+    {
+      "path": "tests/test_config.py",
+      "sha256": "945b4c993c35b0d7ee6668516802d437fb07ebcd12bd06fe6f388b18d82940ba"
+    },
+    {
+      "path": "tests/test_context_models.py",
+      "sha256": "4c761d0b0d41d817a7def4304439ff2764c854c5daa123a332e9631041b49318"
+    },
+    {
+      "path": "tests/test_contracts.py",
+      "sha256": "8cb9ce63b2f15b0e8cc6e8812ba535871b71adbbd4cd276622e7bc90d9da5d5b"
+    },
+    {
+      "path": "tests/test_demo.py",
+      "sha256": "2e21b1d662196caf657f4dd77ab1c3fea8f999df5e6395b28c0e7a03401eb64c"
+    },
+    {
+      "path": "tests/test_deployment.py",
+      "sha256": "b99811f8f967f2c328007da7adfe44131b6ddbe5acda7d9b9d5f4bdbd64437b0"
+    },
+    {
+      "path": "tests/test_execution.py",
+      "sha256": "082498274c2dbb77bd93ab2a2b9fc94ac9ed13636d5f05ea122bebfdfb8641fe"
+    },
+    {
+      "path": "tests/test_final_audit.py",
+      "sha256": "4f5e01766bc9e2a9db45c176b2799b3bd91e8d572dcfb7d820289765df42336e"
+    },
+    {
+      "path": "tests/test_github.py",
+      "sha256": "dbe6bcd46ff0801f5835c9de7b496ab32f214f2c66981943f6616f67a13f65bd"
+    },
+    {
+      "path": "tests/test_gitwork.py",
+      "sha256": "d27610e5d354b209dbc24b70efdc55245d536f6e24c66aae16b04aa8e1945945"
+    },
+    {
+      "path": "tests/test_lifecycle.py",
+      "sha256": "6c84086b4af8dbc46e71760f84a067d6786a8185deb852d3d3bce9eb72d1cded"
+    },
+    {
+      "path": "tests/test_models_security.py",
+      "sha256": "9c3831fc922326ba7a9f393274679b38224fa0e70a587807fe0849936657874a"
+    },
+    {
+      "path": "tests/test_outbox_api.py",
+      "sha256": "745a6d8e92f0a3e5929549c580878e2a2ffd2f356679a36809d320b09e6dc333"
+    },
+    {
+      "path": "tests/test_pipeline.py",
+      "sha256": "4c7f9aca48ad2e2cdecf8adabf420ed3fe604830aed4d229ccb76287010c2598"
+    },
+    {
+      "path": "tests/test_pipeline_security.py",
+      "sha256": "6f7673f375d91512e3f0507173d866d0f6d94c0128f3e66f0c05a4fe4fa9092e"
+    },
+    {
+      "path": "tests/test_probes.py",
+      "sha256": "0747098581bf3c1a7123364bb5c107d75f8eacc5d6c29541d5eec297adec544b"
+    },
+    {
+      "path": "tests/test_publisher.py",
+      "sha256": "a3f114cecde726524ad22ba2bcd1654f6b45bdfc0afa23d6f13dd2931f5f0d38"
+    },
+    {
+      "path": "tests/test_reconciliation_schedule.py",
+      "sha256": "07e201935cca5d43f3446e0153cc08b12681f3774a6487a29ce55adf417592a1"
+    },
+    {
+      "path": "tests/test_store.py",
+      "sha256": "5cc9bb434175be38520505b7c9757198a193e40423e0e69d809c116f18109ed8"
+    },
+    {
+      "path": "tests/test_store_postgres.py",
+      "sha256": "140e54beacc1198b3a9a5244b0818663c815312d076aa8997aeb10aaf0a87c8f"
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "482135057e6e3033cb45e4d4c3d6ace1267c67a5d8508f2cdc23a4f1bf772a97"
+    }
+  ]
+}

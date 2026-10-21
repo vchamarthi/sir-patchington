@@ -1,0 +1,507 @@
+{
+  "as_of": "2026-10-21",
+  "scope": "Idea-first complete target; private and commercial architecture ideas explicitly eligible; no implementation or pilot limitation",
+  "evidence_rule": "Sources establish described mechanisms and documented patterns, not our proposed implementation or a comparative winner",
+  "sources": [
+    {
+      "id": "spec",
+      "title": "GitHub Spec Kit: specification-driven development",
+      "url": "https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "qodo",
+      "title": "Qodo: multi-agent review blueprint",
+      "url": "https://www.qodo.ai/resources/high-signal-ai-code-review-a-multi-agent-blueprint/",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "context",
+      "title": "Augment: review architecture and context",
+      "url": "https://www.augmentcode.com/blog/how-we-built-high-quality-ai-code-review-agent",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "scip",
+      "title": "Sourcegraph: precise code navigation",
+      "url": "https://sourcegraph.com/docs/code-navigation/precise-code-navigation",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "greptile",
+      "title": "Greptile: building a review agent",
+      "url": "https://www.greptile.com/blog/how-to-build-a-code-review-agent",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "patterns",
+      "title": "Anthropic: effective agent patterns",
+      "url": "https://www.anthropic.com/research/building-effective-agents",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "managed",
+      "title": "Anthropic: decoupled session, harness and sandbox",
+      "url": "https://www.anthropic.com/research/managed-agents",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "codeql",
+      "title": "CodeQL: local/global data-flow analysis",
+      "url": "https://codeql.github.com/docs/writing-codeql-queries/about-data-flow-analysis/",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "codemender",
+      "title": "DeepMind: CodeMender research architecture",
+      "url": "https://deepmind.google/blog/introducing-codemender-an-ai-agent-for-code-security/",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "uber",
+      "title": "Uber: uReview validation/filtering",
+      "url": "https://www.uber.com/us/en/blog/ureview/",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "factory",
+      "title": "Uber: workload evaluation and economics",
+      "url": "https://www.uber.com/us/en/blog/efficient-software-factory/",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "spotify",
+      "title": "Spotify: independent verifiers and scope judge",
+      "url": "https://engineering.atspotify.com/2025/12/feedback-loops-background-coding-agents-part-3",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "stripe",
+      "title": "Stripe: deterministic and agentic blueprint nodes",
+      "url": "https://stripe.dev/blog/minions-stripes-one-shot-end-to-end-coding-agents-part-2",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "jit",
+      "title": "Meta: just-in-time catching tests paper",
+      "url": "https://arxiv.org/abs/2601.22832",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "hypothesis",
+      "title": "Hypothesis: structured input strategies",
+      "url": "https://hypothesis.readthedocs.io/en/latest/reference/strategies.html",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "mutation",
+      "title": "Stryker: mutation-testing outcomes",
+      "url": "https://stryker-mutator.io/docs/mutation-testing-elements/mutant-states-and-metrics/",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "fft",
+      "title": "NumPy: FFT API contracts",
+      "url": "https://numpy.org/doc/stable/reference/routines.fft.html",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "performance",
+      "title": "Meta: performance diagnosis and repair",
+      "url": "https://engineering.fb.com/2026/04/16/developer-tools/capacity-efficiency-at-meta-how-unified-ai-agents-optimize-performance-at-hyperscale/",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "provenance",
+      "title": "SLSA 1.2: provenance",
+      "url": "https://slsa.dev/spec/v1.2/provenance",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "environment",
+      "title": "GitHub: deployment environment gates",
+      "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "durability",
+      "title": "Temporal: activities and idempotency",
+      "url": "https://docs.temporal.io/activity-definition",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "containment",
+      "title": "Anthropic: agent containment",
+      "url": "https://www.anthropic.com/research/how-we-contain-claude",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "webhooks",
+      "title": "GitHub: webhook validation and delivery identity",
+      "url": "https://docs.github.com/en/webhooks/using-webhooks/best-practices-for-using-webhooks",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "review",
+      "title": "GitHub: review comments and source revision",
+      "url": "https://docs.github.com/en/rest/pulls/comments",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "ledger",
+      "title": "Open SWE: finding lifecycle schema, pinned source",
+      "url": "https://github.com/langchain-ai/open-swe/blob/e8a31359226b192b1bb8af50265d2ff694d15f32/openswe/review/findings.py#L126-L168",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "publish",
+      "title": "gh-aw: restricted signed publication path, pinned source",
+      "url": "https://github.com/github/gh-aw/blob/b76697cedc6f0c2f212f7ba7690df9baa7768205/actions/setup/js/push_signed_commits.cjs#L809-L908",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "merge",
+      "title": "GitHub: merge-group integration checks",
+      "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "rollouts",
+      "title": "Argo Rollouts: analysis-driven rollout state",
+      "url": "https://argo-rollouts.readthedocs.io/en/stable/features/analysis/",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    },
+    {
+      "id": "eval",
+      "title": "CRBugBench: context and cost tradeoffs",
+      "url": "https://arxiv.org/abs/2610.13668",
+      "retrieved_on": "2026-10-21",
+      "evidence": "primary source read live or pinned source inspected in this research session"
+    }
+  ],
+  "blocks": [
+    {
+      "id": 1,
+      "name": "Intent, contracts and requirement authority",
+      "sourced_idea": "GitHub Spec Kit organizes specification before implementation; Qodo describes requirements-aware review.",
+      "why_include": "Correct-looking code can implement the wrong behavior. The engine needs an explicit account of what must remain true.",
+      "build_ourselves": "Compile accepted requirements, API contracts, architecture decisions and owner-approved examples into versioned obligations with source links, scope and ambiguity. Compare the PR against those obligations; treat the PR description as a claim, not final authority.",
+      "failure_cases": "Invented intent, stale specifications and contradictory tests. Preserve disputes for owner judgment rather than letting a model rewrite requirements to match its patch.",
+      "source_ids": [
+        "spec",
+        "qodo"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 2,
+      "name": "Trusted intake and immutable change snapshots",
+      "sourced_idea": "GitHub documents authenticated webhook delivery and delivery identities; review APIs associate comments with revisions.",
+      "why_include": "Every later claim must refer to the same change and authorized request.",
+      "build_ourselves": "Reconcile current repo/PR/base/head, actor permissions, feedback edits and policy; create an immutable generation. Deduplicate deliveries, but also reconcile missed/out-of-order events. Keep source content separate from executable instructions.",
+      "failure_cases": "Spoofed requests, duplicated runs, deleted branches, shared PR branches and authorization inferred from a comment. An inaccessible state remains unknown.",
+      "source_ids": [
+        "webhooks",
+        "review"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 3,
+      "name": "Versioned context graph and adaptive retrieval",
+      "sourced_idea": "Sourcegraph provides compiler-derived symbol navigation; Augment describes semantic retrieval and repository guidance beyond the diff.",
+      "why_include": "Cross-file and cross-repository failures require dependencies, history and design context that a patch alone cannot provide.",
+      "build_ourselves": "Combine lexical/semantic search, AST/symbol/type edges, build/dependency and generated-code relationships, SCM history, incidents and trusted documents. Pin every item and permission to a revision. Start with an impact slice; expand through explicit unanswered questions and retain retrieval provenance.",
+      "failure_cases": "Stale indexes, unsupported Cython/generated edges, wrong dependency versions, access leakage and plausible summaries with no source. Fall back visibly and expose missing graph coverage.",
+      "source_ids": [
+        "scip",
+        "context"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 4,
+      "name": "Impact analysis and adaptive risk routing",
+      "sourced_idea": "Anthropic describes routing/orchestrator patterns; CodeQL distinguishes targeted local analysis from costlier global flow.",
+      "why_include": "A documentation correction and an authentication/FFT-runtime change need different effort and evidence.",
+      "build_ourselves": "Calculate a transparent risk vector from interfaces, data flow, privilege, dependency fan-out, native boundaries, ownership and incident history. Route to fast, deep, security, compatibility, performance and hardware lanes, with escalation on uncertainty. Record why a lane was omitted.",
+      "failure_cases": "A confident cheap classifier suppresses a severe defect. Human-defined mandatory triggers override learned routing; measure routing misses separately from reviewer misses.",
+      "source_ids": [
+        "patterns",
+        "codeql"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 5,
+      "name": "Deterministic analysis as first-class evidence",
+      "sourced_idea": "CodeQL models data flow/taint; Stripe interleaves deterministic steps with agent reasoning.",
+      "why_include": "Compilers, type checkers, linters, security/dependency scans and build tools catch different defects without model persuasion.",
+      "build_ourselves": "Run approved analyzers against the relevant revision/environment and normalize diagnostics with rule/tool/version/coverage. Let agents investigate or explain output. Support custom domain rules and safe mechanical transforms where the behavior is known.",
+      "failure_cases": "Incorrect build configuration, unsupported language paths, noisy rules, baseline debt and malicious tool configuration. Analyzer silence is scoped evidence, never proof of absence.",
+      "source_ids": [
+        "codeql",
+        "stripe"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 6,
+      "name": "Specialist semantic proposals and model diversity",
+      "sourced_idea": "Qodo describes parallel bug, rule and requirement specialists; Greptile discusses using different author/reviewer model families.",
+      "why_include": "Different expertise and search strategies can expose blind spots that a single generic review misses.",
+      "build_ourselves": "Dispatch bounded correctness, security, API, numerical, concurrency and domain reviewers over shared immutable facts but independent working context. Allow heterogeneous models/tools; compare diversity against simpler alternatives on identical tasks. Specialists produce proposals, not public verdicts.",
+      "failure_cases": "Correlated mistakes, duplicate alarms, specialists optimizing their own category and expensive discussion. Diversity is an experimental design choice, not a guarantee of statistical independence.",
+      "source_ids": [
+        "qodo",
+        "greptile"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 7,
+      "name": "Hypothesis ledger and runtime investigation lab",
+      "sourced_idea": "CodeMender combines root-cause reasoning, tools/debugging and validation; Greptile describes sandboxed runtime testing.",
+      "why_include": "\u201cThis may break\u201d should become a falsifiable question whenever practical.",
+      "build_ourselves": "For each candidate record trigger, expected/observed behavior, causal changed line, affected component and competing explanations. Build a minimal reproducer, inspect runtime state and compare base/head. Use exploit or failure demonstrations only in contained authorized environments.",
+      "failure_cases": "A fabricated reproducer, unrealistic mock or test that assumes the proposed fix. Separate observed failure, inferred cause and unresolved impact; inability to reproduce is not automatic disproof.",
+      "source_ids": [
+        "codemender",
+        "greptile"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 8,
+      "name": "Skeptical grading, calibration and abstention",
+      "sourced_idea": "Uber filters/validates candidate comments; Anthropic describes evaluator/optimizer separation.",
+      "why_include": "User attention should be spent on defensible findings, while uncertain severe risks still reach the right human.",
+      "build_ourselves": "A fresh critic tries to refute introduction, reachability, contract violation and severity using independent context and tools. Keep raw model scores separate from empirically calibrated category/repository confidence. Emit supported, refuted, needs-evidence or needs-owner-judgment; calibrate publication and escalation thresholds separately.",
+      "failure_cases": "Persuasive consensus, judge bias and confidence treated as probability. Sparse labels and distribution shift invalidate calibration; retain rejected hypotheses for audits and missed-bug evaluation.",
+      "source_ids": [
+        "uber",
+        "patterns"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 9,
+      "name": "Causal deduplication and durable finding memory",
+      "sourced_idea": "Uber deduplicates comments; Open SWE stores finding identities, lifecycle state and source SHAs.",
+      "why_include": "Repeated comments and line-number churn destroy trust and destabilize repair loops.",
+      "build_ourselves": "Own a finding ledger keyed by causal mechanism, affected symbol/contract and evidence, with separate source comments and locations. Reconcile status across generations; merge related manifestations while retaining evidence and human overrides.",
+      "failure_cases": "Two distinct bugs collapse into one, or a moved line becomes a fresh issue. Semantic matching proposes equivalence; deterministic provenance and reviewer adjudication settle ambiguous merges.",
+      "source_ids": [
+        "uber",
+        "ledger"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 10,
+      "name": "Semantic triage of human and bot feedback",
+      "sourced_idea": "GitHub distinguishes review bodies, inline comments and thread replies; Spotify checks changes against original instructions.",
+      "why_include": "A repair agent should understand feedback, including when the requested fix is wrong.",
+      "build_ourselves": "Read every page and current thread state; classify valid, already fixed, intentional, conflicting, obsolete, unclear or unsafe. Convert applicable feedback into an explicit repair obligation, reproduction and constraints. Preserve the requester\u2019s authority separately from factual correctness.",
+      "failure_cases": "Obeying hostile text, missing edited feedback, treating outdated as resolved, or quietly ignoring a maintainer. Return evidence and the specific unresolved decision.",
+      "source_ids": [
+        "review",
+        "spotify"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 11,
+      "name": "Constrained repair and candidate alternatives",
+      "sourced_idea": "Stripe makes implementation an agent node inside a controlled workflow; CodeMender seeks root-cause fixes with critique.",
+      "why_include": "The engine must change behavior without optimizing merely to silence comments.",
+      "build_ourselves": "Give the fixer accepted obligations, allowed scope and evidence. Permit several alternative focused candidates for hard tasks, score with frozen independent checks, and retain rejected alternatives. Extract an immutable patch/tree; require separate authorization for changing policy, tests or intended contracts.",
+      "failure_cases": "Scope creep, symptom suppression, weakened assertions, leaked credentials and incompatible fixes. No repair worker owns the oracle, approval or publication credential.",
+      "source_ids": [
+        "stripe",
+        "codemender"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 12,
+      "name": "Independent verification and differential replay",
+      "sourced_idea": "Spotify activates independent verifiers from component contents and keeps pushing outside the agent.",
+      "why_include": "A fix claim needs evidence produced outside the fixer\u2019s mutable workspace and reasoning.",
+      "build_ourselves": "Apply the frozen candidate in a fresh controlled environment. Reproduce the target on the faulty head and candidate; compare earlier base behavior to establish introduction. Run trusted regression/build/package/security checks with immutable commands, logs, dependencies and outputs. Separate failure, flake, unsupported and unknown.",
+      "failure_cases": "Tests run against the wrong installed package, zero collection, mutable source, pre-existing failures or a verifier that shares the fixer\u2019s flawed oracle. Verify provenance and baseline outcomes.",
+      "source_ids": [
+        "spotify"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 13,
+      "name": "Property, metamorphic, mutation and change-specific testing",
+      "sourced_idea": "Hypothesis generates structured inputs; Stryker probes test sensitivity; Meta studies change-aware catching tests with rule/model assessors.",
+      "why_include": "Passing existing or generated tests can still mean that the tests fail to distinguish correct and broken behavior.",
+      "build_ourselves": "Add owner-approved properties, metamorphic relations and differential reference implementations. Generate targeted negative cases, inject relevant mutants, shrink failures and test whether assertions detect plausible faults. Use transient investigative tests plus durable regressions for confirmed defects; keep oracle review separate from test generation.",
+      "failure_cases": "Equivalent mutants, invalid metamorphic properties, shared reference bugs and circular tests. Report mutation categories and false-positive adjudication; no score certifies semantic correctness.",
+      "source_ids": [
+        "hypothesis",
+        "mutation",
+        "jit"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 14,
+      "name": "Native, numerical, performance and device qualification",
+      "sourced_idea": "NumPy documents FFT semantics; Meta describes domain-aware performance regression investigation.",
+      "why_include": "Numerical correctness, ABI/build compatibility and performance depend on environments a text-only review cannot certify.",
+      "build_ourselves": "Build a repository-owned matrix for OS/compiler/architecture/device/runtime/package, with strict dtype/shape/error/placement requirements and justified tolerances. Differential tests, memory/UB sanitizers, controlled benchmarks and profile comparisons complement functional checks. Pin hardware and workload identities; retain variance and unavailable lanes.",
+      "failure_cases": "A Mac pass promoted to Windows/SYCL proof, tolerance masking regression, noisy benchmarks or CPU fallback mistaken for GPU execution. Unsupported required lanes block the corresponding claim.",
+      "source_ids": [
+        "fft",
+        "performance"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 15,
+      "name": "Convergence control and severe-risk escalation",
+      "sourced_idea": "Stripe bounds CI repair rounds; evaluator/optimizer patterns require clear criteria and stopping conditions.",
+      "why_include": "Endless review/fix chatter can create new bugs and consume more time than manual repair.",
+      "build_ourselves": "Track unresolved obligations, changed behavior and new regressions per candidate. Stop on verified completion, lack of progress, oscillation, dependency blockage or exhausted policy budget. Reopen broad impact review when the patch changes assumptions. Escalate severe unresolved risks through ownership/on-call paths, even when public comment thresholds are unmet.",
+      "failure_cases": "Fixed round counts mistaken for correctness, repeated rediscovery, stale severe findings or a \u201cclean\u201d judge ending work prematurely. Persist an explicit incomplete result and best available evidence.",
+      "source_ids": [
+        "stripe",
+        "patterns"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 16,
+      "name": "Immutable evidence bundles and verifiable provenance",
+      "sourced_idea": "SLSA 1.2 separates source/build provenance describing an artifact\u2019s origins and production process.",
+      "why_include": "The human, publisher and future investigator must inspect the same object and evidence.",
+      "build_ourselves": "Content-address candidate commits/trees/patches and check outputs. Record base/head, contract/context/routing versions, model/tool identities, images, dependencies, logs and limitations. Sign evidence with verifier identity and protect storage from workers. Define whether approval binds a commit or a precise tree/parent publication contract.",
+      "failure_cases": "Authentic provenance for incorrect code, missing dependencies, altered evidence or signing that changes the candidate. Provenance establishes origin; verification still establishes bounded behavior.",
+      "source_ids": [
+        "provenance"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 17,
+      "name": "Exact-artifact human approval and decision UX",
+      "sourced_idea": "GitHub environment gates demonstrate human-controlled progression; provenance supplies immutable artifact identities.",
+      "why_include": "Approving a moving branch, generic command or vague \u201cgo ahead\u201d cannot reliably authorize a later patch.",
+      "build_ourselves": "Present causal findings, exact diff, tests actually run, missing lanes and residual risk. Bind authenticated approval to repo/ref, expected old head, tested base, candidate/evidence hashes, obligations, policy, expiry and nonce. Invalidate on relevant change. Support reject, revise, waive-with-reason and escalation, with accessible concise evidence views.",
+      "failure_cases": "Approval fatigue, hidden material changes, self-approval and confusing CI-run permission with patch approval. The gate must be enforced by deterministic publication policy, outside the model.",
+      "source_ids": [
+        "environment",
+        "provenance"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 18,
+      "name": "Durable workflow control and replaceable runtimes",
+      "sourced_idea": "Temporal documents retries/idempotency; Anthropic decouples session, harness and sandbox behind stable interfaces.",
+      "why_include": "Long investigations, human waits and hardware jobs must survive restarts without losing authority or duplicating effects.",
+      "build_ourselves": "Use an explicit state machine and durable event/task store with per-generation/ref leases, cancellation fencing, timers and outbox. Keep session evidence independent of worker lifetime. Select DBOS, Temporal or another mature engine by service needs; expose stable worker/model/tool contracts.",
+      "failure_cases": "Retried remote effects, version-skewed replay, zombie workers and sessions tied to an irreplaceable container. Durable execution does not make GitHub writes exactly once.",
+      "source_ids": [
+        "durability",
+        "managed"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 19,
+      "name": "Execution broker, isolation and capability policy",
+      "sourced_idea": "Anthropic describes containment; its managed architecture separates reasoning from replaceable execution environments.",
+      "why_include": "An agent can encounter both misleading instructions and malicious executable repository content.",
+      "build_ourselves": "Place model access, source collection, execution and publication behind distinct capabilities. Use disposable nonprivileged sandboxes/VMs, minimal mounts, network mediation, short-lived scoped credentials and explicit tool schemas. Support native/hardware workers without exposing host home, keychain, SSH agent or control sockets. Audit actual tool enforcement.",
+      "failure_cases": "Prompt-only restrictions, a worktree called a sandbox, credential inheritance, shared poisoned caches and external tools returning injected instructions. Constrain what compromise can do.",
+      "source_ids": [
+        "containment",
+        "managed"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 20,
+      "name": "Restricted publication and remote-effect reconciliation",
+      "sourced_idea": "gh-aw separates controlled write handlers and uses expected-head publication; Temporal highlights remote side-effect idempotency.",
+      "why_include": "The system must prove that the approved object, and only that object, reached the intended branch.",
+      "build_ourselves": "A narrow publisher validates approval and current ref under fencing, performs compare-and-set publication, then reads back commit/tree identity. Restrict repo/ref/effect; separate comments, thread resolution, PR creation and code pushes. Reconcile unknown outcomes before retry. Keep merge/deploy privileges in separately authorized systems.",
+      "failure_cases": "Silent rebases, reconstructed different commits, token bypass, concurrent writers or an API success without identity verification. Deny generic API proxies and arbitrary ref operations.",
+      "source_ids": [
+        "publish",
+        "durability"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 21,
+      "name": "Integration, release, rollback and incident feedback",
+      "sourced_idea": "GitHub merge groups validate combined changes; Argo supports metric-driven release analysis; Meta links performance symptoms to source changes.",
+      "why_include": "Pre-merge review cannot expose every integration or production failure.",
+      "build_ourselves": "Connect approved candidates to merge-group checks and authorized release tooling. Track deployed artifact/configuration to source and evidence, canary/feature-flag signals, rollback or fix-forward decisions and incident ownership. Feed confirmed escapes/reverts into regression tasks and context, with privacy and source trust preserved.",
+      "failure_cases": "A bot enqueues/merges/deploys without permission, delayed metrics hide damage, rollback cannot undo data migration, or incident allegations poison context. Preserve the current no-auto-merge boundary; broader release actions require separate human policy.",
+      "source_ids": [
+        "merge",
+        "rollouts",
+        "performance"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    },
+    {
+      "id": 22,
+      "name": "Continuous evaluation, quality budgets and economics",
+      "sourced_idea": "Uber evaluates workloads and decomposes cost; CRBugBench illustrates varying review difficulty and compute tradeoffs.",
+      "why_include": "The engine needs evidence that extra context, models and test effort improve outcomes rather than just activity.",
+      "build_ourselves": "Maintain held-out historical/current tasks, clean changes, native/security cases and authorization fault injection. Measure useful precision, severity recall, accepted-fix regression/escape rates, human minutes, latency, stale/duplicate effects and total cost per validated outcome. Calibrate/adapt routes, model diversity and budgets; requalify changed model/client/tool/policy versions.",
+      "failure_cases": "Optimizing address rate, public leaderboard scores, tokens or judge agreement alone; contaminated gold, sparse severe labels and hidden hardware costs. Cost policy selects an execution profile, never silently erases required evidence.",
+      "source_ids": [
+        "factory",
+        "eval"
+      ],
+      "design_status": "Proposed composition; cited systems support the idea, not this implementation or measured efficacy"
+    }
+  ],
+  "execution_profiles": "Chosen after capability architecture; cost and licenses affect execution, not inclusion of researched ideas",
+  "not_executed": [
+    "No implementation",
+    "No model calls",
+    "No installs",
+    "No repository writes beyond research artifacts",
+    "No purchases or deployment",
+    "No remote publication"
+  ]
+}

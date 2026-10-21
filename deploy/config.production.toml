@@ -1,0 +1,38 @@
+# Enrollment is intentionally empty. Production refuses startup until an owner
+# adds real repository identities, trusted requirements/checks and principals.
+mode = "production"
+model = "claude-cli"
+execution_image = "python@sha256:2f17fc044b579bab302c2e8054d3a686e2cb9a83de48e70534b94cd8ebbe06a9"
+artifacts_path = "/var/lib/patchington/artifacts"
+lease_seconds = 120
+tenant_concurrency = 4
+reconcile_interval_seconds = 300
+
+# [[repositories]]
+# tenant = "your-tenant"
+# team = "your-team"
+# installation_id = 123  # Replace with authoritative GitHub identities.
+# write_installation_id = 789  # Separate write App's actual installation; never infer from read App.
+# repository_id = 456
+# repo = "your-org/your-repository"
+# requirements = ["Owner-approved acceptance requirement"]
+# allowed_paths = ["src/"]
+# approvers = ["user:owner"]
+# publish_enabled = false
+# post_reviews = false
+# required_github_checks = []  # Empty means CI outcome remains explicitly unknown.
+# required_github_check_app_ids = [42]  # Replace with actual trusted CI producer App IDs.
+# ci_poll_attempts = 30  # Bounded later CI observation; exhaustion stays unknown/pending.
+# [[repositories.checks]]
+# name = "independent-regression"
+# argv = ["python", "/trusted/check_change.py"]
+# regression = true
+# required = true
+# timeout = 60
+#
+# [[principals]]
+# actor = "user:owner"
+# tenant = "your-tenant"
+# teams = ["your-team"]
+# roles = ["read", "approve", "operate"]
+# token_digest = "REPLACE_WITH_SHA256_OF_A_RANDOM_PRIVATE_BEARER_TOKEN"

@@ -1,0 +1,159 @@
+name: sir-patchington
+
+x-runtime: &runtime
+  image: ${PATCHINGTON_IMAGE:-sir-patchington:local}
+  platform: linux/amd64
+  build: .
+  user: "10001:10001"
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: ["no-new-privileges:true"]
+  pids_limit: 256
+  stop_grace_period: 150s
+  init: true
+  tmpfs:
+    - /tmp:rw,noexec,nosuid,nodev,size=256m,mode=1777
+  depends_on:
+    postgres:
+      condition: service_healthy
+  restart: unless-stopped
+
+services:
+  postgres:
+    image: postgres@sha256:b0f9560a2de083e2cc7382e75f808c7381a32852a7ec49117deedb300e552b24
+    environment:
+      POSTGRES_USER: patchington
+      POSTGRES_DB: patchington
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+    secrets: [postgres_password]
+    volumes: ["postgres-data:/var/lib/postgresql/data"]
+    networks: [state]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -h 127.0.0.1 -U patchington -d patchington"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    mem_limit: 1g
+    cpus: 1.0
+    pids_limit: 128
+    restart: unless-stopped
+
+  api:
+    <<: *runtime
+    command: [serve, --config, /etc/patchington/config.toml, --host, 0.0.0.0, --port, "8000"]
+    environment:
+      PATCHINGTON_DATABASE_URL_FILE: /run/secrets/database_url
+      PATCHINGTON_WEBHOOK_SECRET_FILE: /run/secrets/webhook_secret
+      PATCHINGTON_APPROVAL_SECRET_FILE: /run/secrets/approval_secret
+    secrets: [database_url, webhook_secret, approval_secret]
+    volumes:
+      - ${PATCHINGTON_CONFIG_FILE:-./deploy/config.production.toml}:/etc/patchington/config.toml:ro
+      - artifacts:/var/lib/patchington/artifacts
+    ports: ["127.0.0.1:8000:8000"]
+    networks: [state, edge]
+    mem_limit: 512m
+    cpus: 1.0
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/readyz', timeout=2)"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  worker:
+    <<: *runtime
+    profiles: [workers]
+    command: [worker, --config, /etc/patchington/config.toml]
+    environment:
+      PATCHINGTON_DATABASE_URL_FILE: /run/secrets/database_url
+      PATCHINGTON_READ_APP_ID: ${PATCHINGTON_READ_APP_ID:-}
+      PATCHINGTON_READ_APP_KEY_FILE: /run/secrets/read_app_key
+      PATCHINGTON_ALLOW_LIVE_MODEL: ${PATCHINGTON_ALLOW_LIVE_MODEL:-0}
+      PATCHINGTON_CLAUDE_CREDENTIALS_FILE: /run/secrets/claude_credentials
+      DOCKER_HOST: ${PATCHINGTON_DOCKER_HOST:-tcp://127.0.0.1:2376}
+      DOCKER_TLS_VERIFY: "1"
+      DOCKER_CERT_PATH: /etc/patchington/docker-tls
+    secrets:
+      - database_url
+      - read_app_key
+      - claude_credentials
+      - source: docker_ca
+        target: /etc/patchington/docker-tls/ca.pem
+      - source: docker_cert
+        target: /etc/patchington/docker-tls/cert.pem
+      - source: docker_key
+        target: /etc/patchington/docker-tls/key.pem
+    volumes:
+      - ${PATCHINGTON_CONFIG_FILE:-./deploy/config.production.toml}:/etc/patchington/config.toml:ro
+      - artifacts:/var/lib/patchington/artifacts
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=256m,mode=1777
+      - /home/patchington:rw,nosuid,nodev,size=512m,uid=10001,gid=10001,mode=0700
+    networks: [state, worker-egress]
+    mem_limit: 2g
+    cpus: 2.0
+
+  publisher:
+    <<: *runtime
+    profiles: [publisher]
+    command: [publisher, --config, /etc/patchington/config.toml]
+    environment:
+      PATCHINGTON_DATABASE_URL_FILE: /run/secrets/database_url
+      PATCHINGTON_READ_APP_ID: ${PATCHINGTON_READ_APP_ID:-}
+      PATCHINGTON_READ_APP_KEY_FILE: /run/secrets/read_app_key
+      PATCHINGTON_WRITE_APP_ID: ${PATCHINGTON_WRITE_APP_ID:-}
+      PATCHINGTON_WRITE_APP_KEY_FILE: /run/secrets/write_app_key
+      PATCHINGTON_APPROVAL_SECRET_FILE: /run/secrets/approval_secret
+    secrets: [database_url, read_app_key, write_app_key, approval_secret]
+    volumes:
+      - ${PATCHINGTON_CONFIG_FILE:-./deploy/config.production.toml}:/etc/patchington/config.toml:ro
+      - artifacts:/var/lib/patchington/artifacts
+    networks: [state, publisher-egress]
+    mem_limit: 1g
+    cpus: 1.0
+
+  migrate:
+    <<: *runtime
+    profiles: [admin]
+    command: [migrate, --config, /etc/patchington/config.toml]
+    environment:
+      PATCHINGTON_DATABASE_URL_FILE: /run/secrets/database_url
+    secrets: [database_url]
+    volumes:
+      - ${PATCHINGTON_CONFIG_FILE:-./deploy/config.production.toml}:/etc/patchington/config.toml:ro
+    networks: [state]
+    mem_limit: 256m
+    cpus: 0.5
+    restart: "no"
+
+networks:
+  state:
+    internal: true
+  edge: {}
+  worker-egress: {}
+  publisher-egress: {}
+
+volumes:
+  postgres-data: {}
+  artifacts: {}
+
+secrets:
+  postgres_password:
+    file: ${PATCHINGTON_POSTGRES_PASSWORD_FILE:-./.local/secrets/postgres-password}
+  database_url:
+    file: ${PATCHINGTON_DATABASE_URL_FILE:-./.local/secrets/database-url}
+  webhook_secret:
+    file: ${PATCHINGTON_WEBHOOK_SECRET_FILE:-./.local/secrets/webhook-secret}
+  approval_secret:
+    file: ${PATCHINGTON_APPROVAL_SECRET_FILE:-./.local/secrets/approval-secret}
+  read_app_key:
+    file: ${PATCHINGTON_READ_APP_KEY_FILE:-./.local/secrets/read-app.pem}
+  write_app_key:
+    file: ${PATCHINGTON_WRITE_APP_KEY_FILE:-./.local/secrets/write-app.pem}
+  claude_credentials:
+    file: ${PATCHINGTON_CLAUDE_CREDENTIALS_FILE:-./.local/secrets/claude-credentials.json}
+  docker_ca:
+    file: ${PATCHINGTON_DOCKER_CA_FILE:-./.local/secrets/docker/ca.pem}
+  docker_cert:
+    file: ${PATCHINGTON_DOCKER_CERT_FILE:-./.local/secrets/docker/cert.pem}
+  docker_key:
+    file: ${PATCHINGTON_DOCKER_KEY_FILE:-./.local/secrets/docker/key.pem}
