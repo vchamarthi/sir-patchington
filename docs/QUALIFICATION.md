@@ -58,3 +58,20 @@ generalization, production throughput or uptime.
 These are operational prerequisites for the user-controlled environment; the
 code repository does not silently create credentials, start model work, deploy
 infrastructure, or bypass them.
+
+## GitHub delivery
+
+Created and verified private repository `vchamarthi/sir-patchington`. The initial
+implementation commit was `7b7cc79b12e61b68e656b0de18b1e02356b07231`; remote readback
+matched local Git exactly. The repository disables auto-merge, uses read-only
+workflow tokens, and prevents Actions from approving PR reviews. Initial CI
+started successfully; the latest run is visible under the repository's Actions.
+
+GitHub rejected private `main` branch protection with HTTP 403 because this
+account requires GitHub Pro for that feature. The repository remains private.
+Required reviews, required CI, force-push/deletion prevention and conversation
+resolution were therefore **not enabled as server-enforced main-branch rules**.
+The bot's separate exact-approval/no-merge controls remain implemented. Before
+using this repository as a shared production control plane, enable equivalent
+server-side rules on a supported private account/organization plan. No account
+upgrade, visibility change or paid service was performed.
