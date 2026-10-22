@@ -394,6 +394,41 @@ def test_model_report_markup_images_html_and_mentions_render_as_literal_text():
     assert anchors == ["https://github.com/acme/shop/blob/" + "b" * 40 + "/src/a.py#L1"]
 
 
+def test_review_limitations_are_literal_and_bounded_before_comment_publication():
+    from markdown_it import MarkdownIt
+
+    from patchington.github import GitHubClient
+    written = []
+
+    def tokens(*args):
+        return "token"
+
+    tokens.app_id = 42
+
+    def handle(request):
+        if request.url.path.endswith("/issues/7/comments"):
+            if request.method == "GET":
+                return httpx.Response(200, json=[])
+            written.append(json.loads(request.content)["body"])
+            return httpx.Response(201, json={"id": 1})
+        return fixture_handler(request)
+
+    client = GitHubClient(tokens, transport=httpx.MockTransport(handle))
+    p = policy(post_reviews=True)
+    snapshot = client.snapshot(p, 7)
+    attack = '</details> ![track](https://evil.test/pixel) <img src="x"> @owner `escape`'
+    limitations = (attack, *("\u00e9" * 20_000 for _ in range(100)))
+    client.post_review(p, snapshot, (), review_limitations=limitations)
+    body = written[0]
+    assert len(body.encode()) < 15_000 and "omitted" in body
+    assert "**Review coverage is limited.**" in body
+    parsed = MarkdownIt("commonmark").parse(body)
+    children = [child for token in parsed for child in (token.children or [])]
+    assert not any(token.type in {"image", "html_inline", "link_open"} for token in children)
+    assert any(token.type == "code_inline" and attack in token.content for token in children)
+    assert not any(token.type == "text" and "@owner" in token.content for token in children)
+
+
 def test_open_pr_discovery_is_paginated_scoped_and_skips_disallowed_drafts_and_forks():
     from patchington.github import GitHubClient
     calls = []

@@ -36,6 +36,46 @@ def test_cli_is_disabled_without_explicit_live_enablement(monkeypatch):
         ClaudeCLI()
 
 
+@pytest.mark.parametrize("phase", ["version", "generation"])
+def test_cli_disables_client_updates_for_every_subprocess(monkeypatch, phase):
+    model = adapter(monkeypatch)
+    monkeypatch.setenv("DISABLE_AUTOUPDATER", "0")
+    calls = []
+
+    def run(argv, **kwargs):
+        calls.append(kwargs)
+        return (ProcessResult(0, b"2.1.306 (Claude Code)\n")
+                if argv[-1] == "--version" else response())
+
+    monkeypatch.setattr("patchington.models.bounded_run", run)
+    if phase == "version":
+        ClaudeCLI(allow_live=True)
+    else:
+        model.generate("review", {}, ReviewOutput)
+    assert len(calls) == 1
+    assert calls[0]["env"].get("DISABLE_AUTOUPDATER") == "1"
+
+
+def test_generation_preserves_account_identity_without_provider_or_service_secrets(monkeypatch):
+    model = adapter(monkeypatch)
+    identity = {"PATH": "/synthetic/bin", "HOME": "/synthetic/home", "LANG": "C.UTF-8",
+                "TMPDIR": "/synthetic/tmp", "USER": "synthetic-user", "LOGNAME": "synthetic-user"}
+    for key, value in identity.items():
+        monkeypatch.setenv(key, value)
+    for key in ("GITHUB_TOKEN", "ANTHROPIC_API_KEY", "PATCHINGTON_APPROVAL_SECRET", "LD_PRELOAD"):
+        monkeypatch.setenv(key, "synthetic-secret")
+    calls = []
+
+    def run(argv, **kwargs):
+        calls.append(kwargs)
+        return response()
+
+    monkeypatch.setattr("patchington.models.bounded_run", run)
+    model.generate("review", {}, ReviewOutput)
+    assert len(calls) == 1
+    assert calls[0]["env"] == {**identity, "DISABLE_AUTOUPDATER": "1"}
+
+
 def test_cli_uses_tool_free_safe_mode_with_no_inherited_service_secrets(monkeypatch):
     model = adapter(monkeypatch)
     monkeypatch.setenv("GITHUB_TOKEN", "synthetic-github-secret")

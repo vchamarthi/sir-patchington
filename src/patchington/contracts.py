@@ -206,15 +206,48 @@ class Finding(Frozen):
         return digest_json(
             {
                 "path": self.path,
+                "line": self.line,
                 "category": self.category,
-                "claim": " ".join(self.claim.lower().split()),
+                "claim": self.claim.strip(),
                 "trigger": self.trigger,
+                "expected": self.expected,
             }
         )
 
 
 class ReviewOutput(Frozen):
-    findings: tuple[Finding, ...] = ()
+    findings: tuple[Finding, ...] = Field(default=(), max_length=100)
+    limitations: tuple[str, ...] = ()
+
+
+class SourceCitation(Frozen):
+    path: str
+    source_digest: Digest
+    start_line: int = Field(ge=1)
+    end_line: int = Field(ge=1)
+    quote: str = Field(min_length=1, max_length=4000)
+
+    _path = field_validator("path")(safe_path)
+
+    @model_validator(mode="after")
+    def bounded_range(self) -> SourceCitation:
+        if self.end_line < self.start_line or self.end_line - self.start_line >= 80:
+            raise ValueError("citation requires an ordered bounded source range")
+        if not self.quote.strip():
+            raise ValueError("citation must contain source text")
+        return self
+
+
+class FindingJudgment(Frozen):
+    fingerprint: Digest
+    status: Literal["supported", "refuted", "needs_evidence", "requires_owner"]
+    rationale: str = Field(min_length=5, max_length=4000)
+    counterargument: str = Field(min_length=5, max_length=4000)
+    citations: tuple[SourceCitation, ...] = Field(default=(), max_length=8)
+
+
+class ReviewVerification(Frozen):
+    judgments: tuple[FindingJudgment, ...] = Field(default=(), max_length=100)
     limitations: tuple[str, ...] = ()
 
 

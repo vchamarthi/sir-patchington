@@ -9,6 +9,7 @@ import shutil
 import tempfile
 import time
 from collections.abc import Callable
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 from urllib.parse import quote
@@ -70,6 +71,41 @@ def _literal(value: str) -> str:
     return delimiter + " " + value + " " + delimiter
 
 
+def _review_limitations_section(limitations: tuple[str, ...]) -> str:
+    if not limitations:
+        return ""
+    if not isinstance(limitations, tuple) or any(not isinstance(value, str) for value in limitations):
+        raise GitHubError("Invalid review limitations")
+    rows, used, omitted = [], 0, len(limitations) > 20
+    for limitation in limitations[:20]:
+        data = limitation.encode()
+        omitted = omitted or len(data) > 1_000
+        row = "- " + _literal(data[:1_000].decode("utf-8", errors="ignore")) + "\n"
+        if used + len(row.encode()) > 10_000:
+            omitted = True
+            break
+        rows.append(row)
+        used += len(row.encode())
+    if omitted:
+        rows.append("Additional review limitation text omitted by publication bounds.\n")
+    return ("\n**Review coverage is limited.** Findings apply only to the evidence available "
+            "during this review.\n\n<details><summary>Review limitations</summary>\n\n"
+            + "".join(rows) + "\n</details>\n")
+
+
+@dataclass(frozen=True)
+class ReviewActor:
+    id: int
+    login: str
+    app_id: int
+
+    def __post_init__(self):
+        _positive_id(self.id)
+        _positive_id(self.app_id)
+        if not isinstance(self.login, str) or not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,99}\[bot\]", self.login):
+            raise ValueError("Invalid authenticated review actor")
+
+
 class AppTokenProvider:
     """Mint a new single-repository token per request; never reuse a broader scope."""
 
@@ -90,6 +126,49 @@ class AppTokenProvider:
     def review_token(self, installation_id: int, repository_id: int) -> str:
         return self._mint(installation_id, repository_id,
                           {"pull_requests": "write", "metadata": "read"})
+
+    def ci_token(self, installation_id: int, repository_id: int) -> str:
+        return self._mint(installation_id, repository_id,
+                          {"actions": "read", "checks": "read", "statuses": "read",
+                           "metadata": "read"})
+
+    def _actor_get(self, path: str, token: str) -> dict:
+        try:
+            with self._http.stream("GET", API_URL + path, headers=_headers(token)) as raw:
+                content = bytearray()
+                for block in raw.iter_bytes():
+                    if len(content) + len(block) > 65_536:
+                        raise GitHubError("Review actor response exceeds bound")
+                    content.extend(block)
+                response = httpx.Response(raw.status_code, content=bytes(content), request=raw.request)
+        except httpx.TransportError as exc:
+            raise GitHubTransientError("Review actor lookup temporarily unavailable") from exc
+        except httpx.HTTPError as exc:
+            raise GitHubError("Review actor lookup failed") from exc
+        value = _json_response(response)
+        if response.status_code != 200 or not isinstance(value, dict):
+            raise GitHubError("Invalid review actor response")
+        return value
+
+    def review_actor(self, installation_id: int, repository_id: int) -> ReviewActor:
+        """Bind the App JWT identity to its immutable numeric Bot user identity."""
+        _positive_id(installation_id)
+        _positive_id(repository_id)
+        now = int(time.time())
+        app_jwt = jwt.encode({"iat": now - 60, "exp": now + 540, "iss": str(self.app_id)},
+                             self._key, algorithm="RS256")
+        app = self._actor_get("/app", app_jwt)
+        slug = app.get("slug")
+        if (type(app.get("id")) is not int or app["id"] != self.app_id
+                or not isinstance(slug, str) or not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,99}", slug)):
+            raise GitHubError("Authenticated review App identity mismatch")
+        login = slug + "[bot]"
+        token = self._mint(installation_id, repository_id, {"metadata": "read"})
+        user = self._actor_get("/users/" + quote(login, safe=""), token)
+        if (type(user.get("id")) is not int or user["id"] <= 0
+                or user.get("login") != login or user.get("type") != "Bot"):
+            raise GitHubError("Authenticated review Bot identity mismatch")
+        return ReviewActor(user["id"], login, self.app_id)
 
     def _mint(self, installation_id: int, repository_id: int,
               permissions: dict[str, str]) -> str:
@@ -147,6 +226,13 @@ class SplitTokenProvider:
         return self._write.review_token(self._installation(installation_id, repository_id),
                                         repository_id)
 
+    def review_actor(self, installation_id: int, repository_id: int) -> ReviewActor:
+        return self._write.review_actor(self._installation(installation_id, repository_id),
+                                        repository_id)
+
+    def ci_token(self, installation_id: int, repository_id: int) -> str:
+        return self._read.ci_token(installation_id, repository_id)
+
 
 _THREAD_QUERY = """query($owner:String!,$name:String!,$number:Int!,$cursor:String){
  repository(owner:$owner,name:$name){databaseId pullRequest(number:$number){
@@ -203,6 +289,7 @@ class GitHubClient:
         if api_url.rstrip("/") != API_URL:
             raise ValueError("Only the qualified api.github.com endpoint is supported")
         self._tokens = token_provider
+        self._transport = transport
         self._http = httpx.Client(transport=transport, follow_redirects=False,
                                  timeout=30, trust_env=False)
 
@@ -216,19 +303,32 @@ class GitHubClient:
 
     def _request(self, policy: RepoPolicy, method: str, path: str,
                  *, write: bool = False, guard: Callable[[], None] | None = None,
+                 ci: bool = False, response_limit: int = 10_000_000,
+                 expect_json: bool = True, deadline: float | None = None,
                  **kwargs: Any) -> httpx.Response:
         if not path.startswith("/") or path.startswith("//") or "#" in path:
             raise GitHubError("Unsafe API path")
         review_token = getattr(self._tokens, "review_token", None)
-        token = (review_token(policy.installation_id, policy.repository_id) if write and review_token
-                 else self._tokens(policy.installation_id, policy.repository_id, write))
+        ci_token = getattr(self._tokens, "ci_token", None)
+        if ci and (write or method != "GET"):
+            raise GitHubError("CI access is read only")
+        if ci and ci_token:
+            token = ci_token(policy.installation_id, policy.repository_id)
+        else:
+            token = (review_token(policy.installation_id, policy.repository_id)
+                     if write and review_token else
+                     self._tokens(policy.installation_id, policy.repository_id, write))
         if write and guard:
             guard()
+        if deadline is not None and time.monotonic() >= deadline:
+            raise GitHubError("GitHub request time budget exhausted")
         try:
             with self._http.stream(method, API_URL + path, headers=_headers(token), **kwargs) as raw:
                 content = bytearray()
                 for block in raw.iter_bytes():
-                    if len(content) + len(block) > 10_000_000:
+                    if deadline is not None and time.monotonic() >= deadline:
+                        raise GitHubError("GitHub response time budget exhausted")
+                    if len(content) + len(block) > response_limit:
                         raise GitHubError("GitHub response exceeds bound")
                     content.extend(block)
                 decoded_headers = {key: value for key, value in raw.headers.items()
@@ -239,7 +339,10 @@ class GitHubClient:
             raise GitHubTransientError("GitHub request temporarily unavailable") from exc
         except httpx.HTTPError as exc:
             raise GitHubError("GitHub request failed") from exc
-        _json_response(response)
+        if expect_json:
+            _json_response(response)
+        elif response.status_code != 302 and not 200 <= response.status_code < 300:
+            raise GitHubError(f"GitHub returned status {response.status_code}")
         return response
 
     def _get(self, policy: RepoPolicy, path: str) -> Any:
@@ -501,8 +604,19 @@ class GitHubClient:
         return False
 
     def post_review(self, policy: RepoPolicy, snapshot: ChangeSnapshot,
-                    findings: tuple[Finding, ...], *, guard: Callable[[], None] | None = None) -> str:
+                    findings: tuple[Finding, ...], *, guard: Callable[[], None] | None = None,
+                    ci_report: dict | None = None,
+                    review_coverage: dict | None = None,
+                    review_limitations: tuple[str, ...] = ()) -> str:
         self._scope(policy, snapshot)
+        if review_coverage is not None and (review_coverage.get('revision') != snapshot.head_sha
+                or review_coverage.get('repository_id') != policy.repository_id
+                or review_coverage.get('repo') != policy.repo):
+            raise GitHubError('Review coverage belongs to another repository or commit')
+        if ci_report is not None and (ci_report.get("head_sha") != snapshot.head_sha
+                or ci_report.get("repository_id", policy.repository_id) != policy.repository_id
+                or ci_report.get("repo", policy.repo) != policy.repo):
+            raise GitHubError("CI report belongs to another repository or commit")
         if not policy.post_reviews:
             raise GitHubError("Review posting is disabled")
         if len(findings) > policy.max_findings:
@@ -512,11 +626,23 @@ class GitHubClient:
         app_id = getattr(self._tokens, "app_id", None)
         if app_id is None:
             raise GitHubError("Review reconciliation requires an authenticated App identity")
+        actor_lookup = getattr(self._tokens, "review_actor", None)
+        actor = None
+        if actor_lookup is not None:
+            if not callable(actor_lookup):
+                raise GitHubError("Invalid authenticated review actor lookup")
+            actor = actor_lookup(policy.installation_id, policy.repository_id)
+            if not isinstance(actor, ReviewActor) or actor.app_id != app_id:
+                raise GitHubError("Review actor belongs to another App")
         current = self._pull(policy, snapshot.pr)
         if current["head"]["sha"] != snapshot.head_sha or current["base"]["sha"] != snapshot.base_sha:
             raise GitHubError("Stale review snapshot")
         marker = f"<!-- sir-patchington:review:v1:{policy.repository_id}:{snapshot.pr} -->"
         body = marker + f"\nReviewed commit `{snapshot.head_sha}`.\n"
+        body += _review_limitations_section(review_limitations)
+        if review_coverage is not None:
+            from .review_context import render_review_coverage
+            body += '\n' + render_review_coverage(review_coverage) + '\n'
         for finding in sorted(findings, key=lambda f: (f.path, f.line, f.fingerprint)):
             anchor = (f"https://github.com/{policy.repo}/blob/{snapshot.head_sha}/"
                       f"{quote(finding.path, safe='/')}#L{finding.line}")
@@ -524,12 +650,26 @@ class GitHubClient:
                      f"{_literal(finding.path)} line {finding.line}: {_literal(finding.claim)}"
                      f"\n  Trigger: {_literal(finding.trigger)}\n  Expected: {_literal(finding.expected)}"
                      f"\n  Evidence: {_literal(finding.reason)}\n")
+        if ci_report is not None:
+            from patchington.ci import render_ci_summary
+            body += "\n" + render_ci_summary(ci_report) + "\n"
         if len(body.encode()) > 60_000:
             raise GitHubError("Review body exceeds publication bound")
         comments = self._pages(policy, f"/repos/{policy.repo}/issues/{snapshot.pr}/comments?per_page=100")
-        owned = [c for c in comments if c.get("body", "").startswith(marker)
-                 and (c.get("performed_via_github_app") or {}).get("id") == app_id
-                 and (c.get("user") or {}).get("type") == "Bot"]
+        def owned_comment(comment):
+            user = comment.get("user") or {}
+            performed = comment.get("performed_via_github_app")
+            if (not isinstance(user, dict) or user.get("type") != "Bot"
+                    or not comment.get("body", "").startswith(marker)):
+                return False
+            app_matches = isinstance(performed, dict) and performed.get("id") == app_id
+            if actor is None:
+                return app_matches  # Legacy custom providers still require non-null App proof.
+            return (type(user.get("id")) is int and user["id"] == actor.id
+                    and user.get("login") == actor.login
+                    and (performed is None or app_matches))
+
+        owned = [comment for comment in comments if owned_comment(comment)]
         if len(owned) > 1:
             raise GitHubError("Duplicate owned review markers require reconciliation")
         if owned and owned[0]["body"] == body:
@@ -554,6 +694,12 @@ class GitHubClient:
         if any(r.get("head_sha") != sha for r in runs):
             raise GitHubError("Check run belongs to another commit")
         return {"head_sha": sha, "check_runs": runs, "statuses": statuses}
+
+    def ci_review(self, policy: RepoPolicy, snapshot: ChangeSnapshot) -> dict:
+        """Observe CI for an exact commit without executing repository code or changing runs."""
+        from patchington.ci import collect_ci
+        self._scope(policy, snapshot)
+        return collect_ci(self, policy, snapshot)
 
     def _remote_refs(self, policy: RepoPolicy, snapshot: ChangeSnapshot, path: Path) -> dict:
         token = self._tokens(policy.installation_id, policy.repository_id, False)

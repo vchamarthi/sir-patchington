@@ -7,6 +7,7 @@
 | Purpose | Installation token permissions |
 | --- | --- |
 | Read | contents, pull requests, checks, statuses, metadata: read |
+| CI inspection (`ci_token`) | actions, checks, statuses, metadata: read |
 | Candidate push (`write=True`) | contents: write; metadata: read |
 | Review comment (`review_token`) | pull requests: write; metadata: read |
 
@@ -24,11 +25,55 @@ Paginated top-level human review summaries are included as synthetic `review:<id
 
 `fetch` initializes a fresh private repository, fetches the exact base/head SHA, and checks their commit identities. It constructs the Git URL from the authorized repository rather than trusting clone URLs supplied by PR content. It creates a fresh environment with no inherited credentials or Git configuration, disables hooks, credential helpers, URL redirects, file/SSH transports, submodules, fsmonitor, and automatic maintenance, and supplies an HTTPS header only to the fetch/push subprocess. Tokens never appear in command arguments or persistent remote configuration. Git output and execution time are bounded. Place fetch storage under a service disk quota: these process limits do not certify a maximum remote pack size.
 
-`post_review` is disabled by default. It validates supported findings against current right-side diff anchors and writes one stable App-owned issue-comment summary with exact-commit file links. Marker ownership requires both Bot identity and the authenticated App ID; a lookalike marker from another actor is ignored. Identical content performs no write, changed content updates the owned comment, and duplicate owned markers require reconciliation. Failed writes are not blindly retried; the next invocation lists markers again. Queue per-PR exclusion is still required to prevent simultaneous comment creators. These are summaries with validated source links, not GitHub inline review-thread creation.
+`post_review` is disabled by default. It validates supported findings against current right-side diff anchors and writes one stable App-owned issue-comment summary with exact-commit file links. Marker ownership binds to the authenticated App through its exact numeric Bot ID and login. The provider verifies the App with a JWT, then resolves its Bot using a single-repository metadata-only token. Non-null App attribution must also match; nullable attribution does not bypass the Bot identity check. A lookalike marker from another actor is ignored. Identical content performs no write, changed content updates the owned comment, and duplicate owned markers require reconciliation. Failed writes are not blindly retried; the next invocation lists markers again. Queue per-PR exclusion is still required to prevent simultaneous comment creators. These are summaries with validated source links, not GitHub inline review-thread creation.
+
+Reports with recorded limitations display a visible coverage warning and a collapsed review-limitations section before the findings. The publisher uses the completed review record, renders text literally, and bounds the displayed entries; omitted text is explicit. An updated review-policy version rejects earlier cached generations and queued reports.
+
+Function/hunk reviews also post a Context coverage dropdown from the immutable
+controller record. It binds the exact repository and revision, reports supplied
+added lines/hunks, caller/guard/test excerpt counts and original source ranges.
+It measures supplied evidence rather than a claim of complete review. Paths are
+rendered as bounded literal HTML; model-authored numbers do not populate it.
 
 Model-authored text renders in dynamic-length CommonMark code spans. Embedded Markdown/HTML/images, arbitrary links, and mentions remain literal; source links are constructed by trusted code from validated commit/path/line identities. Tests parse the rendered structure to verify that only the intended source anchor becomes a link.
 
 `checks` returns paginated runs/statuses for the exact requested SHA with their actual statuses and conclusions. Pending or missing conclusions remain pending or missing; this method does not turn CI observations into local verification or a merge decision.
+
+`ci_review` additionally captures workflow runs, jobs, steps and bounded failure
+evidence for the exact reviewed repository and head SHA. The dedicated read App
+must grant **Actions: read**; existing installations may need their owner to
+accept that permission before logs/jobs become accessible. Read workers request
+this permission only in a purpose-specific CI token; push and comment tokens
+retain their separate scopes. Inspection performs no rerun, cancel or workflow
+mutation.
+
+Known credential signatures are withheld before log excerpts enter review
+context or comments. Qualified HTTPS job-log redirects use a fresh client with
+no forwarded App authentication, cookies or environment proxy settings. Logs
+use a validated bounded tail range when the qualified download service supports
+it; the evidence and dropdown label that scope and truncation. Oversized full
+responses are not silently treated as complete logs. Logs
+from unsupported hosts, missing/expired logs, rejected pagination and exhausted
+budgets remain explicitly unavailable or partial. Diagnosis distinguishes
+observed errors from likely causes and suggests investigation actions without
+executing them. Pattern filtering is not complete secret detection or proof of
+root cause.
+
+The pipeline records CI evidence alongside its findings and supplies a compact
+CI context to the model. Material CI changes invalidate cached generations; an
+observation timestamp alone does not. When `post_reviews` is enabled, a report is
+queued even with zero supported findings. `post_review` checks the CI head
+against the review snapshot and appends an escaped
+`<details><summary>CI status and failures</summary>` section with per-job status,
+failure evidence, next actions and coverage limits. The existing publisher queue,
+lease guard, stale-head recheck and App-owned comment reconciliation still apply.
+
+GitHub CI can change after the observation without a commit change. The comment
+states when evidence was collected; it is a review-time snapshot, not a live
+dashboard or certification that every required check executed.
+
+[Synthetic dropdown example](examples/review-ci-summary.md) shows the emitted
+review section using mocked CI results.
 
 ## Approval and push
 
@@ -52,7 +97,7 @@ The independently mutable base branch cannot be atomically locked by updating on
 
 `model_snapshot` applies the same file/patch exclusions and recursively withholds credential-bearing PR title/body/thread fields. Comment text is capped at 20 KB per field and snapshot text at 100 KB, prioritizing owner text; omissions are explicit. Raw immutable snapshot identity remains available for provenance. `retrieve_related` joins already indexed, explicitly authorized same-tenant/same-team repositories under one byte budget; it performs no implicit fetch. This conservative pattern filter can withhold harmless examples and cannot detect every secret. Missing owner feedback must be treated as incomplete acceptance evidence, not as permission to ignore it.
 
-`ClaudeCLI` exposes `CLIENT_VERSION = "2.1.306"`. Before generation it performs only an isolated offline `--version` check with a 15-second/64-KB bound, then requires exact client compatibility. This string check is not cryptographic executable provenance or proof of subscription/account qualification. Deployment image pinning and external client/account qualification remain required. Tests mock version and generation subprocess results; they never invoke a model or authenticate an account.
+`ClaudeCLI` exposes `CLIENT_VERSION = "2.1.306"`. Before generation it performs only an isolated offline `--version` check with a 15-second/64-KB bound, then requires exact client compatibility. Both version checks and generation force `DISABLE_AUTOUPDATER=1` in their restricted subprocess environments, so these invocations cannot update the approved client automatically. Other Claude invocations or external installers can still change the executable; an unexpected version remains a hard failure. Generation preserves only `PATH`, `HOME`, `LANG`, `TMPDIR`, `USER`, and `LOGNAME` plus the forced updater setting; the account names support macOS Keychain lookup without forwarding GitHub, approval, provider, or loader secrets. This string check is not cryptographic executable provenance or proof of subscription/account qualification. Deployment image pinning and external client/account qualification remain required. Tests mock version and generation subprocess results; they never invoke a model or authenticate an account.
 
 ## Verification and qualification limits
 
@@ -69,3 +114,9 @@ Primary API references checked on 2026-10-21:
 - [GraphQL PR and review-thread schema](https://docs.github.com/en/graphql/reference/pulls)
 - [Issue comments on PRs](https://docs.github.com/en/rest/issues/comments#create-an-issue-comment)
 - [Git expected-value leases and atomic pushes](https://git-scm.com/docs/git-push)
+
+Live qualification found that GitHub can return null App attribution on a real
+App-authored comment. Authenticated actor lookup covers that case; lookup
+failures stop publication. Custom providers without actor lookup still require
+the original non-null App-ID proof. Actor lookups are bounded read requests and
+never authorize a model-selected identity.

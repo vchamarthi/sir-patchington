@@ -181,20 +181,33 @@ class GitWorkspace:
         return sizes
 
     def source_slice(self, revision: str, paths: tuple[str, ...],
-                     budget: int = 100_000) -> dict[str, str]:
-        """Whole text files: requested first, then same-package source siblings.
+                     budget: int = 100_000, *, policy: RepoPolicy | None = None) -> dict[str, str]:
+        """Read bounded pinned context: changed files, direct imports, tests and guides.
 
-        Missing, binary, oversized and budget-excluded files are omitted. The last
-        call's omissions/counts are exposed separately for context coverage evidence.
-        This method is contextual retrieval, not a complete repository review.
+        Discovery inspects tree names and a bounded set of allowed Python blobs
+        for callers/tests; it does not follow dependencies recursively.
+        Omissions and counts describe this slice, not complete repository coverage.
         """
-        if not isinstance(paths, tuple) or len(paths) > 500 or not 1 <= budget <= 2_000_000:
+        from patchington.context import (
+            _ancestor_guidance,
+            _credential_path,
+            _read_reason,
+            _related_tests,
+            _signature,
+            python_dependencies,
+        )
+
+        if (not isinstance(paths, tuple) or len(paths) > 500 or isinstance(budget, bool)
+                or not isinstance(budget, int) or not 1 <= budget <= self.MAX_SOURCE_BYTES
+                or (policy is not None and not isinstance(policy, RepoPolicy))):
             raise WorkspaceError("invalid bounded source slice request")
         try:
             requested = list(dict.fromkeys(safe_path(path) for path in paths))
         except ValueError as exc:
             raise WorkspaceError("unsafe source slice path") from exc
         entries = self._entries(revision)
+        effective_budget = min(budget, self.MAX_BLOB_BYTES,
+                               policy.max_source_bytes if policy else self.MAX_SOURCE_BYTES)
         parents = {str(PurePosixPath(path).parent) for path in requested}
         extensions = {".py", ".pyi", ".js", ".jsx", ".ts", ".tsx", ".go", ".rs", ".java",
                       ".c", ".h", ".cpp", ".hpp", ".rb", ".kt", ".swift", ".sql", ".vue",
@@ -202,42 +215,113 @@ class GitWorkspace:
         binary_extensions = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".ico", ".pdf", ".zip",
                              ".gz", ".tar", ".woff", ".woff2", ".ttf", ".mp4", ".mp3", ".bin",
                              ".so", ".dll", ".exe", ".pyc", ".sqlite", ".db"}
-        nearby = [path for path in sorted(entries) if path not in requested
+        available = set(entries)
+        omissions: dict[str, str] = {}
+        result: dict[str, str] = {}
+        considered: dict[str, str] = {}
+        used = inspected = inspected_bytes = 0
+
+        def acquire(candidates: list[str], category: str) -> None:
+            nonlocal used, inspected, inspected_bytes
+            eligible = []
+            for path in candidates:
+                if path in considered:
+                    continue
+                considered[path] = category
+                reason = (_read_reason(path, policy) if policy else
+                          "credential_filename" if _credential_path(path) or _signature(path)
+                          else None)
+                if reason:
+                    omissions[path] = reason
+                elif path not in entries:
+                    omissions[path] = "missing"
+                elif PurePosixPath(path).suffix.lower() in binary_extensions:
+                    omissions[path] = "nontext"
+                else:
+                    eligible.append(path)
+            sizes = self._sizes([entries[path][1] for path in eligible])
+            for path in eligible:
+                size = sizes[entries[path][1]]
+                if size > min(self.MAX_BLOB_BYTES, effective_budget - used):
+                    omissions[path] = "byte_budget"
+                    continue
+                if inspected >= self.MAX_CONTEXT_FILES:
+                    omissions[path] = "file_limit"
+                    continue
+                if size > self.MAX_SOURCE_BYTES - inspected_bytes:
+                    omissions[path] = "inspection_byte_budget"
+                    continue
+                data = self._git(["cat-file", "blob", entries[path][1]], limit=max(1, size))
+                inspected += 1
+                inspected_bytes += len(data)
+                if b"\0" in data:
+                    omissions[path] = "nontext"
+                    continue
+                try:
+                    text = data.decode("utf-8")
+                except UnicodeError:
+                    omissions[path] = "invalid_utf8"
+                    continue
+                if _signature(text):
+                    omissions[path] = "credential_signature"
+                    continue
+                result[path] = text
+                used += len(data)
+
+        acquire(requested, "requested")
+        dependencies: set[str] = set()
+        matching_tests: set[str] = set()
+        for path in requested:
+            source_path = PurePosixPath(path)
+            if path in result and source_path.suffix == ".py":
+                dependencies.update(python_dependencies(path, result[path], available))
+                matching_tests.update(_related_tests(path))
+        requested_set = set(requested)
+        ancestor_directories = {str(parent) for path in requested
+                                for parent in PurePosixPath(path).parents}
+        guidelines = {path for path in available
+                      if str(PurePosixPath(path).parent) in ancestor_directories
+                      and _ancestor_guidance(path, requested_set)}
+        if requested:
+            guidelines.add(".github/copilot-instructions.md")
+        acquire(sorted(dependencies), "dependency")
+        acquire(sorted(matching_tests & available), "matching_test")
+        acquire(sorted(guidelines & available), "guideline")
+        # A bounded candidate scan makes cross-directory callers and tests discoverable.
+        # Policy, credential, byte and inspection limits remain inside acquire().
+        if policy is not None:
+            acquire([path for path in sorted(available) if path.endswith('.py')
+                     and path not in considered], 'python_discovery')
+        nearby = [path for path in sorted(entries) if path not in considered
                   and str(PurePosixPath(path).parent) in parents
                   and PurePosixPath(path).suffix.lower() in extensions]
-        considered = requested + nearby[:max(0, self.MAX_CONTEXT_FILES - len(requested))]
-        omissions = {path: "file_limit" for path in requested[self.MAX_CONTEXT_FILES:]}
-        considered = considered[:self.MAX_CONTEXT_FILES]
-        sizes = self._sizes([entries[p][1] for p in considered if p in entries])
-        result = {}
-        used = 0
-        for path in considered:
-            if path not in entries:
-                omissions[path] = "missing"
-                continue
-            if PurePosixPath(path).suffix.lower() in binary_extensions:
-                omissions[path] = "nontext"
-                continue
-            size = sizes[entries[path][1]]
-            if size > min(self.MAX_BLOB_BYTES, budget - used):
-                omissions[path] = "byte_budget"
-                continue
-            data = self._git(["cat-file", "blob", entries[path][1]], limit=max(1, size))
-            if b"\0" in data:
-                omissions[path] = "nontext"
-                continue
-            try:
-                text = data.decode("utf-8")
-            except UnicodeError:
-                omissions[path] = "invalid_utf8"
-                continue
-            result[path] = text
-            used += len(data)
-        self.source_slice_omissions = omissions
+        acquire(nearby, "nearby")
+        self.source_slice_omissions = {
+            f"[withheld filename {number}]" if _signature(path) else path: reason
+            for number, (path, reason) in enumerate(omissions.items(), start=1)}
         self.source_slice_coverage = {"tree_files": len(entries), "requested_files": len(requested),
                                       "selected_files": len(result), "selected_bytes": used,
-                                      "nearby_file_limit_omissions": max(0, len(nearby) -
-                                          max(0, self.MAX_CONTEXT_FILES - len(requested)))}
+                                      "inspected_files": inspected,
+                                      "inspected_bytes": inspected_bytes,
+                                      "inspection_byte_budget": self.MAX_SOURCE_BYTES,
+                                      "candidate_files": len(considered),
+                                      "requested_byte_budget": budget,
+                                      "effective_byte_budget": effective_budget,
+                                      "budget_capped": int(effective_budget < budget),
+                                      "python_import_scan_files": sum(path in result
+                                          and path.endswith(".py") for path in requested),
+                                      "python_import_scan_omissions": sum(path not in result
+                                          and path.endswith(".py") for path in requested),
+                                      "dependency_files": sum(considered[p] == "dependency"
+                                                              for p in result),
+                                      "matching_test_files": sum(considered[p] == "matching_test"
+                                                                 for p in result),
+                                      "guideline_files": sum(considered[p] == "guideline"
+                                                             for p in result),
+                                      "python_discovery_files": sum(considered[p] == 'python_discovery'
+                                                                    for p in result),
+                                      "nearby_file_limit_omissions": sum(
+                                          omissions.get(p) == "file_limit" for p in nearby)}
         return result
 
     def checkout(self, revision: str, destination: Path) -> None:

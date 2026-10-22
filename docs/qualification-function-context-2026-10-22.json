@@ -1,0 +1,394 @@
+{
+  "recorded_at": "2026-10-22T18:11:56.226314+00:00",
+  "status": "local_qualified_exact_head_live_pending",
+  "review_pipeline": "v6-counted-hunk-context",
+  "main_suite": {
+    "passed": 398,
+    "skipped": 15,
+    "failed": 0,
+    "skip_reasons": {
+      "set PATCHINGTON_TEST_SERVICE_IMAGE after building the service image": 2,
+      "PATCHINGTON_TEST_DATABASE_URL is required for real PostgreSQL tests": 13
+    },
+    "junit_sha256": "d7487e8123b556705a5f4424c45f23e1c46f01cb77f4397b1c60289c287f873f"
+  },
+  "checks": [
+    "uv run ruff check src tests deploy scripts",
+    "uv lock --check",
+    "uv build",
+    "git diff --check"
+  ],
+  "behavioral_evidence": [
+    "large-file hunks fit without whole-file model transport",
+    "static alias callers and referenced tests",
+    "test budget reservation",
+    "entry guards and caller preconditions far from the hunk",
+    "shadowed imported names and enclosing closure bindings abstain",
+    "nested validation helper and decorator-only changes resolve",
+    "deletion-only hunks, UTF-8 byte accounting and bounded out-of-range patches",
+    "omitted canonical lines rejected as finding anchors and citations",
+    "immutable coverage propagation and literal bounded dropdown",
+    "foreign-revision coverage rejected before HTTP publication",
+    "actual offline Docker/intake/approval/local Git publication demonstration with simulated model/GitHub",
+    "Three real-review parser counterexamples failed before the count-driven fix; finding admission and coverage now use the same parser."
+  ],
+  "offline_same_commit_replay": {
+    "head_short": "e583fbe",
+    "previous_changed_files_with_context": 8,
+    "changed_files": {
+      "total": 27,
+      "available": 25,
+      "with_context": 25
+    },
+    "changed_lines": {
+      "total": 3296,
+      "selected": 1372
+    },
+    "changed_hunks": {
+      "total": 57,
+      "with_context": 34,
+      "fully_selected": 17
+    },
+    "retrieved_files": 30,
+    "retrieved_bytes": 99985,
+    "retrieved_ranges": 134,
+    "relationships": {
+      "guard": {
+        "candidates": 500,
+        "selected": 290
+      },
+      "caller": {
+        "candidates": 267,
+        "selected": 110
+      },
+      "test": {
+        "candidates": 69,
+        "selected": 67
+      },
+      "function": {
+        "candidates": 616,
+        "selected": 351
+      }
+    }
+  },
+  "authority_changes": "No new App grants, provider, repair, merge or deployment authority. Coverage binds current repository/head; citations also require model-visible ranges. Prior policy generations cannot publish.",
+  "input_sha256": [
+    {
+      "path": ".dockerignore",
+      "sha256": "ae4448f1da07eac45060a47489da9066414433d22c47d9c3172d054c07718851"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "dc38b29d3dc9bdac15f96c6f454a6f6c7e9b7b7886ece3fb84cf8551a7ab4c54"
+    },
+    {
+      "path": ".gitleaks.toml",
+      "sha256": "1e657da7273db2de5e8f9bf07344bd9b1584f9e24486f6f73a5416e85a422cc9"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "22255e2cecce8c9974d8a82e7da44e289d9084524849dfbf1976e90eede4e933"
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "4ae7c24e767c2c09c6b9d2e4c65544336331504fa764bfab9d82a598a9ee0e52"
+    },
+    {
+      "path": "README.md",
+      "sha256": "21e1abb4a3dba61ba62c3ed69cd781b3b64b94d9dfd2a1a1ae3133c14d931ecf"
+    },
+    {
+      "path": "compose.yaml",
+      "sha256": "31e43cc9088424db872b8d666faf5e7c4e2ea404dddd2e95bc47e57faf6ada4d"
+    },
+    {
+      "path": "deploy/claude/package-lock.json",
+      "sha256": "71086f0b81228edda92815c2d6c69df79fa3083a19c69cd72569c537c0b579b4"
+    },
+    {
+      "path": "deploy/claude/package.json",
+      "sha256": "52a8549ee3d32986f85d6bad5a731450030baf385fe04e76015be36eb666fe42"
+    },
+    {
+      "path": "deploy/config.production.toml",
+      "sha256": "cbee2ff6b7686a8f44cac1b33d446108c4c129a659f7e1f7a7bcec06b2a37bce"
+    },
+    {
+      "path": "deploy/entrypoint.py",
+      "sha256": "c5c25c6b46961325101c2cac785094a63a1a0b27bb27322d26c2486a8e9c8af3"
+    },
+    {
+      "path": "deploy/render.py",
+      "sha256": "42cb8ef6bb57e93969728ef6ca36439549cbdd3890f3df8b9b3b44934a6d3ab1"
+    },
+    {
+      "path": "docs/GITHUB.md",
+      "sha256": "af73dfbbf74fd56903a54f2e73f20908ef4052a679ddbc78c84378235115438d"
+    },
+    {
+      "path": "docs/QUALIFICATION.md",
+      "sha256": "ac398f9f56130c424e87e977543df5bc6baa2bfdb1ad2f773155d47148338766"
+    },
+    {
+      "path": "docs/REVIEW-PIPELINE.md",
+      "sha256": "b86927bccc9021e919be40bd791916ca0e40d2be917ad4434964909322392e8b"
+    },
+    {
+      "path": "docs/examples/review-ci-summary.md",
+      "sha256": "9916889bd0b05f2b25019f4d0c87a5fce8b890b517c98ca7ea76b7febc716075"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "6ca552fbb35cd2d5f07da7f091e77387813d93896acaf26f5f8ea4df1d80a28c"
+    },
+    {
+      "path": "scripts/render_architecture.py",
+      "sha256": "373b45b9762a28ba22540e8b32dc9cb20df0aed883203e572f478278dd85c5eb"
+    },
+    {
+      "path": "src/patchington/__init__.py",
+      "sha256": "292b755fffae487673eabb9b2a5ede7ad100675a9db2384c861838164c910bdf"
+    },
+    {
+      "path": "src/patchington/api.py",
+      "sha256": "a6b584db041c40407355eca1c22e3dae2e3f6645ed567a386fcb2bdfad04bbed"
+    },
+    {
+      "path": "src/patchington/artifacts.py",
+      "sha256": "de73d9fef73a9b660aa41fd86d0d2144328444d6f1d1933a6f18c8cdc656d536"
+    },
+    {
+      "path": "src/patchington/ci.py",
+      "sha256": "7b5a8e9651d2453c60451626d348ee62013ca3ae14986b84fd2affda645a2103"
+    },
+    {
+      "path": "src/patchington/cli.py",
+      "sha256": "1b78269f702239c6b9806f8ee497c2eb431e4f481ee4e203550f2096938ee314"
+    },
+    {
+      "path": "src/patchington/config.py",
+      "sha256": "a55f43350308e764f6a97d28b5f0a25b78931ace3fa00c20fad4625835f1decf"
+    },
+    {
+      "path": "src/patchington/context.py",
+      "sha256": "9cec425b639ad3097331a633c288df416d98d91b5ff11f79a88227ed04fab7fb"
+    },
+    {
+      "path": "src/patchington/contracts.py",
+      "sha256": "1851499d70dc256260bea2558e518a48d7e82d14b5dff5d3e5cc57e84baac477"
+    },
+    {
+      "path": "src/patchington/demo.py",
+      "sha256": "56c386a738da0007f2cc86566cd8cb93dfee591be1b13f7d66c33254e42b51a7"
+    },
+    {
+      "path": "src/patchington/execution.py",
+      "sha256": "c31d5542770e37fc225ef477c7b52f633857bd1cad5df96c375be77b516b5059"
+    },
+    {
+      "path": "src/patchington/github.py",
+      "sha256": "5e8b74f5cc5e3eeeee9a6025de40424f0188a464c0c6a2abe1392006b56368bb"
+    },
+    {
+      "path": "src/patchington/gitwork.py",
+      "sha256": "ff9433b83e4c39dfd38396d280c2820ff7112c79750170c77c2b8811b06f99bb"
+    },
+    {
+      "path": "src/patchington/models.py",
+      "sha256": "8404b442a08dd5c50d44dad58211e8f0b2be31d484766df3aa5604d338a0572f"
+    },
+    {
+      "path": "src/patchington/pipeline.py",
+      "sha256": "169a101ed0c6cdd96e88aed4f361b74c4e34dccf964ede7e0aab697aa06c952a"
+    },
+    {
+      "path": "src/patchington/probes.py",
+      "sha256": "d988dd008e0fcf48d28378b60ceaecdbe9f755e50578134007e54beb07c5d788"
+    },
+    {
+      "path": "src/patchington/publisher.py",
+      "sha256": "7022d37a09617296cc5b3b4c155b751e6db5e5cd5b2f84687785731d720c3b5b"
+    },
+    {
+      "path": "src/patchington/records.py",
+      "sha256": "1b766277560dd1d88409d2a7c7280aae4bc1c2b887863468ff82d0e3fced86e8"
+    },
+    {
+      "path": "src/patchington/review.py",
+      "sha256": "4e48b0cfd00f5b1190ccc7253845d9acbb529300298e43aeaf62ee64467ea64c"
+    },
+    {
+      "path": "src/patchington/review_context.py",
+      "sha256": "fda06de80ce848e34e9e137cf59b4a3ff2c9a2cdcb51b847a43338205e5b0dbe"
+    },
+    {
+      "path": "src/patchington/store.py",
+      "sha256": "71f3a4b3a65fac75713a18c1837e5d607b9c1a10d900104799c682087ae42e65"
+    },
+    {
+      "path": "tests/test_api.py",
+      "sha256": "89d0546b2f9f2af868269c4574590a8bb9604c47a47c9f42d68724e8aa6f714b"
+    },
+    {
+      "path": "tests/test_api_approvals.py",
+      "sha256": "8ad9af2e923c99a7ec5087b9ba9763b6c059ff3b8068f68b3179334fff86f484"
+    },
+    {
+      "path": "tests/test_artifacts.py",
+      "sha256": "f60e34a41048f76eeeb5707a8d00f41e642029fe8c2bd664ab39327479bd188b"
+    },
+    {
+      "path": "tests/test_ci.py",
+      "sha256": "81723d9818c7072eb0856a8797f7ed82ff6bdd64fe7ba7329c866e8eeae0d314"
+    },
+    {
+      "path": "tests/test_cli.py",
+      "sha256": "289cb3fcf4986a21a899ca1380e9fd806264402e6b713e426fc10df19b0f1b7c"
+    },
+    {
+      "path": "tests/test_config.py",
+      "sha256": "945b4c993c35b0d7ee6668516802d437fb07ebcd12bd06fe6f388b18d82940ba"
+    },
+    {
+      "path": "tests/test_context_models.py",
+      "sha256": "4c761d0b0d41d817a7def4304439ff2764c854c5daa123a332e9631041b49318"
+    },
+    {
+      "path": "tests/test_context_selection.py",
+      "sha256": "f2794b83301b8e1b3c5723a9406cb0fb44150797ae1c47da5c79e108e4fa3200"
+    },
+    {
+      "path": "tests/test_contracts.py",
+      "sha256": "8cb9ce63b2f15b0e8cc6e8812ba535871b71adbbd4cd276622e7bc90d9da5d5b"
+    },
+    {
+      "path": "tests/test_demo.py",
+      "sha256": "7b1dc6144747af49fd4292ae3961efec2b29172c35df280b78d6c1ef96af5fe7"
+    },
+    {
+      "path": "tests/test_deployment.py",
+      "sha256": "b99811f8f967f2c328007da7adfe44131b6ddbe5acda7d9b9d5f4bdbd64437b0"
+    },
+    {
+      "path": "tests/test_execution.py",
+      "sha256": "082498274c2dbb77bd93ab2a2b9fc94ac9ed13636d5f05ea122bebfdfb8641fe"
+    },
+    {
+      "path": "tests/test_final_audit.py",
+      "sha256": "4f5e01766bc9e2a9db45c176b2799b3bd91e8d572dcfb7d820289765df42336e"
+    },
+    {
+      "path": "tests/test_function_context.py",
+      "sha256": "b6d383055a50c86e055f920c44713eefe559f1a45f1fa58e7186b748b65b0c89"
+    },
+    {
+      "path": "tests/test_github.py",
+      "sha256": "b857353564958884df1a6a2b0d40f6d6949f690feff89e04574edf7c97591792"
+    },
+    {
+      "path": "tests/test_gitwork.py",
+      "sha256": "d27610e5d354b209dbc24b70efdc55245d536f6e24c66aae16b04aa8e1945945"
+    },
+    {
+      "path": "tests/test_lifecycle.py",
+      "sha256": "6c84086b4af8dbc46e71760f84a067d6786a8185deb852d3d3bce9eb72d1cded"
+    },
+    {
+      "path": "tests/test_models_security.py",
+      "sha256": "980c3378e90e6735f7434cecd6d461b8dafa90ca3af787ce63fe65546af3975d"
+    },
+    {
+      "path": "tests/test_numbered_review_context.py",
+      "sha256": "7a8b3f070d1ab436c73796a129dbdeb493bee440172201e1d8bd7515741de33d"
+    },
+    {
+      "path": "tests/test_outbox_api.py",
+      "sha256": "745a6d8e92f0a3e5929549c580878e2a2ffd2f356679a36809d320b09e6dc333"
+    },
+    {
+      "path": "tests/test_pipeline.py",
+      "sha256": "6b8a1bb0b6655cc96a7b6513b43dcad16176976878454bb6004c0736d2af0d7e"
+    },
+    {
+      "path": "tests/test_pipeline_security.py",
+      "sha256": "6f7673f375d91512e3f0507173d866d0f6d94c0128f3e66f0c05a4fe4fa9092e"
+    },
+    {
+      "path": "tests/test_probes.py",
+      "sha256": "0747098581bf3c1a7123364bb5c107d75f8eacc5d6c29541d5eec297adec544b"
+    },
+    {
+      "path": "tests/test_publisher.py",
+      "sha256": "a3f114cecde726524ad22ba2bcd1654f6b45bdfc0afa23d6f13dd2931f5f0d38"
+    },
+    {
+      "path": "tests/test_reconciliation_schedule.py",
+      "sha256": "07e201935cca5d43f3446e0153cc08b12681f3774a6487a29ce55adf417592a1"
+    },
+    {
+      "path": "tests/test_review_actor.py",
+      "sha256": "65f03006ec5b7463e00d24825edb215553edaed541b8f3d3dc8a18c369aeeeb1"
+    },
+    {
+      "path": "tests/test_review_ci_pipeline.py",
+      "sha256": "416c87f874a2e97f322cb48b496b7a200a92f2b424d44ed8de9bc4936e69fd9c"
+    },
+    {
+      "path": "tests/test_review_quality.py",
+      "sha256": "efb2a807f75a6cfdc5fe9acbb80aa2e5a7a6282857a570f0257c3e3c9a622298"
+    },
+    {
+      "path": "tests/test_source_selection.py",
+      "sha256": "7a11e933638abfbc9e2d3295aefd9818067be69ca77619a07d064e6cea8e6be4"
+    },
+    {
+      "path": "tests/test_store.py",
+      "sha256": "5cc9bb434175be38520505b7c9757198a193e40423e0e69d809c116f18109ed8"
+    },
+    {
+      "path": "tests/test_store_postgres.py",
+      "sha256": "140e54beacc1198b3a9a5244b0818663c815312d076aa8997aeb10aaf0a87c8f"
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "482135057e6e3033cb45e4d4c3d6ace1267c67a5d8508f2cdc23a4f1bf772a97"
+    }
+  ],
+  "input_manifest_digest": "96a29a54a1f1f7a5966d7d35893608d3934065a4895d1b06e8a453e5bda18725",
+  "remaining_limits": [
+    "Only selected ranges were supplied; omitted lines are not citation evidence.",
+    "Call edges resolve static Python names/import aliases and self/cls methods only; dynamic dispatch and unknown receivers remain unresolved.",
+    "Caller/test discovery is limited to safely acquired files; no transitive call-graph claim.",
+    "Guard excerpts identify static checks and called helpers, not proven runtime dominance.",
+    "Non-Python source uses diff hunks without function/caller resolution.",
+    "Whole files containing credential patterns can remain excluded, including synthetic test fixtures.",
+    "100 KB selected source remains partial; model serialization is separately capped at 500 KB.",
+    "This receipt precedes the fresh-head live model/report run; no quality benchmark or production deployment."
+  ],
+  "initial_live_review": {
+    "head_short": "7a7e411",
+    "model": "claude-sonnet-5-5",
+    "client": "2.1.306",
+    "review_seconds": 52.123,
+    "refute_seconds": 17.756,
+    "changed_files": {
+      "with_context": 28,
+      "total": 30
+    },
+    "changed_lines": {
+      "selected": 1490,
+      "total": 4509
+    },
+    "source_bytes": 99990,
+    "source_files": 33,
+    "ranges": 136,
+    "ci_state": "success",
+    "posted_comment_id": 6345360996,
+    "exact_body_and_actor_readback_verified": true,
+    "supported_findings": [
+      "Counted hunk content mistaken for file headers; fixed after three red behavioral cases.",
+      "Broken absolute local document link; removed."
+    ],
+    "following_exact_head_live_review": "pending; qualified separately"
+  }
+}

@@ -1,4 +1,122 @@
-# Qualification record — 2026-10-21
+# Qualification record
+
+## Function and hunk context — 2026-10-22
+
+The production PR path now selects original-line excerpts around changed hunks
+and enclosing Python functions. It reserves source budget for callers, guards,
+tests, contracts and guidance, then redistributes unused space. Canonical source
+and its full-file hash remain local; finding admission and citation validation
+reject lines outside the exact model-visible ranges. `v6-counted-hunk-context`
+invalidates older review generations and reports. Publication adds a bounded,
+revision-bound Context coverage dropdown from controller evidence.
+
+Behavioral failures preceded implementation for large-file selection, test/caller
+discovery, omitted-line citations, reporter coverage propagation, new-file hunks,
+out-of-range patch termination, scope shadowing, nested validation helpers and
+decorator-only changes. Tests also cover UTF-8 accounting, deletion-only changes,
+far-away caller preconditions, literal coverage rendering and mismatched-revision
+publication denial.
+
+The initial live Sonnet review of `7a7e411` supplied 28 of 30 changed files and
+1,490 of 4,509 added lines, and reported a real parser defect: removed/added
+content beginning with `--`/`++` was mistaken for file headers. Three failing
+behavioral cases preceded the fix. Coverage and finding admission now share one
+count-driven parser; earlier queued reports/generations are invalidated. The
+review's broken host-local documentation link was also removed. The subsequent
+live run is recorded separately from this pre-publication qualification.
+
+An offline same-commit replay on `e583fbe` expanded context from 8 changed
+files to all 25 eligible changed files out of 27, within 100 KB. Two changed files
+remained credential-pattern exclusions. This replay supplied 1,372 of 3,296 added
+lines, 30 files and 134 source ranges. Broader file coverage is not complete review.
+The replay used the final selector without model or GitHub calls. A subsequent
+exact-head live review is qualified separately from this pre-publication record.
+
+The [function-context receipt](qualification-function-context-2026-10-22.json)
+records current source hashes and checks. Live model quality, production scale,
+dynamic call resolution and complete test coverage are not established. The
+existing review-only reader/reporter Apps and Claude subscription boundary remain
+unchanged. No automatic repair, merge or deployment is authorized by this update.
+
+## Earlier review pipeline and CI update — 2026-10-22
+
+That source revision passed **375 tests**, with **15 explicit skips**: 13
+PostgreSQL tests require a disposable test database and two service-image tests
+require a rebuilt image. Real Docker original/candidate checks and the offline
+intake → review → approval → local Git publication → rereview demonstration ran
+successfully. Model generation, GitHub metadata, CI results and comment writes
+remain simulated in that demonstration.
+
+Ruff (`src tests deploy scripts`), `uv lock --check`, wheel/sdist build,
+`git diff --check` and a redacted secret scan of changed files passed. Behavioral
+regressions were observed before implementation for irrelevant context starving
+dependencies, unsupported critic labels reaching repair, unchanged-line findings,
+finding identity collisions, missing CI integration and bounded CI log tails.
+
+The new controls prioritize scoped context, require fingerprint-bound exact
+source citations and counterarguments, abstain on invalid/conflicting judgments,
+and filter exact duplicates and out-of-change anchors. CI inspection captures
+exact-head job/step failure evidence and emits a collapsed review section even
+when there are no supported code findings. Its HTTP transport and error paths
+were tested with mocked GitHub responses, not a real App installation.
+
+The [update receipt](qualification-review-pipeline-2026-10-22.json) records current
+input hashes, tests, skipped prerequisites and remaining limits. The original
+[baseline receipt](qualification-receipt.json) retains its dated 2026-10-21
+measurements and links this update; its old coverage/image/audit measurements
+must not be read as new measurements of this source revision.
+
+No live model-quality benchmark or deployment was performed. Claude Code
+`2.1.306` is now installed and its macOS code signature verifies; the exact
+adapter pin is unchanged. A separate live subscription preflight confirmed the
+authorized first-party Team account and usage credits disabled. The actual
+adapter then returned schema-validated `CLAUDE_CODE_OK` from Sonnet 5.5. Its first
+live attempt exposed missing `USER`/`LOGNAME` account identity for macOS Keychain;
+a behavioral regression preceded that fix and service/provider secrets remain
+excluded. This is a structured client smoke check, not a code-review quality
+evaluation. Both adapter subprocess environments force `DISABLE_AUTOUPDATER=1`
+so a review cannot update its own qualified client; two behavioral failures
+preceded that fix. No provider fallback was introduced.
+The dedicated reader and reporter Apps are now installed on Sir Patchington
+only. Actual App API calls verified their separate identities, exact grants and
+single-repository scope. The reader has Actions read; the reporter has PR write
+and metadata read, without contents write. Review posting remains explicitly
+policy-controlled and candidate publication requires exact approval.
+
+A first manual live run on PR #1 at `fceb92b` used actual Sonnet review and
+refutation calls. The App-based CI collector captured one successful workflow,
+one job and 17 steps for that exact head. The run returned `needs_owner`: only
+12 context files fit the 100 KB retrieval budget, and credential-pattern filtering
+withheld some synthetic test files. This did not fully review all 24 changed files.
+One model-supported finding contradicted the deliberate skipped-check policy;
+the other, a terminal-error omission from bounded log evidence, was reproduced
+with a mocked 64 KB response containing 25 error lines. These are bounded
+execution observations, not a precision or recall benchmark.
+
+That run exposed a report defect: stored review limitations were not displayed
+in the comment. The current update makes those limitations visible, clarifies
+the intentional CI policy and invalidates older cached generations. A subsequent
+manual run and posted-comment readback are qualified separately from this
+pre-publication record.
+
+## Additional manual integration findings — 2026-10-22
+
+The next real run on `4c054a7` posted the collapsed CI report and coverage
+warning. The model's remaining proposal used an off-by-one source line; the
+exact citation gate withheld it as `needs_evidence`. This is a false-negative
+limitation, not proof that the change has no defects. The current source adds
+coordinator-provided line numbers and prioritizes changed runtime source ahead
+of large documents. New mocked regressions failed before those changes.
+
+GitHub returned null `performed_via_github_app` metadata on the App-authored
+comment. The publisher now verifies the App using its JWT and binds ownership
+to the server-resolved numeric Bot ID and login. Live replay retained comment
+`6345360996` and verified its exact body and authenticated actor. This qualifies
+that observed reconciliation path, not production deployment isolation.
+
+## Original baseline — 2026-10-21
+
+The following evidence and delivery history describe the original dated baseline.
 
 The repository is an implemented control plane with local integration evidence.
 It is not a certified production service or a measured replacement for a

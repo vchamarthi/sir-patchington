@@ -70,7 +70,8 @@ class LocalForge(GitHubClient):
                               body="Demonstration only: delivery is free at subtotal 50 or above.",
                               files=(ChangedFile(path="src/fees.py", patch=diff + "\n"),) if diff else ())
 
-    def post_review(self, policy, snapshot, findings, *, guard=None):
+    def post_review(self, policy, snapshot, findings, *, guard=None, ci_report=None,
+                    review_limitations=(), review_coverage=None):
         self._scope(policy, snapshot)
         if not policy.post_reviews or self.snapshot(policy, snapshot.pr).identity != snapshot.identity:
             raise GitHubError("fixture review is disabled or stale")
@@ -80,10 +81,30 @@ class LocalForge(GitHubClient):
                   "head_sha": snapshot.head_sha,
                   "findings": [f.model_dump(mode="json") for f in findings],
                   "simulated": True}
+        if ci_report is not None:
+            if ci_report["head_sha"] != snapshot.head_sha:
+                raise GitHubError("fixture CI belongs to another revision")
+            record["ci"] = ci_report
+        if review_limitations:
+            record["limitations"] = list(review_limitations)
+        if review_coverage is not None:
+            if (review_coverage.get('revision') != snapshot.head_sha
+                    or review_coverage.get('repository_id') != policy.repository_id
+                    or review_coverage.get('repo') != policy.repo):
+                raise GitHubError('fixture coverage belongs to another snapshot')
+            record['coverage'] = review_coverage
         if guard:
             guard()
         self.reviews.append(record)
         return record["id"]
+
+    def ci_review(self, policy, snapshot):
+        self._scope(policy, snapshot)
+        return {"head_sha": snapshot.head_sha, "repository_id": snapshot.repository_id,
+                "repo": snapshot.repo, "source": "offline-fixture", "state": "unknown",
+                "complete": False, "observed_at": "2000-01-01T00:00:00Z",
+                "workflows": [], "checks": [], "statuses": [],
+                "limitations": ["GitHub CI inspection is simulated in this offline demo."]}
 
     def checks(self, policy, snapshot):
         self._scope(policy, snapshot)
@@ -156,10 +177,20 @@ def run_demo(output: Path, *, image: str = DEFAULT_IMAGE) -> dict:
                 "limitations": ["Offline fixture response; no real model evaluated this code."]}
 
     def refute(payload):
-        findings = []
+        judgments = []
         for proposal in payload.get("proposals", ()):
-            findings.append({**proposal, "status": "supported" if defective(payload) else "refuted"})
-        return {"findings": findings}
+            source = next(item for item in payload["context"] if item["path"] == proposal["path"])
+            line = proposal["line"]
+            judgments.append({
+                "fingerprint": proposal["fingerprint"],
+                "status": "supported" if defective(payload) else "refuted",
+                "rationale": "Scripted fixture checks source against the trusted fifty boundary.",
+                "counterargument": "Exclusive comparison is correct only for a different contract.",
+                "citations": [{"path": source["path"], "source_digest": source["digest"],
+                               "start_line": line, "end_line": line,
+                               "quote": source["content"].splitlines()[line - 1]}],
+            })
+        return {"judgments": judgments}
 
     def repair_fixture(payload):
         if not defective(payload):
@@ -213,6 +244,8 @@ def run_demo(output: Path, *, image: str = DEFAULT_IMAGE) -> dict:
         observed = _expected_state(pipeline.run_once("demo-observer", queue="observe"),
                                    "ci_observed_rereview_queued")
         rereviewed = _expected_state(pipeline.run_once("demo-rereviewer"), "review_complete")
+        rereported = _expected_state(pipeline.run_once("demo-rereporter", queue="publish"),
+                                    "review_reported")
         actual_head = _fixture_git(remote, ["rev-parse", "refs/heads/feature"])
         actual_base = _fixture_git(remote, ["rev-parse", "refs/heads/main"])
         actual_tree = _fixture_git(remote, ["rev-parse", actual_head + "^{tree}"])
@@ -235,6 +268,7 @@ def run_demo(output: Path, *, image: str = DEFAULT_IMAGE) -> dict:
                    "approval": {"status_code": approved.status_code, **approved.json(), "actor": "alice"},
                    "candidate": record["candidate"], "verification": record["verification"],
                    "publication": published, "observation": observed, "rereview": rereviewed,
+                   "rereview_report": rereported,
                    "remote_readback": {"expected_before": head, "actual_head": actual_head,
                                        "actual_tree": actual_tree, "actual_parent": actual_parent,
                                        "base_unchanged": actual_base == base},

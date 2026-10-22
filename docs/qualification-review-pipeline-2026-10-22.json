@@ -1,0 +1,426 @@
+{
+  "as_of": "2026-10-22",
+  "recorded_at": "2026-10-22T16:17:34.896201+00:00",
+  "status": "local_controls_live_app_identity_and_review_paths_validated",
+  "main_suite": {
+    "passed": 375,
+    "skipped": 15,
+    "failed": 0,
+    "seconds": 78.433,
+    "skip_reasons": {
+      "set PATCHINGTON_TEST_SERVICE_IMAGE after building the service image": 2,
+      "PATCHINGTON_TEST_DATABASE_URL is required for real PostgreSQL tests": 13
+    },
+    "junit_sha256": "752e112585de34e17fef3b7633e0b1b154b6ae3506327686f1e2d4566f10712b"
+  },
+  "checks": [
+    "uv run ruff check src tests deploy scripts",
+    "uv lock --check",
+    "uv build",
+    "git diff --check",
+    "redacted gitleaks changed-file scan"
+  ],
+  "behavioral_evidence": [
+    "context relevance before byte allocation",
+    "changed-line finding admission and conservative exact deduplication",
+    "citation-bound support/refutation and abstention for missing/conflicting evidence",
+    "CI context in review and CI-state generation invalidation",
+    "clean reviews still dispatch CI report publication",
+    "exact-head Actions jobs, failing steps, diagnoses and bounded sanitized log tails",
+    "read-only purpose token and unauthenticated qualified log downloads",
+    "real local Docker repair evidence and disposable Git approval/publication demo",
+    "version and generation subprocesses disable client auto-updating without relaxing the exact pin",
+    "generation preserves macOS Keychain account identity without forwarding service or provider secrets",
+    "partial-context review limitations reach the posted summary with bounded literal rendering",
+    "prior review-policy generations and queued reports are rejected after policy changes",
+    "authenticated App JWT plus metadata-only token binds exact numeric Bot identity when App attribution is null",
+    "App-owned marker reconciliation does not adopt other numeric Bot identities or conflicting App attribution",
+    "changed runtime source precedes changed tests and documents within the retrieval budget",
+    "numbered model view preserves canonical source content and source digests for exact citation checks"
+  ],
+  "simulated": [
+    "main-suite model outputs",
+    "main-suite GitHub metadata and HTTP transport",
+    "main-suite GitHub comments and CI results"
+  ],
+  "live_model_generation": true,
+  "live_github_ci_inspected": true,
+  "production_deployed": false,
+  "model_client": {
+    "approved_version": "2.1.306",
+    "observed_installed_version": "2.1.306",
+    "model": "claude-sonnet-5-5",
+    "live_qualification": "macOS signature verified; authorized Team subscription and credits-disabled preflight passed; schema-validated CLAUDE_CODE_OK from actual tool-free Sonnet 5.5 adapter",
+    "fallback_enabled": false,
+    "previous_observed_installed_version": "2.1.304",
+    "binary_sha256": "b5d795b7760032d79954b55a9cd1876dcf3a8dc9608fd6bb9f618593f69fd44b",
+    "adapter_auto_updater_disabled": true,
+    "smoke_check": {
+      "as_of": "2026-10-22T15:28:00.628962+00:00",
+      "client_version": "2.1.306",
+      "model": "claude-sonnet-5-5",
+      "result": "CLAUDE_CODE_OK",
+      "seconds": 2.39,
+      "scope": "live structured tool-free client smoke check; not code-review quality or GitHub integration",
+      "fallback_enabled": false
+    }
+  },
+  "remaining_limits": [
+    "No measured live-model precision, recall or false-positive reduction",
+    "Static Python imports from bounded source slice; no whole-repository caller discovery",
+    "CI evidence is a bounded review-time snapshot, not required-check certification",
+    "PostgreSQL/service-image prerequisites skipped in this run",
+    "Large PR context is still limited to 100 KB whole-file retrieval and 100 KB snapshot text; changed modules may be omitted",
+    "Live failing-job log transport and diagnosis were not exercised on this successful PR",
+    "Latest numbered-source context and actor revision awaits its fresh-head live run; previous-head live evidence is recorded separately"
+  ],
+  "input_manifest_digest": "305ebc5035c6fc6977525f43b4f9029f958e9da77744e7c8e78868458fb26530",
+  "input_sha256": [
+    {
+      "path": ".dockerignore",
+      "sha256": "ae4448f1da07eac45060a47489da9066414433d22c47d9c3172d054c07718851"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "dc38b29d3dc9bdac15f96c6f454a6f6c7e9b7b7886ece3fb84cf8551a7ab4c54"
+    },
+    {
+      "path": ".gitleaks.toml",
+      "sha256": "1e657da7273db2de5e8f9bf07344bd9b1584f9e24486f6f73a5416e85a422cc9"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "22255e2cecce8c9974d8a82e7da44e289d9084524849dfbf1976e90eede4e933"
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "4ae7c24e767c2c09c6b9d2e4c65544336331504fa764bfab9d82a598a9ee0e52"
+    },
+    {
+      "path": "README.md",
+      "sha256": "21e1abb4a3dba61ba62c3ed69cd781b3b64b94d9dfd2a1a1ae3133c14d931ecf"
+    },
+    {
+      "path": "compose.yaml",
+      "sha256": "31e43cc9088424db872b8d666faf5e7c4e2ea404dddd2e95bc47e57faf6ada4d"
+    },
+    {
+      "path": "deploy/claude/package-lock.json",
+      "sha256": "71086f0b81228edda92815c2d6c69df79fa3083a19c69cd72569c537c0b579b4"
+    },
+    {
+      "path": "deploy/claude/package.json",
+      "sha256": "52a8549ee3d32986f85d6bad5a731450030baf385fe04e76015be36eb666fe42"
+    },
+    {
+      "path": "deploy/config.production.toml",
+      "sha256": "cbee2ff6b7686a8f44cac1b33d446108c4c129a659f7e1f7a7bcec06b2a37bce"
+    },
+    {
+      "path": "deploy/entrypoint.py",
+      "sha256": "c5c25c6b46961325101c2cac785094a63a1a0b27bb27322d26c2486a8e9c8af3"
+    },
+    {
+      "path": "deploy/render.py",
+      "sha256": "42cb8ef6bb57e93969728ef6ca36439549cbdd3890f3df8b9b3b44934a6d3ab1"
+    },
+    {
+      "path": "docs/GITHUB.md",
+      "sha256": "9fe71a9e4a7d1a7a9c11f1b01f4bbe550e1ba6ee42b058d7bfe423e556b54b8d"
+    },
+    {
+      "path": "docs/QUALIFICATION.md",
+      "sha256": "6fc76d7b79bab223fdb58c6a04e340fd2b09fdd36a3007eb857786923d7e918e"
+    },
+    {
+      "path": "docs/REVIEW-PIPELINE.md",
+      "sha256": "235f635a923ed7608e9ae99f6a954c726b9ae48316726ac80fb842504ca59426"
+    },
+    {
+      "path": "docs/examples/review-ci-summary.md",
+      "sha256": "9916889bd0b05f2b25019f4d0c87a5fce8b890b517c98ca7ea76b7febc716075"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "6ca552fbb35cd2d5f07da7f091e77387813d93896acaf26f5f8ea4df1d80a28c"
+    },
+    {
+      "path": "scripts/render_architecture.py",
+      "sha256": "373b45b9762a28ba22540e8b32dc9cb20df0aed883203e572f478278dd85c5eb"
+    },
+    {
+      "path": "src/patchington/__init__.py",
+      "sha256": "292b755fffae487673eabb9b2a5ede7ad100675a9db2384c861838164c910bdf"
+    },
+    {
+      "path": "src/patchington/api.py",
+      "sha256": "a6b584db041c40407355eca1c22e3dae2e3f6645ed567a386fcb2bdfad04bbed"
+    },
+    {
+      "path": "src/patchington/artifacts.py",
+      "sha256": "de73d9fef73a9b660aa41fd86d0d2144328444d6f1d1933a6f18c8cdc656d536"
+    },
+    {
+      "path": "src/patchington/ci.py",
+      "sha256": "7b5a8e9651d2453c60451626d348ee62013ca3ae14986b84fd2affda645a2103"
+    },
+    {
+      "path": "src/patchington/cli.py",
+      "sha256": "1b78269f702239c6b9806f8ee497c2eb431e4f481ee4e203550f2096938ee314"
+    },
+    {
+      "path": "src/patchington/config.py",
+      "sha256": "a55f43350308e764f6a97d28b5f0a25b78931ace3fa00c20fad4625835f1decf"
+    },
+    {
+      "path": "src/patchington/context.py",
+      "sha256": "3940c571270124ba9f217ece6586643cad0862b70e27e3d5337db98b2309bbbc"
+    },
+    {
+      "path": "src/patchington/contracts.py",
+      "sha256": "1851499d70dc256260bea2558e518a48d7e82d14b5dff5d3e5cc57e84baac477"
+    },
+    {
+      "path": "src/patchington/demo.py",
+      "sha256": "0b86db2e969dd5b6db7e1a6415934df582b98c1f474e6a3946ec744a57fd955f"
+    },
+    {
+      "path": "src/patchington/execution.py",
+      "sha256": "c31d5542770e37fc225ef477c7b52f633857bd1cad5df96c375be77b516b5059"
+    },
+    {
+      "path": "src/patchington/github.py",
+      "sha256": "e6b0dfa06c56cefd7e16b45fd188f72041acbaae2b269172f5c19965da321824"
+    },
+    {
+      "path": "src/patchington/gitwork.py",
+      "sha256": "4fbe3d070f267ef80384fe430e16db6ffe7e1c1b9350691ebc36a39f0746e09d"
+    },
+    {
+      "path": "src/patchington/models.py",
+      "sha256": "8404b442a08dd5c50d44dad58211e8f0b2be31d484766df3aa5604d338a0572f"
+    },
+    {
+      "path": "src/patchington/pipeline.py",
+      "sha256": "04b98450c1198d10f4e001db3a7b1a8a178a0059180c5ef24a1b229af81e23d2"
+    },
+    {
+      "path": "src/patchington/probes.py",
+      "sha256": "d988dd008e0fcf48d28378b60ceaecdbe9f755e50578134007e54beb07c5d788"
+    },
+    {
+      "path": "src/patchington/publisher.py",
+      "sha256": "7022d37a09617296cc5b3b4c155b751e6db5e5cd5b2f84687785731d720c3b5b"
+    },
+    {
+      "path": "src/patchington/records.py",
+      "sha256": "1b766277560dd1d88409d2a7c7280aae4bc1c2b887863468ff82d0e3fced86e8"
+    },
+    {
+      "path": "src/patchington/review.py",
+      "sha256": "6d8e78c53fa90277d9bd4c4a4c538d2504540a7206120fd99405b230daea1629"
+    },
+    {
+      "path": "src/patchington/store.py",
+      "sha256": "71f3a4b3a65fac75713a18c1837e5d607b9c1a10d900104799c682087ae42e65"
+    },
+    {
+      "path": "tests/test_api.py",
+      "sha256": "89d0546b2f9f2af868269c4574590a8bb9604c47a47c9f42d68724e8aa6f714b"
+    },
+    {
+      "path": "tests/test_api_approvals.py",
+      "sha256": "8ad9af2e923c99a7ec5087b9ba9763b6c059ff3b8068f68b3179334fff86f484"
+    },
+    {
+      "path": "tests/test_artifacts.py",
+      "sha256": "f60e34a41048f76eeeb5707a8d00f41e642029fe8c2bd664ab39327479bd188b"
+    },
+    {
+      "path": "tests/test_ci.py",
+      "sha256": "81723d9818c7072eb0856a8797f7ed82ff6bdd64fe7ba7329c866e8eeae0d314"
+    },
+    {
+      "path": "tests/test_cli.py",
+      "sha256": "289cb3fcf4986a21a899ca1380e9fd806264402e6b713e426fc10df19b0f1b7c"
+    },
+    {
+      "path": "tests/test_config.py",
+      "sha256": "945b4c993c35b0d7ee6668516802d437fb07ebcd12bd06fe6f388b18d82940ba"
+    },
+    {
+      "path": "tests/test_context_models.py",
+      "sha256": "4c761d0b0d41d817a7def4304439ff2764c854c5daa123a332e9631041b49318"
+    },
+    {
+      "path": "tests/test_context_selection.py",
+      "sha256": "f2794b83301b8e1b3c5723a9406cb0fb44150797ae1c47da5c79e108e4fa3200"
+    },
+    {
+      "path": "tests/test_contracts.py",
+      "sha256": "8cb9ce63b2f15b0e8cc6e8812ba535871b71adbbd4cd276622e7bc90d9da5d5b"
+    },
+    {
+      "path": "tests/test_demo.py",
+      "sha256": "7b1dc6144747af49fd4292ae3961efec2b29172c35df280b78d6c1ef96af5fe7"
+    },
+    {
+      "path": "tests/test_deployment.py",
+      "sha256": "b99811f8f967f2c328007da7adfe44131b6ddbe5acda7d9b9d5f4bdbd64437b0"
+    },
+    {
+      "path": "tests/test_execution.py",
+      "sha256": "082498274c2dbb77bd93ab2a2b9fc94ac9ed13636d5f05ea122bebfdfb8641fe"
+    },
+    {
+      "path": "tests/test_final_audit.py",
+      "sha256": "4f5e01766bc9e2a9db45c176b2799b3bd91e8d572dcfb7d820289765df42336e"
+    },
+    {
+      "path": "tests/test_github.py",
+      "sha256": "b857353564958884df1a6a2b0d40f6d6949f690feff89e04574edf7c97591792"
+    },
+    {
+      "path": "tests/test_gitwork.py",
+      "sha256": "d27610e5d354b209dbc24b70efdc55245d536f6e24c66aae16b04aa8e1945945"
+    },
+    {
+      "path": "tests/test_lifecycle.py",
+      "sha256": "6c84086b4af8dbc46e71760f84a067d6786a8185deb852d3d3bce9eb72d1cded"
+    },
+    {
+      "path": "tests/test_models_security.py",
+      "sha256": "980c3378e90e6735f7434cecd6d461b8dafa90ca3af787ce63fe65546af3975d"
+    },
+    {
+      "path": "tests/test_numbered_review_context.py",
+      "sha256": "7a8b3f070d1ab436c73796a129dbdeb493bee440172201e1d8bd7515741de33d"
+    },
+    {
+      "path": "tests/test_outbox_api.py",
+      "sha256": "745a6d8e92f0a3e5929549c580878e2a2ffd2f356679a36809d320b09e6dc333"
+    },
+    {
+      "path": "tests/test_pipeline.py",
+      "sha256": "6b8a1bb0b6655cc96a7b6513b43dcad16176976878454bb6004c0736d2af0d7e"
+    },
+    {
+      "path": "tests/test_pipeline_security.py",
+      "sha256": "6f7673f375d91512e3f0507173d866d0f6d94c0128f3e66f0c05a4fe4fa9092e"
+    },
+    {
+      "path": "tests/test_probes.py",
+      "sha256": "0747098581bf3c1a7123364bb5c107d75f8eacc5d6c29541d5eec297adec544b"
+    },
+    {
+      "path": "tests/test_publisher.py",
+      "sha256": "a3f114cecde726524ad22ba2bcd1654f6b45bdfc0afa23d6f13dd2931f5f0d38"
+    },
+    {
+      "path": "tests/test_reconciliation_schedule.py",
+      "sha256": "07e201935cca5d43f3446e0153cc08b12681f3774a6487a29ce55adf417592a1"
+    },
+    {
+      "path": "tests/test_review_actor.py",
+      "sha256": "65f03006ec5b7463e00d24825edb215553edaed541b8f3d3dc8a18c369aeeeb1"
+    },
+    {
+      "path": "tests/test_review_ci_pipeline.py",
+      "sha256": "eea63a94c0794ef42057746c196fe12114c14f5279e3b7c407074a77eb1aae0e"
+    },
+    {
+      "path": "tests/test_review_quality.py",
+      "sha256": "efb2a807f75a6cfdc5fe9acbb80aa2e5a7a6282857a570f0257c3e3c9a622298"
+    },
+    {
+      "path": "tests/test_source_selection.py",
+      "sha256": "5d2f7d2b3bd16ad52311c004cb4948a3faf6843dc48e127f50f0ea71522762f1"
+    },
+    {
+      "path": "tests/test_store.py",
+      "sha256": "5cc9bb434175be38520505b7c9757198a193e40423e0e69d809c116f18109ed8"
+    },
+    {
+      "path": "tests/test_store_postgres.py",
+      "sha256": "140e54beacc1198b3a9a5244b0818663c815312d076aa8997aeb10aaf0a87c8f"
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "482135057e6e3033cb45e4d4c3d6ace1267c67a5d8508f2cdc23a4f1bf772a97"
+    }
+  ],
+  "live_model_scope": "structured client smoke plus bounded real PR review/refute; not a code-review quality benchmark",
+  "hosted_ci_first_pr_head": {
+    "head_sha": "8cf40a768e4841548aec8ab185ec1917df6a4090",
+    "url": "https://github.com/vchamarthi/sir-patchington/actions/runs/39804561129",
+    "conclusion": "success",
+    "scope": "GitHub CLI metadata readback; not App-based CI collector qualification"
+  },
+  "review_pipeline": "v4-numbered-source-and-app-identity",
+  "manual_live_first_run": {
+    "repo": "vchamarthi/sir-patchington",
+    "pr": 1,
+    "head_sha": "fceb92b269108ea7c8d9d4cb4ce4903ecbb31325",
+    "pipeline": "v2-source-grounded-review",
+    "state": "needs_owner",
+    "model": "claude-sonnet-5-5",
+    "review_calls": 1,
+    "refute_calls": 1,
+    "model_supported_findings": 2,
+    "known_policy_false_positives": 1,
+    "retrieved_context_files": 12,
+    "retrieved_context_bytes": 99761,
+    "changed_files": 24,
+    "ci_source": "actual App-based GitHub REST collector",
+    "ci_state": "success",
+    "workflow_count": 1,
+    "job_count": 1,
+    "step_count": 17,
+    "run_id": 39805362063,
+    "live_failure_logs_exercised": false,
+    "posted": false
+  },
+  "github_app_scope": {
+    "verified_via_actual_app_api": true,
+    "repository_count_per_installation": 1,
+    "reader_permissions": {
+      "actions": "read",
+      "checks": "read",
+      "contents": "read",
+      "metadata": "read",
+      "pull_requests": "read",
+      "statuses": "read"
+    },
+    "reporter_permissions": {
+      "metadata": "read",
+      "pull_requests": "write"
+    },
+    "separate_apps_and_installations": true,
+    "code_write_granted": false
+  },
+  "terminal_error_reproduction": {
+    "transport": "mocked signed 206 tail response, not a live failure log",
+    "tail_bytes": 64000,
+    "matching_error_lines": 25,
+    "retained_error_lines": 20,
+    "final_ModuleNotFoundError_retained": false,
+    "diagnosis": "Unknown from the observed evidence"
+  },
+  "manual_second_live_run": {
+    "head_sha": "4c054a72b3f5e406bdf3ea24f6fe08596df3a83e",
+    "pipeline": "v3-coverage-and-ci-policy",
+    "state": "needs_owner",
+    "model_supported_findings": 0,
+    "needs_evidence_findings": 1,
+    "limitation": "Critic cited line244 for source quote at245; exact gate withheld the proposal",
+    "ci_state": "success",
+    "comment_id": "6345360996",
+    "comment_url": "https://github.com/vchamarthi/sir-patchington/pull/1#issuecomment-6345360996",
+    "rendered_ci_dropdown_verified": true,
+    "nullable_app_attribution_observed": true,
+    "body_readback_exact": true,
+    "actor_identity_readback_verified": true,
+    "replay_retained_comment_id": true,
+    "report_body_sha256": "8e2c09ef0b11a0a914a6a1b9bdb811b4020e9b6dd7b4e5d4786a06e8a18abe7c"
+  }
+}
