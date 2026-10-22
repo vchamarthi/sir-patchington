@@ -183,6 +183,28 @@ def model_snapshot(snapshot: ChangeSnapshot, policy: RepoPolicy) -> dict:
     return result
 
 
+def model_context(context: list[dict]) -> list[dict]:
+    """Add a numbered model view while preserving canonical content and source digests."""
+    result = copy.deepcopy(context)
+    for item in result:
+        item["numbered_content"] = "\n".join(
+            f"{number}: {line}" for number, line in enumerate(item["content"].splitlines(), 1))
+    return result
+
+
+def _changed_file_kind(path: str) -> int:
+    """Changed runtime source precedes test fixtures and documents in the shared budget."""
+    source = PurePosixPath(path)
+    if any(part in {"test", "tests"} for part in source.parts) or source.stem.startswith("test_") \
+            or source.stem.endswith("_test"):
+        return 1
+    if source.suffix.lower() in {".py", ".pyx", ".js", ".jsx", ".ts", ".tsx", ".c", ".cpp",
+                                  ".h", ".hpp", ".cu", ".rs", ".go", ".java", ".cs", ".kt",
+                                  ".swift", ".rb", ".php", ".sh"}:
+        return 0
+    return 2
+
+
 class ContextIndex:
     def __init__(self) -> None:
         self._items: dict[tuple, list[dict]] = {}
@@ -286,6 +308,7 @@ class ContextIndex:
         candidates = [(item, reasons(item)) for item in items]
         ranked = sorted(candidates, key=lambda pair: (
             min((priorities[reason] for reason in pair[1]), default=len(priorities)),
+            _changed_file_kind(pair[0]["path"]) if "changed_file" in pair[1] else 0,
             pair[0]["path"]))
         result, used, omissions = [], 0, []
         for item, selection_reasons in ranked:

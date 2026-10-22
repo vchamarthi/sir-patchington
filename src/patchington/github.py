@@ -9,6 +9,7 @@ import shutil
 import tempfile
 import time
 from collections.abc import Callable
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 from urllib.parse import quote
@@ -92,6 +93,19 @@ def _review_limitations_section(limitations: tuple[str, ...]) -> str:
             + "".join(rows) + "\n</details>\n")
 
 
+@dataclass(frozen=True)
+class ReviewActor:
+    id: int
+    login: str
+    app_id: int
+
+    def __post_init__(self):
+        _positive_id(self.id)
+        _positive_id(self.app_id)
+        if not isinstance(self.login, str) or not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,99}\[bot\]", self.login):
+            raise ValueError("Invalid authenticated review actor")
+
+
 class AppTokenProvider:
     """Mint a new single-repository token per request; never reuse a broader scope."""
 
@@ -117,6 +131,44 @@ class AppTokenProvider:
         return self._mint(installation_id, repository_id,
                           {"actions": "read", "checks": "read", "statuses": "read",
                            "metadata": "read"})
+
+    def _actor_get(self, path: str, token: str) -> dict:
+        try:
+            with self._http.stream("GET", API_URL + path, headers=_headers(token)) as raw:
+                content = bytearray()
+                for block in raw.iter_bytes():
+                    if len(content) + len(block) > 65_536:
+                        raise GitHubError("Review actor response exceeds bound")
+                    content.extend(block)
+                response = httpx.Response(raw.status_code, content=bytes(content), request=raw.request)
+        except httpx.TransportError as exc:
+            raise GitHubTransientError("Review actor lookup temporarily unavailable") from exc
+        except httpx.HTTPError as exc:
+            raise GitHubError("Review actor lookup failed") from exc
+        value = _json_response(response)
+        if response.status_code != 200 or not isinstance(value, dict):
+            raise GitHubError("Invalid review actor response")
+        return value
+
+    def review_actor(self, installation_id: int, repository_id: int) -> ReviewActor:
+        """Bind the App JWT identity to its immutable numeric Bot user identity."""
+        _positive_id(installation_id)
+        _positive_id(repository_id)
+        now = int(time.time())
+        app_jwt = jwt.encode({"iat": now - 60, "exp": now + 540, "iss": str(self.app_id)},
+                             self._key, algorithm="RS256")
+        app = self._actor_get("/app", app_jwt)
+        slug = app.get("slug")
+        if (type(app.get("id")) is not int or app["id"] != self.app_id
+                or not isinstance(slug, str) or not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,99}", slug)):
+            raise GitHubError("Authenticated review App identity mismatch")
+        login = slug + "[bot]"
+        token = self._mint(installation_id, repository_id, {"metadata": "read"})
+        user = self._actor_get("/users/" + quote(login, safe=""), token)
+        if (type(user.get("id")) is not int or user["id"] <= 0
+                or user.get("login") != login or user.get("type") != "Bot"):
+            raise GitHubError("Authenticated review Bot identity mismatch")
+        return ReviewActor(user["id"], login, self.app_id)
 
     def _mint(self, installation_id: int, repository_id: int,
               permissions: dict[str, str]) -> str:
@@ -172,6 +224,10 @@ class SplitTokenProvider:
 
     def review_token(self, installation_id: int, repository_id: int) -> str:
         return self._write.review_token(self._installation(installation_id, repository_id),
+                                        repository_id)
+
+    def review_actor(self, installation_id: int, repository_id: int) -> ReviewActor:
+        return self._write.review_actor(self._installation(installation_id, repository_id),
                                         repository_id)
 
     def ci_token(self, installation_id: int, repository_id: int) -> str:
@@ -565,6 +621,14 @@ class GitHubClient:
         app_id = getattr(self._tokens, "app_id", None)
         if app_id is None:
             raise GitHubError("Review reconciliation requires an authenticated App identity")
+        actor_lookup = getattr(self._tokens, "review_actor", None)
+        actor = None
+        if actor_lookup is not None:
+            if not callable(actor_lookup):
+                raise GitHubError("Invalid authenticated review actor lookup")
+            actor = actor_lookup(policy.installation_id, policy.repository_id)
+            if not isinstance(actor, ReviewActor) or actor.app_id != app_id:
+                raise GitHubError("Review actor belongs to another App")
         current = self._pull(policy, snapshot.pr)
         if current["head"]["sha"] != snapshot.head_sha or current["base"]["sha"] != snapshot.base_sha:
             raise GitHubError("Stale review snapshot")
@@ -584,9 +648,20 @@ class GitHubClient:
         if len(body.encode()) > 60_000:
             raise GitHubError("Review body exceeds publication bound")
         comments = self._pages(policy, f"/repos/{policy.repo}/issues/{snapshot.pr}/comments?per_page=100")
-        owned = [c for c in comments if c.get("body", "").startswith(marker)
-                 and (c.get("performed_via_github_app") or {}).get("id") == app_id
-                 and (c.get("user") or {}).get("type") == "Bot"]
+        def owned_comment(comment):
+            user = comment.get("user") or {}
+            performed = comment.get("performed_via_github_app")
+            if (not isinstance(user, dict) or user.get("type") != "Bot"
+                    or not comment.get("body", "").startswith(marker)):
+                return False
+            app_matches = isinstance(performed, dict) and performed.get("id") == app_id
+            if actor is None:
+                return app_matches  # Legacy custom providers still require non-null App proof.
+            return (type(user.get("id")) is int and user["id"] == actor.id
+                    and user.get("login") == actor.login
+                    and (performed is None or app_matches))
+
+        owned = [comment for comment in comments if owned_comment(comment)]
         if len(owned) > 1:
             raise GitHubError("Duplicate owned review markers require reconciliation")
         if owned and owned[0]["body"] == body:

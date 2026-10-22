@@ -124,3 +124,9 @@ Posted reports expose recorded coverage gaps before the findings and include a
 collapsed limitations section. A limited review must not look complete just
 because it has source citations or successful CI. The review-policy version
 changes when prompt policy changes, invalidating older generations and reports.
+
+Within the changed-file group, implementation source takes budget priority over
+tests and documents, so large qualification records cannot displace runtime
+code. The model receives an additional numbered source view. Original content
+and digests remain canonical, and citations must match original lines without
+number prefixes. The existing model-input limit still applies.

@@ -1,17 +1,17 @@
 {
   "as_of": "2026-10-22",
-  "recorded_at": "2026-10-22T16:01:35.951244+00:00",
-  "status": "local_controls_and_bounded_live_app_review_validated",
+  "recorded_at": "2026-10-22T16:17:34.896201+00:00",
+  "status": "local_controls_live_app_identity_and_review_paths_validated",
   "main_suite": {
-    "passed": 359,
+    "passed": 375,
     "skipped": 15,
     "failed": 0,
-    "seconds": 67.764,
+    "seconds": 78.433,
     "skip_reasons": {
       "set PATCHINGTON_TEST_SERVICE_IMAGE after building the service image": 2,
       "PATCHINGTON_TEST_DATABASE_URL is required for real PostgreSQL tests": 13
     },
-    "junit_sha256": "c46f15cf5f30d4173e478e2ce97d64729010f2fb3864bf4d821cdd10c6c472c9"
+    "junit_sha256": "752e112585de34e17fef3b7633e0b1b154b6ae3506327686f1e2d4566f10712b"
   },
   "checks": [
     "uv run ruff check src tests deploy scripts",
@@ -32,7 +32,11 @@
     "version and generation subprocesses disable client auto-updating without relaxing the exact pin",
     "generation preserves macOS Keychain account identity without forwarding service or provider secrets",
     "partial-context review limitations reach the posted summary with bounded literal rendering",
-    "prior review-policy generations and queued reports are rejected after policy changes"
+    "prior review-policy generations and queued reports are rejected after policy changes",
+    "authenticated App JWT plus metadata-only token binds exact numeric Bot identity when App attribution is null",
+    "App-owned marker reconciliation does not adopt other numeric Bot identities or conflicting App attribution",
+    "changed runtime source precedes changed tests and documents within the retrieval budget",
+    "numbered model view preserves canonical source content and source digests for exact citation checks"
   ],
   "simulated": [
     "main-suite model outputs",
@@ -67,10 +71,10 @@
     "CI evidence is a bounded review-time snapshot, not required-check certification",
     "PostgreSQL/service-image prerequisites skipped in this run",
     "Large PR context is still limited to 100 KB whole-file retrieval and 100 KB snapshot text; changed modules may be omitted",
-    "New coverage/CI-policy reporting version awaits its separate fresh-head live run and posted-comment readback",
-    "Live failing-job log transport and diagnosis were not exercised on this successful PR"
+    "Live failing-job log transport and diagnosis were not exercised on this successful PR",
+    "Latest numbered-source context and actor revision awaits its fresh-head live run; previous-head live evidence is recorded separately"
   ],
-  "input_manifest_digest": "2c309fa30a9dc29320dbcc11aabb6361f723874d32e606bb4608e1f436b50e63",
+  "input_manifest_digest": "305ebc5035c6fc6977525f43b4f9029f958e9da77744e7c8e78868458fb26530",
   "input_sha256": [
     {
       "path": ".dockerignore",
@@ -122,15 +126,15 @@
     },
     {
       "path": "docs/GITHUB.md",
-      "sha256": "1f02f22abc29d53a5a419cbc11ae6b54824104eff8b40628e26b05d2237a205c"
+      "sha256": "9fe71a9e4a7d1a7a9c11f1b01f4bbe550e1ba6ee42b058d7bfe423e556b54b8d"
     },
     {
       "path": "docs/QUALIFICATION.md",
-      "sha256": "94a32d235f250ac33adb35e409fcde58c8fe459d1adec123864db396b45ff6d9"
+      "sha256": "6fc76d7b79bab223fdb58c6a04e340fd2b09fdd36a3007eb857786923d7e918e"
     },
     {
       "path": "docs/REVIEW-PIPELINE.md",
-      "sha256": "96607e6b96fff7e63aeb48e4bcdfe6c828ad69ae13302d63ba290785bc4d2e68"
+      "sha256": "235f635a923ed7608e9ae99f6a954c726b9ae48316726ac80fb842504ca59426"
     },
     {
       "path": "docs/examples/review-ci-summary.md",
@@ -170,7 +174,7 @@
     },
     {
       "path": "src/patchington/context.py",
-      "sha256": "f4536ec9792a05b0f0429c717f48304248cab6d9099bb75f5561d7133031a5c1"
+      "sha256": "3940c571270124ba9f217ece6586643cad0862b70e27e3d5337db98b2309bbbc"
     },
     {
       "path": "src/patchington/contracts.py",
@@ -186,7 +190,7 @@
     },
     {
       "path": "src/patchington/github.py",
-      "sha256": "53d744fa6d2a885345bea5120bb7dc87abc4a9fb3898db34193d187deaab8fbb"
+      "sha256": "e6b0dfa06c56cefd7e16b45fd188f72041acbaae2b269172f5c19965da321824"
     },
     {
       "path": "src/patchington/gitwork.py",
@@ -198,7 +202,7 @@
     },
     {
       "path": "src/patchington/pipeline.py",
-      "sha256": "cee35abb458fb53a64944555fd52fcdd722279f4fe2e316922b0aab89bb266e5"
+      "sha256": "04b98450c1198d10f4e001db3a7b1a8a178a0059180c5ef24a1b229af81e23d2"
     },
     {
       "path": "src/patchington/probes.py",
@@ -214,7 +218,7 @@
     },
     {
       "path": "src/patchington/review.py",
-      "sha256": "132edaaec60b517f889a8d7d927e0afc0a12e6f333333771722e88350818c3f2"
+      "sha256": "6d8e78c53fa90277d9bd4c4a4c538d2504540a7206120fd99405b230daea1629"
     },
     {
       "path": "src/patchington/store.py",
@@ -250,7 +254,7 @@
     },
     {
       "path": "tests/test_context_selection.py",
-      "sha256": "0740cae8a2fa34b1d116e0e91ef7d1925c184305ccbacb99c98cb7a0f9423a7f"
+      "sha256": "f2794b83301b8e1b3c5723a9406cb0fb44150797ae1c47da5c79e108e4fa3200"
     },
     {
       "path": "tests/test_contracts.py",
@@ -289,6 +293,10 @@
       "sha256": "980c3378e90e6735f7434cecd6d461b8dafa90ca3af787ce63fe65546af3975d"
     },
     {
+      "path": "tests/test_numbered_review_context.py",
+      "sha256": "7a8b3f070d1ab436c73796a129dbdeb493bee440172201e1d8bd7515741de33d"
+    },
+    {
       "path": "tests/test_outbox_api.py",
       "sha256": "745a6d8e92f0a3e5929549c580878e2a2ffd2f356679a36809d320b09e6dc333"
     },
@@ -311,6 +319,10 @@
     {
       "path": "tests/test_reconciliation_schedule.py",
       "sha256": "07e201935cca5d43f3446e0153cc08b12681f3774a6487a29ce55adf417592a1"
+    },
+    {
+      "path": "tests/test_review_actor.py",
+      "sha256": "65f03006ec5b7463e00d24825edb215553edaed541b8f3d3dc8a18c369aeeeb1"
     },
     {
       "path": "tests/test_review_ci_pipeline.py",
@@ -344,7 +356,7 @@
     "conclusion": "success",
     "scope": "GitHub CLI metadata readback; not App-based CI collector qualification"
   },
-  "review_pipeline": "v3-coverage-and-ci-policy",
+  "review_pipeline": "v4-numbered-source-and-app-identity",
   "manual_live_first_run": {
     "repo": "vchamarthi/sir-patchington",
     "pr": 1,
@@ -393,5 +405,22 @@
     "retained_error_lines": 20,
     "final_ModuleNotFoundError_retained": false,
     "diagnosis": "Unknown from the observed evidence"
+  },
+  "manual_second_live_run": {
+    "head_sha": "4c054a72b3f5e406bdf3ea24f6fe08596df3a83e",
+    "pipeline": "v3-coverage-and-ci-policy",
+    "state": "needs_owner",
+    "model_supported_findings": 0,
+    "needs_evidence_findings": 1,
+    "limitation": "Critic cited line244 for source quote at245; exact gate withheld the proposal",
+    "ci_state": "success",
+    "comment_id": "6345360996",
+    "comment_url": "https://github.com/vchamarthi/sir-patchington/pull/1#issuecomment-6345360996",
+    "rendered_ci_dropdown_verified": true,
+    "nullable_app_attribution_observed": true,
+    "body_readback_exact": true,
+    "actor_identity_readback_verified": true,
+    "replay_retained_comment_id": true,
+    "report_body_sha256": "8e2c09ef0b11a0a914a6a1b9bdb811b4020e9b6dd7b4e5d4786a06e8a18abe7c"
   }
 }

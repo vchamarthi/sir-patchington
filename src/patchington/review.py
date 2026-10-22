@@ -8,7 +8,7 @@ from collections import defaultdict
 
 from .contracts import ChangeSnapshot, Finding, ReviewVerification
 
-REVIEW_PIPELINE_VERSION = "v3-coverage-and-ci-policy"
+REVIEW_PIPELINE_VERSION = "v4-numbered-source-and-app-identity"
 
 
 def added_lines(patch: str) -> set[int]:

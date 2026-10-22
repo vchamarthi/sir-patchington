@@ -25,7 +25,7 @@ Paginated top-level human review summaries are included as synthetic `review:<id
 
 `fetch` initializes a fresh private repository, fetches the exact base/head SHA, and checks their commit identities. It constructs the Git URL from the authorized repository rather than trusting clone URLs supplied by PR content. It creates a fresh environment with no inherited credentials or Git configuration, disables hooks, credential helpers, URL redirects, file/SSH transports, submodules, fsmonitor, and automatic maintenance, and supplies an HTTPS header only to the fetch/push subprocess. Tokens never appear in command arguments or persistent remote configuration. Git output and execution time are bounded. Place fetch storage under a service disk quota: these process limits do not certify a maximum remote pack size.
 
-`post_review` is disabled by default. It validates supported findings against current right-side diff anchors and writes one stable App-owned issue-comment summary with exact-commit file links. Marker ownership requires both Bot identity and the authenticated App ID; a lookalike marker from another actor is ignored. Identical content performs no write, changed content updates the owned comment, and duplicate owned markers require reconciliation. Failed writes are not blindly retried; the next invocation lists markers again. Queue per-PR exclusion is still required to prevent simultaneous comment creators. These are summaries with validated source links, not GitHub inline review-thread creation.
+`post_review` is disabled by default. It validates supported findings against current right-side diff anchors and writes one stable App-owned issue-comment summary with exact-commit file links. Marker ownership binds to the authenticated App through its exact numeric Bot ID and login. The provider verifies the App with a JWT, then resolves its Bot using a single-repository metadata-only token. Non-null App attribution must also match; nullable attribution does not bypass the Bot identity check. A lookalike marker from another actor is ignored. Identical content performs no write, changed content updates the owned comment, and duplicate owned markers require reconciliation. Failed writes are not blindly retried; the next invocation lists markers again. Queue per-PR exclusion is still required to prevent simultaneous comment creators. These are summaries with validated source links, not GitHub inline review-thread creation.
 
 Reports with recorded limitations display a visible coverage warning and a collapsed review-limitations section before the findings. The publisher uses the completed review record, renders text literally, and bounds the displayed entries; omitted text is explicit. An updated review-policy version rejects earlier cached generations and queued reports.
 
@@ -108,3 +108,9 @@ Primary API references checked on 2026-10-21:
 - [GraphQL PR and review-thread schema](https://docs.github.com/en/graphql/reference/pulls)
 - [Issue comments on PRs](https://docs.github.com/en/rest/issues/comments#create-an-issue-comment)
 - [Git expected-value leases and atomic pushes](https://git-scm.com/docs/git-push)
+
+Live qualification found that GitHub can return null App attribution on a real
+App-authored comment. Authenticated actor lookup covers that case; lookup
+failures stop publication. Custom providers without actor lookup still require
+the original non-null App-ID proof. Actor lookups are bounded read requests and
+never authorize a model-selected identity.

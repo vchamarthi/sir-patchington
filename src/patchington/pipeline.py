@@ -10,7 +10,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from .ci import model_ci_context
-from .context import ContextIndex, model_snapshot, route
+from .context import ContextIndex, model_context, model_snapshot, route
 from .contracts import (
     Approval,
     Candidate,
@@ -238,7 +238,7 @@ class Pipeline:
             incomplete_context = bool(safe_snapshot["context_omissions"] or missing_context)
             payload = {
                 "snapshot": safe_snapshot,
-                "context": context,
+                "context": model_context(context),
                 "requirements": policy.requirements,
                 "risk": plan,
                 "coverage": coverage,
@@ -247,6 +247,8 @@ class Pipeline:
                     "Report concrete defects introduced by added lines, with a triggering input, "
                     "expected behavior and source evidence. Inspect supplied dependencies and tests "
                     "for intentional behavior or existing guards. Abstain when context is missing. "
+                    "Use the 1-based line numbers in numbered_content for findings and citations. "
+                    "Quote original content lines without their numeric prefixes. "
                     "The CI policy intentionally treats skipped, neutral and missing conclusions as "
                     "unknown because they do not establish executed success. Do not report that "
                     "mapping as a defect unless it violates trusted owner requirements. "
@@ -279,6 +281,8 @@ class Pipeline:
                         "Supported AND refuted verdicts require exact source citations from supplied "
                         "context, including the finding line: path, source_digest, start_line, "
                         "end_line, quote (whole lines joined with newline, no final newline). "
+                        "Use the 1-based numbers in numbered_content; quote original content "
+                        "lines without their numeric prefixes. "
                         "Use needs_evidence or requires_owner when unresolved. A source citation "
                         "is not an executed test. Do not rewrite a proposal or invent evidence."
                     ),

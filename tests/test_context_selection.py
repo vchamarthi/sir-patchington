@@ -143,3 +143,27 @@ def test_selection_keeps_whole_utf8_files_inside_byte_budget():
     assert rows == []
     assert report["retrieved_bytes"] == 0
     assert {"path": "src/shop/service.py", "reason": "retrieval_budget"} in report["omissions"]
+
+
+def test_changed_implementation_precedes_changed_tests_and_large_qualification_documents():
+    files = {"docs/aaa_qualification.json": "q" * 70_000,
+             "src/runtime.py": "# implementation\n" + "x = 1\n" * 4_999,
+             "tests/aaa_runtime.py": "# fixture test\n" + "x = 2\n" * 4_999}
+    rows, report = select(files, *files, budget=100_000)
+    assert rows[0]["path"] == "src/runtime.py"
+    assert {"path": "docs/aaa_qualification.json", "reason": "retrieval_budget"} in report["omissions"]
+    assert {row["path"] for row in rows} == {"src/runtime.py", "tests/aaa_runtime.py"}
+
+
+def test_model_context_adds_explicit_line_numbers_without_mutating_canonical_evidence():
+    import copy
+    import hashlib
+
+    rows, _ = select({"src/service.py": "first = 1\n\nlast = 'é'\n"}, "src/service.py")
+    before = copy.deepcopy(rows)
+    viewed = context.model_context(rows)
+    assert viewed[0]["numbered_content"] == "1: first = 1\n2: \n3: last = 'é'"
+    assert viewed[0]["content"] == rows[0]["content"]
+    assert viewed[0]["digest"] == hashlib.sha256(rows[0]["content"].encode()).hexdigest()
+    viewed[0]["symbols"].append("model callback mutation")
+    assert rows == before

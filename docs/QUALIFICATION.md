@@ -2,7 +2,7 @@
 
 ## Review pipeline and CI update — 2026-10-22
 
-The current local source passed **359 tests**, with **15 explicit skips**: 13
+The current local source passed **375 tests**, with **15 explicit skips**: 13
 PostgreSQL tests require a disposable test database and two service-image tests
 require a rebuilt image. Real Docker original/candidate checks and the offline
 intake → review → approval → local Git publication → rereview demonstration ran
@@ -60,6 +60,21 @@ in the comment. The current update makes those limitations visible, clarifies
 the intentional CI policy and invalidates older cached generations. A subsequent
 manual run and posted-comment readback are qualified separately from this
 pre-publication record.
+
+## Additional manual integration findings — 2026-10-22
+
+The next real run on `4c054a7` posted the collapsed CI report and coverage
+warning. The model's remaining proposal used an off-by-one source line; the
+exact citation gate withheld it as `needs_evidence`. This is a false-negative
+limitation, not proof that the change has no defects. The current source adds
+coordinator-provided line numbers and prioritizes changed runtime source ahead
+of large documents. New mocked regressions failed before those changes.
+
+GitHub returned null `performed_via_github_app` metadata on the App-authored
+comment. The publisher now verifies the App using its JWT and binds ownership
+to the server-resolved numeric Bot ID and login. Live replay retained comment
+`6345360996` and verified its exact body and authenticated actor. This qualifies
+that observed reconciliation path, not production deployment isolation.
 
 ## Original baseline — 2026-10-21
 
