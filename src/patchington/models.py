@@ -96,7 +96,9 @@ class ClaudeCLI:
         )
         if len(prompt.encode()) > 500_000:
             raise ModelError("model input exceeds budget")
-        env = {k: os.environ[k] for k in ("PATH", "HOME", "LANG", "TMPDIR") if k in os.environ}
+        # macOS Keychain account lookup needs the invoking account's identity.
+        env = {k: os.environ[k] for k in ("PATH", "HOME", "LANG", "TMPDIR", "USER", "LOGNAME")
+               if k in os.environ}
         env["DISABLE_AUTOUPDATER"] = "1"
         argv = [
             self.executable,

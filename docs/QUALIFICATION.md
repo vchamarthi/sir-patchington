@@ -2,7 +2,7 @@
 
 ## Review pipeline and CI update — 2026-10-22
 
-The current local source passed **355 tests**, with **15 explicit skips**: 13
+The current local source passed **356 tests**, with **15 explicit skips**: 13
 PostgreSQL tests require a disposable test database and two service-image tests
 require a rebuilt image. Real Docker original/candidate checks and the offline
 intake → review → approval → local Git publication → rereview demonstration ran
@@ -31,10 +31,14 @@ must not be read as new measurements of this source revision.
 No live model-quality benchmark or deployment was performed. Claude Code
 `2.1.306` is now installed and its macOS code signature verifies; the exact
 adapter pin is unchanged. A separate live subscription preflight confirmed the
-authorized first-party Team account and usage credits disabled. Generation has
-not yet been qualified in this record. Both adapter subprocess environments
-force `DISABLE_AUTOUPDATER=1` so a review cannot update its own qualified client;
-two behavioral failures preceded that fix. No provider fallback was introduced.
+authorized first-party Team account and usage credits disabled. The actual
+adapter then returned schema-validated `CLAUDE_CODE_OK` from Sonnet 5.5. Its first
+live attempt exposed missing `USER`/`LOGNAME` account identity for macOS Keychain;
+a behavioral regression preceded that fix and service/provider secrets remain
+excluded. This is a structured client smoke check, not a code-review quality
+evaluation. Both adapter subprocess environments force `DISABLE_AUTOUPDATER=1`
+so a review cannot update its own qualified client; two behavioral failures
+preceded that fix. No provider fallback was introduced.
 Operational CI inspection still needs Actions read permission on the dedicated
 read App; no live App enrollment is claimed here. Review posting remains
 explicitly policy-controlled and candidate publication requires exact approval.

@@ -1,17 +1,17 @@
 {
   "as_of": "2026-10-22",
-  "recorded_at": "2026-10-22T15:24:30.810789+00:00",
-  "status": "local_review_controls_and_mocked_ci_validated",
+  "recorded_at": "2026-10-22T15:29:40.347426+00:00",
+  "status": "local_review_controls_and_live_claude_client_validated",
   "main_suite": {
-    "passed": 355,
+    "passed": 356,
     "skipped": 15,
     "failed": 0,
-    "seconds": 65.816,
+    "seconds": 64.082,
     "skip_reasons": {
       "set PATCHINGTON_TEST_SERVICE_IMAGE after building the service image": 2,
       "PATCHINGTON_TEST_DATABASE_URL is required for real PostgreSQL tests": 13
     },
-    "junit_sha256": "02ed9cf24a453bc804bba3a5446787c57a580d79b691fa9b7241a4cb9e3af878"
+    "junit_sha256": "a2c9a7dd41d01fe9e7251cc69e0ef9c514594e6e717dd37852b6a11dc07be2f1"
   },
   "checks": [
     "uv run ruff check src tests deploy scripts",
@@ -29,25 +29,35 @@
     "exact-head Actions jobs, failing steps, diagnoses and bounded sanitized log tails",
     "read-only purpose token and unauthenticated qualified log downloads",
     "real local Docker repair evidence and disposable Git approval/publication demo",
-    "version and generation subprocesses disable client auto-updating without relaxing the exact pin"
+    "version and generation subprocesses disable client auto-updating without relaxing the exact pin",
+    "generation preserves macOS Keychain account identity without forwarding service or provider secrets"
   ],
   "simulated": [
-    "model outputs",
-    "GitHub metadata and HTTP transport",
-    "GitHub comments and CI results"
+    "main-suite model outputs",
+    "main-suite GitHub metadata and HTTP transport",
+    "main-suite GitHub comments and CI results"
   ],
-  "live_model_generation": false,
+  "live_model_generation": true,
   "live_github_ci_inspected": false,
   "production_deployed": false,
   "model_client": {
     "approved_version": "2.1.306",
     "observed_installed_version": "2.1.306",
     "model": "claude-sonnet-5-5",
-    "live_qualification": "version and macOS signature verified; authorized Team subscription and credits-disabled preflight passed; generation not yet qualified",
+    "live_qualification": "macOS signature verified; authorized Team subscription and credits-disabled preflight passed; schema-validated CLAUDE_CODE_OK from actual tool-free Sonnet 5.5 adapter",
     "fallback_enabled": false,
     "previous_observed_installed_version": "2.1.304",
     "binary_sha256": "b5d795b7760032d79954b55a9cd1876dcf3a8dc9608fd6bb9f618593f69fd44b",
-    "adapter_auto_updater_disabled": true
+    "adapter_auto_updater_disabled": true,
+    "smoke_check": {
+      "as_of": "2026-10-22T15:28:00.628962+00:00",
+      "client_version": "2.1.306",
+      "model": "claude-sonnet-5-5",
+      "result": "CLAUDE_CODE_OK",
+      "seconds": 2.39,
+      "scope": "live structured tool-free client smoke check; not code-review quality or GitHub integration",
+      "fallback_enabled": false
+    }
   },
   "remaining_limits": [
     "No measured live-model precision, recall or false-positive reduction",
@@ -56,7 +66,7 @@
     "Read App must grant Actions read; live permission/transport integration not qualified",
     "PostgreSQL/service-image prerequisites skipped in this run"
   ],
-  "input_manifest_digest": "8b148fc13349dc0fc89d52a7b56ce936236ecf43dea639cd478513e39fbf1da2",
+  "input_manifest_digest": "d25d578611612a2ff8ae5f12685b8291f3177741fcb9cabd48144b14fbeb59d0",
   "input_sha256": [
     {
       "path": ".dockerignore",
@@ -108,11 +118,11 @@
     },
     {
       "path": "docs/GITHUB.md",
-      "sha256": "8ea44678daaa7ab182b454893ce49658da0ec25a5e4f67ac4691bb521dc63006"
+      "sha256": "b5d1eb817c85464ea2586f342ace887adccf6d13d151481d5bdf73ffeaf94046"
     },
     {
       "path": "docs/QUALIFICATION.md",
-      "sha256": "81fdbda473cdcbb1f65b50774acb0dafa6f4a4b812498b94bd308653853eaf8d"
+      "sha256": "31c85e428a68ffe305387171186e0f3aa0b34ae7457bef7233ec4d9fc4d3684f"
     },
     {
       "path": "docs/REVIEW-PIPELINE.md",
@@ -180,7 +190,7 @@
     },
     {
       "path": "src/patchington/models.py",
-      "sha256": "e177da89de878eb2eae06d8b992c764f2f39a441908b2d7b4a66c15bbe0b8912"
+      "sha256": "8404b442a08dd5c50d44dad58211e8f0b2be31d484766df3aa5604d338a0572f"
     },
     {
       "path": "src/patchington/pipeline.py",
@@ -272,7 +282,7 @@
     },
     {
       "path": "tests/test_models_security.py",
-      "sha256": "2f99150acfea65d27fd677a24f8015ffc5cfbb0a84341b74999f42c2b2cb662c"
+      "sha256": "980c3378e90e6735f7434cecd6d461b8dafa90ca3af787ce63fe65546af3975d"
     },
     {
       "path": "tests/test_outbox_api.py",
@@ -322,5 +332,12 @@
       "path": "uv.lock",
       "sha256": "482135057e6e3033cb45e4d4c3d6ace1267c67a5d8508f2cdc23a4f1bf772a97"
     }
-  ]
+  ],
+  "live_model_scope": "structured client smoke check only; real PR model review remains unqualified",
+  "hosted_ci_first_pr_head": {
+    "head_sha": "8cf40a768e4841548aec8ab185ec1917df6a4090",
+    "url": "https://github.com/vchamarthi/sir-patchington/actions/runs/39804561129",
+    "conclusion": "success",
+    "scope": "GitHub CLI metadata readback; not App-based CI collector qualification"
+  }
 }
