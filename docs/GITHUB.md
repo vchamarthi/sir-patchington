@@ -29,6 +29,12 @@ Paginated top-level human review summaries are included as synthetic `review:<id
 
 Reports with recorded limitations display a visible coverage warning and a collapsed review-limitations section before the findings. The publisher uses the completed review record, renders text literally, and bounds the displayed entries; omitted text is explicit. An updated review-policy version rejects earlier cached generations and queued reports.
 
+Function/hunk reviews also post a Context coverage dropdown from the immutable
+controller record. It binds the exact repository and revision, reports supplied
+added lines/hunks, caller/guard/test excerpt counts and original source ranges.
+It measures supplied evidence rather than a claim of complete review. Paths are
+rendered as bounded literal HTML; model-authored numbers do not populate it.
+
 Model-authored text renders in dynamic-length CommonMark code spans. Embedded Markdown/HTML/images, arbitrary links, and mentions remain literal; source links are constructed by trusted code from validated commit/path/line identities. Tests parse the rendered structure to verify that only the intended source anchor becomes a link.
 
 `checks` returns paginated runs/statuses for the exact requested SHA with their actual statuses and conclusions. Pending or missing conclusions remain pending or missing; this method does not turn CI observations into local verification or a merge decision.

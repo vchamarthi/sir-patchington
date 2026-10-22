@@ -7,8 +7,9 @@ import re
 from collections import defaultdict
 
 from .contracts import ChangeSnapshot, Finding, ReviewVerification
+from .review_context import line_selected as _line_selected
 
-REVIEW_PIPELINE_VERSION = "v4-numbered-source-and-app-identity"
+REVIEW_PIPELINE_VERSION = "v5-function-hunk-context"
 
 
 def added_lines(patch: str) -> set[int]:
@@ -66,6 +67,8 @@ def select_proposals(findings: list[Finding], snapshot: ChangeSnapshot,
             reason = "source_not_selected"
         elif finding.line > len(sources[finding.path]["content"].splitlines()):
             reason = "invalid_source_anchor"
+        elif not _line_selected(sources[finding.path], finding.line):
+            reason = "source_line_not_selected"
         key = (finding.path, finding.line, _normalized(finding.claim),
                _normalized(finding.trigger), _normalized(finding.expected))
         if not reason and key in selected:
@@ -117,6 +120,8 @@ def verify_judgments(proposals: dict[str, Finding], verification: ReviewVerifica
                             or citation.end_line > len(lines)
                             or "\n".join(lines[citation.start_line - 1:citation.end_line])
                             != citation.quote):
+                        valid = False
+                    if not _line_selected(source, citation.start_line, citation.end_line):
                         valid = False
                     if (citation.path == proposal.path
                             and citation.start_line <= proposal.line <= citation.end_line):

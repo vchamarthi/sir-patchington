@@ -99,5 +99,7 @@ def test_incomplete_review_context_is_disclosed_with_findings_in_published_summa
     assert "**Review coverage is limited.**" in body
     assert body.index("Review coverage is limited") < body.index("<details>")
     assert "<details><summary>Review limitations</summary>" in body
+    assert '<details><summary>Context coverage</summary>' in body
+    assert 'Added lines supplied' in body
     assert all(limitation in body for limitation in record["limitations"])
     assert "CI status and failures" in body and FINDING["claim"] in body

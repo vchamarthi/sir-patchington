@@ -1,8 +1,38 @@
 # Qualification record
 
-## Review pipeline and CI update — 2026-10-22
+## Function and hunk context — 2026-10-22
 
-The current local source passed **375 tests**, with **15 explicit skips**: 13
+The production PR path now selects original-line excerpts around changed hunks
+and enclosing Python functions. It reserves source budget for callers, guards,
+tests, contracts and guidance, then redistributes unused space. Canonical source
+and its full-file hash remain local; finding admission and citation validation
+reject lines outside the exact model-visible ranges. `v5-function-hunk-context`
+invalidates older review generations and reports. Publication adds a bounded,
+revision-bound Context coverage dropdown from controller evidence.
+
+Behavioral failures preceded implementation for large-file selection, test/caller
+discovery, omitted-line citations, reporter coverage propagation, new-file hunks,
+out-of-range patch termination, scope shadowing, nested validation helpers and
+decorator-only changes. Tests also cover UTF-8 accounting, deletion-only changes,
+far-away caller preconditions, literal coverage rendering and mismatched-revision
+publication denial.
+
+An offline same-commit replay on `e583fbe` expanded context from 8 changed
+files to all 25 eligible changed files out of 27, within 100 KB. Two changed files
+remained credential-pattern exclusions. This replay supplied 1,372 of 3,296 added
+lines, 30 files and 134 source ranges. Broader file coverage is not complete review.
+The replay used the final selector without model or GitHub calls. A subsequent
+exact-head live review is qualified separately from this pre-publication record.
+
+The [function-context receipt](qualification-function-context-2026-10-22.json)
+records current source hashes and checks. Live model quality, production scale,
+dynamic call resolution and complete test coverage are not established. The
+existing review-only reader/reporter Apps and Claude subscription boundary remain
+unchanged. No automatic repair, merge or deployment is authorized by this update.
+
+## Earlier review pipeline and CI update — 2026-10-22
+
+That source revision passed **375 tests**, with **15 explicit skips**: 13
 PostgreSQL tests require a disposable test database and two service-image tests
 require a rebuilt image. Real Docker original/candidate checks and the offline
 intake → review → approval → local Git publication → rereview demonstration ran

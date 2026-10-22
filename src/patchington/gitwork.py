@@ -184,8 +184,8 @@ class GitWorkspace:
                      budget: int = 100_000, *, policy: RepoPolicy | None = None) -> dict[str, str]:
         """Read bounded pinned context: changed files, direct imports, tests and guides.
 
-        Discovery inspects tree names and only the selected changed-file contents;
-        it neither scans all source contents nor follows dependencies recursively.
+        Discovery inspects tree names and a bounded set of allowed Python blobs
+        for callers/tests; it does not follow dependencies recursively.
         Omissions and counts describe this slice, not complete repository coverage.
         """
         from patchington.context import (
@@ -287,6 +287,11 @@ class GitWorkspace:
         acquire(sorted(dependencies), "dependency")
         acquire(sorted(matching_tests & available), "matching_test")
         acquire(sorted(guidelines & available), "guideline")
+        # A bounded candidate scan makes cross-directory callers and tests discoverable.
+        # Policy, credential, byte and inspection limits remain inside acquire().
+        if policy is not None:
+            acquire([path for path in sorted(available) if path.endswith('.py')
+                     and path not in considered], 'python_discovery')
         nearby = [path for path in sorted(entries) if path not in considered
                   and str(PurePosixPath(path).parent) in parents
                   and PurePosixPath(path).suffix.lower() in extensions]
@@ -313,6 +318,8 @@ class GitWorkspace:
                                                                  for p in result),
                                       "guideline_files": sum(considered[p] == "guideline"
                                                              for p in result),
+                                      "python_discovery_files": sum(considered[p] == 'python_discovery'
+                                                                    for p in result),
                                       "nearby_file_limit_omissions": sum(
                                           omissions.get(p) == "file_limit" for p in nearby)}
         return result

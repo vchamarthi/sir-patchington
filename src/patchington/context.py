@@ -187,6 +187,17 @@ def model_context(context: list[dict]) -> list[dict]:
     """Add a numbered model view while preserving canonical content and source digests."""
     result = copy.deepcopy(context)
     for item in result:
+        if 'selected_ranges' in item:
+            lines = item.pop('content').splitlines(keepends=True)
+            item['snippets'] = [{**r, 'content': ''.join(lines[r['start_line'] - 1:r['end_line']])}
+                                for r in item['selected_ranges']]
+            item['numbered_content'] = '\n[omitted lines]\n'.join(
+                '\n'.join(f'{n}: {lines[n - 1].rstrip(chr(10)).rstrip(chr(13))}'
+                          for n in range(r['start_line'], r['end_line'] + 1))
+                for r in item['selected_ranges'])
+            if item['selected_ranges'] == [{'start_line': 1, 'end_line': len(lines)}]:
+                item['content'] = ''.join(lines)
+            continue
         item["numbered_content"] = "\n".join(
             f"{number}: {line}" for number, line in enumerate(item["content"].splitlines(), 1))
     return result
@@ -339,6 +350,20 @@ class ContextIndex:
             "repo": policy.repo, "revision": snapshot.head_sha,
             "repository_id": policy.repository_id, "graph_coverage": {}, "indexed_files": 0,
             "retrieved_files": 0, "omissions": [], "limitations": ["No context was indexed."]}))
+
+    def retrieve_review(self, snapshot: ChangeSnapshot, policy: RepoPolicy,
+                        budget: int = 100_000) -> list[dict]:
+        from .review_context import select_review_context
+        if isinstance(budget, bool) or not isinstance(budget, int) or not 0 <= budget <= policy.max_source_bytes:
+            raise ValueError('review context budget must fit the repository source bound')
+        key = self._scope(snapshot, policy)
+        rows, coverage = select_review_context(self._items.get(key, []), snapshot, budget)
+        report = self._reports[key]
+        excluded = [o for o in report['omissions'] if o['reason'] not in {
+            'retrieval_budget', 'not_relevant', 'excerpt_budget'}]
+        report.update(coverage)
+        report['omissions'] = excluded + coverage['omissions']
+        return rows
 
     def retrieve_related(self, snapshot: ChangeSnapshot, policy: RepoPolicy,
                          related: tuple[tuple[ChangeSnapshot, RepoPolicy], ...],

@@ -606,8 +606,13 @@ class GitHubClient:
     def post_review(self, policy: RepoPolicy, snapshot: ChangeSnapshot,
                     findings: tuple[Finding, ...], *, guard: Callable[[], None] | None = None,
                     ci_report: dict | None = None,
+                    review_coverage: dict | None = None,
                     review_limitations: tuple[str, ...] = ()) -> str:
         self._scope(policy, snapshot)
+        if review_coverage is not None and (review_coverage.get('revision') != snapshot.head_sha
+                or review_coverage.get('repository_id') != policy.repository_id
+                or review_coverage.get('repo') != policy.repo):
+            raise GitHubError('Review coverage belongs to another repository or commit')
         if ci_report is not None and (ci_report.get("head_sha") != snapshot.head_sha
                 or ci_report.get("repository_id", policy.repository_id) != policy.repository_id
                 or ci_report.get("repo", policy.repo) != policy.repo):
@@ -635,6 +640,9 @@ class GitHubClient:
         marker = f"<!-- sir-patchington:review:v1:{policy.repository_id}:{snapshot.pr} -->"
         body = marker + f"\nReviewed commit `{snapshot.head_sha}`.\n"
         body += _review_limitations_section(review_limitations)
+        if review_coverage is not None:
+            from .review_context import render_review_coverage
+            body += '\n' + render_review_coverage(review_coverage) + '\n'
         for finding in sorted(findings, key=lambda f: (f.path, f.line, f.fingerprint)):
             anchor = (f"https://github.com/{policy.repo}/blob/{snapshot.head_sha}/"
                       f"{quote(finding.path, safe='/')}#L{finding.line}")

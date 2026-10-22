@@ -135,7 +135,7 @@ class Pipeline:
         else:
             source = workspace.snapshot(snapshot.head_sha)
         index.add(snapshot, source, policy)
-        context = index.retrieve(snapshot, policy, min(100_000, policy.max_source_bytes))
+        context = index.retrieve_review(snapshot, policy, min(100_000, policy.max_source_bytes))
         report = index.report(snapshot, policy)
         report["source_slice_omissions"] = getattr(workspace, "source_slice_omissions", [])
         report["source_slice_coverage"] = getattr(workspace, "source_slice_coverage", {})
@@ -235,7 +235,10 @@ class Pipeline:
             )
             safe_snapshot = model_snapshot(snapshot, policy)
             missing_context = {f.path for f in snapshot.files} - {c["path"] for c in context}
-            incomplete_context = bool(safe_snapshot["context_omissions"] or missing_context)
+            partial_files = any(c.get('selected_ranges') != [
+                {'start_line': 1, 'end_line': len(c['content'].splitlines())}]
+                for c in context if c['path'] in {f.path for f in snapshot.files})
+            incomplete_context = bool(safe_snapshot["context_omissions"] or missing_context or partial_files)
             payload = {
                 "snapshot": safe_snapshot,
                 "context": model_context(context),
@@ -248,6 +251,8 @@ class Pipeline:
                     "expected behavior and source evidence. Inspect supplied dependencies and tests "
                     "for intentional behavior or existing guards. Abstain when context is missing. "
                     "Use the 1-based line numbers in numbered_content for findings and citations. "
+                    "Only selected_ranges/snippets are supplied; gaps are omitted evidence. "
+                    "The digest identifies the full pinned file, not an excerpt hash. "
                     "Quote original content lines without their numeric prefixes. "
                     "The CI policy intentionally treats skipped, neutral and missing conclusions as "
                     "unknown because they do not establish executed success. Do not report that "
@@ -300,6 +305,7 @@ class Pipeline:
                     "review_pipeline": REVIEW_PIPELINE_VERSION,
                     "snapshot": snapshot.model_dump(mode="json"),
                     "ci": ci,
+                    "coverage": coverage,
                     "findings": [f.model_dump(mode="json") for f in findings],
                     "verification": judgments,
                     "filtering": filtering,
@@ -444,6 +450,7 @@ class Pipeline:
                 "state": "review_reported",
                 "comment_id": self.forge.post_review(policy, snapshot, findings, guard=guard,
                                                     ci_report=source["ci"],
+                                                    review_coverage=source.get('coverage'),
                                                     review_limitations=tuple(source["limitations"])),
             }
         candidate_id = job.payload["candidate_id"]

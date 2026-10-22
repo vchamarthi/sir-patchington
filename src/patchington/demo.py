@@ -71,7 +71,7 @@ class LocalForge(GitHubClient):
                               files=(ChangedFile(path="src/fees.py", patch=diff + "\n"),) if diff else ())
 
     def post_review(self, policy, snapshot, findings, *, guard=None, ci_report=None,
-                    review_limitations=()):
+                    review_limitations=(), review_coverage=None):
         self._scope(policy, snapshot)
         if not policy.post_reviews or self.snapshot(policy, snapshot.pr).identity != snapshot.identity:
             raise GitHubError("fixture review is disabled or stale")
@@ -87,6 +87,12 @@ class LocalForge(GitHubClient):
             record["ci"] = ci_report
         if review_limitations:
             record["limitations"] = list(review_limitations)
+        if review_coverage is not None:
+            if (review_coverage.get('revision') != snapshot.head_sha
+                    or review_coverage.get('repository_id') != policy.repository_id
+                    or review_coverage.get('repo') != policy.repo):
+                raise GitHubError('fixture coverage belongs to another snapshot')
+            record['coverage'] = review_coverage
         if guard:
             guard()
         self.reviews.append(record)

@@ -48,6 +48,19 @@ def test_source_slice_acquires_imports_tests_and_ancestor_guidelines_before_sibl
     assert workspace.source_slice(revision, ("src/pkg/worker.py",), budget) == result
 
 
+def test_source_slice_discovers_safe_python_callers_and_tests_outside_changed_directory(tmp_path):
+    files = {'src/pay/fees.py': 'def fee(x):\n    return x + 1\n',
+             'src/checkout/cart.py': 'from pay.fees import fee\ndef cart(x):\n    return fee(x)\n',
+             'tests/test_fee_contract.py': 'from pay.fees import fee\ndef test_fee():\n    assert fee(0) == 1\n',
+             'private/excluded.py': 'not authorized\n'}
+    workspace, revision = repository(tmp_path, files)
+    p = RepoPolicy(tenant='acme', team='dev', installation_id=1, repository_id=2,
+                   repo='acme/repo')
+    result = workspace.source_slice(revision, ('src/pay/fees.py',), policy=p)
+    assert set(result) == set(files) - {'private/excluded.py'}
+    assert workspace.source_slice_coverage['python_discovery_files'] == 2
+
+
 def test_policy_filtered_paths_do_not_consume_acquisition_slots_or_budget(tmp_path, monkeypatch):
     workspace, revision = repository(tmp_path, {
         "src/main.py": "from common.helper import VALUE\n",

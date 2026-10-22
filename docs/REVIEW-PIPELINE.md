@@ -18,30 +18,40 @@ unresolved implementation details.
 
 `GitWorkspace.source_slice` reads regular blobs from an exact commit SHA, without
 executing repository programs, hooks or filters. Acquisition order is changed
-files, their direct static Python imports, convention-matched tests, ancestor
-guidelines, and finally source siblings. `ContextIndex.retrieve` ranks the
-acquired safe files in this order:
+files, their direct static Python imports, convention-matched tests and ancestor
+guidelines. With an explicit read policy it also acquires a bounded set of safe
+Python candidates across allowed directories, making unchanged callers and tests
+discoverable. Source siblings are the final fallback.
+
+The production pipeline uses `ContextIndex.retrieve_review` to select ranges,
+not whole files. Complete unified-diff hunks identify added lines and anchors for
+deletion-only changes. Python AST functions/methods supply enclosing scope;
+non-Python and unparseable source use hunk windows. Large functions are represented
+by their signature and bounded windows rather than silently exhausting the pack.
+
+The source budget has reserved shares, then unused space is redistributed:
 
 | Priority | Selection evidence |
 |---|---|
-| Changed source | Exact changed path |
-| Direct dependency | Resolved static Python import from changed source |
-| Direct caller | An already indexed file imports changed source |
-| Test | Matching package-relative path under `test/` or `tests/`, or adjacent test |
-| Guidance | Recognized ancestor guide or repository-wide Copilot instructions |
-| Fallback | Supplied documents; safe supplied files when no changed source was indexed |
+| Changed hunks: 45% | Original right-side line numbers; windows distributed across files |
+| Guards: 10% | Static assertions, early exits, and named validation/authorization helpers |
+| Tests: 20% | Test functions with resolved calls to changed functions |
+| Callers: 10% | Function excerpts around resolved calls to changed functions |
+| Function contracts: 10% | Enclosing functions, called helpers, imports, constants and class signatures |
+| Guidance: 5% | Recognized ancestor guides and repository-wide Copilot instructions |
 
-Selection reasons, omissions, byte counts and graph coverage are recorded.
-Unrelated source files are omitted when changed source provides relationship
-evidence. Fallback documents and sparse context remain explicitly weaker evidence.
+Each share uses round-robin file selection, exact UTF-8 byte accounting, and
+overlap deduplication. Remaining space is reused in table order. Selection ranges,
+reasons, added-line/hunk coverage, relationship candidates and omissions are
+recorded and rendered in the review's Context coverage dropdown.
 
-Acquisition does not scan all repository contents to find unchanged callers, and
-does not recursively expand dependencies. Caller ranking therefore applies only
-to files already acquired or supplied. Python resolution supports repository-root
-and `src/` layouts, relative imports, modules and package initializers. Dynamic
-imports, runtime hooks, nonstandard source roots and non-Python dependency graphs
-remain outside this static coverage. Test naming is a convention, not proof that
-a test exercises the changed behavior.
+Caller resolution supports exact imported aliases, module-qualified calls,
+lexical functions and `self`/`cls` method names. Shadowed imported names are not
+borrowed from another scope. Unknown receivers, runtime dispatch, dynamic imports,
+module-initialization calls and non-Python call graphs remain unresolved. Discovery
+is bounded to acquired safe source, without transitive dependency expansion.
+Selected tests are source context, not evidence that those tests executed. Guard
+selection does not prove runtime dominance or exhaustive validation.
 
 The pipeline supplies the trusted repository policy before acquisition.
 `context_paths` and `context_exclusions` gate reads; root guides, singular `test/`
@@ -53,10 +63,17 @@ every secret. It protects model-bound context, not every stored record.
 Acquisition selects at most 2 MB, further bounded by the requested budget and
 `max_source_bytes`; it reads at most 200 blobs and 20 MB of raw blob content,
 including discarded content. Tree inspection is bounded at 100,000 regular files.
-The final model context is at most `min(100,000, max_source_bytes)` bytes and uses
-whole UTF-8 files. Reports expose effective versus requested budgets, raw inspected
-bytes and omissions. Missing or truncated changed-source/owner context prevents
-automatic repair and requires owner investigation.
+Selected source ranges total at most `min(100,000, max_source_bytes)` bytes, with
+original line endings counted once. Model serialization adds numbered lines,
+snippet metadata and bounded PR/CI context; the existing 500 KB model-input cap
+still applies. Canonical full source and its SHA-256 remain local for verification;
+only selected ranges enter the model view. A small entirely selected file may
+retain its legacy full-content field. Omitted ranges cannot be proposed finding
+anchors or citations, even if their text exists in local canonical source.
+Missing, partial or truncated changed-source/owner context still prevents
+automatic repair and requires owner investigation. The legacy full-file retrieval
+API remains for explicitly indexed cross-repository/compatibility consumers;
+production PR review uses the excerpt selector.
 
 ## Finding admission and false-positive filtering
 
