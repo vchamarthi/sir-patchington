@@ -9,10 +9,9 @@ The design follows the context-selection and verification lessons in CodeRabbit'
 [architecture documentation](https://docs.coderabbit.ai/overview/architecture)
 and [context engineering disclosure](https://www.coderabbit.ai/blog/the-art-and-science-of-context-engineering).
 It implements Sir Patchington's own controls; it does not reproduce CodeRabbit's
-private hosted engine. The unpublished local
-[REA investigation](/Users/denniscvsg/git-agents/research/coderabbit-rea-2026-10-22/README.md)
-distinguishes inspected client behavior from documented server behavior and
-unresolved implementation details.
+private hosted engine. An unpublished local REA investigation distinguishes
+inspected client behavior from documented server behavior and unresolved
+implementation details; that investigation is not included in this repository.
 
 ## Context selection
 
@@ -25,7 +24,9 @@ discoverable. Source siblings are the final fallback.
 
 The production pipeline uses `ContextIndex.retrieve_review` to select ranges,
 not whole files. Complete unified-diff hunks identify added lines and anchors for
-deletion-only changes. Python AST functions/methods supply enclosing scope;
+deletion-only changes. Hunk coverage and finding admission share the same
+count-driven parser, so content resembling file headers stays inside its hunk.
+Python AST functions/methods supply enclosing scope;
 non-Python and unparseable source use hunk windows. Large functions are represented
 by their signature and bounded windows rather than silently exhausting the pack.
 

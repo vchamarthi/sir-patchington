@@ -1,16 +1,16 @@
 {
-  "recorded_at": "2026-10-22T18:03:32.090940+00:00",
+  "recorded_at": "2026-10-22T18:11:56.226314+00:00",
   "status": "local_qualified_exact_head_live_pending",
-  "review_pipeline": "v5-function-hunk-context",
+  "review_pipeline": "v6-counted-hunk-context",
   "main_suite": {
-    "passed": 395,
+    "passed": 398,
     "skipped": 15,
     "failed": 0,
     "skip_reasons": {
       "set PATCHINGTON_TEST_SERVICE_IMAGE after building the service image": 2,
       "PATCHINGTON_TEST_DATABASE_URL is required for real PostgreSQL tests": 13
     },
-    "junit_sha256": "51ceb30e3199d791f6c7b7e18d51cc45d6157e6440b969164cd18604a80cf69d"
+    "junit_sha256": "d7487e8123b556705a5f4424c45f23e1c46f01cb77f4397b1c60289c287f873f"
   },
   "checks": [
     "uv run ruff check src tests deploy scripts",
@@ -29,7 +29,8 @@
     "omitted canonical lines rejected as finding anchors and citations",
     "immutable coverage propagation and literal bounded dropdown",
     "foreign-revision coverage rejected before HTTP publication",
-    "actual offline Docker/intake/approval/local Git publication demonstration with simulated model/GitHub"
+    "actual offline Docker/intake/approval/local Git publication demonstration with simulated model/GitHub",
+    "Three real-review parser counterexamples failed before the count-driven fix; finding admission and coverage now use the same parser."
   ],
   "offline_same_commit_replay": {
     "head_short": "e583fbe",
@@ -126,11 +127,11 @@
     },
     {
       "path": "docs/QUALIFICATION.md",
-      "sha256": "7f8a056759251d7be4f5f24d13a4298a05ae7a934406a1e94052544f3a6e8968"
+      "sha256": "ac398f9f56130c424e87e977543df5bc6baa2bfdb1ad2f773155d47148338766"
     },
     {
       "path": "docs/REVIEW-PIPELINE.md",
-      "sha256": "1deaea94de65fffc9d550871b7b1c00afac32857944de0ec2898d2cf5ec4132a"
+      "sha256": "b86927bccc9021e919be40bd791916ca0e40d2be917ad4434964909322392e8b"
     },
     {
       "path": "docs/examples/review-ci-summary.md",
@@ -214,11 +215,11 @@
     },
     {
       "path": "src/patchington/review.py",
-      "sha256": "d5a40071f1ddacafa86e05b64b42bfbb4a03edaa8aea5cc00ea023f097adac1c"
+      "sha256": "4e48b0cfd00f5b1190ccc7253845d9acbb529300298e43aeaf62ee64467ea64c"
     },
     {
       "path": "src/patchington/review_context.py",
-      "sha256": "28c9ec3ffadbcea3aac3117fe5285c191ac033ebe360f2e7942c7d6aab0e9f90"
+      "sha256": "fda06de80ce848e34e9e137cf59b4a3ff2c9a2cdcb51b847a43338205e5b0dbe"
     },
     {
       "path": "src/patchington/store.py",
@@ -278,7 +279,7 @@
     },
     {
       "path": "tests/test_function_context.py",
-      "sha256": "0377821ce592428c7e240343dc80f1e9148371b2fb8dd0b8e949356d2815fb64"
+      "sha256": "b6d383055a50c86e055f920c44713eefe559f1a45f1fa58e7186b748b65b0c89"
     },
     {
       "path": "tests/test_github.py",
@@ -353,7 +354,7 @@
       "sha256": "482135057e6e3033cb45e4d4c3d6ace1267c67a5d8508f2cdc23a4f1bf772a97"
     }
   ],
-  "input_manifest_digest": "dbdc33757ece9ebf66a6b2bc7f5930b2aed89bbe3590f5aae9349a5fdc4740a8",
+  "input_manifest_digest": "96a29a54a1f1f7a5966d7d35893608d3934065a4895d1b06e8a453e5bda18725",
   "remaining_limits": [
     "Only selected ranges were supplied; omitted lines are not citation evidence.",
     "Call edges resolve static Python names/import aliases and self/cls methods only; dynamic dispatch and unknown receivers remain unresolved.",
@@ -363,5 +364,31 @@
     "Whole files containing credential patterns can remain excluded, including synthetic test fixtures.",
     "100 KB selected source remains partial; model serialization is separately capped at 500 KB.",
     "This receipt precedes the fresh-head live model/report run; no quality benchmark or production deployment."
-  ]
+  ],
+  "initial_live_review": {
+    "head_short": "7a7e411",
+    "model": "claude-sonnet-5-5",
+    "client": "2.1.306",
+    "review_seconds": 52.123,
+    "refute_seconds": 17.756,
+    "changed_files": {
+      "with_context": 28,
+      "total": 30
+    },
+    "changed_lines": {
+      "selected": 1490,
+      "total": 4509
+    },
+    "source_bytes": 99990,
+    "source_files": 33,
+    "ranges": 136,
+    "ci_state": "success",
+    "posted_comment_id": 6345360996,
+    "exact_body_and_actor_readback_verified": true,
+    "supported_findings": [
+      "Counted hunk content mistaken for file headers; fixed after three red behavioral cases.",
+      "Broken absolute local document link; removed."
+    ],
+    "following_exact_head_live_review": "pending; qualified separately"
+  }
 }

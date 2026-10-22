@@ -3,46 +3,18 @@
 from __future__ import annotations
 
 import hashlib
-import re
 from collections import defaultdict
 
 from .contracts import ChangeSnapshot, Finding, ReviewVerification
 from .review_context import line_selected as _line_selected
+from .review_context import patch_hunks
 
-REVIEW_PIPELINE_VERSION = "v5-function-hunk-context"
+REVIEW_PIPELINE_VERSION = "v6-counted-hunk-context"
 
 
 def added_lines(patch: str) -> set[int]:
     """Only added RIGHT-side lines from complete hunks; malformed patches abstain."""
-    result: set[int] = set()
-    old_left = new_left = 0
-    line = None
-    for row in patch.splitlines():
-        match = re.match(r"^@@ -\d+(?:,(\d+))? \+(\d+)(?:,(\d+))? @@", row)
-        if match:
-            if old_left or new_left:
-                return set()
-            old_left = int(match[1]) if match[1] is not None else 1
-            new_left = int(match[3]) if match[3] is not None else 1
-            line = int(match[2])
-        elif line is not None and row.startswith("\\ No newline"):
-            continue
-        elif line is not None and (old_left or new_left):
-            if row.startswith("+"):
-                result.add(line)
-                new_left -= 1
-                line += 1
-            elif row.startswith("-"):
-                old_left -= 1
-            elif row.startswith(" "):
-                old_left -= 1
-                new_left -= 1
-                line += 1
-            else:
-                return set()
-            if old_left < 0 or new_left < 0:
-                return set()
-    return set() if old_left or new_left else result
+    return {line for hunk in patch_hunks(patch) for line in hunk['added']}
 
 
 def _normalized(value: str) -> str:

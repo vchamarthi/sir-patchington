@@ -19,38 +19,37 @@ _FUNCTION = (ast.FunctionDef, ast.AsyncFunctionDef)
 
 def patch_hunks(patch: str) -> list[dict]:
     """Accept complete unified hunks, including anchors for deletion-only changes."""
-    blocks, current = [], None
+    result, current = [], None
+    old_left = new_left = cursor = 0
     for row in patch.splitlines():
         match = _HUNK.match(row)
         if match:
-            current = {"old": int(match[2] or 1), "new": int(match[4] or 1),
-                       "start_line": int(match[3]), "rows": []}
-            blocks.append(current)
-        elif current is not None:
-            if row.startswith(("diff --git ", "--- ", "+++ ")):
-                current = None
-            elif row != r"\ No newline at end of file":
-                current['rows'].append(row)
-    result = []
-    for block in blocks:
-        old = new = 0
-        added = []
-        valid = True
-        for row in block['rows']:
+            if old_left or new_left:
+                return []
+            old_left = int(match[2]) if match[2] is not None else 1
+            new_left = int(match[4]) if match[4] is not None else 1
+            cursor = int(match[3])
+            current = {'start_line': cursor, 'end_line': cursor + max(new_left - 1, 0), 'added': []}
+            result.append(current)
+        elif row == r"\ No newline at end of file":
+            continue
+        elif current is not None and (old_left or new_left):
+            # Counts distinguish content from metadata. A removed '-- comment'
+            # really is a '--- comment' row inside an unfinished hunk.
             if not row or row[0] not in ' +-':
-                valid = False
-                break
+                return []
             if row[0] in ' -':
-                old += 1
+                old_left -= 1
             if row[0] in ' +':
                 if row[0] == '+':
-                    added.append(block['start_line'] + new)
-                new += 1
-        if not valid or old != block['old'] or new != block['new']:
+                    current['added'].append(cursor)
+                new_left -= 1
+                cursor += 1
+            if old_left < 0 or new_left < 0:
+                return []
+        elif current is not None and row.startswith((' ', '+', '-')) and not row.startswith(('--- ', '+++ ')):
             return []
-        result.append({'start_line': block['start_line'],
-                       'end_line': block['start_line'] + max(new - 1, 0), 'added': added})
-    return result
+    return [] if old_left or new_left else result
 
 
 def line_selected(source: dict, start: int, end: int | None = None) -> bool:

@@ -6,11 +6,13 @@ import json
 import subprocess
 import sys
 
+import pytest
 from test_context_selection import policy, snapshot
 
 from patchington.context import ContextIndex, model_context
 from patchington.contracts import ChangedFile, Finding, ReviewVerification
 from patchington.review import select_proposals, verify_judgments
+from patchington.review_context import patch_hunks
 
 
 def change(source, path, line):
@@ -175,6 +177,17 @@ def test_hunks_work_for_non_python_and_deletion_only_changes():
     assert {r['path'] for r in rows} == set(files)
     assert all(visible(r, 201) for r in rows)
     assert report['changed_hunks']['with_context'] == 2
+
+
+@pytest.mark.parametrize(('old', 'new'), [('-- legacy comment', '-- current comment'),
+                                        ('++ old operand', '++ new operand'),
+                                        ('-- legacy comment', '++ new operand')])
+def test_file_header_looking_content_is_consumed_by_hunk_counts(old, new):
+    from patchington.review import added_lines
+
+    patch = f'@@ -1,2 +1,2 @@\n-{old}\n+{new}\n unchanged\n'
+    assert patch_hunks(patch) == [{'start_line': 1, 'end_line': 2, 'added': [1]}]
+    assert added_lines(patch) == {1}
 
 
 def test_omitted_lines_cannot_be_cited_or_admitted_even_when_in_canonical_source():

@@ -6,7 +6,7 @@ The production PR path now selects original-line excerpts around changed hunks
 and enclosing Python functions. It reserves source budget for callers, guards,
 tests, contracts and guidance, then redistributes unused space. Canonical source
 and its full-file hash remain local; finding admission and citation validation
-reject lines outside the exact model-visible ranges. `v5-function-hunk-context`
+reject lines outside the exact model-visible ranges. `v6-counted-hunk-context`
 invalidates older review generations and reports. Publication adds a bounded,
 revision-bound Context coverage dropdown from controller evidence.
 
@@ -16,6 +16,14 @@ out-of-range patch termination, scope shadowing, nested validation helpers and
 decorator-only changes. Tests also cover UTF-8 accounting, deletion-only changes,
 far-away caller preconditions, literal coverage rendering and mismatched-revision
 publication denial.
+
+The initial live Sonnet review of `7a7e411` supplied 28 of 30 changed files and
+1,490 of 4,509 added lines, and reported a real parser defect: removed/added
+content beginning with `--`/`++` was mistaken for file headers. Three failing
+behavioral cases preceded the fix. Coverage and finding admission now share one
+count-driven parser; earlier queued reports/generations are invalidated. The
+review's broken host-local documentation link was also removed. The subsequent
+live run is recorded separately from this pre-publication qualification.
 
 An offline same-commit replay on `e583fbe` expanded context from 8 changed
 files to all 25 eligible changed files out of 27, within 100 KB. Two changed files
