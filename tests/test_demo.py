@@ -32,7 +32,8 @@ def test_actual_offline_demo_runs_intake_approval_docker_cas_ci_and_rereview(tmp
     assert receipt["observation"]["state"] == "ci_observed_rereview_queued"
     assert receipt["ci_observations"][0]["check_runs"][0]["app"]["id"] == 42
     assert receipt["rereview"]["state"] == "review_complete"
-    assert receipt["model_calls"] == ["review", "refute", "repair", "review", "refute"]
+    assert receipt["rereview_report"]["state"] == "review_reported"
+    assert receipt["model_calls"] == ["review", "refute", "repair", "review"]
     assert receipt["simulated"] == ["model generation", "GitHub PR/review metadata", "GitHub CI result"]
     assert json.loads((output / "receipt.json").read_text()) == receipt
     assert (output / "state.db").exists()

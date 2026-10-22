@@ -54,6 +54,82 @@ def _read_reason(path: str, policy: RepoPolicy) -> str | None:
     return None
 
 
+def python_dependencies(path: str, content: str, available_paths: set[str]) -> set[str]:
+    """Resolve static Python imports to existing repository paths without executing code.
+
+    Absolute imports support repository-root and conventional ``src/`` layouts.
+    Relative imports stay inside the importing package's source root. An imported
+    name can be either a symbol or a submodule, so ``from pkg import child`` adds
+    both the package and an existing child module. Basename searches, runtime
+    import hooks, dynamic imports and nonstandard source roots are not inferred.
+    """
+    source = PurePosixPath(path)
+    if (not path.endswith(".py") or source.is_absolute()
+            or ".." in source.parts):
+        return set()
+    try:
+        tree = ast.parse(content)
+    except (SyntaxError, ValueError):
+        return set()
+
+    def existing(module_path: str, *, absolute: bool) -> set[str]:
+        roots = ("", "src/") if absolute else ("",)
+        return {candidate for root in roots
+                for candidate in (f"{root}{module_path}.py", f"{root}{module_path}/__init__.py")
+                if candidate in available_paths}
+
+    dependencies: set[str] = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for name in node.names:
+                dependencies.update(existing(name.name.replace(".", "/"), absolute=True))
+        elif isinstance(node, ast.ImportFrom):
+            if node.level:
+                parent = source.parent.parts
+                source_root = int(bool(parent and parent[0] == "src"
+                                       and "src/__init__.py" not in available_paths))
+                if node.level > len(parent) - source_root:
+                    continue
+                base = parent[:len(parent) - node.level + 1]
+                module_path = "/".join((*base, *((node.module or "").split("."))))
+                module_path = module_path.rstrip("/")
+            else:
+                module_path = (node.module or "").replace(".", "/")
+            if not module_path:
+                continue
+            dependencies.update(existing(module_path, absolute=not node.level))
+            for name in node.names:
+                if name.name != "*":
+                    dependencies.update(existing(f"{module_path}/{name.name}",
+                                                 absolute=not node.level))
+    return dependencies - {path}
+
+
+def _related_tests(path: str) -> set[str]:
+    """Use package-relative test paths; equal basenames alone are not evidence."""
+    source = PurePosixPath(path)
+    if source.suffix != ".py":
+        return set()
+    relative = PurePosixPath(*source.parts[1:]) if source.parts[0] == "src" else source
+    parent, stem = relative.parent, relative.stem
+    return {str(PurePosixPath(root) / parent / name)
+            for root in ("test", "tests")
+            for name in (f"test_{stem}.py", f"{stem}_test.py")} | {
+                str(source.parent / f"test_{stem}.py"),
+                str(source.parent / f"{stem}_test.py")}
+
+
+def _ancestor_guidance(path: str, changed: set[str]) -> bool:
+    source = PurePosixPath(path)
+    if path == ".github/copilot-instructions.md":
+        return bool(changed)
+    if source.name.lower() not in {
+            "agents.md", "claude.md", "contributing.md", "review_guidelines.md",
+            "review-guidelines.md", "coding_guidelines.md", "coding-guidelines.md"}:
+        return False
+    return any(source.parent in PurePosixPath(changed_path).parents for changed_path in changed)
+
+
 def model_snapshot(snapshot: ChangeSnapshot, policy: RepoPolicy) -> dict:
     """Bound and filter untrusted metadata before model transport; no complete-DLP claim.
 
@@ -159,12 +235,19 @@ class ContextIndex:
                           "digest": hashlib.sha256(content.encode()).hexdigest(),
                           "content": content, "symbols": symbols, "imports": imports,
                           "coverage": coverage})
+        available_paths = {item["path"] for item in items}
+        for item in items:
+            item["dependencies"] = sorted(python_dependencies(
+                item["path"], item["content"], available_paths))
         self._items[key] = items
         self._reports[key] = {"repo": policy.repo, "revision": snapshot.head_sha,
             "repository_id": policy.repository_id, "graph_coverage": graph_coverage,
             "input_files": len(files), "indexed_files": len(items), "retrieved_files": 0,
             "omissions": omissions, "limitations": [
                 "Python coverage is static imports/symbols; other languages are lexical only.",
+                "Import edges cover repository-root/src layouts, not dynamic imports or runtime hooks.",
+                "Provided documents are lower-priority fallback context; relevance is not guaranteed.",
+                "When no changed file is indexed, sparse context falls back to the provided safe files.",
                 "Credential pattern filtering can omit benign examples and cannot detect every secret."]}
 
     def retrieve(self, snapshot: ChangeSnapshot, policy: RepoPolicy,
@@ -174,24 +257,58 @@ class ContextIndex:
         key = self._scope(snapshot, policy)
         items = self._items.get(key, [])
         changed = {f.path for f in snapshot.files}
-        modules = {p.removesuffix(".py").replace("/", ".") for p in changed}
-        ranked = sorted(items, key=lambda item: (
-            item["path"] not in changed,
-            not bool(set(item["imports"]) & modules), item["path"]))
+        indexed_changed = [item for item in items if item["path"] in changed]
+        direct_imports = {path for item in indexed_changed for path in item["dependencies"]}
+        test_paths = {test for path in changed for test in _related_tests(path)}
+        priorities = {"changed_file": 0, "direct_import": 1, "direct_importer": 2,
+                      "relevant_test": 3, "ancestor_guidance": 4, "provided_document": 5,
+                      "sparse_context": 6}
+
+        def reasons(item: dict) -> list[str]:
+            path = item["path"]
+            selected = []
+            if path in changed:
+                selected.append("changed_file")
+            if path in direct_imports:
+                selected.append("direct_import")
+            if set(item["dependencies"]) & changed:
+                selected.append("direct_importer")
+            if path in test_paths:
+                selected.append("relevant_test")
+            if _ancestor_guidance(path, changed):
+                selected.append("ancestor_guidance")
+            if not selected and PurePosixPath(path).suffix.lower() in {".md", ".rst", ".txt"}:
+                selected.append("provided_document")
+            if not selected and not indexed_changed:
+                selected.append("sparse_context")
+            return selected
+
+        candidates = [(item, reasons(item)) for item in items]
+        ranked = sorted(candidates, key=lambda pair: (
+            min((priorities[reason] for reason in pair[1]), default=len(priorities)),
+            pair[0]["path"]))
         result, used, omissions = [], 0, []
-        for item in ranked:
+        for item, selection_reasons in ranked:
+            if not selection_reasons:
+                omissions.append({"path": item["path"], "reason": "not_relevant"})
+                continue
             size = len(item["content"].encode())
             if used + size <= budget:
-                result.append(copy.deepcopy(item))
+                selected = copy.deepcopy(item)
+                selected["selection_reasons"] = selection_reasons
+                result.append(selected)
                 used += size
             else:
                 omissions.append({"path": item["path"], "reason": "retrieval_budget"})
         if key in self._reports:
             report = self._reports[key]
             report["omissions"] = [item for item in report["omissions"]
-                                   if item["reason"] != "retrieval_budget"] + omissions
+                                   if item["reason"] not in {"retrieval_budget", "not_relevant"}]
+            report["omissions"].extend(omissions)
             report["retrieved_files"] = len(result)
             report["retrieved_bytes"] = used
+            report["selections"] = [{"path": item["path"], "reasons": item["selection_reasons"]}
+                                    for item in result]
         return result
 
     def report(self, snapshot: ChangeSnapshot, policy: RepoPolicy) -> dict:

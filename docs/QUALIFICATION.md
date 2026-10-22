@@ -1,4 +1,47 @@
-# Qualification record — 2026-10-21
+# Qualification record
+
+## Review pipeline and CI update — 2026-10-22
+
+The current local source passed **355 tests**, with **15 explicit skips**: 13
+PostgreSQL tests require a disposable test database and two service-image tests
+require a rebuilt image. Real Docker original/candidate checks and the offline
+intake → review → approval → local Git publication → rereview demonstration ran
+successfully. Model generation, GitHub metadata, CI results and comment writes
+remain simulated in that demonstration.
+
+Ruff (`src tests deploy scripts`), `uv lock --check`, wheel/sdist build,
+`git diff --check` and a redacted secret scan of changed files passed. Behavioral
+regressions were observed before implementation for irrelevant context starving
+dependencies, unsupported critic labels reaching repair, unchanged-line findings,
+finding identity collisions, missing CI integration and bounded CI log tails.
+
+The new controls prioritize scoped context, require fingerprint-bound exact
+source citations and counterarguments, abstain on invalid/conflicting judgments,
+and filter exact duplicates and out-of-change anchors. CI inspection captures
+exact-head job/step failure evidence and emits a collapsed review section even
+when there are no supported code findings. Its HTTP transport and error paths
+were tested with mocked GitHub responses, not a real App installation.
+
+The [update receipt](qualification-review-pipeline-2026-10-22.json) records current
+input hashes, tests, skipped prerequisites and remaining limits. The original
+[baseline receipt](qualification-receipt.json) retains its dated 2026-10-21
+measurements and links this update; its old coverage/image/audit measurements
+must not be read as new measurements of this source revision.
+
+No live model-quality benchmark or deployment was performed. Claude Code
+`2.1.306` is now installed and its macOS code signature verifies; the exact
+adapter pin is unchanged. A separate live subscription preflight confirmed the
+authorized first-party Team account and usage credits disabled. Generation has
+not yet been qualified in this record. Both adapter subprocess environments
+force `DISABLE_AUTOUPDATER=1` so a review cannot update its own qualified client;
+two behavioral failures preceded that fix. No provider fallback was introduced.
+Operational CI inspection still needs Actions read permission on the dedicated
+read App; no live App enrollment is claimed here. Review posting remains
+explicitly policy-controlled and candidate publication requires exact approval.
+
+## Original baseline — 2026-10-21
+
+The following evidence and delivery history describe the original dated baseline.
 
 The repository is an implemented control plane with local integration evidence.
 It is not a certified production service or a measured replacement for a

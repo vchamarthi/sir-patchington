@@ -7,6 +7,7 @@
 | Purpose | Installation token permissions |
 | --- | --- |
 | Read | contents, pull requests, checks, statuses, metadata: read |
+| CI inspection (`ci_token`) | actions, checks, statuses, metadata: read |
 | Candidate push (`write=True`) | contents: write; metadata: read |
 | Review comment (`review_token`) | pull requests: write; metadata: read |
 
@@ -30,6 +31,42 @@ Model-authored text renders in dynamic-length CommonMark code spans. Embedded Ma
 
 `checks` returns paginated runs/statuses for the exact requested SHA with their actual statuses and conclusions. Pending or missing conclusions remain pending or missing; this method does not turn CI observations into local verification or a merge decision.
 
+`ci_review` additionally captures workflow runs, jobs, steps and bounded failure
+evidence for the exact reviewed repository and head SHA. The dedicated read App
+must grant **Actions: read**; existing installations may need their owner to
+accept that permission before logs/jobs become accessible. Read workers request
+this permission only in a purpose-specific CI token; push and comment tokens
+retain their separate scopes. Inspection performs no rerun, cancel or workflow
+mutation.
+
+Known credential signatures are withheld before log excerpts enter review
+context or comments. Qualified HTTPS job-log redirects use a fresh client with
+no forwarded App authentication, cookies or environment proxy settings. Logs
+use a validated bounded tail range when the qualified download service supports
+it; the evidence and dropdown label that scope and truncation. Oversized full
+responses are not silently treated as complete logs. Logs
+from unsupported hosts, missing/expired logs, rejected pagination and exhausted
+budgets remain explicitly unavailable or partial. Diagnosis distinguishes
+observed errors from likely causes and suggests investigation actions without
+executing them. Pattern filtering is not complete secret detection or proof of
+root cause.
+
+The pipeline records CI evidence alongside its findings and supplies a compact
+CI context to the model. Material CI changes invalidate cached generations; an
+observation timestamp alone does not. When `post_reviews` is enabled, a report is
+queued even with zero supported findings. `post_review` checks the CI head
+against the review snapshot and appends an escaped
+`<details><summary>CI status and failures</summary>` section with per-job status,
+failure evidence, next actions and coverage limits. The existing publisher queue,
+lease guard, stale-head recheck and App-owned comment reconciliation still apply.
+
+GitHub CI can change after the observation without a commit change. The comment
+states when evidence was collected; it is a review-time snapshot, not a live
+dashboard or certification that every required check executed.
+
+[Synthetic dropdown example](examples/review-ci-summary.md) shows the emitted
+review section using mocked CI results.
+
 ## Approval and push
 
 `sign_approval` is a pure helper used only after API authentication/RBAC. The actor must come from authenticated server state. Its HMAC covers candidate identity, evidence digest, policy digest, expected head, tested base, actor, nonce, and expiry. Expiry is at most 24 hours. The publisher independently checks signature, expiry, current approver membership, tenant/repository/installation scope, policy, checks, container-verification provenance, durable evidence and log digests, current PR identity, and fork/default/base-branch restrictions. Local fixture verification cannot publish.
@@ -52,7 +89,7 @@ The independently mutable base branch cannot be atomically locked by updating on
 
 `model_snapshot` applies the same file/patch exclusions and recursively withholds credential-bearing PR title/body/thread fields. Comment text is capped at 20 KB per field and snapshot text at 100 KB, prioritizing owner text; omissions are explicit. Raw immutable snapshot identity remains available for provenance. `retrieve_related` joins already indexed, explicitly authorized same-tenant/same-team repositories under one byte budget; it performs no implicit fetch. This conservative pattern filter can withhold harmless examples and cannot detect every secret. Missing owner feedback must be treated as incomplete acceptance evidence, not as permission to ignore it.
 
-`ClaudeCLI` exposes `CLIENT_VERSION = "2.1.306"`. Before generation it performs only an isolated offline `--version` check with a 15-second/64-KB bound, then requires exact client compatibility. This string check is not cryptographic executable provenance or proof of subscription/account qualification. Deployment image pinning and external client/account qualification remain required. Tests mock version and generation subprocess results; they never invoke a model or authenticate an account.
+`ClaudeCLI` exposes `CLIENT_VERSION = "2.1.306"`. Before generation it performs only an isolated offline `--version` check with a 15-second/64-KB bound, then requires exact client compatibility. Both version checks and generation force `DISABLE_AUTOUPDATER=1` in their restricted subprocess environments, so these invocations cannot update the approved client automatically. Other Claude invocations or external installers can still change the executable; an unexpected version remains a hard failure. This string check is not cryptographic executable provenance or proof of subscription/account qualification. Deployment image pinning and external client/account qualification remain required. Tests mock version and generation subprocess results; they never invoke a model or authenticate an account.
 
 ## Verification and qualification limits
 

@@ -105,7 +105,7 @@ def fixture(tmp_path, *, checks=True):
     model = FixtureModel(
         {
             "review": {"findings": [FINDING]},
-            "refute": {"findings": [{**FINDING, "status": "supported"}]},
+            "refute": supported_judgments,
             "repair": {"patch": PATCH, "rationale": "Restore the specified boundary"},
         }
     )
@@ -113,6 +113,23 @@ def fixture(tmp_path, *, checks=True):
     store = Store(f"sqlite:///{tmp_path}/state.db")
     store.initialize()
     return store, policy, Forge(), model, artifacts
+
+
+def supported_judgments(payload):
+    """Deliberately scripted source-grounded response; not real model reasoning."""
+    judgments = []
+    for proposal in payload["proposals"]:
+        source = next(item for item in payload["context"] if item["path"] == proposal["path"])
+        line = proposal["line"]
+        judgments.append({
+            "fingerprint": proposal["fingerprint"], "status": "supported",
+            "rationale": "Source excludes fifty despite the trusted inclusive delivery contract.",
+            "counterargument": "Exclusive comparison would be valid only for a different contract.",
+            "citations": [{"path": source["path"], "source_digest": source["digest"],
+                           "start_line": line, "end_line": line,
+                           "quote": source["content"].splitlines()[line - 1]}],
+        })
+    return {"judgments": judgments}
 
 
 def test_end_to_end_offline_repair_requires_real_independent_evidence(tmp_path):
@@ -142,7 +159,7 @@ def test_missing_acceptance_policy_never_reports_verified(tmp_path):
 
 def test_empty_refutation_cannot_approve_a_finding(tmp_path):
     store, policy, forge, model, artifacts = fixture(tmp_path)
-    model.responses["refute"] = {"findings": []}
+    model.responses["refute"] = {"judgments": []}
     store.enqueue("acme", "acme/shop", 17, "delivery-1", {"kind": "review"})
     result = Pipeline(
         store, [policy], forge, model, LocalVerifier(trusted=True, artifacts=artifacts), artifacts

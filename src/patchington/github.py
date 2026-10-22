@@ -91,6 +91,11 @@ class AppTokenProvider:
         return self._mint(installation_id, repository_id,
                           {"pull_requests": "write", "metadata": "read"})
 
+    def ci_token(self, installation_id: int, repository_id: int) -> str:
+        return self._mint(installation_id, repository_id,
+                          {"actions": "read", "checks": "read", "statuses": "read",
+                           "metadata": "read"})
+
     def _mint(self, installation_id: int, repository_id: int,
               permissions: dict[str, str]) -> str:
         _positive_id(installation_id)
@@ -146,6 +151,9 @@ class SplitTokenProvider:
     def review_token(self, installation_id: int, repository_id: int) -> str:
         return self._write.review_token(self._installation(installation_id, repository_id),
                                         repository_id)
+
+    def ci_token(self, installation_id: int, repository_id: int) -> str:
+        return self._read.ci_token(installation_id, repository_id)
 
 
 _THREAD_QUERY = """query($owner:String!,$name:String!,$number:Int!,$cursor:String){
@@ -203,6 +211,7 @@ class GitHubClient:
         if api_url.rstrip("/") != API_URL:
             raise ValueError("Only the qualified api.github.com endpoint is supported")
         self._tokens = token_provider
+        self._transport = transport
         self._http = httpx.Client(transport=transport, follow_redirects=False,
                                  timeout=30, trust_env=False)
 
@@ -216,19 +225,32 @@ class GitHubClient:
 
     def _request(self, policy: RepoPolicy, method: str, path: str,
                  *, write: bool = False, guard: Callable[[], None] | None = None,
+                 ci: bool = False, response_limit: int = 10_000_000,
+                 expect_json: bool = True, deadline: float | None = None,
                  **kwargs: Any) -> httpx.Response:
         if not path.startswith("/") or path.startswith("//") or "#" in path:
             raise GitHubError("Unsafe API path")
         review_token = getattr(self._tokens, "review_token", None)
-        token = (review_token(policy.installation_id, policy.repository_id) if write and review_token
-                 else self._tokens(policy.installation_id, policy.repository_id, write))
+        ci_token = getattr(self._tokens, "ci_token", None)
+        if ci and (write or method != "GET"):
+            raise GitHubError("CI access is read only")
+        if ci and ci_token:
+            token = ci_token(policy.installation_id, policy.repository_id)
+        else:
+            token = (review_token(policy.installation_id, policy.repository_id)
+                     if write and review_token else
+                     self._tokens(policy.installation_id, policy.repository_id, write))
         if write and guard:
             guard()
+        if deadline is not None and time.monotonic() >= deadline:
+            raise GitHubError("GitHub request time budget exhausted")
         try:
             with self._http.stream(method, API_URL + path, headers=_headers(token), **kwargs) as raw:
                 content = bytearray()
                 for block in raw.iter_bytes():
-                    if len(content) + len(block) > 10_000_000:
+                    if deadline is not None and time.monotonic() >= deadline:
+                        raise GitHubError("GitHub response time budget exhausted")
+                    if len(content) + len(block) > response_limit:
                         raise GitHubError("GitHub response exceeds bound")
                     content.extend(block)
                 decoded_headers = {key: value for key, value in raw.headers.items()
@@ -239,7 +261,10 @@ class GitHubClient:
             raise GitHubTransientError("GitHub request temporarily unavailable") from exc
         except httpx.HTTPError as exc:
             raise GitHubError("GitHub request failed") from exc
-        _json_response(response)
+        if expect_json:
+            _json_response(response)
+        elif response.status_code != 302 and not 200 <= response.status_code < 300:
+            raise GitHubError(f"GitHub returned status {response.status_code}")
         return response
 
     def _get(self, policy: RepoPolicy, path: str) -> Any:
@@ -501,8 +526,13 @@ class GitHubClient:
         return False
 
     def post_review(self, policy: RepoPolicy, snapshot: ChangeSnapshot,
-                    findings: tuple[Finding, ...], *, guard: Callable[[], None] | None = None) -> str:
+                    findings: tuple[Finding, ...], *, guard: Callable[[], None] | None = None,
+                    ci_report: dict | None = None) -> str:
         self._scope(policy, snapshot)
+        if ci_report is not None and (ci_report.get("head_sha") != snapshot.head_sha
+                or ci_report.get("repository_id", policy.repository_id) != policy.repository_id
+                or ci_report.get("repo", policy.repo) != policy.repo):
+            raise GitHubError("CI report belongs to another repository or commit")
         if not policy.post_reviews:
             raise GitHubError("Review posting is disabled")
         if len(findings) > policy.max_findings:
@@ -524,6 +554,9 @@ class GitHubClient:
                      f"{_literal(finding.path)} line {finding.line}: {_literal(finding.claim)}"
                      f"\n  Trigger: {_literal(finding.trigger)}\n  Expected: {_literal(finding.expected)}"
                      f"\n  Evidence: {_literal(finding.reason)}\n")
+        if ci_report is not None:
+            from patchington.ci import render_ci_summary
+            body += "\n" + render_ci_summary(ci_report) + "\n"
         if len(body.encode()) > 60_000:
             raise GitHubError("Review body exceeds publication bound")
         comments = self._pages(policy, f"/repos/{policy.repo}/issues/{snapshot.pr}/comments?per_page=100")
@@ -554,6 +587,12 @@ class GitHubClient:
         if any(r.get("head_sha") != sha for r in runs):
             raise GitHubError("Check run belongs to another commit")
         return {"head_sha": sha, "check_runs": runs, "statuses": statuses}
+
+    def ci_review(self, policy: RepoPolicy, snapshot: ChangeSnapshot) -> dict:
+        """Observe CI for an exact commit without executing repository code or changing runs."""
+        from patchington.ci import collect_ci
+        self._scope(policy, snapshot)
+        return collect_ci(self, policy, snapshot)
 
     def _remote_refs(self, policy: RepoPolicy, snapshot: ChangeSnapshot, path: Path) -> dict:
         token = self._tokens(policy.installation_id, policy.repository_id, False)

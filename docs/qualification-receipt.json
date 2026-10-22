@@ -283,5 +283,11 @@
       "path": "uv.lock",
       "sha256": "482135057e6e3033cb45e4d4c3d6ace1267c67a5d8508f2cdc23a4f1bf772a97"
     }
-  ]
+  ],
+  "latest_update": {
+    "as_of": "2026-10-22",
+    "receipt": "qualification-review-pipeline-2026-10-22.json",
+    "scope": "review context, source-grounded judgments, false-positive filtering and CI reporting",
+    "baseline_measurements_remain_historical": true
+  }
 }

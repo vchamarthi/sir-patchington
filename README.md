@@ -51,17 +51,25 @@ objects back, observes fixture CI, and rereviews. It touches no existing repo.
 | --- | --- | --- |
 | Identity / policy | [contracts](src/patchington/contracts.py), [config](src/patchington/config.py) | Immutable strict contracts; enrollment; protected paths; bounded checks |
 | Durable coordination | [store](src/patchington/store.py) | PostgreSQL leases, fencing, per-PR exclusion, tenant concurrency, deduplication, audit/outbox, schema-version refusal |
-| Context | [context](src/patchington/context.py), [gitwork](src/patchington/gitwork.py) | Revision/tenant/team scope, bounded retrieval, secret-pattern filtering, explicit omissions |
-| Investigation | [models](src/patchington/models.py), [pipeline](src/patchington/pipeline.py) | Tool-free structured model output, mandatory risk lanes, refutation, bounded repair and generation reuse |
+| Context | [context](src/patchington/context.py), [gitwork](src/patchington/gitwork.py) | Changed source, direct Python dependencies, matching tests/guides, scoped bounds and selection reasons |
+| Investigation | [models](src/patchington/models.py), [review](src/patchington/review.py), [pipeline](src/patchington/pipeline.py) | Added-line admission, exact deduplication, citation-bound adversarial judgments, bounded repair and generation reuse |
 | Candidate / proof | [gitwork](src/patchington/gitwork.py), [artifacts](src/patchington/artifacts.py), [records](src/patchington/records.py) | Canonical commits, independent proof generations, immutable content hashes |
 | Execution | [execution](src/patchington/execution.py), [probes](src/patchington/probes.py) | Fresh original/candidate containers; no network/secrets; resource limits; external regression assertions |
 | GitHub | [github](src/patchington/github.py) | Scoped App tokens, bounded pagination, authoritative PR/thread capture, anchored summaries, open-PR listing |
+| CI review | [ci](src/patchington/ci.py), [github](src/patchington/github.py) | Exact-head workflow/job/step observations, bounded failure evidence and collapsed review summaries |
 | Approval / publication | [api](src/patchington/api.py), [publisher](src/patchington/publisher.py) | Tenant/team roles; exact approval; revocation checks; clean reconstruction; expected-head Git CAS and readback |
 | Lifecycle | [cli](src/patchington/cli.py), [pipeline](src/patchington/pipeline.py) | Role-separated startup, reconciliation, trusted current-SHA CI observation and rereview |
 | Deployment | [Compose](compose.yaml), [Kubernetes renderer](deploy/render.py) | Nonroot roles, separated secrets, durable state, restricted execution-daemon access, opt-in live workers |
 
 The modules have injectable transports/model/verifier boundaries. There is no
 dependency on a vendor's private reviewer service and no copied proprietary code.
+
+See the [review pipeline](docs/REVIEW-PIPELINE.md) for context selection,
+source-citation verification, filtering and their limits. CI observations inform
+the review and appear in a collapsed **CI status and failures** section, including
+on reviews with no supported code findings. The read App needs **Actions: read**
+for workflow/job/log inspection. Pending, missing and inaccessible evidence is
+reported explicitly; CI observations do not grant repair or publication approval.
 
 ## Organization deployment
 
