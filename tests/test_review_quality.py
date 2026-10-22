@@ -173,6 +173,26 @@ def test_legacy_cached_generation_is_not_reused_after_verification_rules_change(
     assert not result.get("reused_generation")
 
 
+def test_prior_ci_policy_generations_and_queued_reports_are_invalidated(tmp_path, monkeypatch):
+    store, policy, forge, model, artifacts = fixture(tmp_path)
+    policy = policy.model_copy(update={"post_reviews": True})
+    model.responses["review"] = {"findings": []}
+    pipeline = Pipeline(store, [policy], forge, model, None, artifacts, publisher=object())
+    posted = []
+    forge.post_review = lambda *args, **kwargs: posted.append(args) or "1"
+    with monkeypatch.context() as previous_policy:
+        previous_policy.setattr("patchington.pipeline.REVIEW_PIPELINE_VERSION",
+                                "v2-source-grounded-review")
+        store.enqueue("acme", policy.repo, 17, "previous-ci-policy", {})
+        assert pipeline.run_once("reviewer")["state"] == "review_complete"
+    previous_calls = len(model.calls)
+    store.enqueue("acme", policy.repo, 17, "current-ci-policy", {})
+    result = pipeline.run_once("reviewer")
+    reported = pipeline.run_once("publisher", queue="publish")
+    assert not result.get("reused_generation") and len(model.calls) > previous_calls
+    assert reported["state"] == "incomplete" and not posted
+
+
 def test_a_grounded_refutation_is_not_treated_as_a_supported_defect(tmp_path):
     store, policy, forge, model, artifacts = fixture(tmp_path)
     def refute(payload):

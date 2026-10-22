@@ -1,17 +1,17 @@
 {
   "as_of": "2026-10-22",
-  "recorded_at": "2026-10-22T15:29:40.347426+00:00",
-  "status": "local_review_controls_and_live_claude_client_validated",
+  "recorded_at": "2026-10-22T16:01:35.951244+00:00",
+  "status": "local_controls_and_bounded_live_app_review_validated",
   "main_suite": {
-    "passed": 356,
+    "passed": 359,
     "skipped": 15,
     "failed": 0,
-    "seconds": 64.082,
+    "seconds": 67.764,
     "skip_reasons": {
       "set PATCHINGTON_TEST_SERVICE_IMAGE after building the service image": 2,
       "PATCHINGTON_TEST_DATABASE_URL is required for real PostgreSQL tests": 13
     },
-    "junit_sha256": "a2c9a7dd41d01fe9e7251cc69e0ef9c514594e6e717dd37852b6a11dc07be2f1"
+    "junit_sha256": "c46f15cf5f30d4173e478e2ce97d64729010f2fb3864bf4d821cdd10c6c472c9"
   },
   "checks": [
     "uv run ruff check src tests deploy scripts",
@@ -30,7 +30,9 @@
     "read-only purpose token and unauthenticated qualified log downloads",
     "real local Docker repair evidence and disposable Git approval/publication demo",
     "version and generation subprocesses disable client auto-updating without relaxing the exact pin",
-    "generation preserves macOS Keychain account identity without forwarding service or provider secrets"
+    "generation preserves macOS Keychain account identity without forwarding service or provider secrets",
+    "partial-context review limitations reach the posted summary with bounded literal rendering",
+    "prior review-policy generations and queued reports are rejected after policy changes"
   ],
   "simulated": [
     "main-suite model outputs",
@@ -38,7 +40,7 @@
     "main-suite GitHub comments and CI results"
   ],
   "live_model_generation": true,
-  "live_github_ci_inspected": false,
+  "live_github_ci_inspected": true,
   "production_deployed": false,
   "model_client": {
     "approved_version": "2.1.306",
@@ -63,10 +65,12 @@
     "No measured live-model precision, recall or false-positive reduction",
     "Static Python imports from bounded source slice; no whole-repository caller discovery",
     "CI evidence is a bounded review-time snapshot, not required-check certification",
-    "Read App must grant Actions read; live permission/transport integration not qualified",
-    "PostgreSQL/service-image prerequisites skipped in this run"
+    "PostgreSQL/service-image prerequisites skipped in this run",
+    "Large PR context is still limited to 100 KB whole-file retrieval and 100 KB snapshot text; changed modules may be omitted",
+    "New coverage/CI-policy reporting version awaits its separate fresh-head live run and posted-comment readback",
+    "Live failing-job log transport and diagnosis were not exercised on this successful PR"
   ],
-  "input_manifest_digest": "d25d578611612a2ff8ae5f12685b8291f3177741fcb9cabd48144b14fbeb59d0",
+  "input_manifest_digest": "2c309fa30a9dc29320dbcc11aabb6361f723874d32e606bb4608e1f436b50e63",
   "input_sha256": [
     {
       "path": ".dockerignore",
@@ -118,15 +122,15 @@
     },
     {
       "path": "docs/GITHUB.md",
-      "sha256": "b5d1eb817c85464ea2586f342ace887adccf6d13d151481d5bdf73ffeaf94046"
+      "sha256": "1f02f22abc29d53a5a419cbc11ae6b54824104eff8b40628e26b05d2237a205c"
     },
     {
       "path": "docs/QUALIFICATION.md",
-      "sha256": "31c85e428a68ffe305387171186e0f3aa0b34ae7457bef7233ec4d9fc4d3684f"
+      "sha256": "94a32d235f250ac33adb35e409fcde58c8fe459d1adec123864db396b45ff6d9"
     },
     {
       "path": "docs/REVIEW-PIPELINE.md",
-      "sha256": "97d2dfcb21ff471b0eef463e8030bfa458f4927e927721ac4d6b2e44c908b86f"
+      "sha256": "96607e6b96fff7e63aeb48e4bcdfe6c828ad69ae13302d63ba290785bc4d2e68"
     },
     {
       "path": "docs/examples/review-ci-summary.md",
@@ -174,7 +178,7 @@
     },
     {
       "path": "src/patchington/demo.py",
-      "sha256": "d46c1826289c1c1a0fbb31056b7e4a860d8b38f47f10dc0a0dfb579ae30be377"
+      "sha256": "0b86db2e969dd5b6db7e1a6415934df582b98c1f474e6a3946ec744a57fd955f"
     },
     {
       "path": "src/patchington/execution.py",
@@ -182,7 +186,7 @@
     },
     {
       "path": "src/patchington/github.py",
-      "sha256": "1617a03b85644226b91337bae3a982e1927609106831fc928ecff26d31fa2be8"
+      "sha256": "53d744fa6d2a885345bea5120bb7dc87abc4a9fb3898db34193d187deaab8fbb"
     },
     {
       "path": "src/patchington/gitwork.py",
@@ -194,7 +198,7 @@
     },
     {
       "path": "src/patchington/pipeline.py",
-      "sha256": "9b2942b0b9831ffb415fee185372d255851eb1d88fe38c28722e5989d94bfcb8"
+      "sha256": "cee35abb458fb53a64944555fd52fcdd722279f4fe2e316922b0aab89bb266e5"
     },
     {
       "path": "src/patchington/probes.py",
@@ -210,7 +214,7 @@
     },
     {
       "path": "src/patchington/review.py",
-      "sha256": "685ef0f908740a4ab8dbe730f6e6525c3181d9492cf82be62b0c6c22c5e8a98c"
+      "sha256": "132edaaec60b517f889a8d7d927e0afc0a12e6f333333771722e88350818c3f2"
     },
     {
       "path": "src/patchington/store.py",
@@ -270,7 +274,7 @@
     },
     {
       "path": "tests/test_github.py",
-      "sha256": "dbe6bcd46ff0801f5835c9de7b496ab32f214f2c66981943f6616f67a13f65bd"
+      "sha256": "b857353564958884df1a6a2b0d40f6d6949f690feff89e04574edf7c97591792"
     },
     {
       "path": "tests/test_gitwork.py",
@@ -310,11 +314,11 @@
     },
     {
       "path": "tests/test_review_ci_pipeline.py",
-      "sha256": "a30c472c418bd3c17a53085497442ed06560f69efbe94e6ded754438b68972d9"
+      "sha256": "eea63a94c0794ef42057746c196fe12114c14f5279e3b7c407074a77eb1aae0e"
     },
     {
       "path": "tests/test_review_quality.py",
-      "sha256": "497978177e603dc8073d64a1937b1ae7307aa2477a16a9333f064e5a2a5dba28"
+      "sha256": "efb2a807f75a6cfdc5fe9acbb80aa2e5a7a6282857a570f0257c3e3c9a622298"
     },
     {
       "path": "tests/test_source_selection.py",
@@ -333,11 +337,61 @@
       "sha256": "482135057e6e3033cb45e4d4c3d6ace1267c67a5d8508f2cdc23a4f1bf772a97"
     }
   ],
-  "live_model_scope": "structured client smoke check only; real PR model review remains unqualified",
+  "live_model_scope": "structured client smoke plus bounded real PR review/refute; not a code-review quality benchmark",
   "hosted_ci_first_pr_head": {
     "head_sha": "8cf40a768e4841548aec8ab185ec1917df6a4090",
     "url": "https://github.com/vchamarthi/sir-patchington/actions/runs/39804561129",
     "conclusion": "success",
     "scope": "GitHub CLI metadata readback; not App-based CI collector qualification"
+  },
+  "review_pipeline": "v3-coverage-and-ci-policy",
+  "manual_live_first_run": {
+    "repo": "vchamarthi/sir-patchington",
+    "pr": 1,
+    "head_sha": "fceb92b269108ea7c8d9d4cb4ce4903ecbb31325",
+    "pipeline": "v2-source-grounded-review",
+    "state": "needs_owner",
+    "model": "claude-sonnet-5-5",
+    "review_calls": 1,
+    "refute_calls": 1,
+    "model_supported_findings": 2,
+    "known_policy_false_positives": 1,
+    "retrieved_context_files": 12,
+    "retrieved_context_bytes": 99761,
+    "changed_files": 24,
+    "ci_source": "actual App-based GitHub REST collector",
+    "ci_state": "success",
+    "workflow_count": 1,
+    "job_count": 1,
+    "step_count": 17,
+    "run_id": 39805362063,
+    "live_failure_logs_exercised": false,
+    "posted": false
+  },
+  "github_app_scope": {
+    "verified_via_actual_app_api": true,
+    "repository_count_per_installation": 1,
+    "reader_permissions": {
+      "actions": "read",
+      "checks": "read",
+      "contents": "read",
+      "metadata": "read",
+      "pull_requests": "read",
+      "statuses": "read"
+    },
+    "reporter_permissions": {
+      "metadata": "read",
+      "pull_requests": "write"
+    },
+    "separate_apps_and_installations": true,
+    "code_write_granted": false
+  },
+  "terminal_error_reproduction": {
+    "transport": "mocked signed 206 tail response, not a live failure log",
+    "tail_bytes": 64000,
+    "matching_error_lines": 25,
+    "retained_error_lines": 20,
+    "final_ModuleNotFoundError_retained": false,
+    "diagnosis": "Unknown from the observed evidence"
   }
 }

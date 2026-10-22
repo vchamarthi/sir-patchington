@@ -27,6 +27,8 @@ Paginated top-level human review summaries are included as synthetic `review:<id
 
 `post_review` is disabled by default. It validates supported findings against current right-side diff anchors and writes one stable App-owned issue-comment summary with exact-commit file links. Marker ownership requires both Bot identity and the authenticated App ID; a lookalike marker from another actor is ignored. Identical content performs no write, changed content updates the owned comment, and duplicate owned markers require reconciliation. Failed writes are not blindly retried; the next invocation lists markers again. Queue per-PR exclusion is still required to prevent simultaneous comment creators. These are summaries with validated source links, not GitHub inline review-thread creation.
 
+Reports with recorded limitations display a visible coverage warning and a collapsed review-limitations section before the findings. The publisher uses the completed review record, renders text literally, and bounds the displayed entries; omitted text is explicit. An updated review-policy version rejects earlier cached generations and queued reports.
+
 Model-authored text renders in dynamic-length CommonMark code spans. Embedded Markdown/HTML/images, arbitrary links, and mentions remain literal; source links are constructed by trusted code from validated commit/path/line identities. Tests parse the rendered structure to verify that only the intended source anchor becomes a link.
 
 `checks` returns paginated runs/statuses for the exact requested SHA with their actual statuses and conclusions. Pending or missing conclusions remain pending or missing; this method does not turn CI observations into local verification or a merge decision.

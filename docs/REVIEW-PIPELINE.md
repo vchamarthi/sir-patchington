@@ -119,3 +119,8 @@ Behavioral fixture tests qualify these admission and authority controls. They do
 not measure live-model precision, recall, false-positive reduction, production
 scale or equivalence to CodeRabbit. Those quality claims require a separately
 authorized evaluation using known defects and intentional non-defects.
+
+Posted reports expose recorded coverage gaps before the findings and include a
+collapsed limitations section. A limited review must not look complete just
+because it has source citations or successful CI. The review-policy version
+changes when prompt policy changes, invalidating older generations and reports.

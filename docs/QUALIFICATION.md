@@ -2,7 +2,7 @@
 
 ## Review pipeline and CI update — 2026-10-22
 
-The current local source passed **356 tests**, with **15 explicit skips**: 13
+The current local source passed **359 tests**, with **15 explicit skips**: 13
 PostgreSQL tests require a disposable test database and two service-image tests
 require a rebuilt image. Real Docker original/candidate checks and the offline
 intake → review → approval → local Git publication → rereview demonstration ran
@@ -39,9 +39,27 @@ excluded. This is a structured client smoke check, not a code-review quality
 evaluation. Both adapter subprocess environments force `DISABLE_AUTOUPDATER=1`
 so a review cannot update its own qualified client; two behavioral failures
 preceded that fix. No provider fallback was introduced.
-Operational CI inspection still needs Actions read permission on the dedicated
-read App; no live App enrollment is claimed here. Review posting remains
-explicitly policy-controlled and candidate publication requires exact approval.
+The dedicated reader and reporter Apps are now installed on Sir Patchington
+only. Actual App API calls verified their separate identities, exact grants and
+single-repository scope. The reader has Actions read; the reporter has PR write
+and metadata read, without contents write. Review posting remains explicitly
+policy-controlled and candidate publication requires exact approval.
+
+A first manual live run on PR #1 at `fceb92b` used actual Sonnet review and
+refutation calls. The App-based CI collector captured one successful workflow,
+one job and 17 steps for that exact head. The run returned `needs_owner`: only
+12 context files fit the 100 KB retrieval budget, and credential-pattern filtering
+withheld some synthetic test files. This did not fully review all 24 changed files.
+One model-supported finding contradicted the deliberate skipped-check policy;
+the other, a terminal-error omission from bounded log evidence, was reproduced
+with a mocked 64 KB response containing 25 error lines. These are bounded
+execution observations, not a precision or recall benchmark.
+
+That run exposed a report defect: stored review limitations were not displayed
+in the comment. The current update makes those limitations visible, clarifies
+the intentional CI policy and invalidates older cached generations. A subsequent
+manual run and posted-comment readback are qualified separately from this
+pre-publication record.
 
 ## Original baseline — 2026-10-21
 

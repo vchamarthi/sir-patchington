@@ -1,7 +1,11 @@
 """CI context/report integration using fixture forge responses only."""
 
-from test_pipeline import fixture
+import json
 
+import httpx
+from test_pipeline import FINDING, fixture
+
+from patchington.github import GitHubClient
 from patchington.pipeline import Pipeline
 
 
@@ -60,3 +64,40 @@ def test_ci_from_another_commit_is_rejected_before_model_generation(tmp_path):
     store.enqueue("acme", policy.repo, 17, "wrong-ci-head", {})
     result = pipeline.run_once("reviewer")
     assert result["state"] == "incomplete" and model.calls == []
+
+
+def test_incomplete_review_context_is_disclosed_with_findings_in_published_summary(tmp_path):
+    store, policy, forge, model, pipeline = engine(tmp_path)
+    snapshot = forge.snapshot(policy, 17).model_copy(update={"body": "Owner context " + "x" * 25_000})
+    forge.snapshot = lambda p, pr: snapshot
+    model.responses["review"] = {"findings": [FINDING]}
+    job = store.enqueue("acme", policy.repo, 17, "partial-review", {})
+    assert pipeline.run_once("reviewer")["state"] == "needs_owner"
+    record = store.get_record("acme", "findings", job)
+    assert record["findings"][0]["status"] == "supported" and record["limitations"]
+    written = []
+
+    def tokens(*args):
+        return "fixture-token"
+
+    tokens.app_id = 42
+
+    def handle(request):
+        if request.url.path.endswith("/pulls/17"):
+            repo = {"id": policy.repository_id, "full_name": policy.repo}
+            return httpx.Response(200, json={"number": 17, "state": "open", "draft": False,
+                "changed_files": 1, "base": {"sha": snapshot.base_sha, "repo": repo},
+                "head": {"sha": snapshot.head_sha, "repo": repo}})
+        if request.method == "GET":
+            return httpx.Response(200, json=[])
+        written.append(json.loads(request.content)["body"])
+        return httpx.Response(201, json={"id": 50})
+
+    forge.post_review = GitHubClient(tokens, transport=httpx.MockTransport(handle)).post_review
+    assert pipeline.run_once("publisher", queue="publish")["state"] == "review_reported"
+    body = written[0]
+    assert "**Review coverage is limited.**" in body
+    assert body.index("Review coverage is limited") < body.index("<details>")
+    assert "<details><summary>Review limitations</summary>" in body
+    assert all(limitation in body for limitation in record["limitations"])
+    assert "CI status and failures" in body and FINDING["claim"] in body

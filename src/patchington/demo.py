@@ -70,7 +70,8 @@ class LocalForge(GitHubClient):
                               body="Demonstration only: delivery is free at subtotal 50 or above.",
                               files=(ChangedFile(path="src/fees.py", patch=diff + "\n"),) if diff else ())
 
-    def post_review(self, policy, snapshot, findings, *, guard=None, ci_report=None):
+    def post_review(self, policy, snapshot, findings, *, guard=None, ci_report=None,
+                    review_limitations=()):
         self._scope(policy, snapshot)
         if not policy.post_reviews or self.snapshot(policy, snapshot.pr).identity != snapshot.identity:
             raise GitHubError("fixture review is disabled or stale")
@@ -84,6 +85,8 @@ class LocalForge(GitHubClient):
             if ci_report["head_sha"] != snapshot.head_sha:
                 raise GitHubError("fixture CI belongs to another revision")
             record["ci"] = ci_report
+        if review_limitations:
+            record["limitations"] = list(review_limitations)
         if guard:
             guard()
         self.reviews.append(record)

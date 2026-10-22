@@ -70,6 +70,28 @@ def _literal(value: str) -> str:
     return delimiter + " " + value + " " + delimiter
 
 
+def _review_limitations_section(limitations: tuple[str, ...]) -> str:
+    if not limitations:
+        return ""
+    if not isinstance(limitations, tuple) or any(not isinstance(value, str) for value in limitations):
+        raise GitHubError("Invalid review limitations")
+    rows, used, omitted = [], 0, len(limitations) > 20
+    for limitation in limitations[:20]:
+        data = limitation.encode()
+        omitted = omitted or len(data) > 1_000
+        row = "- " + _literal(data[:1_000].decode("utf-8", errors="ignore")) + "\n"
+        if used + len(row.encode()) > 10_000:
+            omitted = True
+            break
+        rows.append(row)
+        used += len(row.encode())
+    if omitted:
+        rows.append("Additional review limitation text omitted by publication bounds.\n")
+    return ("\n**Review coverage is limited.** Findings apply only to the evidence available "
+            "during this review.\n\n<details><summary>Review limitations</summary>\n\n"
+            + "".join(rows) + "\n</details>\n")
+
+
 class AppTokenProvider:
     """Mint a new single-repository token per request; never reuse a broader scope."""
 
@@ -527,7 +549,8 @@ class GitHubClient:
 
     def post_review(self, policy: RepoPolicy, snapshot: ChangeSnapshot,
                     findings: tuple[Finding, ...], *, guard: Callable[[], None] | None = None,
-                    ci_report: dict | None = None) -> str:
+                    ci_report: dict | None = None,
+                    review_limitations: tuple[str, ...] = ()) -> str:
         self._scope(policy, snapshot)
         if ci_report is not None and (ci_report.get("head_sha") != snapshot.head_sha
                 or ci_report.get("repository_id", policy.repository_id) != policy.repository_id
@@ -547,6 +570,7 @@ class GitHubClient:
             raise GitHubError("Stale review snapshot")
         marker = f"<!-- sir-patchington:review:v1:{policy.repository_id}:{snapshot.pr} -->"
         body = marker + f"\nReviewed commit `{snapshot.head_sha}`.\n"
+        body += _review_limitations_section(review_limitations)
         for finding in sorted(findings, key=lambda f: (f.path, f.line, f.fingerprint)):
             anchor = (f"https://github.com/{policy.repo}/blob/{snapshot.head_sha}/"
                       f"{quote(finding.path, safe='/')}#L{finding.line}")
